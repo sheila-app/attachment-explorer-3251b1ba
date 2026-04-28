@@ -16,7 +16,7 @@ export function BottomNav() {
   const { pathname } = useLocation();
   return (
     <nav className="absolute bottom-0 inset-x-0 z-30 px-4 pb-4 pt-2">
-      <div className="glass-strong rounded-[28px] overflow-hidden">
+      <div className="glass-strong rounded-2xl overflow-hidden">
         <div className="grid grid-cols-5 h-[68px] relative z-10">
           {items.map(({ to, label, icon: Icon }) => {
             const active = pathname === to || pathname.startsWith(to + "/");
@@ -28,7 +28,7 @@ export function BottomNav() {
               >
                 {active && (
                   <span
-                    className="absolute inset-1.5 rounded-2xl"
+                    className="absolute inset-1.5 rounded-lg"
                     style={{
                       background:
                         "linear-gradient(135deg, oklch(0.66 0.16 322 / 0.22), oklch(0.46 0.135 328 / 0.12))",

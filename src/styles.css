@@ -58,7 +58,7 @@
 }
 
 :root {
-  --radius: 1.25rem;
+  --radius: 0.75rem;
 
   /* Warm porcelain background, deep aubergine ink */
   --background: oklch(0.985 0.006 50);
@@ -280,4 +280,27 @@
   50% { transform: scale(1.04); opacity: 1; }
 }
 .animate-breathe { animation: breathe 3.5s ease-in-out infinite; }
+
+/* Floating doodle animations — لإضفاء حياة على الخلفيّة */
+@keyframes doodle-drift {
+  0%, 100% { transform: translateX(0) translateY(0); }
+  50% { transform: translateX(-8px) translateY(4px); }
+}
+@keyframes doodle-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(4deg); }
+}
+@keyframes doodle-float-rev {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(8px) rotate(-3deg); }
+}
+@keyframes doodle-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-doodle-drift { animation: doodle-drift 9s ease-in-out infinite; }
+.animate-doodle-float { animation: doodle-float 7s ease-in-out infinite; }
+.animate-doodle-float-rev { animation: doodle-float-rev 8s ease-in-out infinite; }
+.animate-doodle-spin { animation: doodle-spin 22s linear infinite; }
+.animate-doodle-spin-slow { animation: doodle-spin 60s linear infinite; }
 

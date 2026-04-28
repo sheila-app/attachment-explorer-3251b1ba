@@ -3,7 +3,9 @@ import { DeviceFrame } from "@/components/sheila/DeviceFrame";
 import { BottomNav } from "@/components/sheila/BottomNav";
 import { CyclePhaseRing } from "@/components/sheila/CyclePhaseRing";
 import { LiquidBackdrop } from "@/components/sheila/LiquidBackdrop";
+import { FloatingDoodles } from "@/components/sheila/FloatingDoodles";
 import { mockUser, mockWorkouts, PHASE_META } from "@/data/mock";
+import { toAr } from "@/lib/format";
 import { Bell, Sparkles, Flame, Droplet, Moon, ChevronLeft, Activity } from "lucide-react";
 
 export const Route = createFileRoute("/home")({
@@ -17,6 +19,7 @@ function HomePage() {
     <DeviceFrame>
       <div className="relative h-full min-h-screen overflow-hidden">
         <LiquidBackdrop variant="energetic" />
+        <FloatingDoodles />
 
         <div className="relative z-10 h-full min-h-screen overflow-y-auto no-scrollbar pb-28">
           {/* Hero */}
@@ -29,10 +32,10 @@ function HomePage() {
                 <h1 className="font-display text-[28px] mt-1 leading-none">{mockUser.name}</h1>
                 <div className="mt-2 inline-flex items-center gap-1.5 text-[11px] text-foreground/65">
                   <Activity size={11} strokeWidth={2} />
-                  <span className="nums">{mockUser.streak} أيام متتالية</span>
+                  <span className="nums">{toAr(mockUser.streak)} أيام متتالية</span>
                 </div>
               </div>
-              <button className="glass relative w-11 h-11 rounded-2xl flex items-center justify-center">
+              <button className="glass relative w-11 h-11 rounded-xl flex items-center justify-center">
                 <Bell size={17} strokeWidth={1.75} className="relative z-10" />
                 <span className="absolute top-2.5 right-2.5 w-1.5 h-1.5 rounded-full bg-phase-menstrual z-10" />
               </button>
@@ -51,7 +54,7 @@ function HomePage() {
             </div>
 
             <div
-              className="glass mt-5 mx-3 px-4 py-3 rounded-2xl animate-rise"
+              className="glass mt-5 mx-3 px-4 py-3 rounded-xl animate-rise"
               style={{ animationDelay: "0.3s" }}
             >
               <p className="relative z-10 text-center text-[12.5px] text-foreground/80 leading-relaxed">
@@ -66,21 +69,21 @@ function HomePage() {
               <StatCard
                 icon={Flame}
                 label="سعرات"
-                value="320"
-                hint="من ١٨٠٠"
+                value={toAr(320)}
+                hint={`من ${toAr(1800)}`}
                 color="var(--phase-menstrual)"
               />
               <StatCard
                 icon={Droplet}
                 label="ماء"
-                value="٦/٨"
+                value={`${toAr(6)}/${toAr(8)}`}
                 hint="كأس"
                 color="var(--primary)"
               />
               <StatCard
                 icon={Moon}
                 label="نوم"
-                value="٧.٢"
+                value={toAr("7.2")}
                 hint="ساعة"
                 color="var(--phase-luteal)"
               />
@@ -89,10 +92,21 @@ function HomePage() {
 
           {/* AI Insight */}
           <div className="px-5 mt-6 animate-rise">
-            <div className="glass-strong relative rounded-3xl p-5 overflow-hidden">
+            <div className="glass-strong relative rounded-2xl p-5 overflow-hidden">
+              {/* رسم زخرفي خفيف داخل الكرت */}
+              <svg
+                className="absolute -top-6 -left-6 opacity-30 pointer-events-none"
+                width="120"
+                height="120"
+                viewBox="0 0 120 120"
+                fill="none"
+              >
+                <circle cx="60" cy="60" r="50" stroke="var(--primary-glow)" strokeWidth="0.8" strokeDasharray="2 4" />
+                <circle cx="60" cy="60" r="30" stroke="var(--primary)" strokeWidth="0.6" strokeDasharray="1 3" />
+              </svg>
               <div className="relative z-10 flex items-start gap-3">
                 <div
-                  className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 relative overflow-hidden"
+                  className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 relative overflow-hidden"
                   style={{
                     background: "var(--gradient-primary)",
                     boxShadow:
@@ -152,26 +166,30 @@ function HomePage() {
                 return (
                   <button
                     key={w.id}
-                    className="glass w-full rounded-2xl p-3.5 flex items-center gap-3 text-right transition-transform active:scale-[0.99]"
+                    className="glass w-full rounded-xl p-3.5 flex items-center gap-3 text-right transition-transform active:scale-[0.99]"
                   >
                     <div
-                      className="relative z-10 w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 overflow-hidden"
+                      className="relative z-10 w-14 h-14 rounded-xl flex items-center justify-center shrink-0 overflow-hidden"
                       style={{
                         background: `linear-gradient(135deg, ${wp.color}55, ${wp.color}22)`,
                         boxShadow:
                           "inset 0 1px 0 0 oklch(1 0 0 / 0.5), inset 0 -1px 0 0 oklch(0 0 0 / 0.05)",
                       }}
                     >
-                      <Flame size={20} style={{ color: wp.color }} strokeWidth={1.75} />
+                      {/* رسم زخرفي صغير خلف الأيقونة */}
+                      <svg className="absolute inset-0 opacity-50" viewBox="0 0 56 56" fill="none">
+                        <circle cx="28" cy="28" r="20" stroke={wp.color} strokeWidth="0.6" strokeDasharray="2 3" />
+                      </svg>
+                      <Flame size={20} style={{ color: wp.color }} strokeWidth={1.75} className="relative" />
                     </div>
                     <div className="relative z-10 flex-1 min-w-0">
                       <h3 className="text-[13.5px] font-medium truncate">{w.title}</h3>
                       <div className="flex items-center gap-2 mt-1 text-[11px] text-foreground/60">
-                        <span className="nums">{w.duration} د</span>
+                        <span className="nums">{toAr(w.duration)} د</span>
                         <span className="w-1 h-1 rounded-full bg-foreground/30" />
                         <span>{w.level}</span>
                         <span className="w-1 h-1 rounded-full bg-foreground/30" />
-                        <span className="nums">{w.calories} سعرة</span>
+                        <span className="nums">{toAr(w.calories)} سعرة</span>
                       </div>
                     </div>
                     <ChevronLeft
@@ -187,10 +205,20 @@ function HomePage() {
 
           {/* Daily check-in */}
           <div className="px-5 mt-7 animate-rise">
-            <div className="glass rounded-3xl p-5">
+            <div className="glass rounded-2xl p-5 relative overflow-hidden">
+              {/* خط متموّج زخرفي */}
+              <svg
+                className="absolute bottom-2 left-2 opacity-30 pointer-events-none"
+                width="120"
+                height="20"
+                viewBox="0 0 120 20"
+                fill="none"
+              >
+                <path d="M2 10 Q 15 2, 30 10 T 60 10 T 90 10 T 118 10" stroke="var(--primary-glow)" strokeWidth="1" fill="none" />
+              </svg>
               <div className="relative z-10 flex items-center justify-between">
                 <h3 className="font-medium text-sm">كيف تشعرين اليوم؟</h3>
-                <span className="text-[10px] text-foreground/60">١٠ ثوان</span>
+                <span className="text-[10px] text-foreground/60 nums">{toAr(10)} ثوان</span>
               </div>
               <div className="relative z-10 flex justify-between mt-4 gap-1.5">
                 {[
@@ -202,7 +230,7 @@ function HomePage() {
                 ].map(({ mood, color }) => (
                   <button
                     key={mood}
-                    className="flex-1 flex flex-col items-center gap-1.5 py-2.5 rounded-xl transition-transform active:scale-95"
+                    className="flex-1 flex flex-col items-center gap-1.5 py-2.5 rounded-lg transition-transform active:scale-95"
                     style={{
                       background: "oklch(1 0 0 / 0.4)",
                       backdropFilter: "blur(12px)",
@@ -241,7 +269,7 @@ function StatCard({
   color: string;
 }) {
   return (
-    <div className="glass rounded-2xl p-3">
+    <div className="glass rounded-xl p-3">
       <div className="relative z-10 flex items-center justify-between mb-1.5">
         <Icon size={14} style={{ color }} strokeWidth={2} />
         <span className="text-[9px] tracking-wider text-foreground/55 uppercase">{label}</span>

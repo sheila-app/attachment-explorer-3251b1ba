@@ -1,4 +1,5 @@
 import { PHASE_META, type CyclePhase } from "@/data/mock";
+import { toAr } from "@/lib/format";
 
 interface Props {
   phase: CyclePhase;
@@ -113,9 +114,9 @@ export function CyclePhaseRing({ phase, day, cycleLength, size = 240 }: Props) {
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
         <div className="text-[10px] tracking-[0.3em] text-muted-foreground uppercase">يوم</div>
         <div className="font-display text-6xl leading-none mt-1 nums" style={{ color: meta.color }}>
-          {day}
+          {toAr(day)}
         </div>
-        <div className="text-[11px] text-muted-foreground mt-1 nums">من {cycleLength}</div>
+        <div className="text-[11px] text-muted-foreground mt-1 nums">من {toAr(cycleLength)}</div>
         <div className="mt-3 flex items-center gap-1.5">
           <span className="w-1.5 h-1.5 rounded-full animate-breathe" style={{ backgroundColor: meta.color }} />
           <span className="text-xs font-medium" style={{ color: meta.color }}>{meta.name}</span>

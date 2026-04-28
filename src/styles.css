@@ -122,6 +122,85 @@
   --gradient-aurora: radial-gradient(ellipse at top right, oklch(0.66 0.16 322 / 0.18), transparent 50%),
                      radial-gradient(ellipse at bottom left, oklch(0.76 0.14 75 / 0.12), transparent 50%);
   --gradient-porcelain: linear-gradient(180deg, oklch(0.99 0.004 50) 0%, oklch(0.97 0.01 45) 100%);
+
+  /* Liquid Glass tokens */
+  --glass-bg: linear-gradient(135deg, oklch(1 0 0 / 0.55) 0%, oklch(1 0 0 / 0.25) 100%);
+  --glass-bg-strong: linear-gradient(135deg, oklch(1 0 0 / 0.7) 0%, oklch(1 0 0 / 0.4) 100%);
+  --glass-bg-tinted: linear-gradient(135deg, oklch(0.66 0.16 322 / 0.18) 0%, oklch(0.76 0.14 75 / 0.1) 100%);
+  --glass-border: oklch(1 0 0 / 0.5);
+  --glass-border-strong: oklch(1 0 0 / 0.7);
+  --glass-highlight: linear-gradient(180deg, oklch(1 0 0 / 0.55) 0%, oklch(1 0 0 / 0) 50%);
+  --shadow-glass: 0 8px 32px -8px oklch(0.4 0.08 325 / 0.18),
+                  inset 0 1px 0 0 oklch(1 0 0 / 0.6),
+                  inset 0 -1px 0 0 oklch(0.4 0.08 325 / 0.06);
+  --shadow-glass-lg: 0 20px 60px -16px oklch(0.4 0.08 325 / 0.25),
+                     inset 0 1px 0 0 oklch(1 0 0 / 0.7),
+                     inset 0 -1px 0 0 oklch(0.4 0.08 325 / 0.08);
+}
+
+/* Liquid Glass utility classes */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-glass);
+  position: relative;
+}
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--glass-highlight);
+  pointer-events: none;
+  opacity: 0.7;
+  mix-blend-mode: overlay;
+}
+.glass-strong {
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(32px) saturate(200%);
+  -webkit-backdrop-filter: blur(32px) saturate(200%);
+  border: 1px solid var(--glass-border-strong);
+  box-shadow: var(--shadow-glass-lg);
+  position: relative;
+}
+.glass-strong::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--glass-highlight);
+  pointer-events: none;
+  opacity: 0.8;
+  mix-blend-mode: overlay;
+}
+.glass-tinted {
+  background: var(--glass-bg-tinted);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid oklch(1 0 0 / 0.4);
+  box-shadow: var(--shadow-glass);
+}
+
+/* Liquid blob backdrop — colorful animated mesh */
+.liquid-bg {
+  position: relative;
+  overflow: hidden;
+  background: oklch(0.985 0.006 50);
+}
+.liquid-bg > .blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(60px);
+  opacity: 0.65;
+  pointer-events: none;
+  animation: float 18s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -40px) scale(1.1); }
+  66% { transform: translate(-20px, 30px) scale(0.95); }
 }
 
 @layer base {

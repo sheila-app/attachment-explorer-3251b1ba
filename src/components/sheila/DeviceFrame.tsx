@@ -1,8 +1,7 @@
 import type { ReactNode } from "react";
 
 /**
- * إطار الموبايل — على الديسكتوب يُحاط بمنصّة هادئة تُبرز الجهاز كقطعة فنّية.
- * على الموبايل: يملأ الشاشة بالكامل دون إطار.
+ * إطار الموبايل — على الديسكتوب منصّة هادئة بإضاءة محيطة.
  */
 export function DeviceFrame({
   children,
@@ -12,19 +11,25 @@ export function DeviceFrame({
   className?: string;
 }) {
   return (
-    <div className="min-h-screen w-full bg-muted flex items-stretch justify-center md:items-center md:p-8">
-      {/* Ambient backdrop on desktop */}
+    <div
+      className="min-h-screen w-full flex items-stretch justify-center md:items-center md:p-8 relative overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(135deg, oklch(0.96 0.018 320) 0%, oklch(0.97 0.012 60) 50%, oklch(0.95 0.025 300) 100%)",
+      }}
+    >
       <div className="hidden md:block fixed inset-0 pointer-events-none">
-        <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-primary/5 blur-3xl" />
-        <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] rounded-full bg-phase-luteal/5 blur-3xl" />
+        <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] rounded-full bg-primary/15 blur-[100px]" />
+        <div className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-phase-luteal/15 blur-[100px]" />
+        <div className="absolute top-1/2 left-1/3 w-[400px] h-[400px] rounded-full bg-phase-ovulation/12 blur-[100px]" />
       </div>
 
       <div
         className={`
           relative w-full max-w-[430px] min-h-screen md:min-h-0 md:h-[900px]
-          bg-background overflow-hidden
-          md:rounded-[44px] md:border md:border-border/40
-          md:shadow-[0_40px_80px_-30px_rgba(70,30,90,0.25),0_20px_50px_-20px_rgba(70,30,90,0.15)]
+          overflow-hidden
+          md:rounded-[44px]
+          md:shadow-[0_50px_100px_-30px_rgba(70,30,90,0.35),0_25px_60px_-25px_rgba(70,30,90,0.2)]
           ${className}
         `}
       >

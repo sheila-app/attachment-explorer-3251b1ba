@@ -19,8 +19,7 @@ export function BottomNav() {
           return (
             <Link
               key={to}
-              // @ts-expect-error — routes registered progressively across phases
-              to={to}
+              to={to as "/home"}
               className={`flex flex-col items-center justify-center gap-1 text-[11px] transition-colors ${
                 active ? "text-primary" : "text-muted-foreground"
               }`}

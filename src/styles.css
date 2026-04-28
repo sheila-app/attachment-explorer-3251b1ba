@@ -58,50 +58,70 @@
 }
 
 :root {
-  --radius: 1rem;
+  --radius: 1.25rem;
 
-  /* Neutrals — warm off-white surface, deep ink foreground */
-  --background: oklch(0.985 0.005 60);
-  --foreground: oklch(0.2 0.03 320);
+  /* Warm porcelain background, deep aubergine ink */
+  --background: oklch(0.985 0.006 50);
+  --foreground: oklch(0.22 0.04 325);
   --surface: oklch(1 0 0);
-  --surface-warm: oklch(0.975 0.01 50);
+  --surface-warm: oklch(0.97 0.012 45);
+  --surface-elevated: oklch(0.995 0.003 60);
 
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.2 0.03 320);
+  --card-foreground: oklch(0.22 0.04 325);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.2 0.03 320);
+  --popover-foreground: oklch(0.22 0.04 325);
 
-  /* Brand primary: SHEILA purple #8B4789 */
-  --primary: oklch(0.47 0.13 330);
+  /* Brand primary — refined SHEILA purple */
+  --primary: oklch(0.46 0.135 328);
   --primary-foreground: oklch(0.99 0.005 320);
-  --primary-soft: oklch(0.94 0.04 330);
-  --primary-glow: oklch(0.62 0.15 325);
+  --primary-soft: oklch(0.945 0.035 328);
+  --primary-glow: oklch(0.66 0.16 322);
+  --primary-deep: oklch(0.32 0.12 330);
 
   --secondary: oklch(0.96 0.015 320);
   --secondary-foreground: oklch(0.3 0.05 330);
 
-  --muted: oklch(0.96 0.008 60);
-  --muted-foreground: oklch(0.5 0.02 320);
+  --muted: oklch(0.965 0.01 50);
+  --muted-foreground: oklch(0.52 0.025 320);
 
-  --accent: oklch(0.94 0.04 330);
+  --accent: oklch(0.945 0.035 328);
   --accent-foreground: oklch(0.35 0.1 330);
 
   --destructive: oklch(0.6 0.2 25);
   --destructive-foreground: oklch(0.99 0.005 60);
 
-  --border: oklch(0.92 0.01 320);
-  --input: oklch(0.93 0.01 320);
-  --ring: oklch(0.62 0.15 325);
+  --border: oklch(0.925 0.012 320);
+  --input: oklch(0.935 0.012 320);
+  --ring: oklch(0.66 0.16 322);
 
-  /* Cycle phase colors (from Sheila brand) */
-  --phase-menstrual: oklch(0.62 0.17 25);        /* #D96060 */
-  --phase-menstrual-soft: oklch(0.95 0.04 25);
-  --phase-follicular: oklch(0.65 0.18 140);      /* #58A030 */
-  --phase-follicular-soft: oklch(0.95 0.04 140);
-  --phase-ovulation: oklch(0.78 0.14 80);        /* #E8A838 */
-  --phase-ovulation-soft: oklch(0.96 0.04 80);
-  --phase-luteal: oklch(0.55 0.13 305);          /* #8B5FB8 */
+  /* Cycle phase tokens — calibrated for harmony */
+  --phase-menstrual: oklch(0.62 0.17 25);
+  --phase-menstrual-soft: oklch(0.955 0.035 25);
+  --phase-menstrual-deep: oklch(0.45 0.15 25);
+  --phase-follicular: oklch(0.62 0.16 145);
+  --phase-follicular-soft: oklch(0.955 0.035 145);
+  --phase-follicular-deep: oklch(0.45 0.13 145);
+  --phase-ovulation: oklch(0.76 0.14 75);
+  --phase-ovulation-soft: oklch(0.96 0.04 75);
+  --phase-ovulation-deep: oklch(0.55 0.13 70);
+  --phase-luteal: oklch(0.55 0.13 305);
   --phase-luteal-soft: oklch(0.95 0.03 305);
+  --phase-luteal-deep: oklch(0.4 0.12 305);
+
+  /* Crafted shadow system — soft, layered, never harsh */
+  --shadow-xs: 0 1px 2px 0 oklch(0.4 0.08 325 / 0.04);
+  --shadow-sm: 0 2px 8px -2px oklch(0.4 0.08 325 / 0.06), 0 1px 3px -1px oklch(0.4 0.08 325 / 0.04);
+  --shadow-md: 0 8px 24px -8px oklch(0.4 0.08 325 / 0.1), 0 2px 6px -2px oklch(0.4 0.08 325 / 0.06);
+  --shadow-lg: 0 20px 40px -16px oklch(0.4 0.08 325 / 0.14), 0 4px 12px -4px oklch(0.4 0.08 325 / 0.06);
+  --shadow-glow: 0 12px 32px -8px oklch(0.66 0.16 322 / 0.32);
+  --shadow-inner: inset 0 1px 2px oklch(0.4 0.08 325 / 0.05);
+
+  /* Crafted gradients */
+  --gradient-primary: linear-gradient(135deg, oklch(0.46 0.135 328) 0%, oklch(0.66 0.16 322) 100%);
+  --gradient-aurora: radial-gradient(ellipse at top right, oklch(0.66 0.16 322 / 0.18), transparent 50%),
+                     radial-gradient(ellipse at bottom left, oklch(0.76 0.14 75 / 0.12), transparent 50%);
+  --gradient-porcelain: linear-gradient(180deg, oklch(0.99 0.004 50) 0%, oklch(0.97 0.01 45) 100%);
 }
 
 @layer base {
@@ -111,12 +131,14 @@
 
   html {
     direction: rtl;
+    -webkit-tap-highlight-color: transparent;
   }
 
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    font-feature-settings: "ss01", "ss02", "kern";
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -124,14 +146,59 @@
   h1, h2, h3, h4 {
     font-family: var(--font-sans);
     font-weight: 700;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
   }
 
   .font-display {
     font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  /* Tabular numbers for stats */
+  .nums {
+    font-variant-numeric: tabular-nums;
   }
 }
 
 /* Hide scrollbars on the device frame inner scroll */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Subtle grain overlay for warmth — applied to hero zones */
+.grain {
+  position: relative;
+}
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.4  0 0 0 0 0.2  0 0 0 0 0.4  0 0 0 0.08 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* Soft entrance */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-rise { animation: rise-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* Stagger helper */
+.stagger > * { animation: rise-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.stagger > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger > *:nth-child(2) { animation-delay: 0.12s; }
+.stagger > *:nth-child(3) { animation-delay: 0.19s; }
+.stagger > *:nth-child(4) { animation-delay: 0.26s; }
+.stagger > *:nth-child(5) { animation-delay: 0.33s; }
+.stagger > *:nth-child(6) { animation-delay: 0.4s; }
+
+/* Breathing pulse for live elements */
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.04); opacity: 1; }
+}
+.animate-breathe { animation: breathe 3.5s ease-in-out infinite; }
+

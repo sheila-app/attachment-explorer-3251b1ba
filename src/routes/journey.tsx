@@ -93,6 +93,16 @@ function JourneyPage() {
             <div className="relative z-10 text-[10px] text-foreground/55 nums">4 نشطة</div>
           </Link>
         </div>
+
+        <Link to="/journey/insights" className="glass-strong rounded-2xl p-4 mt-3 flex items-center gap-3">
+          <div className="relative z-10 w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: "var(--gradient-primary)" }}>
+            <Sparkles size={16} className="text-white" />
+          </div>
+          <div className="relative z-10 flex-1">
+            <div className="text-[13px] font-medium">رؤى ذكيّة</div>
+            <div className="text-[11px] text-foreground/60">تحليلاتٌ مخصّصة من شيلا</div>
+          </div>
+        </Link>
       </div>
     </FeatureShell>
   );

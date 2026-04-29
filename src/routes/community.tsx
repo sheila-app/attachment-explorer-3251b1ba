@@ -1,7 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { mockPosts } from "@/data/mock";
-import { Heart, MessageCircle, Plus } from "lucide-react";
+import { Heart, MessageCircle, Plus, UserPlus } from "lucide-react";
 
 export const Route = createFileRoute("/community")({ component: CommunityPage });
 
@@ -9,9 +9,9 @@ function CommunityPage() {
   return (
     <FeatureShell title="دائرة شيلا" variant="default"
       trailing={
-        <button className="glass w-10 h-10 rounded-full flex items-center justify-center">
-          <Plus size={17} className="relative z-10 text-primary" strokeWidth={2} />
-        </button>
+        <Link to="/community/invite" className="glass w-10 h-10 rounded-full flex items-center justify-center">
+          <UserPlus size={16} className="relative z-10 text-primary" strokeWidth={2} />
+        </Link>
       }
     >
       <div className="px-5">

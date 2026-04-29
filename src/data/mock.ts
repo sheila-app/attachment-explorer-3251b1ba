@@ -141,6 +141,10 @@ export const allScreens = [
     { path: "/home", name: "الرئيسية" },
     { path: "/notifications", name: "الإشعارات" },
     { path: "/checkin", name: "تسجيل اليوم" },
+    { path: "/checkin/water", name: "تتبّع الماء" },
+    { path: "/checkin/sleep", name: "تتبّع النوم" },
+    { path: "/assistant", name: "مساعدة شيلا (AI)" },
+    { path: "/search", name: "بحث" },
   ]},
   { group: "الدورة", items: [
     { path: "/cycle", name: "تقويم الدورة" },
@@ -148,6 +152,7 @@ export const allScreens = [
   ]},
   { group: "التمارين", items: [
     { path: "/workouts", name: "مكتبة التمارين" },
+    { path: "/workouts/live", name: "جلسات مباشرة" },
     { path: "/workouts/w3", name: "تفاصيل تمرين" },
     { path: "/workouts/w3/play", name: "مشغّل التمرين" },
     { path: "/workouts/summary", name: "ملخّص التمرين" },
@@ -160,12 +165,18 @@ export const allScreens = [
     { path: "/journey", name: "رحلة الصحّة" },
     { path: "/journey/awards", name: "الإنجازات" },
     { path: "/journey/measurements", name: "القياسات" },
+    { path: "/journey/goals", name: "الأهداف" },
   ]},
   { group: "المجتمع", items: [
     { path: "/community", name: "دائرة شيلا" },
+    { path: "/community/p1", name: "تفاصيل منشور" },
   ]},
   { group: "الحساب", items: [
     { path: "/profile", name: "الملف الشخصي" },
+    { path: "/profile/edit", name: "تعديل الملف" },
+    { path: "/profile/subscription", name: "الاشتراك" },
+    { path: "/profile/payment", name: "الدفع" },
+    { path: "/profile/help", name: "المساعدة" },
     { path: "/profile/settings", name: "الإعدادات" },
   ]},
 ];

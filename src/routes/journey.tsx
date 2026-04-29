@@ -76,20 +76,21 @@ function JourneyPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-2.5 mt-3">
-          <Link to="/journey/awards" className="glass rounded-2xl p-4 flex items-center justify-between">
-            <div className="relative z-10">
-              <div className="text-sm font-medium">الإنجازات</div>
-              <div className="text-[11px] text-foreground/60 mt-0.5">3 من 6</div>
-            </div>
-            <Trophy size={20} className="relative z-10 text-primary" strokeWidth={1.75} />
+        <div className="grid grid-cols-3 gap-2.5 mt-3">
+          <Link to="/journey/awards" className="glass rounded-2xl p-3 flex flex-col items-center text-center gap-1.5">
+            <Trophy size={18} className="relative z-10 text-primary" strokeWidth={1.75} />
+            <div className="relative z-10 text-[12px] font-medium">الإنجازات</div>
+            <div className="relative z-10 text-[10px] text-foreground/55 nums">3/6</div>
           </Link>
-          <Link to="/journey/measurements" className="glass rounded-2xl p-4 flex items-center justify-between">
-            <div className="relative z-10">
-              <div className="text-sm font-medium">القياسات</div>
-              <div className="text-[11px] text-foreground/60 mt-0.5">سجّلي تقدّمك</div>
-            </div>
-            <TrendingDown size={20} className="relative z-10 text-primary" strokeWidth={1.75} />
+          <Link to="/journey/measurements" className="glass rounded-2xl p-3 flex flex-col items-center text-center gap-1.5">
+            <TrendingDown size={18} className="relative z-10 text-primary" strokeWidth={1.75} />
+            <div className="relative z-10 text-[12px] font-medium">القياسات</div>
+            <div className="relative z-10 text-[10px] text-foreground/55">سجّلي</div>
+          </Link>
+          <Link to="/journey/goals" className="glass rounded-2xl p-3 flex flex-col items-center text-center gap-1.5">
+            <Activity size={18} className="relative z-10 text-primary" strokeWidth={1.75} />
+            <div className="relative z-10 text-[12px] font-medium">أهدافي</div>
+            <div className="relative z-10 text-[10px] text-foreground/55 nums">4 نشطة</div>
           </Link>
         </div>
       </div>

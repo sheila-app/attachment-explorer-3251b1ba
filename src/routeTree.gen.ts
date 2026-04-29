@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WorkoutsRouteImport } from './routes/workouts'
+import { Route as SystemRouteImport } from './routes/system'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as ScreensRouteImport } from './routes/screens'
 import { Route as ProfileRouteImport } from './routes/profile'
@@ -61,6 +62,11 @@ import { Route as WorkoutsIdPlayRouteImport } from './routes/workouts.$id.play'
 const WorkoutsRoute = WorkoutsRouteImport.update({
   id: '/workouts',
   path: '/workouts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SystemRoute = SystemRouteImport.update({
+  id: '/system',
+  path: '/system',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SearchRoute = SearchRouteImport.update({
@@ -312,6 +318,7 @@ export interface FileRoutesByFullPath {
   '/profile': typeof ProfileRouteWithChildren
   '/screens': typeof ScreensRoute
   '/search': typeof SearchRoute
+  '/system': typeof SystemRoute
   '/workouts': typeof WorkoutsRouteWithChildren
   '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
@@ -362,6 +369,7 @@ export interface FileRoutesByTo {
   '/profile': typeof ProfileRouteWithChildren
   '/screens': typeof ScreensRoute
   '/search': typeof SearchRoute
+  '/system': typeof SystemRoute
   '/workouts': typeof WorkoutsRouteWithChildren
   '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
@@ -413,6 +421,7 @@ export interface FileRoutesById {
   '/profile': typeof ProfileRouteWithChildren
   '/screens': typeof ScreensRoute
   '/search': typeof SearchRoute
+  '/system': typeof SystemRoute
   '/workouts': typeof WorkoutsRouteWithChildren
   '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
@@ -465,6 +474,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/screens'
     | '/search'
+    | '/system'
     | '/workouts'
     | '/auth/forgot'
     | '/auth/login'
@@ -515,6 +525,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/screens'
     | '/search'
+    | '/system'
     | '/workouts'
     | '/auth/forgot'
     | '/auth/login'
@@ -565,6 +576,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/screens'
     | '/search'
+    | '/system'
     | '/workouts'
     | '/auth/forgot'
     | '/auth/login'
@@ -616,6 +628,7 @@ export interface RootRouteChildren {
   ProfileRoute: typeof ProfileRouteWithChildren
   ScreensRoute: typeof ScreensRoute
   SearchRoute: typeof SearchRoute
+  SystemRoute: typeof SystemRoute
   WorkoutsRoute: typeof WorkoutsRouteWithChildren
   AuthForgotRoute: typeof AuthForgotRoute
   AuthLoginRoute: typeof AuthLoginRoute
@@ -644,6 +657,13 @@ declare module '@tanstack/react-router' {
       path: '/workouts'
       fullPath: '/workouts'
       preLoaderRoute: typeof WorkoutsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/system': {
+      id: '/system'
+      path: '/system'
+      fullPath: '/system'
+      preLoaderRoute: typeof SystemRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/search': {
@@ -1100,6 +1120,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileRoute: ProfileRouteWithChildren,
   ScreensRoute: ScreensRoute,
   SearchRoute: SearchRoute,
+  SystemRoute: SystemRoute,
   WorkoutsRoute: WorkoutsRouteWithChildren,
   AuthForgotRoute: AuthForgotRoute,
   AuthLoginRoute: AuthLoginRoute,

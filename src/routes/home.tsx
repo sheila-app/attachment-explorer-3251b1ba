@@ -35,10 +35,18 @@ function HomePage() {
                   <span className="nums">{toAr(mockUser.streak)} أيام متتالية</span>
                 </div>
               </div>
-              <Link to="/notifications" className="glass relative w-11 h-11 rounded-xl flex items-center justify-center">
-                <Bell size={17} strokeWidth={1.75} className="relative z-10" />
-                <span className="absolute top-2.5 right-2.5 w-1.5 h-1.5 rounded-full bg-phase-menstrual z-10" />
-              </Link>
+              <div className="flex items-center gap-2">
+                <Link to="/search" className="glass w-11 h-11 rounded-xl flex items-center justify-center">
+                  <Sparkles size={16} strokeWidth={1.75} className="relative z-10" />
+                </Link>
+                <Link to="/assistant" className="glass w-11 h-11 rounded-xl flex items-center justify-center">
+                  <span className="relative z-10 text-[10px] font-display text-primary">AI</span>
+                </Link>
+                <Link to="/notifications" className="glass relative w-11 h-11 rounded-xl flex items-center justify-center">
+                  <Bell size={17} strokeWidth={1.75} className="relative z-10" />
+                  <span className="absolute top-2.5 right-2.5 w-1.5 h-1.5 rounded-full bg-phase-menstrual z-10" />
+                </Link>
+              </div>
             </header>
 
             <div
@@ -66,27 +74,15 @@ function HomePage() {
           {/* Quick stats */}
           <div className="px-5 mt-2">
             <div className="grid grid-cols-3 gap-2.5 stagger">
-              <StatCard
-                icon={Flame}
-                label="سعرات"
-                value={toAr(320)}
-                hint={`من ${toAr(1800)}`}
-                color="var(--phase-menstrual)"
-              />
-              <StatCard
-                icon={Droplet}
-                label="ماء"
-                value={`${toAr(6)}/${toAr(8)}`}
-                hint="كأس"
-                color="var(--primary)"
-              />
-              <StatCard
-                icon={Moon}
-                label="نوم"
-                value={toAr("7.2")}
-                hint="ساعة"
-                color="var(--phase-luteal)"
-              />
+              <Link to="/checkin" className="block">
+                <StatCard icon={Flame} label="سعرات" value={toAr(320)} hint={`من ${toAr(1800)}`} color="var(--phase-menstrual)" />
+              </Link>
+              <Link to="/checkin/water" className="block">
+                <StatCard icon={Droplet} label="ماء" value={`${toAr(6)}/${toAr(8)}`} hint="كأس" color="var(--primary)" />
+              </Link>
+              <Link to="/checkin/sleep" className="block">
+                <StatCard icon={Moon} label="نوم" value={toAr("7.2")} hint="ساعة" color="var(--phase-luteal)" />
+              </Link>
             </div>
           </div>
 

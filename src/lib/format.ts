@@ -1,6 +1,8 @@
-// تحويل الأرقام إلى الأرقام العربيّة (الهنديّة) لاتّساق اللغة
-const AR = ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"];
-
+// تمرير الأرقام بالإنجليزية فقط (0-9). نحتفظ بالدالة لتوحيد الواجهة.
 export function toAr(input: number | string): string {
-  return String(input).replace(/[0-9]/g, (d) => AR[+d]);
+  return String(input);
+}
+
+export function fmt(n: number, opts?: Intl.NumberFormatOptions): string {
+  return new Intl.NumberFormat("en-US", opts).format(n);
 }

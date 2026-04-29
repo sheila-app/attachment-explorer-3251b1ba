@@ -50,11 +50,6 @@ import { Route as AuthNewPasswordRouteImport } from './routes/auth.new-password'
 import { Route as AuthLoginRouteImport } from './routes/auth.login'
 import { Route as AuthForgotRouteImport } from './routes/auth.forgot'
 import { Route as WorkoutsIdPlayRouteImport } from './routes/workouts.$id.play'
-import { Route as ProfileEditRouteImport } from './routes/profile.edit'
-import { Route as ProfileSubscriptionRouteImport } from './routes/profile.subscription'
-import { Route as ProfileHelpRouteImport } from './routes/profile.help'
-import { Route as JourneyMeasurementsRouteImport } from './routes/journey.measurements'
-import { Route as CommunityIdRouteImport } from './routes/community.$id'
 
 const WorkoutsRoute = WorkoutsRouteImport.update({
   id: '/workouts',

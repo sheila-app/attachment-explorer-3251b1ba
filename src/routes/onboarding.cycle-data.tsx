@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { OnboardingShell, PrimaryCTA, OptionCard } from "@/components/sheila/OnboardingShell";
+import { IOSWheel, wheelRange } from "@/components/sheila/IOSWheel";
 
 export const Route = createFileRoute("/onboarding/cycle-data")({ component: Page });
 
@@ -15,10 +16,10 @@ const today = new Date();
 const yearNow = today.getFullYear();
 
 function Page() {
-  const [day, setDay] = useState(today.getDate());
-  const [month, setMonth] = useState(today.getMonth());
-  const [year, setYear] = useState(yearNow);
-  const [length, setLength] = useState(28);
+  const [day, setDay] = useState<number>(today.getDate());
+  const [monthIdx, setMonthIdx] = useState<number>(today.getMonth());
+  const [year, setYear] = useState<number>(yearNow);
+  const [length, setLength] = useState<number>(28);
   const [status, setStatus] = useState<Status>("regular");
   const [reason, setReason] = useState<NoneReason | null>(null);
 
@@ -38,7 +39,6 @@ function Page() {
       subtitle="نحتاج لبدء التتبّع وتخصيص توصياتنا."
       footer={<PrimaryCTA to="/onboarding/trial">متابعة</PrimaryCTA>}
     >
-      {/* Status options */}
       <div className="space-y-2 mb-4">
         <OptionCard title="منتظمة" selected={status === "regular"} onClick={() => { setStatus("regular"); setReason(null); }} />
         <OptionCard title="غير منتظمة" selected={status === "irregular"} onClick={() => { setStatus("irregular"); setReason(null); }} />
@@ -46,17 +46,16 @@ function Page() {
         <OptionCard title="لا أحيض" selected={status === "none"} onClick={() => setStatus("none")} />
       </div>
 
-      {/* Date wheel pickers */}
       {showCalendar && (
         <>
           <div className="glass rounded-2xl p-4 mb-3">
             <div className="relative z-10 text-[10px] tracking-[0.2em] text-foreground/55 uppercase mb-3 text-center">
               تاريخ بدء آخر دورة
             </div>
-            <div className="relative z-10 grid grid-cols-3 gap-2" style={{ direction: "ltr" }}>
-              <Wheel label="يوم" value={day} min={1} max={31} onChange={setDay} />
-              <Wheel label="شهر" value={month + 1} min={1} max={12} onChange={(v) => setMonth(v - 1)} display={months[month]} />
-              <Wheel label="سنة" value={year} min={yearNow - 5} max={yearNow} onChange={setYear} />
+            <div className="relative z-10 flex justify-center gap-3" style={{ direction: "ltr" }}>
+              <IOSWheel label="يوم" values={wheelRange(1, 31)} value={day} onChange={(v) => setDay(Number(v))} width={64} />
+              <IOSWheel label="شهر" values={months} value={months[monthIdx]} onChange={(v) => setMonthIdx(months.indexOf(String(v)))} width={108} />
+              <IOSWheel label="سنة" values={wheelRange(yearNow - 5, yearNow)} value={year} onChange={(v) => setYear(Number(v))} width={78} />
             </div>
           </div>
 
@@ -64,8 +63,8 @@ function Page() {
             <div className="relative z-10 text-[10px] tracking-[0.2em] text-foreground/55 uppercase mb-3 text-center">
               معدّل طول الدورة (يوم)
             </div>
-            <div className="relative z-10" style={{ direction: "ltr" }}>
-              <Wheel label="" value={length} min={21} max={45} onChange={setLength} center />
+            <div className="relative z-10 flex justify-center" style={{ direction: "ltr" }}>
+              <IOSWheel values={wheelRange(21, 45)} value={length} onChange={(v) => setLength(Number(v))} width={86} />
             </div>
             <p className="relative z-10 text-[11px] text-foreground/55 mt-2 text-center">الافتراضي 28 • النطاق 21–45</p>
           </div>
@@ -95,26 +94,5 @@ function Page() {
         </div>
       )}
     </OnboardingShell>
-  );
-}
-
-function Wheel({
-  label, value, min, max, onChange, display, center,
-}: { label: string; value: number; min: number; max: number; onChange: (v: number) => void; display?: string; center?: boolean }) {
-  const clamp = (n: number) => Math.min(max, Math.max(min, n));
-  return (
-    <div className={`flex flex-col items-center ${center ? "" : ""}`}>
-      {label && <div className="text-[10px] text-foreground/55 mb-1.5">{label}</div>}
-      <button onClick={() => onChange(clamp(value + 1))} className="w-7 h-7 rounded-full glass-strong text-primary text-sm leading-none flex items-center justify-center">▲</button>
-      <input
-        type="number"
-        value={value}
-        min={min} max={max}
-        onChange={(e) => onChange(clamp(parseInt(e.target.value || `${min}`, 10)))}
-        className="relative z-10 my-1.5 bg-transparent w-full text-center font-display text-2xl text-primary outline-none nums"
-      />
-      {display && <div className="text-[10px] text-foreground/55 -mt-1 mb-1">{display}</div>}
-      <button onClick={() => onChange(clamp(value - 1))} className="w-7 h-7 rounded-full glass-strong text-primary text-sm leading-none flex items-center justify-center">▼</button>
-    </div>
   );
 }

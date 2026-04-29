@@ -10,17 +10,21 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WorkoutsRouteImport } from './routes/workouts'
+import { Route as SystemRouteImport } from './routes/system'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as ScreensRouteImport } from './routes/screens'
 import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as PaywallRouteImport } from './routes/paywall'
 import { Route as NutritionRouteImport } from './routes/nutrition'
 import { Route as NotificationsRouteImport } from './routes/notifications'
 import { Route as JourneyRouteImport } from './routes/journey'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as CycleRouteImport } from './routes/cycle'
 import { Route as CommunityRouteImport } from './routes/community'
+import { Route as CoachesRouteImport } from './routes/coaches'
 import { Route as CheckinRouteImport } from './routes/checkin'
 import { Route as AssistantRouteImport } from './routes/assistant'
+import { Route as R404RouteImport } from './routes/404'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WorkoutsSummaryRouteImport } from './routes/workouts.summary'
 import { Route as WorkoutsLiveRouteImport } from './routes/workouts.live'
@@ -42,14 +46,19 @@ import { Route as OnboardingFrequencyRouteImport } from './routes/onboarding.fre
 import { Route as OnboardingDobRouteImport } from './routes/onboarding.dob'
 import { Route as OnboardingDietRouteImport } from './routes/onboarding.diet'
 import { Route as OnboardingCycleDataRouteImport } from './routes/onboarding.cycle-data'
+import { Route as OnboardingCompleteRouteImport } from './routes/onboarding.complete'
 import { Route as OnboardingAuthRouteImport } from './routes/onboarding.auth'
 import { Route as OnboardingActivityRouteImport } from './routes/onboarding.activity'
+import { Route as NutritionLogRouteImport } from './routes/nutrition.log'
 import { Route as NutritionIdRouteImport } from './routes/nutrition.$id'
 import { Route as JourneyMeasurementsRouteImport } from './routes/journey.measurements'
+import { Route as JourneyInsightsRouteImport } from './routes/journey.insights'
 import { Route as JourneyGoalsRouteImport } from './routes/journey.goals'
 import { Route as JourneyAwardsRouteImport } from './routes/journey.awards'
 import { Route as CycleLogRouteImport } from './routes/cycle.log'
+import { Route as CommunityInviteRouteImport } from './routes/community.invite'
 import { Route as CommunityIdRouteImport } from './routes/community.$id'
+import { Route as CoachesIdRouteImport } from './routes/coaches.$id'
 import { Route as CheckinWaterRouteImport } from './routes/checkin.water'
 import { Route as CheckinSleepRouteImport } from './routes/checkin.sleep'
 import { Route as AuthOtpRouteImport } from './routes/auth.otp'
@@ -61,6 +70,11 @@ import { Route as WorkoutsIdPlayRouteImport } from './routes/workouts.$id.play'
 const WorkoutsRoute = WorkoutsRouteImport.update({
   id: '/workouts',
   path: '/workouts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SystemRoute = SystemRouteImport.update({
+  id: '/system',
+  path: '/system',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SearchRoute = SearchRouteImport.update({
@@ -76,6 +90,11 @@ const ScreensRoute = ScreensRouteImport.update({
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PaywallRoute = PaywallRouteImport.update({
+  id: '/paywall',
+  path: '/paywall',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NutritionRoute = NutritionRouteImport.update({
@@ -108,6 +127,11 @@ const CommunityRoute = CommunityRouteImport.update({
   path: '/community',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CoachesRoute = CoachesRouteImport.update({
+  id: '/coaches',
+  path: '/coaches',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CheckinRoute = CheckinRouteImport.update({
   id: '/checkin',
   path: '/checkin',
@@ -116,6 +140,11 @@ const CheckinRoute = CheckinRouteImport.update({
 const AssistantRoute = AssistantRouteImport.update({
   id: '/assistant',
   path: '/assistant',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R404Route = R404RouteImport.update({
+  id: '/404',
+  path: '/404',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -223,6 +252,11 @@ const OnboardingCycleDataRoute = OnboardingCycleDataRouteImport.update({
   path: '/onboarding/cycle-data',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OnboardingCompleteRoute = OnboardingCompleteRouteImport.update({
+  id: '/onboarding/complete',
+  path: '/onboarding/complete',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OnboardingAuthRoute = OnboardingAuthRouteImport.update({
   id: '/onboarding/auth',
   path: '/onboarding/auth',
@@ -233,6 +267,11 @@ const OnboardingActivityRoute = OnboardingActivityRouteImport.update({
   path: '/onboarding/activity',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NutritionLogRoute = NutritionLogRouteImport.update({
+  id: '/log',
+  path: '/log',
+  getParentRoute: () => NutritionRoute,
+} as any)
 const NutritionIdRoute = NutritionIdRouteImport.update({
   id: '/$id',
   path: '/$id',
@@ -241,6 +280,11 @@ const NutritionIdRoute = NutritionIdRouteImport.update({
 const JourneyMeasurementsRoute = JourneyMeasurementsRouteImport.update({
   id: '/measurements',
   path: '/measurements',
+  getParentRoute: () => JourneyRoute,
+} as any)
+const JourneyInsightsRoute = JourneyInsightsRouteImport.update({
+  id: '/insights',
+  path: '/insights',
   getParentRoute: () => JourneyRoute,
 } as any)
 const JourneyGoalsRoute = JourneyGoalsRouteImport.update({
@@ -258,10 +302,20 @@ const CycleLogRoute = CycleLogRouteImport.update({
   path: '/log',
   getParentRoute: () => CycleRoute,
 } as any)
+const CommunityInviteRoute = CommunityInviteRouteImport.update({
+  id: '/invite',
+  path: '/invite',
+  getParentRoute: () => CommunityRoute,
+} as any)
 const CommunityIdRoute = CommunityIdRouteImport.update({
   id: '/$id',
   path: '/$id',
   getParentRoute: () => CommunityRoute,
+} as any)
+const CoachesIdRoute = CoachesIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => CoachesRoute,
 } as any)
 const CheckinWaterRoute = CheckinWaterRouteImport.update({
   id: '/water',
@@ -301,17 +355,21 @@ const WorkoutsIdPlayRoute = WorkoutsIdPlayRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/404': typeof R404Route
   '/assistant': typeof AssistantRoute
   '/checkin': typeof CheckinRouteWithChildren
+  '/coaches': typeof CoachesRouteWithChildren
   '/community': typeof CommunityRouteWithChildren
   '/cycle': typeof CycleRouteWithChildren
   '/home': typeof HomeRoute
   '/journey': typeof JourneyRouteWithChildren
   '/notifications': typeof NotificationsRoute
   '/nutrition': typeof NutritionRouteWithChildren
+  '/paywall': typeof PaywallRoute
   '/profile': typeof ProfileRouteWithChildren
   '/screens': typeof ScreensRoute
   '/search': typeof SearchRoute
+  '/system': typeof SystemRoute
   '/workouts': typeof WorkoutsRouteWithChildren
   '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
@@ -319,14 +377,19 @@ export interface FileRoutesByFullPath {
   '/auth/otp': typeof AuthOtpRoute
   '/checkin/sleep': typeof CheckinSleepRoute
   '/checkin/water': typeof CheckinWaterRoute
+  '/coaches/$id': typeof CoachesIdRoute
   '/community/$id': typeof CommunityIdRoute
+  '/community/invite': typeof CommunityInviteRoute
   '/cycle/log': typeof CycleLogRoute
   '/journey/awards': typeof JourneyAwardsRoute
   '/journey/goals': typeof JourneyGoalsRoute
+  '/journey/insights': typeof JourneyInsightsRoute
   '/journey/measurements': typeof JourneyMeasurementsRoute
   '/nutrition/$id': typeof NutritionIdRoute
+  '/nutrition/log': typeof NutritionLogRoute
   '/onboarding/activity': typeof OnboardingActivityRoute
   '/onboarding/auth': typeof OnboardingAuthRoute
+  '/onboarding/complete': typeof OnboardingCompleteRoute
   '/onboarding/cycle-data': typeof OnboardingCycleDataRoute
   '/onboarding/diet': typeof OnboardingDietRoute
   '/onboarding/dob': typeof OnboardingDobRoute
@@ -351,17 +414,21 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/404': typeof R404Route
   '/assistant': typeof AssistantRoute
   '/checkin': typeof CheckinRouteWithChildren
+  '/coaches': typeof CoachesRouteWithChildren
   '/community': typeof CommunityRouteWithChildren
   '/cycle': typeof CycleRouteWithChildren
   '/home': typeof HomeRoute
   '/journey': typeof JourneyRouteWithChildren
   '/notifications': typeof NotificationsRoute
   '/nutrition': typeof NutritionRouteWithChildren
+  '/paywall': typeof PaywallRoute
   '/profile': typeof ProfileRouteWithChildren
   '/screens': typeof ScreensRoute
   '/search': typeof SearchRoute
+  '/system': typeof SystemRoute
   '/workouts': typeof WorkoutsRouteWithChildren
   '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
@@ -369,14 +436,19 @@ export interface FileRoutesByTo {
   '/auth/otp': typeof AuthOtpRoute
   '/checkin/sleep': typeof CheckinSleepRoute
   '/checkin/water': typeof CheckinWaterRoute
+  '/coaches/$id': typeof CoachesIdRoute
   '/community/$id': typeof CommunityIdRoute
+  '/community/invite': typeof CommunityInviteRoute
   '/cycle/log': typeof CycleLogRoute
   '/journey/awards': typeof JourneyAwardsRoute
   '/journey/goals': typeof JourneyGoalsRoute
+  '/journey/insights': typeof JourneyInsightsRoute
   '/journey/measurements': typeof JourneyMeasurementsRoute
   '/nutrition/$id': typeof NutritionIdRoute
+  '/nutrition/log': typeof NutritionLogRoute
   '/onboarding/activity': typeof OnboardingActivityRoute
   '/onboarding/auth': typeof OnboardingAuthRoute
+  '/onboarding/complete': typeof OnboardingCompleteRoute
   '/onboarding/cycle-data': typeof OnboardingCycleDataRoute
   '/onboarding/diet': typeof OnboardingDietRoute
   '/onboarding/dob': typeof OnboardingDobRoute
@@ -402,17 +474,21 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/404': typeof R404Route
   '/assistant': typeof AssistantRoute
   '/checkin': typeof CheckinRouteWithChildren
+  '/coaches': typeof CoachesRouteWithChildren
   '/community': typeof CommunityRouteWithChildren
   '/cycle': typeof CycleRouteWithChildren
   '/home': typeof HomeRoute
   '/journey': typeof JourneyRouteWithChildren
   '/notifications': typeof NotificationsRoute
   '/nutrition': typeof NutritionRouteWithChildren
+  '/paywall': typeof PaywallRoute
   '/profile': typeof ProfileRouteWithChildren
   '/screens': typeof ScreensRoute
   '/search': typeof SearchRoute
+  '/system': typeof SystemRoute
   '/workouts': typeof WorkoutsRouteWithChildren
   '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
@@ -420,14 +496,19 @@ export interface FileRoutesById {
   '/auth/otp': typeof AuthOtpRoute
   '/checkin/sleep': typeof CheckinSleepRoute
   '/checkin/water': typeof CheckinWaterRoute
+  '/coaches/$id': typeof CoachesIdRoute
   '/community/$id': typeof CommunityIdRoute
+  '/community/invite': typeof CommunityInviteRoute
   '/cycle/log': typeof CycleLogRoute
   '/journey/awards': typeof JourneyAwardsRoute
   '/journey/goals': typeof JourneyGoalsRoute
+  '/journey/insights': typeof JourneyInsightsRoute
   '/journey/measurements': typeof JourneyMeasurementsRoute
   '/nutrition/$id': typeof NutritionIdRoute
+  '/nutrition/log': typeof NutritionLogRoute
   '/onboarding/activity': typeof OnboardingActivityRoute
   '/onboarding/auth': typeof OnboardingAuthRoute
+  '/onboarding/complete': typeof OnboardingCompleteRoute
   '/onboarding/cycle-data': typeof OnboardingCycleDataRoute
   '/onboarding/diet': typeof OnboardingDietRoute
   '/onboarding/dob': typeof OnboardingDobRoute
@@ -454,17 +535,21 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/404'
     | '/assistant'
     | '/checkin'
+    | '/coaches'
     | '/community'
     | '/cycle'
     | '/home'
     | '/journey'
     | '/notifications'
     | '/nutrition'
+    | '/paywall'
     | '/profile'
     | '/screens'
     | '/search'
+    | '/system'
     | '/workouts'
     | '/auth/forgot'
     | '/auth/login'
@@ -472,14 +557,19 @@ export interface FileRouteTypes {
     | '/auth/otp'
     | '/checkin/sleep'
     | '/checkin/water'
+    | '/coaches/$id'
     | '/community/$id'
+    | '/community/invite'
     | '/cycle/log'
     | '/journey/awards'
     | '/journey/goals'
+    | '/journey/insights'
     | '/journey/measurements'
     | '/nutrition/$id'
+    | '/nutrition/log'
     | '/onboarding/activity'
     | '/onboarding/auth'
+    | '/onboarding/complete'
     | '/onboarding/cycle-data'
     | '/onboarding/diet'
     | '/onboarding/dob'
@@ -504,17 +594,21 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/404'
     | '/assistant'
     | '/checkin'
+    | '/coaches'
     | '/community'
     | '/cycle'
     | '/home'
     | '/journey'
     | '/notifications'
     | '/nutrition'
+    | '/paywall'
     | '/profile'
     | '/screens'
     | '/search'
+    | '/system'
     | '/workouts'
     | '/auth/forgot'
     | '/auth/login'
@@ -522,14 +616,19 @@ export interface FileRouteTypes {
     | '/auth/otp'
     | '/checkin/sleep'
     | '/checkin/water'
+    | '/coaches/$id'
     | '/community/$id'
+    | '/community/invite'
     | '/cycle/log'
     | '/journey/awards'
     | '/journey/goals'
+    | '/journey/insights'
     | '/journey/measurements'
     | '/nutrition/$id'
+    | '/nutrition/log'
     | '/onboarding/activity'
     | '/onboarding/auth'
+    | '/onboarding/complete'
     | '/onboarding/cycle-data'
     | '/onboarding/diet'
     | '/onboarding/dob'
@@ -554,17 +653,21 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/404'
     | '/assistant'
     | '/checkin'
+    | '/coaches'
     | '/community'
     | '/cycle'
     | '/home'
     | '/journey'
     | '/notifications'
     | '/nutrition'
+    | '/paywall'
     | '/profile'
     | '/screens'
     | '/search'
+    | '/system'
     | '/workouts'
     | '/auth/forgot'
     | '/auth/login'
@@ -572,14 +675,19 @@ export interface FileRouteTypes {
     | '/auth/otp'
     | '/checkin/sleep'
     | '/checkin/water'
+    | '/coaches/$id'
     | '/community/$id'
+    | '/community/invite'
     | '/cycle/log'
     | '/journey/awards'
     | '/journey/goals'
+    | '/journey/insights'
     | '/journey/measurements'
     | '/nutrition/$id'
+    | '/nutrition/log'
     | '/onboarding/activity'
     | '/onboarding/auth'
+    | '/onboarding/complete'
     | '/onboarding/cycle-data'
     | '/onboarding/diet'
     | '/onboarding/dob'
@@ -605,17 +713,21 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  R404Route: typeof R404Route
   AssistantRoute: typeof AssistantRoute
   CheckinRoute: typeof CheckinRouteWithChildren
+  CoachesRoute: typeof CoachesRouteWithChildren
   CommunityRoute: typeof CommunityRouteWithChildren
   CycleRoute: typeof CycleRouteWithChildren
   HomeRoute: typeof HomeRoute
   JourneyRoute: typeof JourneyRouteWithChildren
   NotificationsRoute: typeof NotificationsRoute
   NutritionRoute: typeof NutritionRouteWithChildren
+  PaywallRoute: typeof PaywallRoute
   ProfileRoute: typeof ProfileRouteWithChildren
   ScreensRoute: typeof ScreensRoute
   SearchRoute: typeof SearchRoute
+  SystemRoute: typeof SystemRoute
   WorkoutsRoute: typeof WorkoutsRouteWithChildren
   AuthForgotRoute: typeof AuthForgotRoute
   AuthLoginRoute: typeof AuthLoginRoute
@@ -623,6 +735,7 @@ export interface RootRouteChildren {
   AuthOtpRoute: typeof AuthOtpRoute
   OnboardingActivityRoute: typeof OnboardingActivityRoute
   OnboardingAuthRoute: typeof OnboardingAuthRoute
+  OnboardingCompleteRoute: typeof OnboardingCompleteRoute
   OnboardingCycleDataRoute: typeof OnboardingCycleDataRoute
   OnboardingDietRoute: typeof OnboardingDietRoute
   OnboardingDobRoute: typeof OnboardingDobRoute
@@ -646,6 +759,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkoutsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/system': {
+      id: '/system'
+      path: '/system'
+      fullPath: '/system'
+      preLoaderRoute: typeof SystemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/search': {
       id: '/search'
       path: '/search'
@@ -665,6 +785,13 @@ declare module '@tanstack/react-router' {
       path: '/profile'
       fullPath: '/profile'
       preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/paywall': {
+      id: '/paywall'
+      path: '/paywall'
+      fullPath: '/paywall'
+      preLoaderRoute: typeof PaywallRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/nutrition': {
@@ -709,6 +836,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommunityRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/coaches': {
+      id: '/coaches'
+      path: '/coaches'
+      fullPath: '/coaches'
+      preLoaderRoute: typeof CoachesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/checkin': {
       id: '/checkin'
       path: '/checkin'
@@ -721,6 +855,13 @@ declare module '@tanstack/react-router' {
       path: '/assistant'
       fullPath: '/assistant'
       preLoaderRoute: typeof AssistantRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/404': {
+      id: '/404'
+      path: '/404'
+      fullPath: '/404'
+      preLoaderRoute: typeof R404RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -870,6 +1011,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingCycleDataRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/onboarding/complete': {
+      id: '/onboarding/complete'
+      path: '/onboarding/complete'
+      fullPath: '/onboarding/complete'
+      preLoaderRoute: typeof OnboardingCompleteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/onboarding/auth': {
       id: '/onboarding/auth'
       path: '/onboarding/auth'
@@ -884,6 +1032,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingActivityRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/nutrition/log': {
+      id: '/nutrition/log'
+      path: '/log'
+      fullPath: '/nutrition/log'
+      preLoaderRoute: typeof NutritionLogRouteImport
+      parentRoute: typeof NutritionRoute
+    }
     '/nutrition/$id': {
       id: '/nutrition/$id'
       path: '/$id'
@@ -896,6 +1051,13 @@ declare module '@tanstack/react-router' {
       path: '/measurements'
       fullPath: '/journey/measurements'
       preLoaderRoute: typeof JourneyMeasurementsRouteImport
+      parentRoute: typeof JourneyRoute
+    }
+    '/journey/insights': {
+      id: '/journey/insights'
+      path: '/insights'
+      fullPath: '/journey/insights'
+      preLoaderRoute: typeof JourneyInsightsRouteImport
       parentRoute: typeof JourneyRoute
     }
     '/journey/goals': {
@@ -919,12 +1081,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CycleLogRouteImport
       parentRoute: typeof CycleRoute
     }
+    '/community/invite': {
+      id: '/community/invite'
+      path: '/invite'
+      fullPath: '/community/invite'
+      preLoaderRoute: typeof CommunityInviteRouteImport
+      parentRoute: typeof CommunityRoute
+    }
     '/community/$id': {
       id: '/community/$id'
       path: '/$id'
       fullPath: '/community/$id'
       preLoaderRoute: typeof CommunityIdRouteImport
       parentRoute: typeof CommunityRoute
+    }
+    '/coaches/$id': {
+      id: '/coaches/$id'
+      path: '/$id'
+      fullPath: '/coaches/$id'
+      preLoaderRoute: typeof CoachesIdRouteImport
+      parentRoute: typeof CoachesRoute
     }
     '/checkin/water': {
       id: '/checkin/water'
@@ -991,12 +1167,25 @@ const CheckinRouteChildren: CheckinRouteChildren = {
 const CheckinRouteWithChildren =
   CheckinRoute._addFileChildren(CheckinRouteChildren)
 
+interface CoachesRouteChildren {
+  CoachesIdRoute: typeof CoachesIdRoute
+}
+
+const CoachesRouteChildren: CoachesRouteChildren = {
+  CoachesIdRoute: CoachesIdRoute,
+}
+
+const CoachesRouteWithChildren =
+  CoachesRoute._addFileChildren(CoachesRouteChildren)
+
 interface CommunityRouteChildren {
   CommunityIdRoute: typeof CommunityIdRoute
+  CommunityInviteRoute: typeof CommunityInviteRoute
 }
 
 const CommunityRouteChildren: CommunityRouteChildren = {
   CommunityIdRoute: CommunityIdRoute,
+  CommunityInviteRoute: CommunityInviteRoute,
 }
 
 const CommunityRouteWithChildren = CommunityRoute._addFileChildren(
@@ -1016,12 +1205,14 @@ const CycleRouteWithChildren = CycleRoute._addFileChildren(CycleRouteChildren)
 interface JourneyRouteChildren {
   JourneyAwardsRoute: typeof JourneyAwardsRoute
   JourneyGoalsRoute: typeof JourneyGoalsRoute
+  JourneyInsightsRoute: typeof JourneyInsightsRoute
   JourneyMeasurementsRoute: typeof JourneyMeasurementsRoute
 }
 
 const JourneyRouteChildren: JourneyRouteChildren = {
   JourneyAwardsRoute: JourneyAwardsRoute,
   JourneyGoalsRoute: JourneyGoalsRoute,
+  JourneyInsightsRoute: JourneyInsightsRoute,
   JourneyMeasurementsRoute: JourneyMeasurementsRoute,
 }
 
@@ -1030,10 +1221,12 @@ const JourneyRouteWithChildren =
 
 interface NutritionRouteChildren {
   NutritionIdRoute: typeof NutritionIdRoute
+  NutritionLogRoute: typeof NutritionLogRoute
 }
 
 const NutritionRouteChildren: NutritionRouteChildren = {
   NutritionIdRoute: NutritionIdRoute,
+  NutritionLogRoute: NutritionLogRoute,
 }
 
 const NutritionRouteWithChildren = NutritionRoute._addFileChildren(
@@ -1089,17 +1282,21 @@ const WorkoutsRouteWithChildren = WorkoutsRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  R404Route: R404Route,
   AssistantRoute: AssistantRoute,
   CheckinRoute: CheckinRouteWithChildren,
+  CoachesRoute: CoachesRouteWithChildren,
   CommunityRoute: CommunityRouteWithChildren,
   CycleRoute: CycleRouteWithChildren,
   HomeRoute: HomeRoute,
   JourneyRoute: JourneyRouteWithChildren,
   NotificationsRoute: NotificationsRoute,
   NutritionRoute: NutritionRouteWithChildren,
+  PaywallRoute: PaywallRoute,
   ProfileRoute: ProfileRouteWithChildren,
   ScreensRoute: ScreensRoute,
   SearchRoute: SearchRoute,
+  SystemRoute: SystemRoute,
   WorkoutsRoute: WorkoutsRouteWithChildren,
   AuthForgotRoute: AuthForgotRoute,
   AuthLoginRoute: AuthLoginRoute,
@@ -1107,6 +1304,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthOtpRoute: AuthOtpRoute,
   OnboardingActivityRoute: OnboardingActivityRoute,
   OnboardingAuthRoute: OnboardingAuthRoute,
+  OnboardingCompleteRoute: OnboardingCompleteRoute,
   OnboardingCycleDataRoute: OnboardingCycleDataRoute,
   OnboardingDietRoute: OnboardingDietRoute,
   OnboardingDobRoute: OnboardingDobRoute,

@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { mockUser } from "@/data/mock";
-import { Settings, ChevronLeft, Crown, Bell, Shield, HelpCircle, LogOut, Edit3, Ruler } from "lucide-react";
+import { Settings, ChevronLeft, Crown, Bell, Shield, HelpCircle, LogOut, Edit3, Ruler, Users, Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/profile")({ component: ProfilePage });
 
@@ -50,6 +50,8 @@ function ProfilePage() {
         <div className="glass mt-3 rounded-2xl overflow-hidden">
           <Item icon={Edit3} label="تعديل الملف الشخصي" to="/profile/edit" />
           <Item icon={Ruler} label="القياسات" to="/journey/measurements" />
+          <Item icon={Users} label="الخبيرات والمدرّبات" to="/coaches" />
+          <Item icon={Sparkles} label="ترقية لشيلا برو" to="/paywall" />
           <Item icon={Bell} label="الإشعارات" to="/notifications" />
           <Item icon={Shield} label="الخصوصية والأمان" to="/profile/settings" />
           <Item icon={HelpCircle} label="المساعدة والدعم" to="/profile/help" />

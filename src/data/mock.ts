@@ -114,6 +114,9 @@ export const allScreens = [
   { group: "البداية", items: [
     { path: "/", name: "Splash" },
     { path: "/screens", name: "فهرس الشاشات" },
+    { path: "/system", name: "نظام التصميم" },
+    { path: "/404", name: "صفحة غير موجودة" },
+    { path: "/paywall", name: "الترقية لشيلا برو" },
   ]},
   { group: "Onboarding", items: [
     { path: "/onboarding/welcome", name: "ترحيب" },
@@ -130,6 +133,7 @@ export const allScreens = [
     { path: "/onboarding/types", name: "أنواع التمرين" },
     { path: "/onboarding/cycle-data", name: "آخر دورة" },
     { path: "/onboarding/trial", name: "التجربة المجانية" },
+    { path: "/onboarding/complete", name: "اكتمال الإعداد" },
   ]},
   { group: "المصادقة", items: [
     { path: "/auth/login", name: "تسجيل الدخول" },
@@ -160,16 +164,23 @@ export const allScreens = [
   { group: "التغذية", items: [
     { path: "/nutrition", name: "خطة الوجبات" },
     { path: "/nutrition/m2", name: "تفاصيل وجبة" },
+    { path: "/nutrition/log", name: "تسجيل وجبة" },
   ]},
   { group: "الرحلة", items: [
     { path: "/journey", name: "رحلة الصحّة" },
     { path: "/journey/awards", name: "الإنجازات" },
     { path: "/journey/measurements", name: "القياسات" },
     { path: "/journey/goals", name: "الأهداف" },
+    { path: "/journey/insights", name: "رؤى ذكيّة" },
   ]},
   { group: "المجتمع", items: [
     { path: "/community", name: "دائرة شيلا" },
     { path: "/community/p1", name: "تفاصيل منشور" },
+    { path: "/community/invite", name: "دعوة صديقات" },
+  ]},
+  { group: "الخبيرات", items: [
+    { path: "/coaches", name: "قائمة الخبيرات" },
+    { path: "/coaches/c1", name: "ملف خبيرة" },
   ]},
   { group: "الحساب", items: [
     { path: "/profile", name: "الملف الشخصي" },

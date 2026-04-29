@@ -5,7 +5,7 @@ import { OnboardingShell, PrimaryCTA, OptionCard } from "@/components/sheila/Onb
 export const Route = createFileRoute("/onboarding/diet")({ component: Page });
 
 function Page() {
-  const [sel, setSel] = useState<string[]>(["halal"]);
+  const [sel, setSel] = useState<string[]>(["none"]);
   const toggle = (id: string) => setSel(s => s.includes(id) ? s.filter(x => x !== id) : [...s, id]);
   const opts = [
     { id: "none", title: "لا قيود" },
@@ -13,7 +13,6 @@ function Page() {
     { id: "vegan", title: "نباتي صرف" },
     { id: "gf", title: "خالٍ من الجلوتين" },
     { id: "df", title: "خالٍ من الألبان" },
-    { id: "halal", title: "حلال" },
   ];
   return (
     <OnboardingShell

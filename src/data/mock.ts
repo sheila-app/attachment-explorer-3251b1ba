@@ -159,6 +159,7 @@ export const allScreens = [
   { group: "الرحلة", items: [
     { path: "/journey", name: "رحلة الصحّة" },
     { path: "/journey/awards", name: "الإنجازات" },
+    { path: "/journey/measurements", name: "القياسات" },
   ]},
   { group: "المجتمع", items: [
     { path: "/community", name: "دائرة شيلا" },

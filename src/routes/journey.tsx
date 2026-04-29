@@ -76,13 +76,22 @@ function JourneyPage() {
           </div>
         </div>
 
-        <Link to="/journey/awards" className="glass rounded-2xl p-4 mt-3 flex items-center justify-between">
-          <div className="relative z-10">
-            <div className="text-sm font-medium">الإنجازات</div>
-            <div className="text-[11px] text-foreground/60 mt-0.5">3 من 6 محقّقة</div>
-          </div>
-          <span className="relative z-10 text-2xl">🏆</span>
-        </Link>
+        <div className="grid grid-cols-2 gap-2.5 mt-3">
+          <Link to="/journey/awards" className="glass rounded-2xl p-4 flex items-center justify-between">
+            <div className="relative z-10">
+              <div className="text-sm font-medium">الإنجازات</div>
+              <div className="text-[11px] text-foreground/60 mt-0.5">3 من 6</div>
+            </div>
+            <Trophy size={20} className="relative z-10 text-primary" strokeWidth={1.75} />
+          </Link>
+          <Link to="/journey/measurements" className="glass rounded-2xl p-4 flex items-center justify-between">
+            <div className="relative z-10">
+              <div className="text-sm font-medium">القياسات</div>
+              <div className="text-[11px] text-foreground/60 mt-0.5">سجّلي تقدّمك</div>
+            </div>
+            <TrendingDown size={20} className="relative z-10 text-primary" strokeWidth={1.75} />
+          </Link>
+        </div>
       </div>
     </FeatureShell>
   );

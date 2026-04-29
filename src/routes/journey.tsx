@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { mockUser, mockWeightLog } from "@/data/mock";
-import { TrendingDown, Flame, Activity, Trophy } from "lucide-react";
+import { TrendingDown, Flame, Activity, Trophy, Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/journey")({ component: JourneyPage });
 

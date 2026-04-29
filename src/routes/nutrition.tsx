@@ -58,7 +58,12 @@ function NutritionPage() {
         </div>
 
         {/* Meals */}
-        <h2 className="text-sm font-medium mt-6 mb-2.5">وجبات اليوم</h2>
+        <div className="flex items-center justify-between mt-6 mb-2.5">
+          <h2 className="text-sm font-medium">وجبات اليوم</h2>
+          <Link to="/nutrition/log" className="text-[11px] text-primary font-medium flex items-center gap-1">
+            <Plus size={12} strokeWidth={2.5} /> تسجيل وجبة
+          </Link>
+        </div>
         <div className="space-y-2.5 stagger">
           {mockMeals.map(m => {
             const p = PHASE_META[m.phase];

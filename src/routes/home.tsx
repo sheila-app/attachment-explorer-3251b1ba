@@ -35,10 +35,10 @@ function HomePage() {
                   <span className="nums">{toAr(mockUser.streak)} أيام متتالية</span>
                 </div>
               </div>
-              <button className="glass relative w-11 h-11 rounded-xl flex items-center justify-center">
+              <Link to="/notifications" className="glass relative w-11 h-11 rounded-xl flex items-center justify-center">
                 <Bell size={17} strokeWidth={1.75} className="relative z-10" />
                 <span className="absolute top-2.5 right-2.5 w-1.5 h-1.5 rounded-full bg-phase-menstrual z-10" />
-              </button>
+              </Link>
             </header>
 
             <div

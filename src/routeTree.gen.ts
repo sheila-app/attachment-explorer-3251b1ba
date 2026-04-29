@@ -13,7 +13,19 @@ import { Route as ScreensRouteImport } from './routes/screens'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as OnboardingWelcomeRouteImport } from './routes/onboarding.welcome'
+import { Route as OnboardingTypesRouteImport } from './routes/onboarding.types'
+import { Route as OnboardingTrialRouteImport } from './routes/onboarding.trial'
+import { Route as OnboardingStatsRouteImport } from './routes/onboarding.stats'
+import { Route as OnboardingNutritionGoalRouteImport } from './routes/onboarding.nutrition-goal'
+import { Route as OnboardingLocationPrefRouteImport } from './routes/onboarding.location-pref'
+import { Route as OnboardingLevelRouteImport } from './routes/onboarding.level'
+import { Route as OnboardingGoalRouteImport } from './routes/onboarding.goal'
+import { Route as OnboardingFrequencyRouteImport } from './routes/onboarding.frequency'
+import { Route as OnboardingDobRouteImport } from './routes/onboarding.dob'
+import { Route as OnboardingDietRouteImport } from './routes/onboarding.diet'
+import { Route as OnboardingCycleDataRouteImport } from './routes/onboarding.cycle-data'
 import { Route as OnboardingAuthRouteImport } from './routes/onboarding.auth'
+import { Route as OnboardingActivityRouteImport } from './routes/onboarding.activity'
 
 const ScreensRoute = ScreensRouteImport.update({
   id: '/screens',
@@ -35,9 +47,69 @@ const OnboardingWelcomeRoute = OnboardingWelcomeRouteImport.update({
   path: '/onboarding/welcome',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OnboardingTypesRoute = OnboardingTypesRouteImport.update({
+  id: '/onboarding/types',
+  path: '/onboarding/types',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingTrialRoute = OnboardingTrialRouteImport.update({
+  id: '/onboarding/trial',
+  path: '/onboarding/trial',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingStatsRoute = OnboardingStatsRouteImport.update({
+  id: '/onboarding/stats',
+  path: '/onboarding/stats',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingNutritionGoalRoute = OnboardingNutritionGoalRouteImport.update({
+  id: '/onboarding/nutrition-goal',
+  path: '/onboarding/nutrition-goal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingLocationPrefRoute = OnboardingLocationPrefRouteImport.update({
+  id: '/onboarding/location-pref',
+  path: '/onboarding/location-pref',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingLevelRoute = OnboardingLevelRouteImport.update({
+  id: '/onboarding/level',
+  path: '/onboarding/level',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingGoalRoute = OnboardingGoalRouteImport.update({
+  id: '/onboarding/goal',
+  path: '/onboarding/goal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingFrequencyRoute = OnboardingFrequencyRouteImport.update({
+  id: '/onboarding/frequency',
+  path: '/onboarding/frequency',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingDobRoute = OnboardingDobRouteImport.update({
+  id: '/onboarding/dob',
+  path: '/onboarding/dob',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingDietRoute = OnboardingDietRouteImport.update({
+  id: '/onboarding/diet',
+  path: '/onboarding/diet',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingCycleDataRoute = OnboardingCycleDataRouteImport.update({
+  id: '/onboarding/cycle-data',
+  path: '/onboarding/cycle-data',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OnboardingAuthRoute = OnboardingAuthRouteImport.update({
   id: '/onboarding/auth',
   path: '/onboarding/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingActivityRoute = OnboardingActivityRouteImport.update({
+  id: '/onboarding/activity',
+  path: '/onboarding/activity',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -45,14 +117,38 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/home': typeof HomeRoute
   '/screens': typeof ScreensRoute
+  '/onboarding/activity': typeof OnboardingActivityRoute
   '/onboarding/auth': typeof OnboardingAuthRoute
+  '/onboarding/cycle-data': typeof OnboardingCycleDataRoute
+  '/onboarding/diet': typeof OnboardingDietRoute
+  '/onboarding/dob': typeof OnboardingDobRoute
+  '/onboarding/frequency': typeof OnboardingFrequencyRoute
+  '/onboarding/goal': typeof OnboardingGoalRoute
+  '/onboarding/level': typeof OnboardingLevelRoute
+  '/onboarding/location-pref': typeof OnboardingLocationPrefRoute
+  '/onboarding/nutrition-goal': typeof OnboardingNutritionGoalRoute
+  '/onboarding/stats': typeof OnboardingStatsRoute
+  '/onboarding/trial': typeof OnboardingTrialRoute
+  '/onboarding/types': typeof OnboardingTypesRoute
   '/onboarding/welcome': typeof OnboardingWelcomeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/home': typeof HomeRoute
   '/screens': typeof ScreensRoute
+  '/onboarding/activity': typeof OnboardingActivityRoute
   '/onboarding/auth': typeof OnboardingAuthRoute
+  '/onboarding/cycle-data': typeof OnboardingCycleDataRoute
+  '/onboarding/diet': typeof OnboardingDietRoute
+  '/onboarding/dob': typeof OnboardingDobRoute
+  '/onboarding/frequency': typeof OnboardingFrequencyRoute
+  '/onboarding/goal': typeof OnboardingGoalRoute
+  '/onboarding/level': typeof OnboardingLevelRoute
+  '/onboarding/location-pref': typeof OnboardingLocationPrefRoute
+  '/onboarding/nutrition-goal': typeof OnboardingNutritionGoalRoute
+  '/onboarding/stats': typeof OnboardingStatsRoute
+  '/onboarding/trial': typeof OnboardingTrialRoute
+  '/onboarding/types': typeof OnboardingTypesRoute
   '/onboarding/welcome': typeof OnboardingWelcomeRoute
 }
 export interface FileRoutesById {
@@ -60,7 +156,19 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/home': typeof HomeRoute
   '/screens': typeof ScreensRoute
+  '/onboarding/activity': typeof OnboardingActivityRoute
   '/onboarding/auth': typeof OnboardingAuthRoute
+  '/onboarding/cycle-data': typeof OnboardingCycleDataRoute
+  '/onboarding/diet': typeof OnboardingDietRoute
+  '/onboarding/dob': typeof OnboardingDobRoute
+  '/onboarding/frequency': typeof OnboardingFrequencyRoute
+  '/onboarding/goal': typeof OnboardingGoalRoute
+  '/onboarding/level': typeof OnboardingLevelRoute
+  '/onboarding/location-pref': typeof OnboardingLocationPrefRoute
+  '/onboarding/nutrition-goal': typeof OnboardingNutritionGoalRoute
+  '/onboarding/stats': typeof OnboardingStatsRoute
+  '/onboarding/trial': typeof OnboardingTrialRoute
+  '/onboarding/types': typeof OnboardingTypesRoute
   '/onboarding/welcome': typeof OnboardingWelcomeRoute
 }
 export interface FileRouteTypes {
@@ -69,16 +177,57 @@ export interface FileRouteTypes {
     | '/'
     | '/home'
     | '/screens'
+    | '/onboarding/activity'
     | '/onboarding/auth'
+    | '/onboarding/cycle-data'
+    | '/onboarding/diet'
+    | '/onboarding/dob'
+    | '/onboarding/frequency'
+    | '/onboarding/goal'
+    | '/onboarding/level'
+    | '/onboarding/location-pref'
+    | '/onboarding/nutrition-goal'
+    | '/onboarding/stats'
+    | '/onboarding/trial'
+    | '/onboarding/types'
     | '/onboarding/welcome'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/home' | '/screens' | '/onboarding/auth' | '/onboarding/welcome'
+  to:
+    | '/'
+    | '/home'
+    | '/screens'
+    | '/onboarding/activity'
+    | '/onboarding/auth'
+    | '/onboarding/cycle-data'
+    | '/onboarding/diet'
+    | '/onboarding/dob'
+    | '/onboarding/frequency'
+    | '/onboarding/goal'
+    | '/onboarding/level'
+    | '/onboarding/location-pref'
+    | '/onboarding/nutrition-goal'
+    | '/onboarding/stats'
+    | '/onboarding/trial'
+    | '/onboarding/types'
+    | '/onboarding/welcome'
   id:
     | '__root__'
     | '/'
     | '/home'
     | '/screens'
+    | '/onboarding/activity'
     | '/onboarding/auth'
+    | '/onboarding/cycle-data'
+    | '/onboarding/diet'
+    | '/onboarding/dob'
+    | '/onboarding/frequency'
+    | '/onboarding/goal'
+    | '/onboarding/level'
+    | '/onboarding/location-pref'
+    | '/onboarding/nutrition-goal'
+    | '/onboarding/stats'
+    | '/onboarding/trial'
+    | '/onboarding/types'
     | '/onboarding/welcome'
   fileRoutesById: FileRoutesById
 }
@@ -86,7 +235,19 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   HomeRoute: typeof HomeRoute
   ScreensRoute: typeof ScreensRoute
+  OnboardingActivityRoute: typeof OnboardingActivityRoute
   OnboardingAuthRoute: typeof OnboardingAuthRoute
+  OnboardingCycleDataRoute: typeof OnboardingCycleDataRoute
+  OnboardingDietRoute: typeof OnboardingDietRoute
+  OnboardingDobRoute: typeof OnboardingDobRoute
+  OnboardingFrequencyRoute: typeof OnboardingFrequencyRoute
+  OnboardingGoalRoute: typeof OnboardingGoalRoute
+  OnboardingLevelRoute: typeof OnboardingLevelRoute
+  OnboardingLocationPrefRoute: typeof OnboardingLocationPrefRoute
+  OnboardingNutritionGoalRoute: typeof OnboardingNutritionGoalRoute
+  OnboardingStatsRoute: typeof OnboardingStatsRoute
+  OnboardingTrialRoute: typeof OnboardingTrialRoute
+  OnboardingTypesRoute: typeof OnboardingTypesRoute
   OnboardingWelcomeRoute: typeof OnboardingWelcomeRoute
 }
 
@@ -120,11 +281,95 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingWelcomeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/onboarding/types': {
+      id: '/onboarding/types'
+      path: '/onboarding/types'
+      fullPath: '/onboarding/types'
+      preLoaderRoute: typeof OnboardingTypesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding/trial': {
+      id: '/onboarding/trial'
+      path: '/onboarding/trial'
+      fullPath: '/onboarding/trial'
+      preLoaderRoute: typeof OnboardingTrialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding/stats': {
+      id: '/onboarding/stats'
+      path: '/onboarding/stats'
+      fullPath: '/onboarding/stats'
+      preLoaderRoute: typeof OnboardingStatsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding/nutrition-goal': {
+      id: '/onboarding/nutrition-goal'
+      path: '/onboarding/nutrition-goal'
+      fullPath: '/onboarding/nutrition-goal'
+      preLoaderRoute: typeof OnboardingNutritionGoalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding/location-pref': {
+      id: '/onboarding/location-pref'
+      path: '/onboarding/location-pref'
+      fullPath: '/onboarding/location-pref'
+      preLoaderRoute: typeof OnboardingLocationPrefRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding/level': {
+      id: '/onboarding/level'
+      path: '/onboarding/level'
+      fullPath: '/onboarding/level'
+      preLoaderRoute: typeof OnboardingLevelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding/goal': {
+      id: '/onboarding/goal'
+      path: '/onboarding/goal'
+      fullPath: '/onboarding/goal'
+      preLoaderRoute: typeof OnboardingGoalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding/frequency': {
+      id: '/onboarding/frequency'
+      path: '/onboarding/frequency'
+      fullPath: '/onboarding/frequency'
+      preLoaderRoute: typeof OnboardingFrequencyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding/dob': {
+      id: '/onboarding/dob'
+      path: '/onboarding/dob'
+      fullPath: '/onboarding/dob'
+      preLoaderRoute: typeof OnboardingDobRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding/diet': {
+      id: '/onboarding/diet'
+      path: '/onboarding/diet'
+      fullPath: '/onboarding/diet'
+      preLoaderRoute: typeof OnboardingDietRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding/cycle-data': {
+      id: '/onboarding/cycle-data'
+      path: '/onboarding/cycle-data'
+      fullPath: '/onboarding/cycle-data'
+      preLoaderRoute: typeof OnboardingCycleDataRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/onboarding/auth': {
       id: '/onboarding/auth'
       path: '/onboarding/auth'
       fullPath: '/onboarding/auth'
       preLoaderRoute: typeof OnboardingAuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding/activity': {
+      id: '/onboarding/activity'
+      path: '/onboarding/activity'
+      fullPath: '/onboarding/activity'
+      preLoaderRoute: typeof OnboardingActivityRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -134,7 +379,19 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   HomeRoute: HomeRoute,
   ScreensRoute: ScreensRoute,
+  OnboardingActivityRoute: OnboardingActivityRoute,
   OnboardingAuthRoute: OnboardingAuthRoute,
+  OnboardingCycleDataRoute: OnboardingCycleDataRoute,
+  OnboardingDietRoute: OnboardingDietRoute,
+  OnboardingDobRoute: OnboardingDobRoute,
+  OnboardingFrequencyRoute: OnboardingFrequencyRoute,
+  OnboardingGoalRoute: OnboardingGoalRoute,
+  OnboardingLevelRoute: OnboardingLevelRoute,
+  OnboardingLocationPrefRoute: OnboardingLocationPrefRoute,
+  OnboardingNutritionGoalRoute: OnboardingNutritionGoalRoute,
+  OnboardingStatsRoute: OnboardingStatsRoute,
+  OnboardingTrialRoute: OnboardingTrialRoute,
+  OnboardingTypesRoute: OnboardingTypesRoute,
   OnboardingWelcomeRoute: OnboardingWelcomeRoute,
 }
 export const routeTree = rootRouteImport

@@ -125,7 +125,7 @@ function WelcomePage() {
 
           <div className="mt-8 space-y-3">
             <Link
-              to="/onboarding/auth"
+              to="/onboarding/dob"
               className="group relative flex items-center justify-center gap-2 w-full py-4 rounded-2xl text-primary-foreground font-medium text-sm transition-transform active:scale-[0.98] overflow-hidden"
               style={{
                 background: "var(--gradient-primary)",
@@ -148,7 +148,7 @@ function WelcomePage() {
               />
             </Link>
             <Link
-              to="/onboarding/auth"
+              to="/auth/login"
               className="block w-full text-center text-sm text-foreground/70 py-2"
             >
               لديّ حساب بالفعل

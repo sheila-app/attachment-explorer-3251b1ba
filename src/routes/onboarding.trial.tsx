@@ -22,8 +22,8 @@ function Page() {
       subtitle="جرّبي شيلا 30 يوماً مجّاناً — لا يلزم بطاقة ائتمان."
       footer={
         <div className="space-y-2">
-          <PrimaryCTA to="/home">ابدئي التجربة المجانيّة</PrimaryCTA>
-          <GhostCTA to="/home">لاحقاً</GhostCTA>
+          <PrimaryCTA to="/onboarding/complete">ابدئي التجربة المجانيّة</PrimaryCTA>
+          <GhostCTA to="/onboarding/complete">لاحقاً</GhostCTA>
         </div>
       }
     >

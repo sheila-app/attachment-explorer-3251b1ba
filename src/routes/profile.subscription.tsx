@@ -52,7 +52,7 @@ function Sub() {
         </div>
 
         <div className="space-y-2 pt-2">
-          <PrimaryCTA to="/profile">ترقية الخطّة</PrimaryCTA>
+          <PrimaryCTA to="/profile/payment">ترقية الخطّة</PrimaryCTA>
           <GhostCTA to="/profile">إلغاء الاشتراك</GhostCTA>
         </div>
       </div>

@@ -54,7 +54,7 @@
   --color-phase-luteal-soft: var(--phase-luteal-soft);
 
   --font-sans: "Tajawal", system-ui, sans-serif;
-  --font-display: "Amiri", "Tajawal", serif;
+  --font-display: "Cairo", "Tajawal", system-ui, sans-serif;
 }
 
 :root {

@@ -17,7 +17,7 @@ export function BottomNav() {
   return (
     <nav className="absolute bottom-0 inset-x-0 z-30 px-4 pb-4 pt-2">
       <div className="glass-strong rounded-2xl overflow-hidden">
-        <div className="grid grid-cols-5 h-[68px] relative z-10">
+        <div className="grid grid-cols-5 h-[68px]">
           {items.map(({ to, label, icon: Icon }) => {
             const active = pathname === to || pathname.startsWith(to + "/");
             return (
@@ -31,9 +31,9 @@ export function BottomNav() {
                     className="absolute inset-1.5 rounded-lg"
                     style={{
                       background:
-                        "linear-gradient(135deg, oklch(0.66 0.16 322 / 0.22), oklch(0.46 0.135 328 / 0.12))",
+                        "linear-gradient(135deg, oklch(1 0 0 / 0.5), oklch(0.66 0.16 322 / 0.18))",
                       boxShadow:
-                        "inset 0 1px 0 0 oklch(1 0 0 / 0.6), 0 4px 12px -4px oklch(0.46 0.135 328 / 0.3)",
+                        "inset 0 1px 0 0 oklch(1 0 0 / 0.7), inset 0 -1px 0 0 oklch(0.46 0.135 328 / 0.1), 0 4px 14px -6px oklch(0.46 0.135 328 / 0.35)",
                     }}
                   />
                 )}

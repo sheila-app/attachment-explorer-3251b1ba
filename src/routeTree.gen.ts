@@ -26,6 +26,10 @@ import { Route as OnboardingDietRouteImport } from './routes/onboarding.diet'
 import { Route as OnboardingCycleDataRouteImport } from './routes/onboarding.cycle-data'
 import { Route as OnboardingAuthRouteImport } from './routes/onboarding.auth'
 import { Route as OnboardingActivityRouteImport } from './routes/onboarding.activity'
+import { Route as AuthOtpRouteImport } from './routes/auth.otp'
+import { Route as AuthNewPasswordRouteImport } from './routes/auth.new-password'
+import { Route as AuthLoginRouteImport } from './routes/auth.login'
+import { Route as AuthForgotRouteImport } from './routes/auth.forgot'
 
 const ScreensRoute = ScreensRouteImport.update({
   id: '/screens',
@@ -112,11 +116,35 @@ const OnboardingActivityRoute = OnboardingActivityRouteImport.update({
   path: '/onboarding/activity',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthOtpRoute = AuthOtpRouteImport.update({
+  id: '/auth/otp',
+  path: '/auth/otp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthNewPasswordRoute = AuthNewPasswordRouteImport.update({
+  id: '/auth/new-password',
+  path: '/auth/new-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthLoginRoute = AuthLoginRouteImport.update({
+  id: '/auth/login',
+  path: '/auth/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthForgotRoute = AuthForgotRouteImport.update({
+  id: '/auth/forgot',
+  path: '/auth/forgot',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/home': typeof HomeRoute
   '/screens': typeof ScreensRoute
+  '/auth/forgot': typeof AuthForgotRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/new-password': typeof AuthNewPasswordRoute
+  '/auth/otp': typeof AuthOtpRoute
   '/onboarding/activity': typeof OnboardingActivityRoute
   '/onboarding/auth': typeof OnboardingAuthRoute
   '/onboarding/cycle-data': typeof OnboardingCycleDataRoute
@@ -136,6 +164,10 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/home': typeof HomeRoute
   '/screens': typeof ScreensRoute
+  '/auth/forgot': typeof AuthForgotRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/new-password': typeof AuthNewPasswordRoute
+  '/auth/otp': typeof AuthOtpRoute
   '/onboarding/activity': typeof OnboardingActivityRoute
   '/onboarding/auth': typeof OnboardingAuthRoute
   '/onboarding/cycle-data': typeof OnboardingCycleDataRoute
@@ -156,6 +188,10 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/home': typeof HomeRoute
   '/screens': typeof ScreensRoute
+  '/auth/forgot': typeof AuthForgotRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/new-password': typeof AuthNewPasswordRoute
+  '/auth/otp': typeof AuthOtpRoute
   '/onboarding/activity': typeof OnboardingActivityRoute
   '/onboarding/auth': typeof OnboardingAuthRoute
   '/onboarding/cycle-data': typeof OnboardingCycleDataRoute
@@ -177,6 +213,10 @@ export interface FileRouteTypes {
     | '/'
     | '/home'
     | '/screens'
+    | '/auth/forgot'
+    | '/auth/login'
+    | '/auth/new-password'
+    | '/auth/otp'
     | '/onboarding/activity'
     | '/onboarding/auth'
     | '/onboarding/cycle-data'
@@ -196,6 +236,10 @@ export interface FileRouteTypes {
     | '/'
     | '/home'
     | '/screens'
+    | '/auth/forgot'
+    | '/auth/login'
+    | '/auth/new-password'
+    | '/auth/otp'
     | '/onboarding/activity'
     | '/onboarding/auth'
     | '/onboarding/cycle-data'
@@ -215,6 +259,10 @@ export interface FileRouteTypes {
     | '/'
     | '/home'
     | '/screens'
+    | '/auth/forgot'
+    | '/auth/login'
+    | '/auth/new-password'
+    | '/auth/otp'
     | '/onboarding/activity'
     | '/onboarding/auth'
     | '/onboarding/cycle-data'
@@ -235,6 +283,10 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   HomeRoute: typeof HomeRoute
   ScreensRoute: typeof ScreensRoute
+  AuthForgotRoute: typeof AuthForgotRoute
+  AuthLoginRoute: typeof AuthLoginRoute
+  AuthNewPasswordRoute: typeof AuthNewPasswordRoute
+  AuthOtpRoute: typeof AuthOtpRoute
   OnboardingActivityRoute: typeof OnboardingActivityRoute
   OnboardingAuthRoute: typeof OnboardingAuthRoute
   OnboardingCycleDataRoute: typeof OnboardingCycleDataRoute
@@ -372,6 +424,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingActivityRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth/otp': {
+      id: '/auth/otp'
+      path: '/auth/otp'
+      fullPath: '/auth/otp'
+      preLoaderRoute: typeof AuthOtpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/new-password': {
+      id: '/auth/new-password'
+      path: '/auth/new-password'
+      fullPath: '/auth/new-password'
+      preLoaderRoute: typeof AuthNewPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/login': {
+      id: '/auth/login'
+      path: '/auth/login'
+      fullPath: '/auth/login'
+      preLoaderRoute: typeof AuthLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/forgot': {
+      id: '/auth/forgot'
+      path: '/auth/forgot'
+      fullPath: '/auth/forgot'
+      preLoaderRoute: typeof AuthForgotRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -379,6 +459,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   HomeRoute: HomeRoute,
   ScreensRoute: ScreensRoute,
+  AuthForgotRoute: AuthForgotRoute,
+  AuthLoginRoute: AuthLoginRoute,
+  AuthNewPasswordRoute: AuthNewPasswordRoute,
+  AuthOtpRoute: AuthOtpRoute,
   OnboardingActivityRoute: OnboardingActivityRoute,
   OnboardingAuthRoute: OnboardingAuthRoute,
   OnboardingCycleDataRoute: OnboardingCycleDataRoute,

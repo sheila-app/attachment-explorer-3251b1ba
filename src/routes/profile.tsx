@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { mockUser } from "@/data/mock";
-import { Settings, ChevronLeft, Crown, Bell, Shield, HelpCircle, LogOut } from "lucide-react";
+import { Settings, ChevronLeft, Crown, Bell, Shield, HelpCircle, LogOut, Edit3, Ruler } from "lucide-react";
 
 export const Route = createFileRoute("/profile")({ component: ProfilePage });
 
@@ -35,7 +35,7 @@ function ProfilePage() {
         </div>
 
         {/* Subscription */}
-        <div className="glass mt-3 rounded-2xl p-4 flex items-center gap-3">
+        <Link to="/profile/subscription" className="glass mt-3 rounded-2xl p-4 flex items-center gap-3">
           <div className="relative z-10 w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: "var(--gradient-primary)" }}>
             <Crown size={17} className="text-primary-foreground" strokeWidth={1.75} />
           </div>
@@ -44,13 +44,15 @@ function ProfilePage() {
             <div className="text-[11px] text-foreground/60 mt-0.5">تجربة مجانيّة · تنتهي خلال 23 يوم</div>
           </div>
           <ChevronLeft size={16} className="relative z-10 text-foreground/50" />
-        </div>
+        </Link>
 
         {/* Menu */}
         <div className="glass mt-3 rounded-2xl overflow-hidden">
+          <Item icon={Edit3} label="تعديل الملف الشخصي" to="/profile/edit" />
+          <Item icon={Ruler} label="القياسات" to="/journey/measurements" />
           <Item icon={Bell} label="الإشعارات" to="/notifications" />
-          <Item icon={Shield} label="الخصوصية والأمان" />
-          <Item icon={HelpCircle} label="المساعدة والدعم" />
+          <Item icon={Shield} label="الخصوصية والأمان" to="/profile/settings" />
+          <Item icon={HelpCircle} label="المساعدة والدعم" to="/profile/help" />
         </div>
 
         <button className="mt-3 w-full glass rounded-2xl py-3.5 flex items-center justify-center gap-2 text-destructive text-sm font-medium">

@@ -1,44 +1,46 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { createFileRoute } from "@tanstack/react-router";
+import { useMemo, useState } from "react";
 import { OnboardingShell, PrimaryCTA } from "@/components/sheila/OnboardingShell";
+import { IOSWheel, wheelRange } from "@/components/sheila/IOSWheel";
 
 export const Route = createFileRoute("/onboarding/dob")({ component: DobPage });
 
+const months = [
+  "يناير","فبراير","مارس","أبريل","مايو","يونيو",
+  "يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",
+];
+
 function DobPage() {
-  const navigate = useNavigate();
-  const [day, setDay] = useState("15");
-  const [month, setMonth] = useState("06");
-  const [year, setYear] = useState("1996");
+  const yearNow = new Date().getFullYear();
+  const [day, setDay] = useState<number>(15);
+  const [monthIdx, setMonthIdx] = useState<number>(5);
+  const [year, setYear] = useState<number>(1996);
+
+  const age = useMemo(() => {
+    const today = new Date();
+    let a = today.getFullYear() - year;
+    const m = today.getMonth() - monthIdx;
+    if (m < 0 || (m === 0 && today.getDate() < day)) a--;
+    return a;
+  }, [day, monthIdx, year]);
 
   return (
     <OnboardingShell
       step={2} total={12} back="/onboarding/auth"
       title="ما تاريخ ميلادكِ؟"
-      subtitle="نستخدمه لتخصيص توصياتكِ. يجب أن تكوني 16 سنة فأكثر."
+      subtitle="اسحبي العجلات لاختيار التاريخ. يجب أن تكوني 16 سنة فأكثر."
       footer={<PrimaryCTA to="/onboarding/goal">متابعة</PrimaryCTA>}
     >
-      <div className="glass rounded-2xl p-5">
-        <div className="relative z-10 grid grid-cols-3 gap-3 nums">
-          <NumField label="اليوم" value={day} onChange={setDay} max={31} />
-          <NumField label="الشهر" value={month} onChange={setMonth} max={12} />
-          <NumField label="السنة" value={year} onChange={setYear} max={2010} />
+      <div className="glass rounded-2xl p-4">
+        <div className="relative z-10 flex justify-center gap-3" style={{ direction: "ltr" }}>
+          <IOSWheel label="يوم" values={wheelRange(1, 31)} value={day} onChange={(v) => setDay(Number(v))} width={64} />
+          <IOSWheel label="شهر" values={months} value={months[monthIdx]} onChange={(v) => setMonthIdx(months.indexOf(String(v)))} width={108} />
+          <IOSWheel label="سنة" values={wheelRange(yearNow - 80, yearNow - 16)} value={year} onChange={(v) => setYear(Number(v))} width={78} />
         </div>
       </div>
-      <p className="text-[11px] text-foreground/55 mt-4 text-center">سنّكِ المحسوب: <span className="text-primary font-medium">28 سنة</span></p>
+      <p className="text-[11px] text-foreground/55 mt-4 text-center">
+        سنّكِ المحسوب: <span className="text-primary font-medium nums">{age}</span> سنة
+      </p>
     </OnboardingShell>
-  );
-}
-
-function NumField({ label, value, onChange }: { label: string; value: string; onChange: (v: string) => void; max: number }) {
-  return (
-    <div className="text-center">
-      <div className="text-[10px] tracking-[0.2em] text-foreground/55 uppercase mb-2">{label}</div>
-      <input
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="w-full bg-transparent text-center font-display text-3xl text-primary outline-none"
-        inputMode="numeric"
-      />
-    </div>
   );
 }

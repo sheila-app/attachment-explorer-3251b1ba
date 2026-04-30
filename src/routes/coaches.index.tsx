@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { Star, MessageCircle, Calendar } from "lucide-react";
 
-export const Route = createFileRoute("/coaches/")({ component: Page });
+export const Route = createFileRoute("/coaches")({ component: Page });
 
 const coaches = [
   { id: "c1", name: "د. سارة الراشد", title: "أخصائيّة تغذية", rating: 4.9, reviews: 128, price: 80, avail: "اليوم 15:00" },

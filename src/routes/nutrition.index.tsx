@@ -3,7 +3,7 @@ import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { mockMeals, PHASE_META } from "@/data/mock";
 import { Apple, Droplet, Plus } from "lucide-react";
 
-export const Route = createFileRoute("/nutrition/")({ component: NutritionPage });
+export const Route = createFileRoute("/nutrition")({ component: NutritionPage });
 
 function NutritionPage() {
   const target = 1800;

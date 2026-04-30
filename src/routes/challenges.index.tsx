@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { Trophy, Users, Clock } from "lucide-react";
 
-export const Route = createFileRoute("/challenges/")({ component: Page });
+export const Route = createFileRoute("/challenges")({ component: Page });
 
 const challenges = [
   { id: "ch1", title: "تحدّي 7 أيام يوغا", days: 7, joined: 1240, icon: "🧘‍♀️", reward: "شارة الهدوء" },

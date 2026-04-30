@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { FileText, Download, TrendingUp, Calendar } from "lucide-react";
 
-export const Route = createFileRoute("/reports/")({ component: Page });
+export const Route = createFileRoute("/reports")({ component: Page });
 
 const reports = [
   { id: "r-monthly", title: "التقرير الشهري", hint: "ملخّص شامل لأبريل 2026", icon: Calendar, badge: "جديد" },

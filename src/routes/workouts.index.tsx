@@ -4,7 +4,7 @@ import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { mockWorkouts, PHASE_META } from "@/data/mock";
 import { Search, Flame, ChevronLeft } from "lucide-react";
 
-export const Route = createFileRoute("/workouts/")({ component: WorkoutsPage });
+export const Route = createFileRoute("/workouts")({ component: WorkoutsPage });
 
 const FILTERS = ["الكل", "يوغا", "كارديو", "HIIT", "قوّة", "بيلاتس", "تمدّد"];
 

@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { Wind, Moon, Sun, Heart } from "lucide-react";
 
-export const Route = createFileRoute("/mindfulness/")({ component: Page });
+export const Route = createFileRoute("/mindfulness")({ component: Page });
 
 const sessions = [
   { id: "breath", title: "تنفّس 4-7-8", dur: 5, icon: Wind, hint: "يهدّئ التوتّر فوراً" },

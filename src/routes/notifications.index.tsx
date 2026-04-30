@@ -11,7 +11,7 @@ const COLORS: Record<string, string> = {
   community: "var(--phase-follicular)",
 };
 
-export const Route = createFileRoute("/notifications/")({ component: NotifPage });
+export const Route = createFileRoute("/notifications")({ component: NotifPage });
 
 function NotifPage() {
   return (

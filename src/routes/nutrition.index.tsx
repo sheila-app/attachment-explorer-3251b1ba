@@ -69,9 +69,9 @@ function NutritionPage() {
         </div>
 
         {/* Meals */}
-        <div className="flex items-center justify-between mt-6 mb-2.5">
-          <h2 className="text-sm font-medium">وجبات اليوم</h2>
-          <Link to="/nutrition/log" className="text-[11px] text-primary font-medium flex items-center gap-1">
+        <div className="flex items-center justify-between mt-6 mb-2.5 gap-3">
+          <h2 className="text-sm font-medium shrink-0">وجبات اليوم</h2>
+          <Link to="/nutrition/log" className="shrink-0 inline-flex items-center gap-1 text-[11px] text-primary font-medium glass rounded-full px-3 py-1.5">
             <Plus size={12} strokeWidth={2.5} /> تسجيل وجبة
           </Link>
         </div>

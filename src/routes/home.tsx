@@ -62,7 +62,68 @@ function HomePage() {
             </div>
 
             <div
-              className="glass mt-5 mx-3 px-4 py-3 rounded-xl animate-rise"
+              className="relative flex justify-center mt-7 animate-rise"
+              style={{ animationDelay: "0.15s" }}
+            >
+              <CyclePhaseRing
+                phase={mockUser.currentPhase}
+                day={mockUser.cycleDay}
+                cycleLength={mockUser.cycleLength}
+                size={240}
+              />
+            </div>
+
+            {/* Phase legend — أسماء المراحل بألوانها */}
+            <div
+              className="mt-4 grid grid-cols-4 gap-1.5 px-1 animate-rise"
+              style={{ animationDelay: "0.22s" }}
+            >
+              {(
+                [
+                  { key: "menstrual", name: "الحيض" },
+                  { key: "follicular", name: "الجريبية" },
+                  { key: "ovulation", name: "الإباضة" },
+                  { key: "luteal", name: "الأصفرية" },
+                ] as const
+              ).map(({ key, name }) => {
+                const active = mockUser.currentPhase === key;
+                return (
+                  <div
+                    key={key}
+                    className="glass rounded-lg px-2 py-2 flex flex-col items-center gap-1 text-center transition-all"
+                    style={{
+                      borderColor: active ? `var(--phase-${key})` : undefined,
+                      boxShadow: active
+                        ? `0 6px 16px -8px var(--phase-${key}), inset 0 0 0 1px var(--phase-${key})`
+                        : undefined,
+                    }}
+                  >
+                    <span
+                      className="w-2.5 h-2.5 rounded-full"
+                      style={{
+                        backgroundColor: `var(--phase-${key})`,
+                        boxShadow: active
+                          ? `0 0 0 3px color-mix(in oklab, var(--phase-${key}) 25%, transparent)`
+                          : undefined,
+                      }}
+                    />
+                    <span
+                      className="text-[10.5px] leading-tight"
+                      style={{
+                        color: active ? `var(--phase-${key})` : "var(--color-foreground)",
+                        fontWeight: active ? 600 : 400,
+                        opacity: active ? 1 : 0.7,
+                      }}
+                    >
+                      {name}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div
+              className="glass mt-4 mx-3 px-4 py-3 rounded-xl animate-rise"
               style={{ animationDelay: "0.3s" }}
             >
               <p className="relative z-10 text-center text-[12.5px] text-foreground/80 leading-relaxed">

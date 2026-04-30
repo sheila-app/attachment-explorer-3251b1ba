@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { Plus, Check, Flame } from "lucide-react";
 
-export const Route = createFileRoute("/habits")({ component: Page });
+export const Route = createFileRoute("/habits/")({ component: Page });
 
 const initial = [
   { id: "h1", name: "شرب 8 أكواب ماء", streak: 12, done: true, icon: "💧" },

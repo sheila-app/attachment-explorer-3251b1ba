@@ -3,7 +3,7 @@ import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { mockPosts } from "@/data/mock";
 import { Heart, MessageCircle, Plus, UserPlus } from "lucide-react";
 
-export const Route = createFileRoute("/community")({ component: CommunityPage });
+export const Route = createFileRoute("/community/")({ component: CommunityPage });
 
 function CommunityPage() {
   return (

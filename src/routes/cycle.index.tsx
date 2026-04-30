@@ -5,7 +5,7 @@ import { mockUser, PHASE_META, type CyclePhase, mockCycleHistory } from "@/data/
 import { ChevronRight, ChevronLeft, Plus } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/cycle")({ component: CyclePage });
+export const Route = createFileRoute("/cycle/")({ component: CyclePage });
 
 const PHASE_BY_DAY = (day: number): CyclePhase => {
   if (day <= 5) return "menstrual";

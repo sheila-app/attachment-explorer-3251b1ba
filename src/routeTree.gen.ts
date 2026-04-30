@@ -10,10 +10,13 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WorkoutsRouteImport } from './routes/workouts'
+import { Route as WidgetsRouteImport } from './routes/widgets'
+import { Route as TimerRouteImport } from './routes/timer'
 import { Route as SystemRouteImport } from './routes/system'
 import { Route as SupplementsRouteImport } from './routes/supplements'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as ScreensRouteImport } from './routes/screens'
+import { Route as ReportsRouteImport } from './routes/reports'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as PregnancyRouteImport } from './routes/pregnancy'
 import { Route as PaywallRouteImport } from './routes/paywall'
@@ -22,11 +25,15 @@ import { Route as NotificationsRouteImport } from './routes/notifications'
 import { Route as MindfulnessRouteImport } from './routes/mindfulness'
 import { Route as JourneyRouteImport } from './routes/journey'
 import { Route as HomeRouteImport } from './routes/home'
+import { Route as HabitsRouteImport } from './routes/habits'
+import { Route as EmergencyRouteImport } from './routes/emergency'
 import { Route as CycleRouteImport } from './routes/cycle'
 import { Route as CommunityRouteImport } from './routes/community'
 import { Route as CoachesRouteImport } from './routes/coaches'
 import { Route as CheckinRouteImport } from './routes/checkin'
 import { Route as ChallengesRouteImport } from './routes/challenges'
+import { Route as CalendarRouteImport } from './routes/calendar'
+import { Route as BuddyRouteImport } from './routes/buddy'
 import { Route as AssistantRouteImport } from './routes/assistant'
 import { Route as ArticlesRouteImport } from './routes/articles'
 import { Route as R404RouteImport } from './routes/404'
@@ -35,15 +42,24 @@ import { Route as WorkoutsSummaryRouteImport } from './routes/workouts.summary'
 import { Route as WorkoutsProgramsRouteImport } from './routes/workouts.programs'
 import { Route as WorkoutsLiveRouteImport } from './routes/workouts.live'
 import { Route as WorkoutsIdRouteImport } from './routes/workouts.$id'
+import { Route as ReportsIdRouteImport } from './routes/reports.$id'
+import { Route as ProfileThemeRouteImport } from './routes/profile.theme'
+import { Route as ProfileTermsRouteImport } from './routes/profile.terms'
 import { Route as ProfileSubscriptionRouteImport } from './routes/profile.subscription'
 import { Route as ProfileSettingsRouteImport } from './routes/profile.settings'
+import { Route as ProfileReferralRouteImport } from './routes/profile.referral'
 import { Route as ProfilePrivacyRouteImport } from './routes/profile.privacy'
 import { Route as ProfilePaymentRouteImport } from './routes/profile.payment'
 import { Route as ProfileNotificationsPrefsRouteImport } from './routes/profile.notifications-prefs'
 import { Route as ProfileLanguageRouteImport } from './routes/profile.language'
 import { Route as ProfileHelpRouteImport } from './routes/profile.help'
+import { Route as ProfileFeedbackRouteImport } from './routes/profile.feedback'
+import { Route as ProfileExportRouteImport } from './routes/profile.export'
 import { Route as ProfileEditRouteImport } from './routes/profile.edit'
 import { Route as ProfileDevicesRouteImport } from './routes/profile.devices'
+import { Route as ProfileDeleteRouteImport } from './routes/profile.delete'
+import { Route as ProfileBackupRouteImport } from './routes/profile.backup'
+import { Route as ProfileAboutRouteImport } from './routes/profile.about'
 import { Route as OnboardingWelcomeRouteImport } from './routes/onboarding.welcome'
 import { Route as OnboardingTypesRouteImport } from './routes/onboarding.types'
 import { Route as OnboardingTrialRouteImport } from './routes/onboarding.trial'
@@ -64,16 +80,20 @@ import { Route as NutritionShoppingRouteImport } from './routes/nutrition.shoppi
 import { Route as NutritionRecipesRouteImport } from './routes/nutrition.recipes'
 import { Route as NutritionLogRouteImport } from './routes/nutrition.log'
 import { Route as NutritionIdRouteImport } from './routes/nutrition.$id'
+import { Route as NotificationsSettingsRouteImport } from './routes/notifications.settings'
 import { Route as MindfulnessIdRouteImport } from './routes/mindfulness.$id'
 import { Route as JourneySymptomsRouteImport } from './routes/journey.symptoms'
 import { Route as JourneyMoodRouteImport } from './routes/journey.mood'
 import { Route as JourneyMeasurementsRouteImport } from './routes/journey.measurements'
 import { Route as JourneyInsightsRouteImport } from './routes/journey.insights'
 import { Route as JourneyGoalsRouteImport } from './routes/journey.goals'
+import { Route as JourneyCalendarRouteImport } from './routes/journey.calendar'
 import { Route as JourneyAwardsRouteImport } from './routes/journey.awards'
+import { Route as HabitsNewRouteImport } from './routes/habits.new'
 import { Route as CycleLogRouteImport } from './routes/cycle.log'
 import { Route as CommunityInviteRouteImport } from './routes/community.invite'
 import { Route as CommunityGroupsRouteImport } from './routes/community.groups'
+import { Route as CommunityEventsRouteImport } from './routes/community.events'
 import { Route as CommunityIdRouteImport } from './routes/community.$id'
 import { Route as CoachesIdRouteImport } from './routes/coaches.$id'
 import { Route as CheckinWaterRouteImport } from './routes/checkin.water'
@@ -95,6 +115,16 @@ const WorkoutsRoute = WorkoutsRouteImport.update({
   path: '/workouts',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WidgetsRoute = WidgetsRouteImport.update({
+  id: '/widgets',
+  path: '/widgets',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TimerRoute = TimerRouteImport.update({
+  id: '/timer',
+  path: '/timer',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SystemRoute = SystemRouteImport.update({
   id: '/system',
   path: '/system',
@@ -113,6 +143,11 @@ const SearchRoute = SearchRouteImport.update({
 const ScreensRoute = ScreensRouteImport.update({
   id: '/screens',
   path: '/screens',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileRoute = ProfileRouteImport.update({
@@ -155,6 +190,16 @@ const HomeRoute = HomeRouteImport.update({
   path: '/home',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HabitsRoute = HabitsRouteImport.update({
+  id: '/habits',
+  path: '/habits',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EmergencyRoute = EmergencyRouteImport.update({
+  id: '/emergency',
+  path: '/emergency',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CycleRoute = CycleRouteImport.update({
   id: '/cycle',
   path: '/cycle',
@@ -178,6 +223,16 @@ const CheckinRoute = CheckinRouteImport.update({
 const ChallengesRoute = ChallengesRouteImport.update({
   id: '/challenges',
   path: '/challenges',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CalendarRoute = CalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BuddyRoute = BuddyRouteImport.update({
+  id: '/buddy',
+  path: '/buddy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AssistantRoute = AssistantRouteImport.update({
@@ -220,6 +275,21 @@ const WorkoutsIdRoute = WorkoutsIdRouteImport.update({
   path: '/$id',
   getParentRoute: () => WorkoutsRoute,
 } as any)
+const ReportsIdRoute = ReportsIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => ReportsRoute,
+} as any)
+const ProfileThemeRoute = ProfileThemeRouteImport.update({
+  id: '/theme',
+  path: '/theme',
+  getParentRoute: () => ProfileRoute,
+} as any)
+const ProfileTermsRoute = ProfileTermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => ProfileRoute,
+} as any)
 const ProfileSubscriptionRoute = ProfileSubscriptionRouteImport.update({
   id: '/subscription',
   path: '/subscription',
@@ -228,6 +298,11 @@ const ProfileSubscriptionRoute = ProfileSubscriptionRouteImport.update({
 const ProfileSettingsRoute = ProfileSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
+  getParentRoute: () => ProfileRoute,
+} as any)
+const ProfileReferralRoute = ProfileReferralRouteImport.update({
+  id: '/referral',
+  path: '/referral',
   getParentRoute: () => ProfileRoute,
 } as any)
 const ProfilePrivacyRoute = ProfilePrivacyRouteImport.update({
@@ -256,6 +331,16 @@ const ProfileHelpRoute = ProfileHelpRouteImport.update({
   path: '/help',
   getParentRoute: () => ProfileRoute,
 } as any)
+const ProfileFeedbackRoute = ProfileFeedbackRouteImport.update({
+  id: '/feedback',
+  path: '/feedback',
+  getParentRoute: () => ProfileRoute,
+} as any)
+const ProfileExportRoute = ProfileExportRouteImport.update({
+  id: '/export',
+  path: '/export',
+  getParentRoute: () => ProfileRoute,
+} as any)
 const ProfileEditRoute = ProfileEditRouteImport.update({
   id: '/edit',
   path: '/edit',
@@ -264,6 +349,21 @@ const ProfileEditRoute = ProfileEditRouteImport.update({
 const ProfileDevicesRoute = ProfileDevicesRouteImport.update({
   id: '/devices',
   path: '/devices',
+  getParentRoute: () => ProfileRoute,
+} as any)
+const ProfileDeleteRoute = ProfileDeleteRouteImport.update({
+  id: '/delete',
+  path: '/delete',
+  getParentRoute: () => ProfileRoute,
+} as any)
+const ProfileBackupRoute = ProfileBackupRouteImport.update({
+  id: '/backup',
+  path: '/backup',
+  getParentRoute: () => ProfileRoute,
+} as any)
+const ProfileAboutRoute = ProfileAboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => ProfileRoute,
 } as any)
 const OnboardingWelcomeRoute = OnboardingWelcomeRouteImport.update({
@@ -366,6 +466,11 @@ const NutritionIdRoute = NutritionIdRouteImport.update({
   path: '/$id',
   getParentRoute: () => NutritionRoute,
 } as any)
+const NotificationsSettingsRoute = NotificationsSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => NotificationsRoute,
+} as any)
 const MindfulnessIdRoute = MindfulnessIdRouteImport.update({
   id: '/$id',
   path: '/$id',
@@ -396,10 +501,20 @@ const JourneyGoalsRoute = JourneyGoalsRouteImport.update({
   path: '/goals',
   getParentRoute: () => JourneyRoute,
 } as any)
+const JourneyCalendarRoute = JourneyCalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
+  getParentRoute: () => JourneyRoute,
+} as any)
 const JourneyAwardsRoute = JourneyAwardsRouteImport.update({
   id: '/awards',
   path: '/awards',
   getParentRoute: () => JourneyRoute,
+} as any)
+const HabitsNewRoute = HabitsNewRouteImport.update({
+  id: '/new',
+  path: '/new',
+  getParentRoute: () => HabitsRoute,
 } as any)
 const CycleLogRoute = CycleLogRouteImport.update({
   id: '/log',
@@ -414,6 +529,11 @@ const CommunityInviteRoute = CommunityInviteRouteImport.update({
 const CommunityGroupsRoute = CommunityGroupsRouteImport.update({
   id: '/groups',
   path: '/groups',
+  getParentRoute: () => CommunityRoute,
+} as any)
+const CommunityEventsRoute = CommunityEventsRouteImport.update({
+  id: '/events',
+  path: '/events',
   getParentRoute: () => CommunityRoute,
 } as any)
 const CommunityIdRoute = CommunityIdRouteImport.update({
@@ -497,23 +617,30 @@ export interface FileRoutesByFullPath {
   '/404': typeof R404Route
   '/articles': typeof ArticlesRouteWithChildren
   '/assistant': typeof AssistantRoute
+  '/buddy': typeof BuddyRoute
+  '/calendar': typeof CalendarRoute
   '/challenges': typeof ChallengesRouteWithChildren
   '/checkin': typeof CheckinRouteWithChildren
   '/coaches': typeof CoachesRouteWithChildren
   '/community': typeof CommunityRouteWithChildren
   '/cycle': typeof CycleRouteWithChildren
+  '/emergency': typeof EmergencyRoute
+  '/habits': typeof HabitsRouteWithChildren
   '/home': typeof HomeRoute
   '/journey': typeof JourneyRouteWithChildren
   '/mindfulness': typeof MindfulnessRouteWithChildren
-  '/notifications': typeof NotificationsRoute
+  '/notifications': typeof NotificationsRouteWithChildren
   '/nutrition': typeof NutritionRouteWithChildren
   '/paywall': typeof PaywallRoute
   '/pregnancy': typeof PregnancyRoute
   '/profile': typeof ProfileRouteWithChildren
+  '/reports': typeof ReportsRouteWithChildren
   '/screens': typeof ScreensRoute
   '/search': typeof SearchRoute
   '/supplements': typeof SupplementsRoute
   '/system': typeof SystemRoute
+  '/timer': typeof TimerRoute
+  '/widgets': typeof WidgetsRoute
   '/workouts': typeof WorkoutsRouteWithChildren
   '/articles/$id': typeof ArticlesIdRoute
   '/auth/forgot': typeof AuthForgotRoute
@@ -526,16 +653,20 @@ export interface FileRoutesByFullPath {
   '/checkin/water': typeof CheckinWaterRoute
   '/coaches/$id': typeof CoachesIdRouteWithChildren
   '/community/$id': typeof CommunityIdRoute
+  '/community/events': typeof CommunityEventsRoute
   '/community/groups': typeof CommunityGroupsRoute
   '/community/invite': typeof CommunityInviteRoute
   '/cycle/log': typeof CycleLogRoute
+  '/habits/new': typeof HabitsNewRoute
   '/journey/awards': typeof JourneyAwardsRoute
+  '/journey/calendar': typeof JourneyCalendarRoute
   '/journey/goals': typeof JourneyGoalsRoute
   '/journey/insights': typeof JourneyInsightsRoute
   '/journey/measurements': typeof JourneyMeasurementsRoute
   '/journey/mood': typeof JourneyMoodRoute
   '/journey/symptoms': typeof JourneySymptomsRoute
   '/mindfulness/$id': typeof MindfulnessIdRoute
+  '/notifications/settings': typeof NotificationsSettingsRoute
   '/nutrition/$id': typeof NutritionIdRoute
   '/nutrition/log': typeof NutritionLogRoute
   '/nutrition/recipes': typeof NutritionRecipesRoute
@@ -556,15 +687,24 @@ export interface FileRoutesByFullPath {
   '/onboarding/trial': typeof OnboardingTrialRoute
   '/onboarding/types': typeof OnboardingTypesRoute
   '/onboarding/welcome': typeof OnboardingWelcomeRoute
+  '/profile/about': typeof ProfileAboutRoute
+  '/profile/backup': typeof ProfileBackupRoute
+  '/profile/delete': typeof ProfileDeleteRoute
   '/profile/devices': typeof ProfileDevicesRoute
   '/profile/edit': typeof ProfileEditRoute
+  '/profile/export': typeof ProfileExportRoute
+  '/profile/feedback': typeof ProfileFeedbackRoute
   '/profile/help': typeof ProfileHelpRoute
   '/profile/language': typeof ProfileLanguageRoute
   '/profile/notifications-prefs': typeof ProfileNotificationsPrefsRoute
   '/profile/payment': typeof ProfilePaymentRoute
   '/profile/privacy': typeof ProfilePrivacyRoute
+  '/profile/referral': typeof ProfileReferralRoute
   '/profile/settings': typeof ProfileSettingsRoute
   '/profile/subscription': typeof ProfileSubscriptionRoute
+  '/profile/terms': typeof ProfileTermsRoute
+  '/profile/theme': typeof ProfileThemeRoute
+  '/reports/$id': typeof ReportsIdRoute
   '/workouts/$id': typeof WorkoutsIdRouteWithChildren
   '/workouts/live': typeof WorkoutsLiveRoute
   '/workouts/programs': typeof WorkoutsProgramsRouteWithChildren
@@ -579,23 +719,30 @@ export interface FileRoutesByTo {
   '/404': typeof R404Route
   '/articles': typeof ArticlesRouteWithChildren
   '/assistant': typeof AssistantRoute
+  '/buddy': typeof BuddyRoute
+  '/calendar': typeof CalendarRoute
   '/challenges': typeof ChallengesRouteWithChildren
   '/checkin': typeof CheckinRouteWithChildren
   '/coaches': typeof CoachesRouteWithChildren
   '/community': typeof CommunityRouteWithChildren
   '/cycle': typeof CycleRouteWithChildren
+  '/emergency': typeof EmergencyRoute
+  '/habits': typeof HabitsRouteWithChildren
   '/home': typeof HomeRoute
   '/journey': typeof JourneyRouteWithChildren
   '/mindfulness': typeof MindfulnessRouteWithChildren
-  '/notifications': typeof NotificationsRoute
+  '/notifications': typeof NotificationsRouteWithChildren
   '/nutrition': typeof NutritionRouteWithChildren
   '/paywall': typeof PaywallRoute
   '/pregnancy': typeof PregnancyRoute
   '/profile': typeof ProfileRouteWithChildren
+  '/reports': typeof ReportsRouteWithChildren
   '/screens': typeof ScreensRoute
   '/search': typeof SearchRoute
   '/supplements': typeof SupplementsRoute
   '/system': typeof SystemRoute
+  '/timer': typeof TimerRoute
+  '/widgets': typeof WidgetsRoute
   '/workouts': typeof WorkoutsRouteWithChildren
   '/articles/$id': typeof ArticlesIdRoute
   '/auth/forgot': typeof AuthForgotRoute
@@ -608,16 +755,20 @@ export interface FileRoutesByTo {
   '/checkin/water': typeof CheckinWaterRoute
   '/coaches/$id': typeof CoachesIdRouteWithChildren
   '/community/$id': typeof CommunityIdRoute
+  '/community/events': typeof CommunityEventsRoute
   '/community/groups': typeof CommunityGroupsRoute
   '/community/invite': typeof CommunityInviteRoute
   '/cycle/log': typeof CycleLogRoute
+  '/habits/new': typeof HabitsNewRoute
   '/journey/awards': typeof JourneyAwardsRoute
+  '/journey/calendar': typeof JourneyCalendarRoute
   '/journey/goals': typeof JourneyGoalsRoute
   '/journey/insights': typeof JourneyInsightsRoute
   '/journey/measurements': typeof JourneyMeasurementsRoute
   '/journey/mood': typeof JourneyMoodRoute
   '/journey/symptoms': typeof JourneySymptomsRoute
   '/mindfulness/$id': typeof MindfulnessIdRoute
+  '/notifications/settings': typeof NotificationsSettingsRoute
   '/nutrition/$id': typeof NutritionIdRoute
   '/nutrition/log': typeof NutritionLogRoute
   '/nutrition/recipes': typeof NutritionRecipesRoute
@@ -638,15 +789,24 @@ export interface FileRoutesByTo {
   '/onboarding/trial': typeof OnboardingTrialRoute
   '/onboarding/types': typeof OnboardingTypesRoute
   '/onboarding/welcome': typeof OnboardingWelcomeRoute
+  '/profile/about': typeof ProfileAboutRoute
+  '/profile/backup': typeof ProfileBackupRoute
+  '/profile/delete': typeof ProfileDeleteRoute
   '/profile/devices': typeof ProfileDevicesRoute
   '/profile/edit': typeof ProfileEditRoute
+  '/profile/export': typeof ProfileExportRoute
+  '/profile/feedback': typeof ProfileFeedbackRoute
   '/profile/help': typeof ProfileHelpRoute
   '/profile/language': typeof ProfileLanguageRoute
   '/profile/notifications-prefs': typeof ProfileNotificationsPrefsRoute
   '/profile/payment': typeof ProfilePaymentRoute
   '/profile/privacy': typeof ProfilePrivacyRoute
+  '/profile/referral': typeof ProfileReferralRoute
   '/profile/settings': typeof ProfileSettingsRoute
   '/profile/subscription': typeof ProfileSubscriptionRoute
+  '/profile/terms': typeof ProfileTermsRoute
+  '/profile/theme': typeof ProfileThemeRoute
+  '/reports/$id': typeof ReportsIdRoute
   '/workouts/$id': typeof WorkoutsIdRouteWithChildren
   '/workouts/live': typeof WorkoutsLiveRoute
   '/workouts/programs': typeof WorkoutsProgramsRouteWithChildren
@@ -662,23 +822,30 @@ export interface FileRoutesById {
   '/404': typeof R404Route
   '/articles': typeof ArticlesRouteWithChildren
   '/assistant': typeof AssistantRoute
+  '/buddy': typeof BuddyRoute
+  '/calendar': typeof CalendarRoute
   '/challenges': typeof ChallengesRouteWithChildren
   '/checkin': typeof CheckinRouteWithChildren
   '/coaches': typeof CoachesRouteWithChildren
   '/community': typeof CommunityRouteWithChildren
   '/cycle': typeof CycleRouteWithChildren
+  '/emergency': typeof EmergencyRoute
+  '/habits': typeof HabitsRouteWithChildren
   '/home': typeof HomeRoute
   '/journey': typeof JourneyRouteWithChildren
   '/mindfulness': typeof MindfulnessRouteWithChildren
-  '/notifications': typeof NotificationsRoute
+  '/notifications': typeof NotificationsRouteWithChildren
   '/nutrition': typeof NutritionRouteWithChildren
   '/paywall': typeof PaywallRoute
   '/pregnancy': typeof PregnancyRoute
   '/profile': typeof ProfileRouteWithChildren
+  '/reports': typeof ReportsRouteWithChildren
   '/screens': typeof ScreensRoute
   '/search': typeof SearchRoute
   '/supplements': typeof SupplementsRoute
   '/system': typeof SystemRoute
+  '/timer': typeof TimerRoute
+  '/widgets': typeof WidgetsRoute
   '/workouts': typeof WorkoutsRouteWithChildren
   '/articles/$id': typeof ArticlesIdRoute
   '/auth/forgot': typeof AuthForgotRoute
@@ -691,16 +858,20 @@ export interface FileRoutesById {
   '/checkin/water': typeof CheckinWaterRoute
   '/coaches/$id': typeof CoachesIdRouteWithChildren
   '/community/$id': typeof CommunityIdRoute
+  '/community/events': typeof CommunityEventsRoute
   '/community/groups': typeof CommunityGroupsRoute
   '/community/invite': typeof CommunityInviteRoute
   '/cycle/log': typeof CycleLogRoute
+  '/habits/new': typeof HabitsNewRoute
   '/journey/awards': typeof JourneyAwardsRoute
+  '/journey/calendar': typeof JourneyCalendarRoute
   '/journey/goals': typeof JourneyGoalsRoute
   '/journey/insights': typeof JourneyInsightsRoute
   '/journey/measurements': typeof JourneyMeasurementsRoute
   '/journey/mood': typeof JourneyMoodRoute
   '/journey/symptoms': typeof JourneySymptomsRoute
   '/mindfulness/$id': typeof MindfulnessIdRoute
+  '/notifications/settings': typeof NotificationsSettingsRoute
   '/nutrition/$id': typeof NutritionIdRoute
   '/nutrition/log': typeof NutritionLogRoute
   '/nutrition/recipes': typeof NutritionRecipesRoute
@@ -721,15 +892,24 @@ export interface FileRoutesById {
   '/onboarding/trial': typeof OnboardingTrialRoute
   '/onboarding/types': typeof OnboardingTypesRoute
   '/onboarding/welcome': typeof OnboardingWelcomeRoute
+  '/profile/about': typeof ProfileAboutRoute
+  '/profile/backup': typeof ProfileBackupRoute
+  '/profile/delete': typeof ProfileDeleteRoute
   '/profile/devices': typeof ProfileDevicesRoute
   '/profile/edit': typeof ProfileEditRoute
+  '/profile/export': typeof ProfileExportRoute
+  '/profile/feedback': typeof ProfileFeedbackRoute
   '/profile/help': typeof ProfileHelpRoute
   '/profile/language': typeof ProfileLanguageRoute
   '/profile/notifications-prefs': typeof ProfileNotificationsPrefsRoute
   '/profile/payment': typeof ProfilePaymentRoute
   '/profile/privacy': typeof ProfilePrivacyRoute
+  '/profile/referral': typeof ProfileReferralRoute
   '/profile/settings': typeof ProfileSettingsRoute
   '/profile/subscription': typeof ProfileSubscriptionRoute
+  '/profile/terms': typeof ProfileTermsRoute
+  '/profile/theme': typeof ProfileThemeRoute
+  '/reports/$id': typeof ReportsIdRoute
   '/workouts/$id': typeof WorkoutsIdRouteWithChildren
   '/workouts/live': typeof WorkoutsLiveRoute
   '/workouts/programs': typeof WorkoutsProgramsRouteWithChildren
@@ -746,11 +926,15 @@ export interface FileRouteTypes {
     | '/404'
     | '/articles'
     | '/assistant'
+    | '/buddy'
+    | '/calendar'
     | '/challenges'
     | '/checkin'
     | '/coaches'
     | '/community'
     | '/cycle'
+    | '/emergency'
+    | '/habits'
     | '/home'
     | '/journey'
     | '/mindfulness'
@@ -759,10 +943,13 @@ export interface FileRouteTypes {
     | '/paywall'
     | '/pregnancy'
     | '/profile'
+    | '/reports'
     | '/screens'
     | '/search'
     | '/supplements'
     | '/system'
+    | '/timer'
+    | '/widgets'
     | '/workouts'
     | '/articles/$id'
     | '/auth/forgot'
@@ -775,16 +962,20 @@ export interface FileRouteTypes {
     | '/checkin/water'
     | '/coaches/$id'
     | '/community/$id'
+    | '/community/events'
     | '/community/groups'
     | '/community/invite'
     | '/cycle/log'
+    | '/habits/new'
     | '/journey/awards'
+    | '/journey/calendar'
     | '/journey/goals'
     | '/journey/insights'
     | '/journey/measurements'
     | '/journey/mood'
     | '/journey/symptoms'
     | '/mindfulness/$id'
+    | '/notifications/settings'
     | '/nutrition/$id'
     | '/nutrition/log'
     | '/nutrition/recipes'
@@ -805,15 +996,24 @@ export interface FileRouteTypes {
     | '/onboarding/trial'
     | '/onboarding/types'
     | '/onboarding/welcome'
+    | '/profile/about'
+    | '/profile/backup'
+    | '/profile/delete'
     | '/profile/devices'
     | '/profile/edit'
+    | '/profile/export'
+    | '/profile/feedback'
     | '/profile/help'
     | '/profile/language'
     | '/profile/notifications-prefs'
     | '/profile/payment'
     | '/profile/privacy'
+    | '/profile/referral'
     | '/profile/settings'
     | '/profile/subscription'
+    | '/profile/terms'
+    | '/profile/theme'
+    | '/reports/$id'
     | '/workouts/$id'
     | '/workouts/live'
     | '/workouts/programs'
@@ -828,11 +1028,15 @@ export interface FileRouteTypes {
     | '/404'
     | '/articles'
     | '/assistant'
+    | '/buddy'
+    | '/calendar'
     | '/challenges'
     | '/checkin'
     | '/coaches'
     | '/community'
     | '/cycle'
+    | '/emergency'
+    | '/habits'
     | '/home'
     | '/journey'
     | '/mindfulness'
@@ -841,10 +1045,13 @@ export interface FileRouteTypes {
     | '/paywall'
     | '/pregnancy'
     | '/profile'
+    | '/reports'
     | '/screens'
     | '/search'
     | '/supplements'
     | '/system'
+    | '/timer'
+    | '/widgets'
     | '/workouts'
     | '/articles/$id'
     | '/auth/forgot'
@@ -857,16 +1064,20 @@ export interface FileRouteTypes {
     | '/checkin/water'
     | '/coaches/$id'
     | '/community/$id'
+    | '/community/events'
     | '/community/groups'
     | '/community/invite'
     | '/cycle/log'
+    | '/habits/new'
     | '/journey/awards'
+    | '/journey/calendar'
     | '/journey/goals'
     | '/journey/insights'
     | '/journey/measurements'
     | '/journey/mood'
     | '/journey/symptoms'
     | '/mindfulness/$id'
+    | '/notifications/settings'
     | '/nutrition/$id'
     | '/nutrition/log'
     | '/nutrition/recipes'
@@ -887,15 +1098,24 @@ export interface FileRouteTypes {
     | '/onboarding/trial'
     | '/onboarding/types'
     | '/onboarding/welcome'
+    | '/profile/about'
+    | '/profile/backup'
+    | '/profile/delete'
     | '/profile/devices'
     | '/profile/edit'
+    | '/profile/export'
+    | '/profile/feedback'
     | '/profile/help'
     | '/profile/language'
     | '/profile/notifications-prefs'
     | '/profile/payment'
     | '/profile/privacy'
+    | '/profile/referral'
     | '/profile/settings'
     | '/profile/subscription'
+    | '/profile/terms'
+    | '/profile/theme'
+    | '/reports/$id'
     | '/workouts/$id'
     | '/workouts/live'
     | '/workouts/programs'
@@ -910,11 +1130,15 @@ export interface FileRouteTypes {
     | '/404'
     | '/articles'
     | '/assistant'
+    | '/buddy'
+    | '/calendar'
     | '/challenges'
     | '/checkin'
     | '/coaches'
     | '/community'
     | '/cycle'
+    | '/emergency'
+    | '/habits'
     | '/home'
     | '/journey'
     | '/mindfulness'
@@ -923,10 +1147,13 @@ export interface FileRouteTypes {
     | '/paywall'
     | '/pregnancy'
     | '/profile'
+    | '/reports'
     | '/screens'
     | '/search'
     | '/supplements'
     | '/system'
+    | '/timer'
+    | '/widgets'
     | '/workouts'
     | '/articles/$id'
     | '/auth/forgot'
@@ -939,16 +1166,20 @@ export interface FileRouteTypes {
     | '/checkin/water'
     | '/coaches/$id'
     | '/community/$id'
+    | '/community/events'
     | '/community/groups'
     | '/community/invite'
     | '/cycle/log'
+    | '/habits/new'
     | '/journey/awards'
+    | '/journey/calendar'
     | '/journey/goals'
     | '/journey/insights'
     | '/journey/measurements'
     | '/journey/mood'
     | '/journey/symptoms'
     | '/mindfulness/$id'
+    | '/notifications/settings'
     | '/nutrition/$id'
     | '/nutrition/log'
     | '/nutrition/recipes'
@@ -969,15 +1200,24 @@ export interface FileRouteTypes {
     | '/onboarding/trial'
     | '/onboarding/types'
     | '/onboarding/welcome'
+    | '/profile/about'
+    | '/profile/backup'
+    | '/profile/delete'
     | '/profile/devices'
     | '/profile/edit'
+    | '/profile/export'
+    | '/profile/feedback'
     | '/profile/help'
     | '/profile/language'
     | '/profile/notifications-prefs'
     | '/profile/payment'
     | '/profile/privacy'
+    | '/profile/referral'
     | '/profile/settings'
     | '/profile/subscription'
+    | '/profile/terms'
+    | '/profile/theme'
+    | '/reports/$id'
     | '/workouts/$id'
     | '/workouts/live'
     | '/workouts/programs'
@@ -993,23 +1233,30 @@ export interface RootRouteChildren {
   R404Route: typeof R404Route
   ArticlesRoute: typeof ArticlesRouteWithChildren
   AssistantRoute: typeof AssistantRoute
+  BuddyRoute: typeof BuddyRoute
+  CalendarRoute: typeof CalendarRoute
   ChallengesRoute: typeof ChallengesRouteWithChildren
   CheckinRoute: typeof CheckinRouteWithChildren
   CoachesRoute: typeof CoachesRouteWithChildren
   CommunityRoute: typeof CommunityRouteWithChildren
   CycleRoute: typeof CycleRouteWithChildren
+  EmergencyRoute: typeof EmergencyRoute
+  HabitsRoute: typeof HabitsRouteWithChildren
   HomeRoute: typeof HomeRoute
   JourneyRoute: typeof JourneyRouteWithChildren
   MindfulnessRoute: typeof MindfulnessRouteWithChildren
-  NotificationsRoute: typeof NotificationsRoute
+  NotificationsRoute: typeof NotificationsRouteWithChildren
   NutritionRoute: typeof NutritionRouteWithChildren
   PaywallRoute: typeof PaywallRoute
   PregnancyRoute: typeof PregnancyRoute
   ProfileRoute: typeof ProfileRouteWithChildren
+  ReportsRoute: typeof ReportsRouteWithChildren
   ScreensRoute: typeof ScreensRoute
   SearchRoute: typeof SearchRoute
   SupplementsRoute: typeof SupplementsRoute
   SystemRoute: typeof SystemRoute
+  TimerRoute: typeof TimerRoute
+  WidgetsRoute: typeof WidgetsRoute
   WorkoutsRoute: typeof WorkoutsRouteWithChildren
   AuthForgotRoute: typeof AuthForgotRoute
   AuthLoginRoute: typeof AuthLoginRoute
@@ -1042,6 +1289,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkoutsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/widgets': {
+      id: '/widgets'
+      path: '/widgets'
+      fullPath: '/widgets'
+      preLoaderRoute: typeof WidgetsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/timer': {
+      id: '/timer'
+      path: '/timer'
+      fullPath: '/timer'
+      preLoaderRoute: typeof TimerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/system': {
       id: '/system'
       path: '/system'
@@ -1068,6 +1329,13 @@ declare module '@tanstack/react-router' {
       path: '/screens'
       fullPath: '/screens'
       preLoaderRoute: typeof ScreensRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/profile': {
@@ -1126,6 +1394,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HomeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/habits': {
+      id: '/habits'
+      path: '/habits'
+      fullPath: '/habits'
+      preLoaderRoute: typeof HabitsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/emergency': {
+      id: '/emergency'
+      path: '/emergency'
+      fullPath: '/emergency'
+      preLoaderRoute: typeof EmergencyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cycle': {
       id: '/cycle'
       path: '/cycle'
@@ -1159,6 +1441,20 @@ declare module '@tanstack/react-router' {
       path: '/challenges'
       fullPath: '/challenges'
       preLoaderRoute: typeof ChallengesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calendar': {
+      id: '/calendar'
+      path: '/calendar'
+      fullPath: '/calendar'
+      preLoaderRoute: typeof CalendarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/buddy': {
+      id: '/buddy'
+      path: '/buddy'
+      fullPath: '/buddy'
+      preLoaderRoute: typeof BuddyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/assistant': {
@@ -1217,6 +1513,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkoutsIdRouteImport
       parentRoute: typeof WorkoutsRoute
     }
+    '/reports/$id': {
+      id: '/reports/$id'
+      path: '/$id'
+      fullPath: '/reports/$id'
+      preLoaderRoute: typeof ReportsIdRouteImport
+      parentRoute: typeof ReportsRoute
+    }
+    '/profile/theme': {
+      id: '/profile/theme'
+      path: '/theme'
+      fullPath: '/profile/theme'
+      preLoaderRoute: typeof ProfileThemeRouteImport
+      parentRoute: typeof ProfileRoute
+    }
+    '/profile/terms': {
+      id: '/profile/terms'
+      path: '/terms'
+      fullPath: '/profile/terms'
+      preLoaderRoute: typeof ProfileTermsRouteImport
+      parentRoute: typeof ProfileRoute
+    }
     '/profile/subscription': {
       id: '/profile/subscription'
       path: '/subscription'
@@ -1229,6 +1546,13 @@ declare module '@tanstack/react-router' {
       path: '/settings'
       fullPath: '/profile/settings'
       preLoaderRoute: typeof ProfileSettingsRouteImport
+      parentRoute: typeof ProfileRoute
+    }
+    '/profile/referral': {
+      id: '/profile/referral'
+      path: '/referral'
+      fullPath: '/profile/referral'
+      preLoaderRoute: typeof ProfileReferralRouteImport
       parentRoute: typeof ProfileRoute
     }
     '/profile/privacy': {
@@ -1266,6 +1590,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileHelpRouteImport
       parentRoute: typeof ProfileRoute
     }
+    '/profile/feedback': {
+      id: '/profile/feedback'
+      path: '/feedback'
+      fullPath: '/profile/feedback'
+      preLoaderRoute: typeof ProfileFeedbackRouteImport
+      parentRoute: typeof ProfileRoute
+    }
+    '/profile/export': {
+      id: '/profile/export'
+      path: '/export'
+      fullPath: '/profile/export'
+      preLoaderRoute: typeof ProfileExportRouteImport
+      parentRoute: typeof ProfileRoute
+    }
     '/profile/edit': {
       id: '/profile/edit'
       path: '/edit'
@@ -1278,6 +1616,27 @@ declare module '@tanstack/react-router' {
       path: '/devices'
       fullPath: '/profile/devices'
       preLoaderRoute: typeof ProfileDevicesRouteImport
+      parentRoute: typeof ProfileRoute
+    }
+    '/profile/delete': {
+      id: '/profile/delete'
+      path: '/delete'
+      fullPath: '/profile/delete'
+      preLoaderRoute: typeof ProfileDeleteRouteImport
+      parentRoute: typeof ProfileRoute
+    }
+    '/profile/backup': {
+      id: '/profile/backup'
+      path: '/backup'
+      fullPath: '/profile/backup'
+      preLoaderRoute: typeof ProfileBackupRouteImport
+      parentRoute: typeof ProfileRoute
+    }
+    '/profile/about': {
+      id: '/profile/about'
+      path: '/about'
+      fullPath: '/profile/about'
+      preLoaderRoute: typeof ProfileAboutRouteImport
       parentRoute: typeof ProfileRoute
     }
     '/onboarding/welcome': {
@@ -1420,6 +1779,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NutritionIdRouteImport
       parentRoute: typeof NutritionRoute
     }
+    '/notifications/settings': {
+      id: '/notifications/settings'
+      path: '/settings'
+      fullPath: '/notifications/settings'
+      preLoaderRoute: typeof NotificationsSettingsRouteImport
+      parentRoute: typeof NotificationsRoute
+    }
     '/mindfulness/$id': {
       id: '/mindfulness/$id'
       path: '/$id'
@@ -1462,12 +1828,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JourneyGoalsRouteImport
       parentRoute: typeof JourneyRoute
     }
+    '/journey/calendar': {
+      id: '/journey/calendar'
+      path: '/calendar'
+      fullPath: '/journey/calendar'
+      preLoaderRoute: typeof JourneyCalendarRouteImport
+      parentRoute: typeof JourneyRoute
+    }
     '/journey/awards': {
       id: '/journey/awards'
       path: '/awards'
       fullPath: '/journey/awards'
       preLoaderRoute: typeof JourneyAwardsRouteImport
       parentRoute: typeof JourneyRoute
+    }
+    '/habits/new': {
+      id: '/habits/new'
+      path: '/new'
+      fullPath: '/habits/new'
+      preLoaderRoute: typeof HabitsNewRouteImport
+      parentRoute: typeof HabitsRoute
     }
     '/cycle/log': {
       id: '/cycle/log'
@@ -1488,6 +1868,13 @@ declare module '@tanstack/react-router' {
       path: '/groups'
       fullPath: '/community/groups'
       preLoaderRoute: typeof CommunityGroupsRouteImport
+      parentRoute: typeof CommunityRoute
+    }
+    '/community/events': {
+      id: '/community/events'
+      path: '/events'
+      fullPath: '/community/events'
+      preLoaderRoute: typeof CommunityEventsRouteImport
       parentRoute: typeof CommunityRoute
     }
     '/community/$id': {
@@ -1664,12 +2051,14 @@ const CoachesRouteWithChildren =
 
 interface CommunityRouteChildren {
   CommunityIdRoute: typeof CommunityIdRoute
+  CommunityEventsRoute: typeof CommunityEventsRoute
   CommunityGroupsRoute: typeof CommunityGroupsRoute
   CommunityInviteRoute: typeof CommunityInviteRoute
 }
 
 const CommunityRouteChildren: CommunityRouteChildren = {
   CommunityIdRoute: CommunityIdRoute,
+  CommunityEventsRoute: CommunityEventsRoute,
   CommunityGroupsRoute: CommunityGroupsRoute,
   CommunityInviteRoute: CommunityInviteRoute,
 }
@@ -1688,8 +2077,20 @@ const CycleRouteChildren: CycleRouteChildren = {
 
 const CycleRouteWithChildren = CycleRoute._addFileChildren(CycleRouteChildren)
 
+interface HabitsRouteChildren {
+  HabitsNewRoute: typeof HabitsNewRoute
+}
+
+const HabitsRouteChildren: HabitsRouteChildren = {
+  HabitsNewRoute: HabitsNewRoute,
+}
+
+const HabitsRouteWithChildren =
+  HabitsRoute._addFileChildren(HabitsRouteChildren)
+
 interface JourneyRouteChildren {
   JourneyAwardsRoute: typeof JourneyAwardsRoute
+  JourneyCalendarRoute: typeof JourneyCalendarRoute
   JourneyGoalsRoute: typeof JourneyGoalsRoute
   JourneyInsightsRoute: typeof JourneyInsightsRoute
   JourneyMeasurementsRoute: typeof JourneyMeasurementsRoute
@@ -1699,6 +2100,7 @@ interface JourneyRouteChildren {
 
 const JourneyRouteChildren: JourneyRouteChildren = {
   JourneyAwardsRoute: JourneyAwardsRoute,
+  JourneyCalendarRoute: JourneyCalendarRoute,
   JourneyGoalsRoute: JourneyGoalsRoute,
   JourneyInsightsRoute: JourneyInsightsRoute,
   JourneyMeasurementsRoute: JourneyMeasurementsRoute,
@@ -1721,6 +2123,18 @@ const MindfulnessRouteWithChildren = MindfulnessRoute._addFileChildren(
   MindfulnessRouteChildren,
 )
 
+interface NotificationsRouteChildren {
+  NotificationsSettingsRoute: typeof NotificationsSettingsRoute
+}
+
+const NotificationsRouteChildren: NotificationsRouteChildren = {
+  NotificationsSettingsRoute: NotificationsSettingsRoute,
+}
+
+const NotificationsRouteWithChildren = NotificationsRoute._addFileChildren(
+  NotificationsRouteChildren,
+)
+
 interface NutritionRouteChildren {
   NutritionIdRoute: typeof NutritionIdRoute
   NutritionLogRoute: typeof NutritionLogRoute
@@ -1740,31 +2154,58 @@ const NutritionRouteWithChildren = NutritionRoute._addFileChildren(
 )
 
 interface ProfileRouteChildren {
+  ProfileAboutRoute: typeof ProfileAboutRoute
+  ProfileBackupRoute: typeof ProfileBackupRoute
+  ProfileDeleteRoute: typeof ProfileDeleteRoute
   ProfileDevicesRoute: typeof ProfileDevicesRoute
   ProfileEditRoute: typeof ProfileEditRoute
+  ProfileExportRoute: typeof ProfileExportRoute
+  ProfileFeedbackRoute: typeof ProfileFeedbackRoute
   ProfileHelpRoute: typeof ProfileHelpRoute
   ProfileLanguageRoute: typeof ProfileLanguageRoute
   ProfileNotificationsPrefsRoute: typeof ProfileNotificationsPrefsRoute
   ProfilePaymentRoute: typeof ProfilePaymentRoute
   ProfilePrivacyRoute: typeof ProfilePrivacyRoute
+  ProfileReferralRoute: typeof ProfileReferralRoute
   ProfileSettingsRoute: typeof ProfileSettingsRoute
   ProfileSubscriptionRoute: typeof ProfileSubscriptionRoute
+  ProfileTermsRoute: typeof ProfileTermsRoute
+  ProfileThemeRoute: typeof ProfileThemeRoute
 }
 
 const ProfileRouteChildren: ProfileRouteChildren = {
+  ProfileAboutRoute: ProfileAboutRoute,
+  ProfileBackupRoute: ProfileBackupRoute,
+  ProfileDeleteRoute: ProfileDeleteRoute,
   ProfileDevicesRoute: ProfileDevicesRoute,
   ProfileEditRoute: ProfileEditRoute,
+  ProfileExportRoute: ProfileExportRoute,
+  ProfileFeedbackRoute: ProfileFeedbackRoute,
   ProfileHelpRoute: ProfileHelpRoute,
   ProfileLanguageRoute: ProfileLanguageRoute,
   ProfileNotificationsPrefsRoute: ProfileNotificationsPrefsRoute,
   ProfilePaymentRoute: ProfilePaymentRoute,
   ProfilePrivacyRoute: ProfilePrivacyRoute,
+  ProfileReferralRoute: ProfileReferralRoute,
   ProfileSettingsRoute: ProfileSettingsRoute,
   ProfileSubscriptionRoute: ProfileSubscriptionRoute,
+  ProfileTermsRoute: ProfileTermsRoute,
+  ProfileThemeRoute: ProfileThemeRoute,
 }
 
 const ProfileRouteWithChildren =
   ProfileRoute._addFileChildren(ProfileRouteChildren)
+
+interface ReportsRouteChildren {
+  ReportsIdRoute: typeof ReportsIdRoute
+}
+
+const ReportsRouteChildren: ReportsRouteChildren = {
+  ReportsIdRoute: ReportsIdRoute,
+}
+
+const ReportsRouteWithChildren =
+  ReportsRoute._addFileChildren(ReportsRouteChildren)
 
 interface WorkoutsIdRouteChildren {
   WorkoutsIdPlayRoute: typeof WorkoutsIdPlayRoute
@@ -1812,23 +2253,30 @@ const rootRouteChildren: RootRouteChildren = {
   R404Route: R404Route,
   ArticlesRoute: ArticlesRouteWithChildren,
   AssistantRoute: AssistantRoute,
+  BuddyRoute: BuddyRoute,
+  CalendarRoute: CalendarRoute,
   ChallengesRoute: ChallengesRouteWithChildren,
   CheckinRoute: CheckinRouteWithChildren,
   CoachesRoute: CoachesRouteWithChildren,
   CommunityRoute: CommunityRouteWithChildren,
   CycleRoute: CycleRouteWithChildren,
+  EmergencyRoute: EmergencyRoute,
+  HabitsRoute: HabitsRouteWithChildren,
   HomeRoute: HomeRoute,
   JourneyRoute: JourneyRouteWithChildren,
   MindfulnessRoute: MindfulnessRouteWithChildren,
-  NotificationsRoute: NotificationsRoute,
+  NotificationsRoute: NotificationsRouteWithChildren,
   NutritionRoute: NutritionRouteWithChildren,
   PaywallRoute: PaywallRoute,
   PregnancyRoute: PregnancyRoute,
   ProfileRoute: ProfileRouteWithChildren,
+  ReportsRoute: ReportsRouteWithChildren,
   ScreensRoute: ScreensRoute,
   SearchRoute: SearchRoute,
   SupplementsRoute: SupplementsRoute,
   SystemRoute: SystemRoute,
+  TimerRoute: TimerRoute,
+  WidgetsRoute: WidgetsRoute,
   WorkoutsRoute: WorkoutsRouteWithChildren,
   AuthForgotRoute: AuthForgotRoute,
   AuthLoginRoute: AuthLoginRoute,

@@ -16,7 +16,7 @@ function Page() {
     <FeatureShell title="البرامج التدريبيّة" back="/workouts" variant="energetic">
       <div className="px-5 space-y-3 stagger">
         {PROGRAMS.map((p) => (
-          <Link to="/workouts" key={p.id} className="glass-strong rounded-3xl p-5 block relative overflow-hidden">
+          <Link to="/workouts/programs/$id" params={{ id: p.id }} key={p.id} className="glass-strong rounded-3xl p-5 block relative overflow-hidden">
             <div className="absolute -top-6 -left-6 w-32 h-32 rounded-full opacity-30" style={{ background: p.color, filter: "blur(40px)" }} />
             <div className="relative z-10 flex items-start justify-between">
               <div>

@@ -150,6 +150,34 @@ function JourneyPage() {
               <div className="text-[10px] text-foreground/55">أسبوع 18</div>
             </div>
           </Link>
+          <Link to="/habits" className="glass rounded-2xl p-3.5 flex items-center gap-2.5">
+            <span className="relative z-10 text-2xl">✅</span>
+            <div className="relative z-10">
+              <div className="text-[12px] font-medium">عاداتي</div>
+              <div className="text-[10px] text-foreground/55">3/5 اليوم</div>
+            </div>
+          </Link>
+          <Link to="/calendar" className="glass rounded-2xl p-3.5 flex items-center gap-2.5">
+            <span className="relative z-10 text-2xl">🗓️</span>
+            <div className="relative z-10">
+              <div className="text-[12px] font-medium">تقويمي</div>
+              <div className="text-[10px] text-foreground/55">إدارة الأحداث</div>
+            </div>
+          </Link>
+          <Link to="/reports" className="glass rounded-2xl p-3.5 flex items-center gap-2.5">
+            <span className="relative z-10 text-2xl">📊</span>
+            <div className="relative z-10">
+              <div className="text-[12px] font-medium">التقارير</div>
+              <div className="text-[10px] text-foreground/55">شهري وذكي</div>
+            </div>
+          </Link>
+          <Link to="/timer" className="glass rounded-2xl p-3.5 flex items-center gap-2.5">
+            <span className="relative z-10 text-2xl">⏱️</span>
+            <div className="relative z-10">
+              <div className="text-[12px] font-medium">مؤقّت تركيز</div>
+              <div className="text-[10px] text-foreground/55">بومودورو</div>
+            </div>
+          </Link>
         </div>
       </div>
     </FeatureShell>

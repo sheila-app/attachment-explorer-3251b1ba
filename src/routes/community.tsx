@@ -24,6 +24,14 @@ function CommunityPage() {
             <span className="relative z-10 text-[12.5px] font-medium">🏆 التحدّيات</span>
             <span className="relative z-10 text-[10px] text-primary">انضمّي ←</span>
           </Link>
+          <Link to="/community/events" className="glass-strong rounded-2xl p-3 flex items-center justify-between">
+            <span className="relative z-10 text-[12.5px] font-medium">📅 فعاليّات</span>
+            <span className="relative z-10 text-[10px] text-primary">عرض ←</span>
+          </Link>
+          <Link to="/buddy" className="glass-strong rounded-2xl p-3 flex items-center justify-between">
+            <span className="relative z-10 text-[12.5px] font-medium">💜 أخت متابعة</span>
+            <span className="relative z-10 text-[10px] text-primary">ادعي ←</span>
+          </Link>
         </div>
         <div className="flex gap-2 overflow-x-auto no-scrollbar pb-2 mb-4 -mx-1 px-1">
           {["الكل", "تحدّيات", "صحّة المرأة", "تغذية", "إنجازات"].map((t, i) => (

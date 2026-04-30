@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { mockUser } from "@/data/mock";
-import { Settings, ChevronLeft, Crown, Bell, Shield, HelpCircle, LogOut, Edit3, Ruler, Users, Sparkles } from "lucide-react";
+import { Settings, ChevronLeft, Crown, Bell, Shield, HelpCircle, LogOut, Edit3, Ruler, Users, Sparkles, Gift, Download, Info } from "lucide-react";
 
 export const Route = createFileRoute("/profile")({ component: ProfilePage });
 
@@ -51,10 +51,13 @@ function ProfilePage() {
           <Item icon={Edit3} label="تعديل الملف الشخصي" to="/profile/edit" />
           <Item icon={Ruler} label="القياسات" to="/journey/measurements" />
           <Item icon={Users} label="الخبيرات والمدرّبات" to="/coaches" />
+          <Item icon={Gift} label="ادعي صديقاتكِ" to="/profile/referral" />
           <Item icon={Sparkles} label="ترقية لشيلا برو" to="/paywall" />
           <Item icon={Bell} label="تفضيلات الإشعارات" to="/profile/notifications-prefs" />
           <Item icon={Shield} label="الخصوصية والأمان" to="/profile/privacy" />
+          <Item icon={Download} label="تصدير بياناتي" to="/profile/export" />
           <Item icon={HelpCircle} label="المساعدة والدعم" to="/profile/help" />
+          <Item icon={Info} label="عن شيلا" to="/profile/about" />
         </div>
 
         <button className="mt-3 w-full glass rounded-2xl py-3.5 flex items-center justify-center gap-2 text-destructive text-sm font-medium">

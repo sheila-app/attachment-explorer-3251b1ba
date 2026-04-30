@@ -147,6 +147,7 @@ export const allScreens = [
     { path: "/checkin", name: "تسجيل اليوم" },
     { path: "/checkin/water", name: "تتبّع الماء" },
     { path: "/checkin/sleep", name: "تتبّع النوم" },
+    { path: "/checkin/steps", name: "تتبّع الخطوات" },
     { path: "/assistant", name: "مساعدة شيلا (AI)" },
     { path: "/search", name: "بحث" },
   ]},
@@ -157,6 +158,7 @@ export const allScreens = [
   { group: "التمارين", items: [
     { path: "/workouts", name: "مكتبة التمارين" },
     { path: "/workouts/live", name: "جلسات مباشرة" },
+    { path: "/workouts/programs", name: "البرامج التدريبيّة" },
     { path: "/workouts/w3", name: "تفاصيل تمرين" },
     { path: "/workouts/w3/play", name: "مشغّل التمرين" },
     { path: "/workouts/summary", name: "ملخّص التمرين" },
@@ -165,6 +167,7 @@ export const allScreens = [
     { path: "/nutrition", name: "خطة الوجبات" },
     { path: "/nutrition/m2", name: "تفاصيل وجبة" },
     { path: "/nutrition/log", name: "تسجيل وجبة" },
+    { path: "/nutrition/recipes", name: "الوصفات" },
   ]},
   { group: "الرحلة", items: [
     { path: "/journey", name: "رحلة الصحّة" },
@@ -172,11 +175,14 @@ export const allScreens = [
     { path: "/journey/measurements", name: "القياسات" },
     { path: "/journey/goals", name: "الأهداف" },
     { path: "/journey/insights", name: "رؤى ذكيّة" },
+    { path: "/journey/symptoms", name: "تسجيل الأعراض" },
+    { path: "/journey/mood", name: "تسجيل المزاج" },
   ]},
   { group: "المجتمع", items: [
     { path: "/community", name: "دائرة شيلا" },
     { path: "/community/p1", name: "تفاصيل منشور" },
     { path: "/community/invite", name: "دعوة صديقات" },
+    { path: "/community/groups", name: "المجموعات" },
   ]},
   { group: "الخبيرات", items: [
     { path: "/coaches", name: "قائمة الخبيرات" },
@@ -189,5 +195,7 @@ export const allScreens = [
     { path: "/profile/payment", name: "الدفع" },
     { path: "/profile/help", name: "المساعدة" },
     { path: "/profile/settings", name: "الإعدادات" },
+    { path: "/profile/privacy", name: "الخصوصيّة والأمان" },
+    { path: "/profile/notifications-prefs", name: "تفضيلات الإشعارات" },
   ]},
 ];

@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { mockUser } from "@/data/mock";
-import { Settings, ChevronLeft, Crown, Bell, Shield, HelpCircle, LogOut, Edit3, Ruler, Users, Sparkles } from "lucide-react";
+import { Settings, ChevronLeft, Crown, Bell, Shield, HelpCircle, LogOut, Edit3, Ruler, Users, Sparkles, Gift, Download, Info } from "lucide-react";
 
 export const Route = createFileRoute("/profile")({ component: ProfilePage });
 

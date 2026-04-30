@@ -61,17 +61,6 @@ function HomePage() {
               />
             </div>
 
-            <div
-              className="relative flex justify-center mt-7 animate-rise"
-              style={{ animationDelay: "0.15s" }}
-            >
-              <CyclePhaseRing
-                phase={mockUser.currentPhase}
-                day={mockUser.cycleDay}
-                cycleLength={mockUser.cycleLength}
-                size={240}
-              />
-            </div>
 
             {/* Phase legend — أسماء المراحل بألوانها */}
             <div

@@ -40,8 +40,10 @@ import { Route as ProfileSettingsRouteImport } from './routes/profile.settings'
 import { Route as ProfilePrivacyRouteImport } from './routes/profile.privacy'
 import { Route as ProfilePaymentRouteImport } from './routes/profile.payment'
 import { Route as ProfileNotificationsPrefsRouteImport } from './routes/profile.notifications-prefs'
+import { Route as ProfileLanguageRouteImport } from './routes/profile.language'
 import { Route as ProfileHelpRouteImport } from './routes/profile.help'
 import { Route as ProfileEditRouteImport } from './routes/profile.edit'
+import { Route as ProfileDevicesRouteImport } from './routes/profile.devices'
 import { Route as OnboardingWelcomeRouteImport } from './routes/onboarding.welcome'
 import { Route as OnboardingTypesRouteImport } from './routes/onboarding.types'
 import { Route as OnboardingTrialRouteImport } from './routes/onboarding.trial'
@@ -58,6 +60,7 @@ import { Route as OnboardingCycleDataRouteImport } from './routes/onboarding.cyc
 import { Route as OnboardingCompleteRouteImport } from './routes/onboarding.complete'
 import { Route as OnboardingAuthRouteImport } from './routes/onboarding.auth'
 import { Route as OnboardingActivityRouteImport } from './routes/onboarding.activity'
+import { Route as NutritionShoppingRouteImport } from './routes/nutrition.shopping'
 import { Route as NutritionRecipesRouteImport } from './routes/nutrition.recipes'
 import { Route as NutritionLogRouteImport } from './routes/nutrition.log'
 import { Route as NutritionIdRouteImport } from './routes/nutrition.$id'
@@ -82,8 +85,10 @@ import { Route as AuthNewPasswordRouteImport } from './routes/auth.new-password'
 import { Route as AuthLoginRouteImport } from './routes/auth.login'
 import { Route as AuthForgotRouteImport } from './routes/auth.forgot'
 import { Route as ArticlesIdRouteImport } from './routes/articles.$id'
+import { Route as WorkoutsProgramsIdRouteImport } from './routes/workouts.programs.$id'
 import { Route as WorkoutsIdPlayRouteImport } from './routes/workouts.$id.play'
 import { Route as CoachesIdChatRouteImport } from './routes/coaches.$id.chat'
+import { Route as CoachesIdBookRouteImport } from './routes/coaches.$id.book'
 
 const WorkoutsRoute = WorkoutsRouteImport.update({
   id: '/workouts',
@@ -241,6 +246,11 @@ const ProfileNotificationsPrefsRoute =
     path: '/notifications-prefs',
     getParentRoute: () => ProfileRoute,
   } as any)
+const ProfileLanguageRoute = ProfileLanguageRouteImport.update({
+  id: '/language',
+  path: '/language',
+  getParentRoute: () => ProfileRoute,
+} as any)
 const ProfileHelpRoute = ProfileHelpRouteImport.update({
   id: '/help',
   path: '/help',
@@ -249,6 +259,11 @@ const ProfileHelpRoute = ProfileHelpRouteImport.update({
 const ProfileEditRoute = ProfileEditRouteImport.update({
   id: '/edit',
   path: '/edit',
+  getParentRoute: () => ProfileRoute,
+} as any)
+const ProfileDevicesRoute = ProfileDevicesRouteImport.update({
+  id: '/devices',
+  path: '/devices',
   getParentRoute: () => ProfileRoute,
 } as any)
 const OnboardingWelcomeRoute = OnboardingWelcomeRouteImport.update({
@@ -330,6 +345,11 @@ const OnboardingActivityRoute = OnboardingActivityRouteImport.update({
   id: '/onboarding/activity',
   path: '/onboarding/activity',
   getParentRoute: () => rootRouteImport,
+} as any)
+const NutritionShoppingRoute = NutritionShoppingRouteImport.update({
+  id: '/shopping',
+  path: '/shopping',
+  getParentRoute: () => NutritionRoute,
 } as any)
 const NutritionRecipesRoute = NutritionRecipesRouteImport.update({
   id: '/recipes',
@@ -451,6 +471,11 @@ const ArticlesIdRoute = ArticlesIdRouteImport.update({
   path: '/$id',
   getParentRoute: () => ArticlesRoute,
 } as any)
+const WorkoutsProgramsIdRoute = WorkoutsProgramsIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => WorkoutsProgramsRoute,
+} as any)
 const WorkoutsIdPlayRoute = WorkoutsIdPlayRouteImport.update({
   id: '/play',
   path: '/play',
@@ -459,6 +484,11 @@ const WorkoutsIdPlayRoute = WorkoutsIdPlayRouteImport.update({
 const CoachesIdChatRoute = CoachesIdChatRouteImport.update({
   id: '/chat',
   path: '/chat',
+  getParentRoute: () => CoachesIdRoute,
+} as any)
+const CoachesIdBookRoute = CoachesIdBookRouteImport.update({
+  id: '/book',
+  path: '/book',
   getParentRoute: () => CoachesIdRoute,
 } as any)
 
@@ -509,6 +539,7 @@ export interface FileRoutesByFullPath {
   '/nutrition/$id': typeof NutritionIdRoute
   '/nutrition/log': typeof NutritionLogRoute
   '/nutrition/recipes': typeof NutritionRecipesRoute
+  '/nutrition/shopping': typeof NutritionShoppingRoute
   '/onboarding/activity': typeof OnboardingActivityRoute
   '/onboarding/auth': typeof OnboardingAuthRoute
   '/onboarding/complete': typeof OnboardingCompleteRoute
@@ -525,8 +556,10 @@ export interface FileRoutesByFullPath {
   '/onboarding/trial': typeof OnboardingTrialRoute
   '/onboarding/types': typeof OnboardingTypesRoute
   '/onboarding/welcome': typeof OnboardingWelcomeRoute
+  '/profile/devices': typeof ProfileDevicesRoute
   '/profile/edit': typeof ProfileEditRoute
   '/profile/help': typeof ProfileHelpRoute
+  '/profile/language': typeof ProfileLanguageRoute
   '/profile/notifications-prefs': typeof ProfileNotificationsPrefsRoute
   '/profile/payment': typeof ProfilePaymentRoute
   '/profile/privacy': typeof ProfilePrivacyRoute
@@ -534,10 +567,12 @@ export interface FileRoutesByFullPath {
   '/profile/subscription': typeof ProfileSubscriptionRoute
   '/workouts/$id': typeof WorkoutsIdRouteWithChildren
   '/workouts/live': typeof WorkoutsLiveRoute
-  '/workouts/programs': typeof WorkoutsProgramsRoute
+  '/workouts/programs': typeof WorkoutsProgramsRouteWithChildren
   '/workouts/summary': typeof WorkoutsSummaryRoute
+  '/coaches/$id/book': typeof CoachesIdBookRoute
   '/coaches/$id/chat': typeof CoachesIdChatRoute
   '/workouts/$id/play': typeof WorkoutsIdPlayRoute
+  '/workouts/programs/$id': typeof WorkoutsProgramsIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -586,6 +621,7 @@ export interface FileRoutesByTo {
   '/nutrition/$id': typeof NutritionIdRoute
   '/nutrition/log': typeof NutritionLogRoute
   '/nutrition/recipes': typeof NutritionRecipesRoute
+  '/nutrition/shopping': typeof NutritionShoppingRoute
   '/onboarding/activity': typeof OnboardingActivityRoute
   '/onboarding/auth': typeof OnboardingAuthRoute
   '/onboarding/complete': typeof OnboardingCompleteRoute
@@ -602,8 +638,10 @@ export interface FileRoutesByTo {
   '/onboarding/trial': typeof OnboardingTrialRoute
   '/onboarding/types': typeof OnboardingTypesRoute
   '/onboarding/welcome': typeof OnboardingWelcomeRoute
+  '/profile/devices': typeof ProfileDevicesRoute
   '/profile/edit': typeof ProfileEditRoute
   '/profile/help': typeof ProfileHelpRoute
+  '/profile/language': typeof ProfileLanguageRoute
   '/profile/notifications-prefs': typeof ProfileNotificationsPrefsRoute
   '/profile/payment': typeof ProfilePaymentRoute
   '/profile/privacy': typeof ProfilePrivacyRoute
@@ -611,10 +649,12 @@ export interface FileRoutesByTo {
   '/profile/subscription': typeof ProfileSubscriptionRoute
   '/workouts/$id': typeof WorkoutsIdRouteWithChildren
   '/workouts/live': typeof WorkoutsLiveRoute
-  '/workouts/programs': typeof WorkoutsProgramsRoute
+  '/workouts/programs': typeof WorkoutsProgramsRouteWithChildren
   '/workouts/summary': typeof WorkoutsSummaryRoute
+  '/coaches/$id/book': typeof CoachesIdBookRoute
   '/coaches/$id/chat': typeof CoachesIdChatRoute
   '/workouts/$id/play': typeof WorkoutsIdPlayRoute
+  '/workouts/programs/$id': typeof WorkoutsProgramsIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -664,6 +704,7 @@ export interface FileRoutesById {
   '/nutrition/$id': typeof NutritionIdRoute
   '/nutrition/log': typeof NutritionLogRoute
   '/nutrition/recipes': typeof NutritionRecipesRoute
+  '/nutrition/shopping': typeof NutritionShoppingRoute
   '/onboarding/activity': typeof OnboardingActivityRoute
   '/onboarding/auth': typeof OnboardingAuthRoute
   '/onboarding/complete': typeof OnboardingCompleteRoute
@@ -680,8 +721,10 @@ export interface FileRoutesById {
   '/onboarding/trial': typeof OnboardingTrialRoute
   '/onboarding/types': typeof OnboardingTypesRoute
   '/onboarding/welcome': typeof OnboardingWelcomeRoute
+  '/profile/devices': typeof ProfileDevicesRoute
   '/profile/edit': typeof ProfileEditRoute
   '/profile/help': typeof ProfileHelpRoute
+  '/profile/language': typeof ProfileLanguageRoute
   '/profile/notifications-prefs': typeof ProfileNotificationsPrefsRoute
   '/profile/payment': typeof ProfilePaymentRoute
   '/profile/privacy': typeof ProfilePrivacyRoute
@@ -689,10 +732,12 @@ export interface FileRoutesById {
   '/profile/subscription': typeof ProfileSubscriptionRoute
   '/workouts/$id': typeof WorkoutsIdRouteWithChildren
   '/workouts/live': typeof WorkoutsLiveRoute
-  '/workouts/programs': typeof WorkoutsProgramsRoute
+  '/workouts/programs': typeof WorkoutsProgramsRouteWithChildren
   '/workouts/summary': typeof WorkoutsSummaryRoute
+  '/coaches/$id/book': typeof CoachesIdBookRoute
   '/coaches/$id/chat': typeof CoachesIdChatRoute
   '/workouts/$id/play': typeof WorkoutsIdPlayRoute
+  '/workouts/programs/$id': typeof WorkoutsProgramsIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -743,6 +788,7 @@ export interface FileRouteTypes {
     | '/nutrition/$id'
     | '/nutrition/log'
     | '/nutrition/recipes'
+    | '/nutrition/shopping'
     | '/onboarding/activity'
     | '/onboarding/auth'
     | '/onboarding/complete'
@@ -759,8 +805,10 @@ export interface FileRouteTypes {
     | '/onboarding/trial'
     | '/onboarding/types'
     | '/onboarding/welcome'
+    | '/profile/devices'
     | '/profile/edit'
     | '/profile/help'
+    | '/profile/language'
     | '/profile/notifications-prefs'
     | '/profile/payment'
     | '/profile/privacy'
@@ -770,8 +818,10 @@ export interface FileRouteTypes {
     | '/workouts/live'
     | '/workouts/programs'
     | '/workouts/summary'
+    | '/coaches/$id/book'
     | '/coaches/$id/chat'
     | '/workouts/$id/play'
+    | '/workouts/programs/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -820,6 +870,7 @@ export interface FileRouteTypes {
     | '/nutrition/$id'
     | '/nutrition/log'
     | '/nutrition/recipes'
+    | '/nutrition/shopping'
     | '/onboarding/activity'
     | '/onboarding/auth'
     | '/onboarding/complete'
@@ -836,8 +887,10 @@ export interface FileRouteTypes {
     | '/onboarding/trial'
     | '/onboarding/types'
     | '/onboarding/welcome'
+    | '/profile/devices'
     | '/profile/edit'
     | '/profile/help'
+    | '/profile/language'
     | '/profile/notifications-prefs'
     | '/profile/payment'
     | '/profile/privacy'
@@ -847,8 +900,10 @@ export interface FileRouteTypes {
     | '/workouts/live'
     | '/workouts/programs'
     | '/workouts/summary'
+    | '/coaches/$id/book'
     | '/coaches/$id/chat'
     | '/workouts/$id/play'
+    | '/workouts/programs/$id'
   id:
     | '__root__'
     | '/'
@@ -897,6 +952,7 @@ export interface FileRouteTypes {
     | '/nutrition/$id'
     | '/nutrition/log'
     | '/nutrition/recipes'
+    | '/nutrition/shopping'
     | '/onboarding/activity'
     | '/onboarding/auth'
     | '/onboarding/complete'
@@ -913,8 +969,10 @@ export interface FileRouteTypes {
     | '/onboarding/trial'
     | '/onboarding/types'
     | '/onboarding/welcome'
+    | '/profile/devices'
     | '/profile/edit'
     | '/profile/help'
+    | '/profile/language'
     | '/profile/notifications-prefs'
     | '/profile/payment'
     | '/profile/privacy'
@@ -924,8 +982,10 @@ export interface FileRouteTypes {
     | '/workouts/live'
     | '/workouts/programs'
     | '/workouts/summary'
+    | '/coaches/$id/book'
     | '/coaches/$id/chat'
     | '/workouts/$id/play'
+    | '/workouts/programs/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -1192,6 +1252,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileNotificationsPrefsRouteImport
       parentRoute: typeof ProfileRoute
     }
+    '/profile/language': {
+      id: '/profile/language'
+      path: '/language'
+      fullPath: '/profile/language'
+      preLoaderRoute: typeof ProfileLanguageRouteImport
+      parentRoute: typeof ProfileRoute
+    }
     '/profile/help': {
       id: '/profile/help'
       path: '/help'
@@ -1204,6 +1271,13 @@ declare module '@tanstack/react-router' {
       path: '/edit'
       fullPath: '/profile/edit'
       preLoaderRoute: typeof ProfileEditRouteImport
+      parentRoute: typeof ProfileRoute
+    }
+    '/profile/devices': {
+      id: '/profile/devices'
+      path: '/devices'
+      fullPath: '/profile/devices'
+      preLoaderRoute: typeof ProfileDevicesRouteImport
       parentRoute: typeof ProfileRoute
     }
     '/onboarding/welcome': {
@@ -1317,6 +1391,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/onboarding/activity'
       preLoaderRoute: typeof OnboardingActivityRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/nutrition/shopping': {
+      id: '/nutrition/shopping'
+      path: '/shopping'
+      fullPath: '/nutrition/shopping'
+      preLoaderRoute: typeof NutritionShoppingRouteImport
+      parentRoute: typeof NutritionRoute
     }
     '/nutrition/recipes': {
       id: '/nutrition/recipes'
@@ -1486,6 +1567,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ArticlesIdRouteImport
       parentRoute: typeof ArticlesRoute
     }
+    '/workouts/programs/$id': {
+      id: '/workouts/programs/$id'
+      path: '/$id'
+      fullPath: '/workouts/programs/$id'
+      preLoaderRoute: typeof WorkoutsProgramsIdRouteImport
+      parentRoute: typeof WorkoutsProgramsRoute
+    }
     '/workouts/$id/play': {
       id: '/workouts/$id/play'
       path: '/play'
@@ -1498,6 +1586,13 @@ declare module '@tanstack/react-router' {
       path: '/chat'
       fullPath: '/coaches/$id/chat'
       preLoaderRoute: typeof CoachesIdChatRouteImport
+      parentRoute: typeof CoachesIdRoute
+    }
+    '/coaches/$id/book': {
+      id: '/coaches/$id/book'
+      path: '/book'
+      fullPath: '/coaches/$id/book'
+      preLoaderRoute: typeof CoachesIdBookRouteImport
       parentRoute: typeof CoachesIdRoute
     }
   }
@@ -1543,10 +1638,12 @@ const CheckinRouteWithChildren =
   CheckinRoute._addFileChildren(CheckinRouteChildren)
 
 interface CoachesIdRouteChildren {
+  CoachesIdBookRoute: typeof CoachesIdBookRoute
   CoachesIdChatRoute: typeof CoachesIdChatRoute
 }
 
 const CoachesIdRouteChildren: CoachesIdRouteChildren = {
+  CoachesIdBookRoute: CoachesIdBookRoute,
   CoachesIdChatRoute: CoachesIdChatRoute,
 }
 
@@ -1628,12 +1725,14 @@ interface NutritionRouteChildren {
   NutritionIdRoute: typeof NutritionIdRoute
   NutritionLogRoute: typeof NutritionLogRoute
   NutritionRecipesRoute: typeof NutritionRecipesRoute
+  NutritionShoppingRoute: typeof NutritionShoppingRoute
 }
 
 const NutritionRouteChildren: NutritionRouteChildren = {
   NutritionIdRoute: NutritionIdRoute,
   NutritionLogRoute: NutritionLogRoute,
   NutritionRecipesRoute: NutritionRecipesRoute,
+  NutritionShoppingRoute: NutritionShoppingRoute,
 }
 
 const NutritionRouteWithChildren = NutritionRoute._addFileChildren(
@@ -1641,8 +1740,10 @@ const NutritionRouteWithChildren = NutritionRoute._addFileChildren(
 )
 
 interface ProfileRouteChildren {
+  ProfileDevicesRoute: typeof ProfileDevicesRoute
   ProfileEditRoute: typeof ProfileEditRoute
   ProfileHelpRoute: typeof ProfileHelpRoute
+  ProfileLanguageRoute: typeof ProfileLanguageRoute
   ProfileNotificationsPrefsRoute: typeof ProfileNotificationsPrefsRoute
   ProfilePaymentRoute: typeof ProfilePaymentRoute
   ProfilePrivacyRoute: typeof ProfilePrivacyRoute
@@ -1651,8 +1752,10 @@ interface ProfileRouteChildren {
 }
 
 const ProfileRouteChildren: ProfileRouteChildren = {
+  ProfileDevicesRoute: ProfileDevicesRoute,
   ProfileEditRoute: ProfileEditRoute,
   ProfileHelpRoute: ProfileHelpRoute,
+  ProfileLanguageRoute: ProfileLanguageRoute,
   ProfileNotificationsPrefsRoute: ProfileNotificationsPrefsRoute,
   ProfilePaymentRoute: ProfilePaymentRoute,
   ProfilePrivacyRoute: ProfilePrivacyRoute,
@@ -1675,17 +1778,28 @@ const WorkoutsIdRouteWithChildren = WorkoutsIdRoute._addFileChildren(
   WorkoutsIdRouteChildren,
 )
 
+interface WorkoutsProgramsRouteChildren {
+  WorkoutsProgramsIdRoute: typeof WorkoutsProgramsIdRoute
+}
+
+const WorkoutsProgramsRouteChildren: WorkoutsProgramsRouteChildren = {
+  WorkoutsProgramsIdRoute: WorkoutsProgramsIdRoute,
+}
+
+const WorkoutsProgramsRouteWithChildren =
+  WorkoutsProgramsRoute._addFileChildren(WorkoutsProgramsRouteChildren)
+
 interface WorkoutsRouteChildren {
   WorkoutsIdRoute: typeof WorkoutsIdRouteWithChildren
   WorkoutsLiveRoute: typeof WorkoutsLiveRoute
-  WorkoutsProgramsRoute: typeof WorkoutsProgramsRoute
+  WorkoutsProgramsRoute: typeof WorkoutsProgramsRouteWithChildren
   WorkoutsSummaryRoute: typeof WorkoutsSummaryRoute
 }
 
 const WorkoutsRouteChildren: WorkoutsRouteChildren = {
   WorkoutsIdRoute: WorkoutsIdRouteWithChildren,
   WorkoutsLiveRoute: WorkoutsLiveRoute,
-  WorkoutsProgramsRoute: WorkoutsProgramsRoute,
+  WorkoutsProgramsRoute: WorkoutsProgramsRouteWithChildren,
   WorkoutsSummaryRoute: WorkoutsSummaryRoute,
 }
 

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { Clock } from "lucide-react";
 
-export const Route = createFileRoute("/articles")({ component: Page });
+export const Route = createFileRoute("/articles/")({ component: Page });
 
 const TABS = ["الكل", "الدورة", "تغذية", "صحّة نفسيّة", "حمل"] as const;
 

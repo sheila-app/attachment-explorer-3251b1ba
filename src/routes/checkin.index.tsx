@@ -6,7 +6,7 @@ import { PrimaryCTA } from "@/components/sheila/OnboardingShell";
 import { ArrowRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/checkin")({ component: CheckinPage });
+export const Route = createFileRoute("/checkin/")({ component: CheckinPage });
 
 function CheckinPage() {
   const [sleep, setSleep] = useState(2);

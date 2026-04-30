@@ -34,7 +34,7 @@ function Page() {
 
   return (
     <OnboardingShell
-      step={12} total={12} back="/onboarding/types"
+      step={12} total={12} back="/onboarding/permissions"
       title="آخر دورة شهرية"
       subtitle="نحتاج لبدء التتبّع وتخصيص توصياتنا."
       footer={<PrimaryCTA to="/onboarding/trial">متابعة</PrimaryCTA>}

@@ -55,6 +55,9 @@ function Page() {
 
         <div className="space-y-2">
           <PrimaryCTA to="/profile/payment">احجزي الآن — ${c.price}</PrimaryCTA>
+          <Link to="/coaches/$id/chat" params={{ id: c.id }} className="glass-strong w-full rounded-2xl py-3.5 flex items-center justify-center text-[13px] font-medium">
+            <span className="relative z-10">💬 ابدئي محادثة</span>
+          </Link>
           <GhostCTA to="/coaches">عودة</GhostCTA>
         </div>
       </div>

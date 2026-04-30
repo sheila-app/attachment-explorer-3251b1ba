@@ -80,7 +80,7 @@ function Page() {
       step={11} total={12} back="/onboarding/frequency"
       title="أيّ أنواع تمارين تستمتعين بها؟"
       subtitle="اختاري واحداً على الأقل."
-      footer={<PrimaryCTA to="/onboarding/cycle-data">متابعة</PrimaryCTA>}
+      footer={<PrimaryCTA to="/onboarding/permissions">متابعة</PrimaryCTA>}
     >
       <div className="grid grid-cols-2 gap-2.5">
         {opts.map(o => (

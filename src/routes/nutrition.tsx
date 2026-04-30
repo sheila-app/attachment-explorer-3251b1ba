@@ -57,10 +57,16 @@ function NutritionPage() {
           </button>
         </div>
 
-        <Link to="/nutrition/recipes" className="glass-strong rounded-2xl p-3.5 flex items-center justify-between mt-3">
-          <span className="relative z-10 text-[13px] font-medium">📖 مكتبة الوصفات</span>
-          <span className="relative z-10 text-[11px] text-primary">تصفّحي ←</span>
-        </Link>
+        <div className="grid grid-cols-2 gap-2 mt-3">
+          <Link to="/nutrition/recipes" className="glass-strong rounded-2xl p-3.5 flex items-center justify-between">
+            <span className="relative z-10 text-[12.5px] font-medium">📖 الوصفات</span>
+            <span className="relative z-10 text-[10px] text-primary">←</span>
+          </Link>
+          <Link to="/nutrition/shopping" className="glass-strong rounded-2xl p-3.5 flex items-center justify-between">
+            <span className="relative z-10 text-[12.5px] font-medium">🛒 المشتريات</span>
+            <span className="relative z-10 text-[10px] text-primary">←</span>
+          </Link>
+        </div>
 
         {/* Meals */}
         <div className="flex items-center justify-between mt-6 mb-2.5">

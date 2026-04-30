@@ -1,8 +1,8 @@
-import { createFileRoute, useParams } from "@tanstack/react-router";
+import { createFileRoute, useParams, Link } from "@tanstack/react-router";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { PrimaryCTA } from "@/components/sheila/OnboardingShell";
 import { mockMeals, PHASE_META } from "@/data/mock";
-import { Apple, Clock, Heart } from "lucide-react";
+import { Apple, Clock, Heart, ShoppingCart } from "lucide-react";
 
 export const Route = createFileRoute("/nutrition/$id")({ component: MealDetail });
 
@@ -49,8 +49,12 @@ function MealDetail() {
           ))}
         </div>
 
-        <div className="mt-6">
+        <div className="mt-6 space-y-2">
           <PrimaryCTA to="/nutrition">سجّلي الوجبة</PrimaryCTA>
+          <Link to="/nutrition/shopping" className="glass-strong w-full rounded-2xl py-3.5 flex items-center justify-center gap-2 text-[13px] font-medium">
+            <ShoppingCart size={14} className="relative z-10" />
+            <span className="relative z-10">إضافة المكوّنات إلى المشتريات</span>
+          </Link>
         </div>
       </div>
     </FeatureShell>

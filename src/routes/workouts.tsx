@@ -20,13 +20,17 @@ function WorkoutsPage() {
       }
     >
       <div className="px-5">
-        <Link to="/workouts/live" className="glass-strong rounded-2xl p-3.5 flex items-center justify-between mb-3">
-          <div className="relative z-10 flex items-center gap-3">
-            <span className="px-2 py-0.5 rounded-full text-[9px] font-medium text-white nums" style={{ background: "var(--phase-menstrual)" }}>● مباشر</span>
-            <span className="text-[13px] font-medium">جلسات مباشرة اليوم</span>
-          </div>
-          <ChevronLeft size={15} className="relative z-10 text-foreground/55" />
-        </Link>
+        <div className="grid grid-cols-2 gap-2 mb-3">
+          <Link to="/workouts/live" className="glass-strong rounded-2xl p-3 flex items-center gap-2">
+            <span className="relative z-10 px-1.5 py-0.5 rounded-full text-[9px] font-medium text-white" style={{ background: "var(--phase-menstrual)" }}>● مباشر</span>
+            <span className="relative z-10 text-[12px] font-medium flex-1">جلسات اليوم</span>
+            <ChevronLeft size={14} className="relative z-10 text-foreground/55" />
+          </Link>
+          <Link to="/workouts/programs" className="glass-strong rounded-2xl p-3 flex items-center gap-2">
+            <span className="relative z-10 text-[12px] font-medium flex-1">البرامج</span>
+            <ChevronLeft size={14} className="relative z-10 text-foreground/55" />
+          </Link>
+        </div>
         <div className="flex gap-2 overflow-x-auto no-scrollbar pb-2 -mx-1 px-1">
           {FILTERS.map(f => (
             <button key={f} onClick={() => setFilter(f)}

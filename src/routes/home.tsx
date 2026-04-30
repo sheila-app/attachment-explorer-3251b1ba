@@ -121,6 +121,15 @@ function HomePage() {
                 );
               })}
             </div>
+
+            <div
+              className="glass mt-4 mx-3 px-4 py-3 rounded-xl animate-rise"
+              style={{ animationDelay: "0.3s" }}
+            >
+              <p className="relative z-10 text-center text-[12.5px] text-foreground/80 leading-relaxed">
+                {phase.description}
+              </p>
+            </div>
           </div>
 
           {/* Quick stats */}

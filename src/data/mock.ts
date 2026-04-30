@@ -160,6 +160,7 @@ export const allScreens = [
     { path: "/workouts", name: "مكتبة التمارين" },
     { path: "/workouts/live", name: "جلسات مباشرة" },
     { path: "/workouts/programs", name: "البرامج التدريبيّة" },
+    { path: "/workouts/programs/p1", name: "تفاصيل برنامج" },
     { path: "/workouts/w3", name: "تفاصيل تمرين" },
     { path: "/workouts/w3/play", name: "مشغّل التمرين" },
     { path: "/workouts/summary", name: "ملخّص التمرين" },
@@ -169,6 +170,7 @@ export const allScreens = [
     { path: "/nutrition/m2", name: "تفاصيل وجبة" },
     { path: "/nutrition/log", name: "تسجيل وجبة" },
     { path: "/nutrition/recipes", name: "الوصفات" },
+    { path: "/nutrition/shopping", name: "قائمة المشتريات" },
   ]},
   { group: "الرحلة", items: [
     { path: "/journey", name: "رحلة الصحّة" },
@@ -196,6 +198,7 @@ export const allScreens = [
   { group: "الخبيرات", items: [
     { path: "/coaches", name: "قائمة الخبيرات" },
     { path: "/coaches/c1", name: "ملف خبيرة" },
+    { path: "/coaches/c1/book", name: "حجز جلسة" },
     { path: "/coaches/c1/chat", name: "محادثة مع خبيرة" },
   ]},
   { group: "الحساب", items: [
@@ -205,6 +208,8 @@ export const allScreens = [
     { path: "/profile/payment", name: "الدفع" },
     { path: "/profile/help", name: "المساعدة" },
     { path: "/profile/settings", name: "الإعدادات" },
+    { path: "/profile/devices", name: "الأجهزة المتصلة" },
+    { path: "/profile/language", name: "اللغة" },
     { path: "/profile/privacy", name: "الخصوصيّة والأمان" },
     { path: "/profile/notifications-prefs", name: "تفضيلات الإشعارات" },
   ]},

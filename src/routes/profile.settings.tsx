@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { ChevronLeft } from "lucide-react";
@@ -34,9 +34,14 @@ function SettingsPage() {
           </div>
         </Section>
 
+        <Section title="التكاملات">
+          <LinkRow to="/profile/devices" label="الأجهزة المتصلة" />
+          <LinkRow to="/profile/language" label="اللغة" hint="العربيّة" />
+        </Section>
+
         <Section title="الحساب">
-          <Row label="تعديل الملف الشخصي" />
-          <Row label="تغيير كلمة السرّ" />
+          <LinkRow to="/profile/edit" label="تعديل الملف الشخصي" />
+          <LinkRow to="/auth/new-password" label="تغيير كلمة السرّ" />
           <Row label="تنزيل بياناتي" />
           <Row label="حذف الحساب" danger />
         </Section>
@@ -79,5 +84,14 @@ function Row({ label, hint, danger }: { label: string; hint?: string; danger?: b
       <span className={`text-[13px] ${danger ? "text-destructive" : ""}`}>{label}</span>
       {hint ? <span className="text-[11.5px] text-foreground/55 nums">{hint}</span> : <ChevronLeft size={15} className="text-foreground/45" />}
     </button>
+  );
+}
+
+function LinkRow({ to, label, hint }: { to: string; label: string; hint?: string }) {
+  return (
+    <Link to={to as "/"} className="relative z-10 w-full flex items-center justify-between px-4 py-3.5 border-b border-foreground/5 last:border-b-0">
+      <span className="text-[13px]">{label}</span>
+      {hint ? <span className="text-[11.5px] text-foreground/55">{hint}</span> : <ChevronLeft size={15} className="text-foreground/45" />}
+    </Link>
   );
 }

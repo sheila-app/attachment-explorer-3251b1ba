@@ -34,22 +34,30 @@ function SettingsPage() {
           </div>
         </Section>
 
+        <Section title="المظهر">
+          <LinkRow to="/profile/theme" label="السمة واللون" hint="فاتحة · وردي" />
+          <LinkRow to="/widgets" label="تخصيص الرئيسيّة" />
+          <LinkRow to="/notifications/settings" label="وضع عدم الإزعاج" />
+        </Section>
+
         <Section title="التكاملات">
           <LinkRow to="/profile/devices" label="الأجهزة المتصلة" />
           <LinkRow to="/profile/language" label="اللغة" hint="العربيّة" />
+          <LinkRow to="/profile/backup" label="النسخ الاحتياطي" />
         </Section>
 
         <Section title="الحساب">
           <LinkRow to="/profile/edit" label="تعديل الملف الشخصي" />
           <LinkRow to="/auth/new-password" label="تغيير كلمة السرّ" />
-          <Row label="تنزيل بياناتي" />
-          <Row label="حذف الحساب" danger />
+          <LinkRow to="/profile/export" label="تنزيل بياناتي" />
+          <LinkRow to="/profile/delete" label="حذف الحساب" />
         </Section>
 
         <Section title="عن التطبيق">
-          <Row label="الإصدار" hint="1.0.0" />
-          <Row label="شروط الاستخدام" />
-          <Row label="سياسة الخصوصية" />
+          <LinkRow to="/profile/about" label="عن شيلا" hint="v1.4.2" />
+          <LinkRow to="/profile/terms" label="شروط الاستخدام" />
+          <LinkRow to="/profile/privacy" label="سياسة الخصوصية" />
+          <LinkRow to="/profile/feedback" label="أرسلي ملاحظة" />
         </Section>
       </div>
     </FeatureShell>

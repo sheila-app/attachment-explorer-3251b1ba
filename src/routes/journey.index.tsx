@@ -3,7 +3,7 @@ import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { mockUser, mockWeightLog } from "@/data/mock";
 import { TrendingDown, Flame, Activity, Trophy, Sparkles } from "lucide-react";
 
-export const Route = createFileRoute("/journey")({ component: JourneyPage });
+export const Route = createFileRoute("/journey/")({ component: JourneyPage });
 
 function JourneyPage() {
   const max = Math.max(...mockWeightLog.map(p => p.weight));

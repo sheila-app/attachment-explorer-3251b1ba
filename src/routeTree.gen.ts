@@ -9,35 +9,35 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as WorkoutsRouteImport } from './routes/workouts'
 import { Route as WidgetsRouteImport } from './routes/widgets'
 import { Route as TimerRouteImport } from './routes/timer'
 import { Route as SystemRouteImport } from './routes/system'
 import { Route as SupplementsRouteImport } from './routes/supplements'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as ScreensRouteImport } from './routes/screens'
-import { Route as ReportsRouteImport } from './routes/reports'
-import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as PregnancyRouteImport } from './routes/pregnancy'
 import { Route as PaywallRouteImport } from './routes/paywall'
-import { Route as NutritionRouteImport } from './routes/nutrition'
-import { Route as NotificationsRouteImport } from './routes/notifications'
-import { Route as MindfulnessRouteImport } from './routes/mindfulness'
-import { Route as JourneyRouteImport } from './routes/journey'
 import { Route as HomeRouteImport } from './routes/home'
-import { Route as HabitsRouteImport } from './routes/habits'
 import { Route as EmergencyRouteImport } from './routes/emergency'
-import { Route as CycleRouteImport } from './routes/cycle'
-import { Route as CommunityRouteImport } from './routes/community'
-import { Route as CoachesRouteImport } from './routes/coaches'
-import { Route as CheckinRouteImport } from './routes/checkin'
-import { Route as ChallengesRouteImport } from './routes/challenges'
 import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as BuddyRouteImport } from './routes/buddy'
 import { Route as AssistantRouteImport } from './routes/assistant'
-import { Route as ArticlesRouteImport } from './routes/articles'
 import { Route as R404RouteImport } from './routes/404'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as WorkoutsIndexRouteImport } from './routes/workouts.index'
+import { Route as ReportsIndexRouteImport } from './routes/reports.index'
+import { Route as ProfileIndexRouteImport } from './routes/profile.index'
+import { Route as NutritionIndexRouteImport } from './routes/nutrition.index'
+import { Route as NotificationsIndexRouteImport } from './routes/notifications.index'
+import { Route as MindfulnessIndexRouteImport } from './routes/mindfulness.index'
+import { Route as JourneyIndexRouteImport } from './routes/journey.index'
+import { Route as HabitsIndexRouteImport } from './routes/habits.index'
+import { Route as CycleIndexRouteImport } from './routes/cycle.index'
+import { Route as CommunityIndexRouteImport } from './routes/community.index'
+import { Route as CoachesIndexRouteImport } from './routes/coaches.index'
+import { Route as CheckinIndexRouteImport } from './routes/checkin.index'
+import { Route as ChallengesIndexRouteImport } from './routes/challenges.index'
+import { Route as ArticlesIndexRouteImport } from './routes/articles.index'
 import { Route as WorkoutsSummaryRouteImport } from './routes/workouts.summary'
 import { Route as WorkoutsProgramsRouteImport } from './routes/workouts.programs'
 import { Route as WorkoutsLiveRouteImport } from './routes/workouts.live'
@@ -110,11 +110,6 @@ import { Route as WorkoutsIdPlayRouteImport } from './routes/workouts.$id.play'
 import { Route as CoachesIdChatRouteImport } from './routes/coaches.$id.chat'
 import { Route as CoachesIdBookRouteImport } from './routes/coaches.$id.book'
 
-const WorkoutsRoute = WorkoutsRouteImport.update({
-  id: '/workouts',
-  path: '/workouts',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const WidgetsRoute = WidgetsRouteImport.update({
   id: '/widgets',
   path: '/widgets',
@@ -145,16 +140,6 @@ const ScreensRoute = ScreensRouteImport.update({
   path: '/screens',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ReportsRoute = ReportsRouteImport.update({
-  id: '/reports',
-  path: '/reports',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProfileRoute = ProfileRouteImport.update({
-  id: '/profile',
-  path: '/profile',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const PregnancyRoute = PregnancyRouteImport.update({
   id: '/pregnancy',
   path: '/pregnancy',
@@ -165,64 +150,14 @@ const PaywallRoute = PaywallRouteImport.update({
   path: '/paywall',
   getParentRoute: () => rootRouteImport,
 } as any)
-const NutritionRoute = NutritionRouteImport.update({
-  id: '/nutrition',
-  path: '/nutrition',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const NotificationsRoute = NotificationsRouteImport.update({
-  id: '/notifications',
-  path: '/notifications',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MindfulnessRoute = MindfulnessRouteImport.update({
-  id: '/mindfulness',
-  path: '/mindfulness',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const JourneyRoute = JourneyRouteImport.update({
-  id: '/journey',
-  path: '/journey',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const HomeRoute = HomeRouteImport.update({
   id: '/home',
   path: '/home',
   getParentRoute: () => rootRouteImport,
 } as any)
-const HabitsRoute = HabitsRouteImport.update({
-  id: '/habits',
-  path: '/habits',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const EmergencyRoute = EmergencyRouteImport.update({
   id: '/emergency',
   path: '/emergency',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CycleRoute = CycleRouteImport.update({
-  id: '/cycle',
-  path: '/cycle',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CommunityRoute = CommunityRouteImport.update({
-  id: '/community',
-  path: '/community',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CoachesRoute = CoachesRouteImport.update({
-  id: '/coaches',
-  path: '/coaches',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CheckinRoute = CheckinRouteImport.update({
-  id: '/checkin',
-  path: '/checkin',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ChallengesRoute = ChallengesRouteImport.update({
-  id: '/challenges',
-  path: '/challenges',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CalendarRoute = CalendarRouteImport.update({
@@ -240,11 +175,6 @@ const AssistantRoute = AssistantRouteImport.update({
   path: '/assistant',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ArticlesRoute = ArticlesRouteImport.update({
-  id: '/articles',
-  path: '/articles',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const R404Route = R404RouteImport.update({
   id: '/404',
   path: '/404',
@@ -255,116 +185,186 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WorkoutsIndexRoute = WorkoutsIndexRouteImport.update({
+  id: '/workouts/',
+  path: '/workouts/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsIndexRoute = ReportsIndexRouteImport.update({
+  id: '/reports/',
+  path: '/reports/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileIndexRoute = ProfileIndexRouteImport.update({
+  id: '/profile/',
+  path: '/profile/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NutritionIndexRoute = NutritionIndexRouteImport.update({
+  id: '/nutrition/',
+  path: '/nutrition/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotificationsIndexRoute = NotificationsIndexRouteImport.update({
+  id: '/notifications/',
+  path: '/notifications/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MindfulnessIndexRoute = MindfulnessIndexRouteImport.update({
+  id: '/mindfulness/',
+  path: '/mindfulness/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JourneyIndexRoute = JourneyIndexRouteImport.update({
+  id: '/journey/',
+  path: '/journey/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HabitsIndexRoute = HabitsIndexRouteImport.update({
+  id: '/habits/',
+  path: '/habits/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CycleIndexRoute = CycleIndexRouteImport.update({
+  id: '/cycle/',
+  path: '/cycle/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunityIndexRoute = CommunityIndexRouteImport.update({
+  id: '/community/',
+  path: '/community/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CoachesIndexRoute = CoachesIndexRouteImport.update({
+  id: '/coaches/',
+  path: '/coaches/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckinIndexRoute = CheckinIndexRouteImport.update({
+  id: '/checkin/',
+  path: '/checkin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChallengesIndexRoute = ChallengesIndexRouteImport.update({
+  id: '/challenges/',
+  path: '/challenges/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArticlesIndexRoute = ArticlesIndexRouteImport.update({
+  id: '/articles/',
+  path: '/articles/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WorkoutsSummaryRoute = WorkoutsSummaryRouteImport.update({
-  id: '/summary',
-  path: '/summary',
-  getParentRoute: () => WorkoutsRoute,
+  id: '/workouts/summary',
+  path: '/workouts/summary',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const WorkoutsProgramsRoute = WorkoutsProgramsRouteImport.update({
-  id: '/programs',
-  path: '/programs',
-  getParentRoute: () => WorkoutsRoute,
+  id: '/workouts/programs',
+  path: '/workouts/programs',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const WorkoutsLiveRoute = WorkoutsLiveRouteImport.update({
-  id: '/live',
-  path: '/live',
-  getParentRoute: () => WorkoutsRoute,
+  id: '/workouts/live',
+  path: '/workouts/live',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const WorkoutsIdRoute = WorkoutsIdRouteImport.update({
-  id: '/$id',
-  path: '/$id',
-  getParentRoute: () => WorkoutsRoute,
+  id: '/workouts/$id',
+  path: '/workouts/$id',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ReportsIdRoute = ReportsIdRouteImport.update({
-  id: '/$id',
-  path: '/$id',
-  getParentRoute: () => ReportsRoute,
+  id: '/reports/$id',
+  path: '/reports/$id',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileThemeRoute = ProfileThemeRouteImport.update({
-  id: '/theme',
-  path: '/theme',
-  getParentRoute: () => ProfileRoute,
+  id: '/profile/theme',
+  path: '/profile/theme',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileTermsRoute = ProfileTermsRouteImport.update({
-  id: '/terms',
-  path: '/terms',
-  getParentRoute: () => ProfileRoute,
+  id: '/profile/terms',
+  path: '/profile/terms',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileSubscriptionRoute = ProfileSubscriptionRouteImport.update({
-  id: '/subscription',
-  path: '/subscription',
-  getParentRoute: () => ProfileRoute,
+  id: '/profile/subscription',
+  path: '/profile/subscription',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileSettingsRoute = ProfileSettingsRouteImport.update({
-  id: '/settings',
-  path: '/settings',
-  getParentRoute: () => ProfileRoute,
+  id: '/profile/settings',
+  path: '/profile/settings',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileReferralRoute = ProfileReferralRouteImport.update({
-  id: '/referral',
-  path: '/referral',
-  getParentRoute: () => ProfileRoute,
+  id: '/profile/referral',
+  path: '/profile/referral',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ProfilePrivacyRoute = ProfilePrivacyRouteImport.update({
-  id: '/privacy',
-  path: '/privacy',
-  getParentRoute: () => ProfileRoute,
+  id: '/profile/privacy',
+  path: '/profile/privacy',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ProfilePaymentRoute = ProfilePaymentRouteImport.update({
-  id: '/payment',
-  path: '/payment',
-  getParentRoute: () => ProfileRoute,
+  id: '/profile/payment',
+  path: '/profile/payment',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileNotificationsPrefsRoute =
   ProfileNotificationsPrefsRouteImport.update({
-    id: '/notifications-prefs',
-    path: '/notifications-prefs',
-    getParentRoute: () => ProfileRoute,
+    id: '/profile/notifications-prefs',
+    path: '/profile/notifications-prefs',
+    getParentRoute: () => rootRouteImport,
   } as any)
 const ProfileLanguageRoute = ProfileLanguageRouteImport.update({
-  id: '/language',
-  path: '/language',
-  getParentRoute: () => ProfileRoute,
+  id: '/profile/language',
+  path: '/profile/language',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileHelpRoute = ProfileHelpRouteImport.update({
-  id: '/help',
-  path: '/help',
-  getParentRoute: () => ProfileRoute,
+  id: '/profile/help',
+  path: '/profile/help',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileFeedbackRoute = ProfileFeedbackRouteImport.update({
-  id: '/feedback',
-  path: '/feedback',
-  getParentRoute: () => ProfileRoute,
+  id: '/profile/feedback',
+  path: '/profile/feedback',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileExportRoute = ProfileExportRouteImport.update({
-  id: '/export',
-  path: '/export',
-  getParentRoute: () => ProfileRoute,
+  id: '/profile/export',
+  path: '/profile/export',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileEditRoute = ProfileEditRouteImport.update({
-  id: '/edit',
-  path: '/edit',
-  getParentRoute: () => ProfileRoute,
+  id: '/profile/edit',
+  path: '/profile/edit',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileDevicesRoute = ProfileDevicesRouteImport.update({
-  id: '/devices',
-  path: '/devices',
-  getParentRoute: () => ProfileRoute,
+  id: '/profile/devices',
+  path: '/profile/devices',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileDeleteRoute = ProfileDeleteRouteImport.update({
-  id: '/delete',
-  path: '/delete',
-  getParentRoute: () => ProfileRoute,
+  id: '/profile/delete',
+  path: '/profile/delete',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileBackupRoute = ProfileBackupRouteImport.update({
-  id: '/backup',
-  path: '/backup',
-  getParentRoute: () => ProfileRoute,
+  id: '/profile/backup',
+  path: '/profile/backup',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileAboutRoute = ProfileAboutRouteImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => ProfileRoute,
+  id: '/profile/about',
+  path: '/profile/about',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const OnboardingWelcomeRoute = OnboardingWelcomeRouteImport.update({
   id: '/onboarding/welcome',
@@ -447,124 +447,124 @@ const OnboardingActivityRoute = OnboardingActivityRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const NutritionShoppingRoute = NutritionShoppingRouteImport.update({
-  id: '/shopping',
-  path: '/shopping',
-  getParentRoute: () => NutritionRoute,
+  id: '/nutrition/shopping',
+  path: '/nutrition/shopping',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const NutritionRecipesRoute = NutritionRecipesRouteImport.update({
-  id: '/recipes',
-  path: '/recipes',
-  getParentRoute: () => NutritionRoute,
+  id: '/nutrition/recipes',
+  path: '/nutrition/recipes',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const NutritionLogRoute = NutritionLogRouteImport.update({
-  id: '/log',
-  path: '/log',
-  getParentRoute: () => NutritionRoute,
+  id: '/nutrition/log',
+  path: '/nutrition/log',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const NutritionIdRoute = NutritionIdRouteImport.update({
-  id: '/$id',
-  path: '/$id',
-  getParentRoute: () => NutritionRoute,
+  id: '/nutrition/$id',
+  path: '/nutrition/$id',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const NotificationsSettingsRoute = NotificationsSettingsRouteImport.update({
-  id: '/settings',
-  path: '/settings',
-  getParentRoute: () => NotificationsRoute,
+  id: '/notifications/settings',
+  path: '/notifications/settings',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const MindfulnessIdRoute = MindfulnessIdRouteImport.update({
-  id: '/$id',
-  path: '/$id',
-  getParentRoute: () => MindfulnessRoute,
+  id: '/mindfulness/$id',
+  path: '/mindfulness/$id',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const JourneySymptomsRoute = JourneySymptomsRouteImport.update({
-  id: '/symptoms',
-  path: '/symptoms',
-  getParentRoute: () => JourneyRoute,
+  id: '/journey/symptoms',
+  path: '/journey/symptoms',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const JourneyMoodRoute = JourneyMoodRouteImport.update({
-  id: '/mood',
-  path: '/mood',
-  getParentRoute: () => JourneyRoute,
+  id: '/journey/mood',
+  path: '/journey/mood',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const JourneyMeasurementsRoute = JourneyMeasurementsRouteImport.update({
-  id: '/measurements',
-  path: '/measurements',
-  getParentRoute: () => JourneyRoute,
+  id: '/journey/measurements',
+  path: '/journey/measurements',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const JourneyInsightsRoute = JourneyInsightsRouteImport.update({
-  id: '/insights',
-  path: '/insights',
-  getParentRoute: () => JourneyRoute,
+  id: '/journey/insights',
+  path: '/journey/insights',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const JourneyGoalsRoute = JourneyGoalsRouteImport.update({
-  id: '/goals',
-  path: '/goals',
-  getParentRoute: () => JourneyRoute,
+  id: '/journey/goals',
+  path: '/journey/goals',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const JourneyCalendarRoute = JourneyCalendarRouteImport.update({
-  id: '/calendar',
-  path: '/calendar',
-  getParentRoute: () => JourneyRoute,
+  id: '/journey/calendar',
+  path: '/journey/calendar',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const JourneyAwardsRoute = JourneyAwardsRouteImport.update({
-  id: '/awards',
-  path: '/awards',
-  getParentRoute: () => JourneyRoute,
+  id: '/journey/awards',
+  path: '/journey/awards',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const HabitsNewRoute = HabitsNewRouteImport.update({
-  id: '/new',
-  path: '/new',
-  getParentRoute: () => HabitsRoute,
+  id: '/habits/new',
+  path: '/habits/new',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const CycleLogRoute = CycleLogRouteImport.update({
-  id: '/log',
-  path: '/log',
-  getParentRoute: () => CycleRoute,
+  id: '/cycle/log',
+  path: '/cycle/log',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const CommunityInviteRoute = CommunityInviteRouteImport.update({
-  id: '/invite',
-  path: '/invite',
-  getParentRoute: () => CommunityRoute,
+  id: '/community/invite',
+  path: '/community/invite',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const CommunityGroupsRoute = CommunityGroupsRouteImport.update({
-  id: '/groups',
-  path: '/groups',
-  getParentRoute: () => CommunityRoute,
+  id: '/community/groups',
+  path: '/community/groups',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const CommunityEventsRoute = CommunityEventsRouteImport.update({
-  id: '/events',
-  path: '/events',
-  getParentRoute: () => CommunityRoute,
+  id: '/community/events',
+  path: '/community/events',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const CommunityIdRoute = CommunityIdRouteImport.update({
-  id: '/$id',
-  path: '/$id',
-  getParentRoute: () => CommunityRoute,
+  id: '/community/$id',
+  path: '/community/$id',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const CoachesIdRoute = CoachesIdRouteImport.update({
-  id: '/$id',
-  path: '/$id',
-  getParentRoute: () => CoachesRoute,
+  id: '/coaches/$id',
+  path: '/coaches/$id',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const CheckinWaterRoute = CheckinWaterRouteImport.update({
-  id: '/water',
-  path: '/water',
-  getParentRoute: () => CheckinRoute,
+  id: '/checkin/water',
+  path: '/checkin/water',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const CheckinStepsRoute = CheckinStepsRouteImport.update({
-  id: '/steps',
-  path: '/steps',
-  getParentRoute: () => CheckinRoute,
+  id: '/checkin/steps',
+  path: '/checkin/steps',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const CheckinSleepRoute = CheckinSleepRouteImport.update({
-  id: '/sleep',
-  path: '/sleep',
-  getParentRoute: () => CheckinRoute,
+  id: '/checkin/sleep',
+  path: '/checkin/sleep',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ChallengesIdRoute = ChallengesIdRouteImport.update({
-  id: '/$id',
-  path: '/$id',
-  getParentRoute: () => ChallengesRoute,
+  id: '/challenges/$id',
+  path: '/challenges/$id',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AuthOtpRoute = AuthOtpRouteImport.update({
   id: '/auth/otp',
@@ -587,9 +587,9 @@ const AuthForgotRoute = AuthForgotRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const ArticlesIdRoute = ArticlesIdRouteImport.update({
-  id: '/$id',
-  path: '/$id',
-  getParentRoute: () => ArticlesRoute,
+  id: '/articles/$id',
+  path: '/articles/$id',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const WorkoutsProgramsIdRoute = WorkoutsProgramsIdRouteImport.update({
   id: '/$id',
@@ -615,33 +615,19 @@ const CoachesIdBookRoute = CoachesIdBookRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/404': typeof R404Route
-  '/articles': typeof ArticlesRouteWithChildren
   '/assistant': typeof AssistantRoute
   '/buddy': typeof BuddyRoute
   '/calendar': typeof CalendarRoute
-  '/challenges': typeof ChallengesRouteWithChildren
-  '/checkin': typeof CheckinRouteWithChildren
-  '/coaches': typeof CoachesRouteWithChildren
-  '/community': typeof CommunityRouteWithChildren
-  '/cycle': typeof CycleRouteWithChildren
   '/emergency': typeof EmergencyRoute
-  '/habits': typeof HabitsRouteWithChildren
   '/home': typeof HomeRoute
-  '/journey': typeof JourneyRouteWithChildren
-  '/mindfulness': typeof MindfulnessRouteWithChildren
-  '/notifications': typeof NotificationsRouteWithChildren
-  '/nutrition': typeof NutritionRouteWithChildren
   '/paywall': typeof PaywallRoute
   '/pregnancy': typeof PregnancyRoute
-  '/profile': typeof ProfileRouteWithChildren
-  '/reports': typeof ReportsRouteWithChildren
   '/screens': typeof ScreensRoute
   '/search': typeof SearchRoute
   '/supplements': typeof SupplementsRoute
   '/system': typeof SystemRoute
   '/timer': typeof TimerRoute
   '/widgets': typeof WidgetsRoute
-  '/workouts': typeof WorkoutsRouteWithChildren
   '/articles/$id': typeof ArticlesIdRoute
   '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
@@ -709,6 +695,20 @@ export interface FileRoutesByFullPath {
   '/workouts/live': typeof WorkoutsLiveRoute
   '/workouts/programs': typeof WorkoutsProgramsRouteWithChildren
   '/workouts/summary': typeof WorkoutsSummaryRoute
+  '/articles/': typeof ArticlesIndexRoute
+  '/challenges/': typeof ChallengesIndexRoute
+  '/checkin/': typeof CheckinIndexRoute
+  '/coaches/': typeof CoachesIndexRoute
+  '/community/': typeof CommunityIndexRoute
+  '/cycle/': typeof CycleIndexRoute
+  '/habits/': typeof HabitsIndexRoute
+  '/journey/': typeof JourneyIndexRoute
+  '/mindfulness/': typeof MindfulnessIndexRoute
+  '/notifications/': typeof NotificationsIndexRoute
+  '/nutrition/': typeof NutritionIndexRoute
+  '/profile/': typeof ProfileIndexRoute
+  '/reports/': typeof ReportsIndexRoute
+  '/workouts/': typeof WorkoutsIndexRoute
   '/coaches/$id/book': typeof CoachesIdBookRoute
   '/coaches/$id/chat': typeof CoachesIdChatRoute
   '/workouts/$id/play': typeof WorkoutsIdPlayRoute
@@ -717,33 +717,19 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/404': typeof R404Route
-  '/articles': typeof ArticlesRouteWithChildren
   '/assistant': typeof AssistantRoute
   '/buddy': typeof BuddyRoute
   '/calendar': typeof CalendarRoute
-  '/challenges': typeof ChallengesRouteWithChildren
-  '/checkin': typeof CheckinRouteWithChildren
-  '/coaches': typeof CoachesRouteWithChildren
-  '/community': typeof CommunityRouteWithChildren
-  '/cycle': typeof CycleRouteWithChildren
   '/emergency': typeof EmergencyRoute
-  '/habits': typeof HabitsRouteWithChildren
   '/home': typeof HomeRoute
-  '/journey': typeof JourneyRouteWithChildren
-  '/mindfulness': typeof MindfulnessRouteWithChildren
-  '/notifications': typeof NotificationsRouteWithChildren
-  '/nutrition': typeof NutritionRouteWithChildren
   '/paywall': typeof PaywallRoute
   '/pregnancy': typeof PregnancyRoute
-  '/profile': typeof ProfileRouteWithChildren
-  '/reports': typeof ReportsRouteWithChildren
   '/screens': typeof ScreensRoute
   '/search': typeof SearchRoute
   '/supplements': typeof SupplementsRoute
   '/system': typeof SystemRoute
   '/timer': typeof TimerRoute
   '/widgets': typeof WidgetsRoute
-  '/workouts': typeof WorkoutsRouteWithChildren
   '/articles/$id': typeof ArticlesIdRoute
   '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
@@ -811,6 +797,20 @@ export interface FileRoutesByTo {
   '/workouts/live': typeof WorkoutsLiveRoute
   '/workouts/programs': typeof WorkoutsProgramsRouteWithChildren
   '/workouts/summary': typeof WorkoutsSummaryRoute
+  '/articles': typeof ArticlesIndexRoute
+  '/challenges': typeof ChallengesIndexRoute
+  '/checkin': typeof CheckinIndexRoute
+  '/coaches': typeof CoachesIndexRoute
+  '/community': typeof CommunityIndexRoute
+  '/cycle': typeof CycleIndexRoute
+  '/habits': typeof HabitsIndexRoute
+  '/journey': typeof JourneyIndexRoute
+  '/mindfulness': typeof MindfulnessIndexRoute
+  '/notifications': typeof NotificationsIndexRoute
+  '/nutrition': typeof NutritionIndexRoute
+  '/profile': typeof ProfileIndexRoute
+  '/reports': typeof ReportsIndexRoute
+  '/workouts': typeof WorkoutsIndexRoute
   '/coaches/$id/book': typeof CoachesIdBookRoute
   '/coaches/$id/chat': typeof CoachesIdChatRoute
   '/workouts/$id/play': typeof WorkoutsIdPlayRoute
@@ -820,33 +820,19 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/404': typeof R404Route
-  '/articles': typeof ArticlesRouteWithChildren
   '/assistant': typeof AssistantRoute
   '/buddy': typeof BuddyRoute
   '/calendar': typeof CalendarRoute
-  '/challenges': typeof ChallengesRouteWithChildren
-  '/checkin': typeof CheckinRouteWithChildren
-  '/coaches': typeof CoachesRouteWithChildren
-  '/community': typeof CommunityRouteWithChildren
-  '/cycle': typeof CycleRouteWithChildren
   '/emergency': typeof EmergencyRoute
-  '/habits': typeof HabitsRouteWithChildren
   '/home': typeof HomeRoute
-  '/journey': typeof JourneyRouteWithChildren
-  '/mindfulness': typeof MindfulnessRouteWithChildren
-  '/notifications': typeof NotificationsRouteWithChildren
-  '/nutrition': typeof NutritionRouteWithChildren
   '/paywall': typeof PaywallRoute
   '/pregnancy': typeof PregnancyRoute
-  '/profile': typeof ProfileRouteWithChildren
-  '/reports': typeof ReportsRouteWithChildren
   '/screens': typeof ScreensRoute
   '/search': typeof SearchRoute
   '/supplements': typeof SupplementsRoute
   '/system': typeof SystemRoute
   '/timer': typeof TimerRoute
   '/widgets': typeof WidgetsRoute
-  '/workouts': typeof WorkoutsRouteWithChildren
   '/articles/$id': typeof ArticlesIdRoute
   '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
@@ -914,6 +900,20 @@ export interface FileRoutesById {
   '/workouts/live': typeof WorkoutsLiveRoute
   '/workouts/programs': typeof WorkoutsProgramsRouteWithChildren
   '/workouts/summary': typeof WorkoutsSummaryRoute
+  '/articles/': typeof ArticlesIndexRoute
+  '/challenges/': typeof ChallengesIndexRoute
+  '/checkin/': typeof CheckinIndexRoute
+  '/coaches/': typeof CoachesIndexRoute
+  '/community/': typeof CommunityIndexRoute
+  '/cycle/': typeof CycleIndexRoute
+  '/habits/': typeof HabitsIndexRoute
+  '/journey/': typeof JourneyIndexRoute
+  '/mindfulness/': typeof MindfulnessIndexRoute
+  '/notifications/': typeof NotificationsIndexRoute
+  '/nutrition/': typeof NutritionIndexRoute
+  '/profile/': typeof ProfileIndexRoute
+  '/reports/': typeof ReportsIndexRoute
+  '/workouts/': typeof WorkoutsIndexRoute
   '/coaches/$id/book': typeof CoachesIdBookRoute
   '/coaches/$id/chat': typeof CoachesIdChatRoute
   '/workouts/$id/play': typeof WorkoutsIdPlayRoute
@@ -924,33 +924,19 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/404'
-    | '/articles'
     | '/assistant'
     | '/buddy'
     | '/calendar'
-    | '/challenges'
-    | '/checkin'
-    | '/coaches'
-    | '/community'
-    | '/cycle'
     | '/emergency'
-    | '/habits'
     | '/home'
-    | '/journey'
-    | '/mindfulness'
-    | '/notifications'
-    | '/nutrition'
     | '/paywall'
     | '/pregnancy'
-    | '/profile'
-    | '/reports'
     | '/screens'
     | '/search'
     | '/supplements'
     | '/system'
     | '/timer'
     | '/widgets'
-    | '/workouts'
     | '/articles/$id'
     | '/auth/forgot'
     | '/auth/login'
@@ -1018,6 +1004,20 @@ export interface FileRouteTypes {
     | '/workouts/live'
     | '/workouts/programs'
     | '/workouts/summary'
+    | '/articles/'
+    | '/challenges/'
+    | '/checkin/'
+    | '/coaches/'
+    | '/community/'
+    | '/cycle/'
+    | '/habits/'
+    | '/journey/'
+    | '/mindfulness/'
+    | '/notifications/'
+    | '/nutrition/'
+    | '/profile/'
+    | '/reports/'
+    | '/workouts/'
     | '/coaches/$id/book'
     | '/coaches/$id/chat'
     | '/workouts/$id/play'
@@ -1026,33 +1026,19 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/404'
-    | '/articles'
     | '/assistant'
     | '/buddy'
     | '/calendar'
-    | '/challenges'
-    | '/checkin'
-    | '/coaches'
-    | '/community'
-    | '/cycle'
     | '/emergency'
-    | '/habits'
     | '/home'
-    | '/journey'
-    | '/mindfulness'
-    | '/notifications'
-    | '/nutrition'
     | '/paywall'
     | '/pregnancy'
-    | '/profile'
-    | '/reports'
     | '/screens'
     | '/search'
     | '/supplements'
     | '/system'
     | '/timer'
     | '/widgets'
-    | '/workouts'
     | '/articles/$id'
     | '/auth/forgot'
     | '/auth/login'
@@ -1120,6 +1106,20 @@ export interface FileRouteTypes {
     | '/workouts/live'
     | '/workouts/programs'
     | '/workouts/summary'
+    | '/articles'
+    | '/challenges'
+    | '/checkin'
+    | '/coaches'
+    | '/community'
+    | '/cycle'
+    | '/habits'
+    | '/journey'
+    | '/mindfulness'
+    | '/notifications'
+    | '/nutrition'
+    | '/profile'
+    | '/reports'
+    | '/workouts'
     | '/coaches/$id/book'
     | '/coaches/$id/chat'
     | '/workouts/$id/play'
@@ -1128,33 +1128,19 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/404'
-    | '/articles'
     | '/assistant'
     | '/buddy'
     | '/calendar'
-    | '/challenges'
-    | '/checkin'
-    | '/coaches'
-    | '/community'
-    | '/cycle'
     | '/emergency'
-    | '/habits'
     | '/home'
-    | '/journey'
-    | '/mindfulness'
-    | '/notifications'
-    | '/nutrition'
     | '/paywall'
     | '/pregnancy'
-    | '/profile'
-    | '/reports'
     | '/screens'
     | '/search'
     | '/supplements'
     | '/system'
     | '/timer'
     | '/widgets'
-    | '/workouts'
     | '/articles/$id'
     | '/auth/forgot'
     | '/auth/login'
@@ -1222,6 +1208,20 @@ export interface FileRouteTypes {
     | '/workouts/live'
     | '/workouts/programs'
     | '/workouts/summary'
+    | '/articles/'
+    | '/challenges/'
+    | '/checkin/'
+    | '/coaches/'
+    | '/community/'
+    | '/cycle/'
+    | '/habits/'
+    | '/journey/'
+    | '/mindfulness/'
+    | '/notifications/'
+    | '/nutrition/'
+    | '/profile/'
+    | '/reports/'
+    | '/workouts/'
     | '/coaches/$id/book'
     | '/coaches/$id/chat'
     | '/workouts/$id/play'
@@ -1231,37 +1231,48 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   R404Route: typeof R404Route
-  ArticlesRoute: typeof ArticlesRouteWithChildren
   AssistantRoute: typeof AssistantRoute
   BuddyRoute: typeof BuddyRoute
   CalendarRoute: typeof CalendarRoute
-  ChallengesRoute: typeof ChallengesRouteWithChildren
-  CheckinRoute: typeof CheckinRouteWithChildren
-  CoachesRoute: typeof CoachesRouteWithChildren
-  CommunityRoute: typeof CommunityRouteWithChildren
-  CycleRoute: typeof CycleRouteWithChildren
   EmergencyRoute: typeof EmergencyRoute
-  HabitsRoute: typeof HabitsRouteWithChildren
   HomeRoute: typeof HomeRoute
-  JourneyRoute: typeof JourneyRouteWithChildren
-  MindfulnessRoute: typeof MindfulnessRouteWithChildren
-  NotificationsRoute: typeof NotificationsRouteWithChildren
-  NutritionRoute: typeof NutritionRouteWithChildren
   PaywallRoute: typeof PaywallRoute
   PregnancyRoute: typeof PregnancyRoute
-  ProfileRoute: typeof ProfileRouteWithChildren
-  ReportsRoute: typeof ReportsRouteWithChildren
   ScreensRoute: typeof ScreensRoute
   SearchRoute: typeof SearchRoute
   SupplementsRoute: typeof SupplementsRoute
   SystemRoute: typeof SystemRoute
   TimerRoute: typeof TimerRoute
   WidgetsRoute: typeof WidgetsRoute
-  WorkoutsRoute: typeof WorkoutsRouteWithChildren
+  ArticlesIdRoute: typeof ArticlesIdRoute
   AuthForgotRoute: typeof AuthForgotRoute
   AuthLoginRoute: typeof AuthLoginRoute
   AuthNewPasswordRoute: typeof AuthNewPasswordRoute
   AuthOtpRoute: typeof AuthOtpRoute
+  ChallengesIdRoute: typeof ChallengesIdRoute
+  CheckinSleepRoute: typeof CheckinSleepRoute
+  CheckinStepsRoute: typeof CheckinStepsRoute
+  CheckinWaterRoute: typeof CheckinWaterRoute
+  CoachesIdRoute: typeof CoachesIdRouteWithChildren
+  CommunityIdRoute: typeof CommunityIdRoute
+  CommunityEventsRoute: typeof CommunityEventsRoute
+  CommunityGroupsRoute: typeof CommunityGroupsRoute
+  CommunityInviteRoute: typeof CommunityInviteRoute
+  CycleLogRoute: typeof CycleLogRoute
+  HabitsNewRoute: typeof HabitsNewRoute
+  JourneyAwardsRoute: typeof JourneyAwardsRoute
+  JourneyCalendarRoute: typeof JourneyCalendarRoute
+  JourneyGoalsRoute: typeof JourneyGoalsRoute
+  JourneyInsightsRoute: typeof JourneyInsightsRoute
+  JourneyMeasurementsRoute: typeof JourneyMeasurementsRoute
+  JourneyMoodRoute: typeof JourneyMoodRoute
+  JourneySymptomsRoute: typeof JourneySymptomsRoute
+  MindfulnessIdRoute: typeof MindfulnessIdRoute
+  NotificationsSettingsRoute: typeof NotificationsSettingsRoute
+  NutritionIdRoute: typeof NutritionIdRoute
+  NutritionLogRoute: typeof NutritionLogRoute
+  NutritionRecipesRoute: typeof NutritionRecipesRoute
+  NutritionShoppingRoute: typeof NutritionShoppingRoute
   OnboardingActivityRoute: typeof OnboardingActivityRoute
   OnboardingAuthRoute: typeof OnboardingAuthRoute
   OnboardingCompleteRoute: typeof OnboardingCompleteRoute
@@ -1278,17 +1289,46 @@ export interface RootRouteChildren {
   OnboardingTrialRoute: typeof OnboardingTrialRoute
   OnboardingTypesRoute: typeof OnboardingTypesRoute
   OnboardingWelcomeRoute: typeof OnboardingWelcomeRoute
+  ProfileAboutRoute: typeof ProfileAboutRoute
+  ProfileBackupRoute: typeof ProfileBackupRoute
+  ProfileDeleteRoute: typeof ProfileDeleteRoute
+  ProfileDevicesRoute: typeof ProfileDevicesRoute
+  ProfileEditRoute: typeof ProfileEditRoute
+  ProfileExportRoute: typeof ProfileExportRoute
+  ProfileFeedbackRoute: typeof ProfileFeedbackRoute
+  ProfileHelpRoute: typeof ProfileHelpRoute
+  ProfileLanguageRoute: typeof ProfileLanguageRoute
+  ProfileNotificationsPrefsRoute: typeof ProfileNotificationsPrefsRoute
+  ProfilePaymentRoute: typeof ProfilePaymentRoute
+  ProfilePrivacyRoute: typeof ProfilePrivacyRoute
+  ProfileReferralRoute: typeof ProfileReferralRoute
+  ProfileSettingsRoute: typeof ProfileSettingsRoute
+  ProfileSubscriptionRoute: typeof ProfileSubscriptionRoute
+  ProfileTermsRoute: typeof ProfileTermsRoute
+  ProfileThemeRoute: typeof ProfileThemeRoute
+  ReportsIdRoute: typeof ReportsIdRoute
+  WorkoutsIdRoute: typeof WorkoutsIdRouteWithChildren
+  WorkoutsLiveRoute: typeof WorkoutsLiveRoute
+  WorkoutsProgramsRoute: typeof WorkoutsProgramsRouteWithChildren
+  WorkoutsSummaryRoute: typeof WorkoutsSummaryRoute
+  ArticlesIndexRoute: typeof ArticlesIndexRoute
+  ChallengesIndexRoute: typeof ChallengesIndexRoute
+  CheckinIndexRoute: typeof CheckinIndexRoute
+  CoachesIndexRoute: typeof CoachesIndexRoute
+  CommunityIndexRoute: typeof CommunityIndexRoute
+  CycleIndexRoute: typeof CycleIndexRoute
+  HabitsIndexRoute: typeof HabitsIndexRoute
+  JourneyIndexRoute: typeof JourneyIndexRoute
+  MindfulnessIndexRoute: typeof MindfulnessIndexRoute
+  NotificationsIndexRoute: typeof NotificationsIndexRoute
+  NutritionIndexRoute: typeof NutritionIndexRoute
+  ProfileIndexRoute: typeof ProfileIndexRoute
+  ReportsIndexRoute: typeof ReportsIndexRoute
+  WorkoutsIndexRoute: typeof WorkoutsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/workouts': {
-      id: '/workouts'
-      path: '/workouts'
-      fullPath: '/workouts'
-      preLoaderRoute: typeof WorkoutsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/widgets': {
       id: '/widgets'
       path: '/widgets'
@@ -1331,20 +1371,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ScreensRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/reports': {
-      id: '/reports'
-      path: '/reports'
-      fullPath: '/reports'
-      preLoaderRoute: typeof ReportsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/profile': {
-      id: '/profile'
-      path: '/profile'
-      fullPath: '/profile'
-      preLoaderRoute: typeof ProfileRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/pregnancy': {
       id: '/pregnancy'
       path: '/pregnancy'
@@ -1359,34 +1385,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PaywallRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/nutrition': {
-      id: '/nutrition'
-      path: '/nutrition'
-      fullPath: '/nutrition'
-      preLoaderRoute: typeof NutritionRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/notifications': {
-      id: '/notifications'
-      path: '/notifications'
-      fullPath: '/notifications'
-      preLoaderRoute: typeof NotificationsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mindfulness': {
-      id: '/mindfulness'
-      path: '/mindfulness'
-      fullPath: '/mindfulness'
-      preLoaderRoute: typeof MindfulnessRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/journey': {
-      id: '/journey'
-      path: '/journey'
-      fullPath: '/journey'
-      preLoaderRoute: typeof JourneyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/home': {
       id: '/home'
       path: '/home'
@@ -1394,53 +1392,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HomeRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/habits': {
-      id: '/habits'
-      path: '/habits'
-      fullPath: '/habits'
-      preLoaderRoute: typeof HabitsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/emergency': {
       id: '/emergency'
       path: '/emergency'
       fullPath: '/emergency'
       preLoaderRoute: typeof EmergencyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/cycle': {
-      id: '/cycle'
-      path: '/cycle'
-      fullPath: '/cycle'
-      preLoaderRoute: typeof CycleRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/community': {
-      id: '/community'
-      path: '/community'
-      fullPath: '/community'
-      preLoaderRoute: typeof CommunityRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/coaches': {
-      id: '/coaches'
-      path: '/coaches'
-      fullPath: '/coaches'
-      preLoaderRoute: typeof CoachesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/checkin': {
-      id: '/checkin'
-      path: '/checkin'
-      fullPath: '/checkin'
-      preLoaderRoute: typeof CheckinRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/challenges': {
-      id: '/challenges'
-      path: '/challenges'
-      fullPath: '/challenges'
-      preLoaderRoute: typeof ChallengesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/calendar': {
@@ -1464,13 +1420,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AssistantRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/articles': {
-      id: '/articles'
-      path: '/articles'
-      fullPath: '/articles'
-      preLoaderRoute: typeof ArticlesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/404': {
       id: '/404'
       path: '/404'
@@ -1485,159 +1434,257 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/workouts/': {
+      id: '/workouts/'
+      path: '/workouts'
+      fullPath: '/workouts/'
+      preLoaderRoute: typeof WorkoutsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports/': {
+      id: '/reports/'
+      path: '/reports'
+      fullPath: '/reports/'
+      preLoaderRoute: typeof ReportsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile/': {
+      id: '/profile/'
+      path: '/profile'
+      fullPath: '/profile/'
+      preLoaderRoute: typeof ProfileIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nutrition/': {
+      id: '/nutrition/'
+      path: '/nutrition'
+      fullPath: '/nutrition/'
+      preLoaderRoute: typeof NutritionIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notifications/': {
+      id: '/notifications/'
+      path: '/notifications'
+      fullPath: '/notifications/'
+      preLoaderRoute: typeof NotificationsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mindfulness/': {
+      id: '/mindfulness/'
+      path: '/mindfulness'
+      fullPath: '/mindfulness/'
+      preLoaderRoute: typeof MindfulnessIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/journey/': {
+      id: '/journey/'
+      path: '/journey'
+      fullPath: '/journey/'
+      preLoaderRoute: typeof JourneyIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/habits/': {
+      id: '/habits/'
+      path: '/habits'
+      fullPath: '/habits/'
+      preLoaderRoute: typeof HabitsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cycle/': {
+      id: '/cycle/'
+      path: '/cycle'
+      fullPath: '/cycle/'
+      preLoaderRoute: typeof CycleIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/community/': {
+      id: '/community/'
+      path: '/community'
+      fullPath: '/community/'
+      preLoaderRoute: typeof CommunityIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/coaches/': {
+      id: '/coaches/'
+      path: '/coaches'
+      fullPath: '/coaches/'
+      preLoaderRoute: typeof CoachesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkin/': {
+      id: '/checkin/'
+      path: '/checkin'
+      fullPath: '/checkin/'
+      preLoaderRoute: typeof CheckinIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/challenges/': {
+      id: '/challenges/'
+      path: '/challenges'
+      fullPath: '/challenges/'
+      preLoaderRoute: typeof ChallengesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/articles/': {
+      id: '/articles/'
+      path: '/articles'
+      fullPath: '/articles/'
+      preLoaderRoute: typeof ArticlesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/workouts/summary': {
       id: '/workouts/summary'
-      path: '/summary'
+      path: '/workouts/summary'
       fullPath: '/workouts/summary'
       preLoaderRoute: typeof WorkoutsSummaryRouteImport
-      parentRoute: typeof WorkoutsRoute
+      parentRoute: typeof rootRouteImport
     }
     '/workouts/programs': {
       id: '/workouts/programs'
-      path: '/programs'
+      path: '/workouts/programs'
       fullPath: '/workouts/programs'
       preLoaderRoute: typeof WorkoutsProgramsRouteImport
-      parentRoute: typeof WorkoutsRoute
+      parentRoute: typeof rootRouteImport
     }
     '/workouts/live': {
       id: '/workouts/live'
-      path: '/live'
+      path: '/workouts/live'
       fullPath: '/workouts/live'
       preLoaderRoute: typeof WorkoutsLiveRouteImport
-      parentRoute: typeof WorkoutsRoute
+      parentRoute: typeof rootRouteImport
     }
     '/workouts/$id': {
       id: '/workouts/$id'
-      path: '/$id'
+      path: '/workouts/$id'
       fullPath: '/workouts/$id'
       preLoaderRoute: typeof WorkoutsIdRouteImport
-      parentRoute: typeof WorkoutsRoute
+      parentRoute: typeof rootRouteImport
     }
     '/reports/$id': {
       id: '/reports/$id'
-      path: '/$id'
+      path: '/reports/$id'
       fullPath: '/reports/$id'
       preLoaderRoute: typeof ReportsIdRouteImport
-      parentRoute: typeof ReportsRoute
+      parentRoute: typeof rootRouteImport
     }
     '/profile/theme': {
       id: '/profile/theme'
-      path: '/theme'
+      path: '/profile/theme'
       fullPath: '/profile/theme'
       preLoaderRoute: typeof ProfileThemeRouteImport
-      parentRoute: typeof ProfileRoute
+      parentRoute: typeof rootRouteImport
     }
     '/profile/terms': {
       id: '/profile/terms'
-      path: '/terms'
+      path: '/profile/terms'
       fullPath: '/profile/terms'
       preLoaderRoute: typeof ProfileTermsRouteImport
-      parentRoute: typeof ProfileRoute
+      parentRoute: typeof rootRouteImport
     }
     '/profile/subscription': {
       id: '/profile/subscription'
-      path: '/subscription'
+      path: '/profile/subscription'
       fullPath: '/profile/subscription'
       preLoaderRoute: typeof ProfileSubscriptionRouteImport
-      parentRoute: typeof ProfileRoute
+      parentRoute: typeof rootRouteImport
     }
     '/profile/settings': {
       id: '/profile/settings'
-      path: '/settings'
+      path: '/profile/settings'
       fullPath: '/profile/settings'
       preLoaderRoute: typeof ProfileSettingsRouteImport
-      parentRoute: typeof ProfileRoute
+      parentRoute: typeof rootRouteImport
     }
     '/profile/referral': {
       id: '/profile/referral'
-      path: '/referral'
+      path: '/profile/referral'
       fullPath: '/profile/referral'
       preLoaderRoute: typeof ProfileReferralRouteImport
-      parentRoute: typeof ProfileRoute
+      parentRoute: typeof rootRouteImport
     }
     '/profile/privacy': {
       id: '/profile/privacy'
-      path: '/privacy'
+      path: '/profile/privacy'
       fullPath: '/profile/privacy'
       preLoaderRoute: typeof ProfilePrivacyRouteImport
-      parentRoute: typeof ProfileRoute
+      parentRoute: typeof rootRouteImport
     }
     '/profile/payment': {
       id: '/profile/payment'
-      path: '/payment'
+      path: '/profile/payment'
       fullPath: '/profile/payment'
       preLoaderRoute: typeof ProfilePaymentRouteImport
-      parentRoute: typeof ProfileRoute
+      parentRoute: typeof rootRouteImport
     }
     '/profile/notifications-prefs': {
       id: '/profile/notifications-prefs'
-      path: '/notifications-prefs'
+      path: '/profile/notifications-prefs'
       fullPath: '/profile/notifications-prefs'
       preLoaderRoute: typeof ProfileNotificationsPrefsRouteImport
-      parentRoute: typeof ProfileRoute
+      parentRoute: typeof rootRouteImport
     }
     '/profile/language': {
       id: '/profile/language'
-      path: '/language'
+      path: '/profile/language'
       fullPath: '/profile/language'
       preLoaderRoute: typeof ProfileLanguageRouteImport
-      parentRoute: typeof ProfileRoute
+      parentRoute: typeof rootRouteImport
     }
     '/profile/help': {
       id: '/profile/help'
-      path: '/help'
+      path: '/profile/help'
       fullPath: '/profile/help'
       preLoaderRoute: typeof ProfileHelpRouteImport
-      parentRoute: typeof ProfileRoute
+      parentRoute: typeof rootRouteImport
     }
     '/profile/feedback': {
       id: '/profile/feedback'
-      path: '/feedback'
+      path: '/profile/feedback'
       fullPath: '/profile/feedback'
       preLoaderRoute: typeof ProfileFeedbackRouteImport
-      parentRoute: typeof ProfileRoute
+      parentRoute: typeof rootRouteImport
     }
     '/profile/export': {
       id: '/profile/export'
-      path: '/export'
+      path: '/profile/export'
       fullPath: '/profile/export'
       preLoaderRoute: typeof ProfileExportRouteImport
-      parentRoute: typeof ProfileRoute
+      parentRoute: typeof rootRouteImport
     }
     '/profile/edit': {
       id: '/profile/edit'
-      path: '/edit'
+      path: '/profile/edit'
       fullPath: '/profile/edit'
       preLoaderRoute: typeof ProfileEditRouteImport
-      parentRoute: typeof ProfileRoute
+      parentRoute: typeof rootRouteImport
     }
     '/profile/devices': {
       id: '/profile/devices'
-      path: '/devices'
+      path: '/profile/devices'
       fullPath: '/profile/devices'
       preLoaderRoute: typeof ProfileDevicesRouteImport
-      parentRoute: typeof ProfileRoute
+      parentRoute: typeof rootRouteImport
     }
     '/profile/delete': {
       id: '/profile/delete'
-      path: '/delete'
+      path: '/profile/delete'
       fullPath: '/profile/delete'
       preLoaderRoute: typeof ProfileDeleteRouteImport
-      parentRoute: typeof ProfileRoute
+      parentRoute: typeof rootRouteImport
     }
     '/profile/backup': {
       id: '/profile/backup'
-      path: '/backup'
+      path: '/profile/backup'
       fullPath: '/profile/backup'
       preLoaderRoute: typeof ProfileBackupRouteImport
-      parentRoute: typeof ProfileRoute
+      parentRoute: typeof rootRouteImport
     }
     '/profile/about': {
       id: '/profile/about'
-      path: '/about'
+      path: '/profile/about'
       fullPath: '/profile/about'
       preLoaderRoute: typeof ProfileAboutRouteImport
-      parentRoute: typeof ProfileRoute
+      parentRoute: typeof rootRouteImport
     }
     '/onboarding/welcome': {
       id: '/onboarding/welcome'
@@ -1753,171 +1800,171 @@ declare module '@tanstack/react-router' {
     }
     '/nutrition/shopping': {
       id: '/nutrition/shopping'
-      path: '/shopping'
+      path: '/nutrition/shopping'
       fullPath: '/nutrition/shopping'
       preLoaderRoute: typeof NutritionShoppingRouteImport
-      parentRoute: typeof NutritionRoute
+      parentRoute: typeof rootRouteImport
     }
     '/nutrition/recipes': {
       id: '/nutrition/recipes'
-      path: '/recipes'
+      path: '/nutrition/recipes'
       fullPath: '/nutrition/recipes'
       preLoaderRoute: typeof NutritionRecipesRouteImport
-      parentRoute: typeof NutritionRoute
+      parentRoute: typeof rootRouteImport
     }
     '/nutrition/log': {
       id: '/nutrition/log'
-      path: '/log'
+      path: '/nutrition/log'
       fullPath: '/nutrition/log'
       preLoaderRoute: typeof NutritionLogRouteImport
-      parentRoute: typeof NutritionRoute
+      parentRoute: typeof rootRouteImport
     }
     '/nutrition/$id': {
       id: '/nutrition/$id'
-      path: '/$id'
+      path: '/nutrition/$id'
       fullPath: '/nutrition/$id'
       preLoaderRoute: typeof NutritionIdRouteImport
-      parentRoute: typeof NutritionRoute
+      parentRoute: typeof rootRouteImport
     }
     '/notifications/settings': {
       id: '/notifications/settings'
-      path: '/settings'
+      path: '/notifications/settings'
       fullPath: '/notifications/settings'
       preLoaderRoute: typeof NotificationsSettingsRouteImport
-      parentRoute: typeof NotificationsRoute
+      parentRoute: typeof rootRouteImport
     }
     '/mindfulness/$id': {
       id: '/mindfulness/$id'
-      path: '/$id'
+      path: '/mindfulness/$id'
       fullPath: '/mindfulness/$id'
       preLoaderRoute: typeof MindfulnessIdRouteImport
-      parentRoute: typeof MindfulnessRoute
+      parentRoute: typeof rootRouteImport
     }
     '/journey/symptoms': {
       id: '/journey/symptoms'
-      path: '/symptoms'
+      path: '/journey/symptoms'
       fullPath: '/journey/symptoms'
       preLoaderRoute: typeof JourneySymptomsRouteImport
-      parentRoute: typeof JourneyRoute
+      parentRoute: typeof rootRouteImport
     }
     '/journey/mood': {
       id: '/journey/mood'
-      path: '/mood'
+      path: '/journey/mood'
       fullPath: '/journey/mood'
       preLoaderRoute: typeof JourneyMoodRouteImport
-      parentRoute: typeof JourneyRoute
+      parentRoute: typeof rootRouteImport
     }
     '/journey/measurements': {
       id: '/journey/measurements'
-      path: '/measurements'
+      path: '/journey/measurements'
       fullPath: '/journey/measurements'
       preLoaderRoute: typeof JourneyMeasurementsRouteImport
-      parentRoute: typeof JourneyRoute
+      parentRoute: typeof rootRouteImport
     }
     '/journey/insights': {
       id: '/journey/insights'
-      path: '/insights'
+      path: '/journey/insights'
       fullPath: '/journey/insights'
       preLoaderRoute: typeof JourneyInsightsRouteImport
-      parentRoute: typeof JourneyRoute
+      parentRoute: typeof rootRouteImport
     }
     '/journey/goals': {
       id: '/journey/goals'
-      path: '/goals'
+      path: '/journey/goals'
       fullPath: '/journey/goals'
       preLoaderRoute: typeof JourneyGoalsRouteImport
-      parentRoute: typeof JourneyRoute
+      parentRoute: typeof rootRouteImport
     }
     '/journey/calendar': {
       id: '/journey/calendar'
-      path: '/calendar'
+      path: '/journey/calendar'
       fullPath: '/journey/calendar'
       preLoaderRoute: typeof JourneyCalendarRouteImport
-      parentRoute: typeof JourneyRoute
+      parentRoute: typeof rootRouteImport
     }
     '/journey/awards': {
       id: '/journey/awards'
-      path: '/awards'
+      path: '/journey/awards'
       fullPath: '/journey/awards'
       preLoaderRoute: typeof JourneyAwardsRouteImport
-      parentRoute: typeof JourneyRoute
+      parentRoute: typeof rootRouteImport
     }
     '/habits/new': {
       id: '/habits/new'
-      path: '/new'
+      path: '/habits/new'
       fullPath: '/habits/new'
       preLoaderRoute: typeof HabitsNewRouteImport
-      parentRoute: typeof HabitsRoute
+      parentRoute: typeof rootRouteImport
     }
     '/cycle/log': {
       id: '/cycle/log'
-      path: '/log'
+      path: '/cycle/log'
       fullPath: '/cycle/log'
       preLoaderRoute: typeof CycleLogRouteImport
-      parentRoute: typeof CycleRoute
+      parentRoute: typeof rootRouteImport
     }
     '/community/invite': {
       id: '/community/invite'
-      path: '/invite'
+      path: '/community/invite'
       fullPath: '/community/invite'
       preLoaderRoute: typeof CommunityInviteRouteImport
-      parentRoute: typeof CommunityRoute
+      parentRoute: typeof rootRouteImport
     }
     '/community/groups': {
       id: '/community/groups'
-      path: '/groups'
+      path: '/community/groups'
       fullPath: '/community/groups'
       preLoaderRoute: typeof CommunityGroupsRouteImport
-      parentRoute: typeof CommunityRoute
+      parentRoute: typeof rootRouteImport
     }
     '/community/events': {
       id: '/community/events'
-      path: '/events'
+      path: '/community/events'
       fullPath: '/community/events'
       preLoaderRoute: typeof CommunityEventsRouteImport
-      parentRoute: typeof CommunityRoute
+      parentRoute: typeof rootRouteImport
     }
     '/community/$id': {
       id: '/community/$id'
-      path: '/$id'
+      path: '/community/$id'
       fullPath: '/community/$id'
       preLoaderRoute: typeof CommunityIdRouteImport
-      parentRoute: typeof CommunityRoute
+      parentRoute: typeof rootRouteImport
     }
     '/coaches/$id': {
       id: '/coaches/$id'
-      path: '/$id'
+      path: '/coaches/$id'
       fullPath: '/coaches/$id'
       preLoaderRoute: typeof CoachesIdRouteImport
-      parentRoute: typeof CoachesRoute
+      parentRoute: typeof rootRouteImport
     }
     '/checkin/water': {
       id: '/checkin/water'
-      path: '/water'
+      path: '/checkin/water'
       fullPath: '/checkin/water'
       preLoaderRoute: typeof CheckinWaterRouteImport
-      parentRoute: typeof CheckinRoute
+      parentRoute: typeof rootRouteImport
     }
     '/checkin/steps': {
       id: '/checkin/steps'
-      path: '/steps'
+      path: '/checkin/steps'
       fullPath: '/checkin/steps'
       preLoaderRoute: typeof CheckinStepsRouteImport
-      parentRoute: typeof CheckinRoute
+      parentRoute: typeof rootRouteImport
     }
     '/checkin/sleep': {
       id: '/checkin/sleep'
-      path: '/sleep'
+      path: '/checkin/sleep'
       fullPath: '/checkin/sleep'
       preLoaderRoute: typeof CheckinSleepRouteImport
-      parentRoute: typeof CheckinRoute
+      parentRoute: typeof rootRouteImport
     }
     '/challenges/$id': {
       id: '/challenges/$id'
-      path: '/$id'
+      path: '/challenges/$id'
       fullPath: '/challenges/$id'
       preLoaderRoute: typeof ChallengesIdRouteImport
-      parentRoute: typeof ChallengesRoute
+      parentRoute: typeof rootRouteImport
     }
     '/auth/otp': {
       id: '/auth/otp'
@@ -1949,10 +1996,10 @@ declare module '@tanstack/react-router' {
     }
     '/articles/$id': {
       id: '/articles/$id'
-      path: '/$id'
+      path: '/articles/$id'
       fullPath: '/articles/$id'
       preLoaderRoute: typeof ArticlesIdRouteImport
-      parentRoute: typeof ArticlesRoute
+      parentRoute: typeof rootRouteImport
     }
     '/workouts/programs/$id': {
       id: '/workouts/programs/$id'
@@ -1985,45 +2032,6 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface ArticlesRouteChildren {
-  ArticlesIdRoute: typeof ArticlesIdRoute
-}
-
-const ArticlesRouteChildren: ArticlesRouteChildren = {
-  ArticlesIdRoute: ArticlesIdRoute,
-}
-
-const ArticlesRouteWithChildren = ArticlesRoute._addFileChildren(
-  ArticlesRouteChildren,
-)
-
-interface ChallengesRouteChildren {
-  ChallengesIdRoute: typeof ChallengesIdRoute
-}
-
-const ChallengesRouteChildren: ChallengesRouteChildren = {
-  ChallengesIdRoute: ChallengesIdRoute,
-}
-
-const ChallengesRouteWithChildren = ChallengesRoute._addFileChildren(
-  ChallengesRouteChildren,
-)
-
-interface CheckinRouteChildren {
-  CheckinSleepRoute: typeof CheckinSleepRoute
-  CheckinStepsRoute: typeof CheckinStepsRoute
-  CheckinWaterRoute: typeof CheckinWaterRoute
-}
-
-const CheckinRouteChildren: CheckinRouteChildren = {
-  CheckinSleepRoute: CheckinSleepRoute,
-  CheckinStepsRoute: CheckinStepsRoute,
-  CheckinWaterRoute: CheckinWaterRoute,
-}
-
-const CheckinRouteWithChildren =
-  CheckinRoute._addFileChildren(CheckinRouteChildren)
-
 interface CoachesIdRouteChildren {
   CoachesIdBookRoute: typeof CoachesIdBookRoute
   CoachesIdChatRoute: typeof CoachesIdChatRoute
@@ -2037,175 +2045,6 @@ const CoachesIdRouteChildren: CoachesIdRouteChildren = {
 const CoachesIdRouteWithChildren = CoachesIdRoute._addFileChildren(
   CoachesIdRouteChildren,
 )
-
-interface CoachesRouteChildren {
-  CoachesIdRoute: typeof CoachesIdRouteWithChildren
-}
-
-const CoachesRouteChildren: CoachesRouteChildren = {
-  CoachesIdRoute: CoachesIdRouteWithChildren,
-}
-
-const CoachesRouteWithChildren =
-  CoachesRoute._addFileChildren(CoachesRouteChildren)
-
-interface CommunityRouteChildren {
-  CommunityIdRoute: typeof CommunityIdRoute
-  CommunityEventsRoute: typeof CommunityEventsRoute
-  CommunityGroupsRoute: typeof CommunityGroupsRoute
-  CommunityInviteRoute: typeof CommunityInviteRoute
-}
-
-const CommunityRouteChildren: CommunityRouteChildren = {
-  CommunityIdRoute: CommunityIdRoute,
-  CommunityEventsRoute: CommunityEventsRoute,
-  CommunityGroupsRoute: CommunityGroupsRoute,
-  CommunityInviteRoute: CommunityInviteRoute,
-}
-
-const CommunityRouteWithChildren = CommunityRoute._addFileChildren(
-  CommunityRouteChildren,
-)
-
-interface CycleRouteChildren {
-  CycleLogRoute: typeof CycleLogRoute
-}
-
-const CycleRouteChildren: CycleRouteChildren = {
-  CycleLogRoute: CycleLogRoute,
-}
-
-const CycleRouteWithChildren = CycleRoute._addFileChildren(CycleRouteChildren)
-
-interface HabitsRouteChildren {
-  HabitsNewRoute: typeof HabitsNewRoute
-}
-
-const HabitsRouteChildren: HabitsRouteChildren = {
-  HabitsNewRoute: HabitsNewRoute,
-}
-
-const HabitsRouteWithChildren =
-  HabitsRoute._addFileChildren(HabitsRouteChildren)
-
-interface JourneyRouteChildren {
-  JourneyAwardsRoute: typeof JourneyAwardsRoute
-  JourneyCalendarRoute: typeof JourneyCalendarRoute
-  JourneyGoalsRoute: typeof JourneyGoalsRoute
-  JourneyInsightsRoute: typeof JourneyInsightsRoute
-  JourneyMeasurementsRoute: typeof JourneyMeasurementsRoute
-  JourneyMoodRoute: typeof JourneyMoodRoute
-  JourneySymptomsRoute: typeof JourneySymptomsRoute
-}
-
-const JourneyRouteChildren: JourneyRouteChildren = {
-  JourneyAwardsRoute: JourneyAwardsRoute,
-  JourneyCalendarRoute: JourneyCalendarRoute,
-  JourneyGoalsRoute: JourneyGoalsRoute,
-  JourneyInsightsRoute: JourneyInsightsRoute,
-  JourneyMeasurementsRoute: JourneyMeasurementsRoute,
-  JourneyMoodRoute: JourneyMoodRoute,
-  JourneySymptomsRoute: JourneySymptomsRoute,
-}
-
-const JourneyRouteWithChildren =
-  JourneyRoute._addFileChildren(JourneyRouteChildren)
-
-interface MindfulnessRouteChildren {
-  MindfulnessIdRoute: typeof MindfulnessIdRoute
-}
-
-const MindfulnessRouteChildren: MindfulnessRouteChildren = {
-  MindfulnessIdRoute: MindfulnessIdRoute,
-}
-
-const MindfulnessRouteWithChildren = MindfulnessRoute._addFileChildren(
-  MindfulnessRouteChildren,
-)
-
-interface NotificationsRouteChildren {
-  NotificationsSettingsRoute: typeof NotificationsSettingsRoute
-}
-
-const NotificationsRouteChildren: NotificationsRouteChildren = {
-  NotificationsSettingsRoute: NotificationsSettingsRoute,
-}
-
-const NotificationsRouteWithChildren = NotificationsRoute._addFileChildren(
-  NotificationsRouteChildren,
-)
-
-interface NutritionRouteChildren {
-  NutritionIdRoute: typeof NutritionIdRoute
-  NutritionLogRoute: typeof NutritionLogRoute
-  NutritionRecipesRoute: typeof NutritionRecipesRoute
-  NutritionShoppingRoute: typeof NutritionShoppingRoute
-}
-
-const NutritionRouteChildren: NutritionRouteChildren = {
-  NutritionIdRoute: NutritionIdRoute,
-  NutritionLogRoute: NutritionLogRoute,
-  NutritionRecipesRoute: NutritionRecipesRoute,
-  NutritionShoppingRoute: NutritionShoppingRoute,
-}
-
-const NutritionRouteWithChildren = NutritionRoute._addFileChildren(
-  NutritionRouteChildren,
-)
-
-interface ProfileRouteChildren {
-  ProfileAboutRoute: typeof ProfileAboutRoute
-  ProfileBackupRoute: typeof ProfileBackupRoute
-  ProfileDeleteRoute: typeof ProfileDeleteRoute
-  ProfileDevicesRoute: typeof ProfileDevicesRoute
-  ProfileEditRoute: typeof ProfileEditRoute
-  ProfileExportRoute: typeof ProfileExportRoute
-  ProfileFeedbackRoute: typeof ProfileFeedbackRoute
-  ProfileHelpRoute: typeof ProfileHelpRoute
-  ProfileLanguageRoute: typeof ProfileLanguageRoute
-  ProfileNotificationsPrefsRoute: typeof ProfileNotificationsPrefsRoute
-  ProfilePaymentRoute: typeof ProfilePaymentRoute
-  ProfilePrivacyRoute: typeof ProfilePrivacyRoute
-  ProfileReferralRoute: typeof ProfileReferralRoute
-  ProfileSettingsRoute: typeof ProfileSettingsRoute
-  ProfileSubscriptionRoute: typeof ProfileSubscriptionRoute
-  ProfileTermsRoute: typeof ProfileTermsRoute
-  ProfileThemeRoute: typeof ProfileThemeRoute
-}
-
-const ProfileRouteChildren: ProfileRouteChildren = {
-  ProfileAboutRoute: ProfileAboutRoute,
-  ProfileBackupRoute: ProfileBackupRoute,
-  ProfileDeleteRoute: ProfileDeleteRoute,
-  ProfileDevicesRoute: ProfileDevicesRoute,
-  ProfileEditRoute: ProfileEditRoute,
-  ProfileExportRoute: ProfileExportRoute,
-  ProfileFeedbackRoute: ProfileFeedbackRoute,
-  ProfileHelpRoute: ProfileHelpRoute,
-  ProfileLanguageRoute: ProfileLanguageRoute,
-  ProfileNotificationsPrefsRoute: ProfileNotificationsPrefsRoute,
-  ProfilePaymentRoute: ProfilePaymentRoute,
-  ProfilePrivacyRoute: ProfilePrivacyRoute,
-  ProfileReferralRoute: ProfileReferralRoute,
-  ProfileSettingsRoute: ProfileSettingsRoute,
-  ProfileSubscriptionRoute: ProfileSubscriptionRoute,
-  ProfileTermsRoute: ProfileTermsRoute,
-  ProfileThemeRoute: ProfileThemeRoute,
-}
-
-const ProfileRouteWithChildren =
-  ProfileRoute._addFileChildren(ProfileRouteChildren)
-
-interface ReportsRouteChildren {
-  ReportsIdRoute: typeof ReportsIdRoute
-}
-
-const ReportsRouteChildren: ReportsRouteChildren = {
-  ReportsIdRoute: ReportsIdRoute,
-}
-
-const ReportsRouteWithChildren =
-  ReportsRoute._addFileChildren(ReportsRouteChildren)
 
 interface WorkoutsIdRouteChildren {
   WorkoutsIdPlayRoute: typeof WorkoutsIdPlayRoute
@@ -2230,58 +2069,51 @@ const WorkoutsProgramsRouteChildren: WorkoutsProgramsRouteChildren = {
 const WorkoutsProgramsRouteWithChildren =
   WorkoutsProgramsRoute._addFileChildren(WorkoutsProgramsRouteChildren)
 
-interface WorkoutsRouteChildren {
-  WorkoutsIdRoute: typeof WorkoutsIdRouteWithChildren
-  WorkoutsLiveRoute: typeof WorkoutsLiveRoute
-  WorkoutsProgramsRoute: typeof WorkoutsProgramsRouteWithChildren
-  WorkoutsSummaryRoute: typeof WorkoutsSummaryRoute
-}
-
-const WorkoutsRouteChildren: WorkoutsRouteChildren = {
-  WorkoutsIdRoute: WorkoutsIdRouteWithChildren,
-  WorkoutsLiveRoute: WorkoutsLiveRoute,
-  WorkoutsProgramsRoute: WorkoutsProgramsRouteWithChildren,
-  WorkoutsSummaryRoute: WorkoutsSummaryRoute,
-}
-
-const WorkoutsRouteWithChildren = WorkoutsRoute._addFileChildren(
-  WorkoutsRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   R404Route: R404Route,
-  ArticlesRoute: ArticlesRouteWithChildren,
   AssistantRoute: AssistantRoute,
   BuddyRoute: BuddyRoute,
   CalendarRoute: CalendarRoute,
-  ChallengesRoute: ChallengesRouteWithChildren,
-  CheckinRoute: CheckinRouteWithChildren,
-  CoachesRoute: CoachesRouteWithChildren,
-  CommunityRoute: CommunityRouteWithChildren,
-  CycleRoute: CycleRouteWithChildren,
   EmergencyRoute: EmergencyRoute,
-  HabitsRoute: HabitsRouteWithChildren,
   HomeRoute: HomeRoute,
-  JourneyRoute: JourneyRouteWithChildren,
-  MindfulnessRoute: MindfulnessRouteWithChildren,
-  NotificationsRoute: NotificationsRouteWithChildren,
-  NutritionRoute: NutritionRouteWithChildren,
   PaywallRoute: PaywallRoute,
   PregnancyRoute: PregnancyRoute,
-  ProfileRoute: ProfileRouteWithChildren,
-  ReportsRoute: ReportsRouteWithChildren,
   ScreensRoute: ScreensRoute,
   SearchRoute: SearchRoute,
   SupplementsRoute: SupplementsRoute,
   SystemRoute: SystemRoute,
   TimerRoute: TimerRoute,
   WidgetsRoute: WidgetsRoute,
-  WorkoutsRoute: WorkoutsRouteWithChildren,
+  ArticlesIdRoute: ArticlesIdRoute,
   AuthForgotRoute: AuthForgotRoute,
   AuthLoginRoute: AuthLoginRoute,
   AuthNewPasswordRoute: AuthNewPasswordRoute,
   AuthOtpRoute: AuthOtpRoute,
+  ChallengesIdRoute: ChallengesIdRoute,
+  CheckinSleepRoute: CheckinSleepRoute,
+  CheckinStepsRoute: CheckinStepsRoute,
+  CheckinWaterRoute: CheckinWaterRoute,
+  CoachesIdRoute: CoachesIdRouteWithChildren,
+  CommunityIdRoute: CommunityIdRoute,
+  CommunityEventsRoute: CommunityEventsRoute,
+  CommunityGroupsRoute: CommunityGroupsRoute,
+  CommunityInviteRoute: CommunityInviteRoute,
+  CycleLogRoute: CycleLogRoute,
+  HabitsNewRoute: HabitsNewRoute,
+  JourneyAwardsRoute: JourneyAwardsRoute,
+  JourneyCalendarRoute: JourneyCalendarRoute,
+  JourneyGoalsRoute: JourneyGoalsRoute,
+  JourneyInsightsRoute: JourneyInsightsRoute,
+  JourneyMeasurementsRoute: JourneyMeasurementsRoute,
+  JourneyMoodRoute: JourneyMoodRoute,
+  JourneySymptomsRoute: JourneySymptomsRoute,
+  MindfulnessIdRoute: MindfulnessIdRoute,
+  NotificationsSettingsRoute: NotificationsSettingsRoute,
+  NutritionIdRoute: NutritionIdRoute,
+  NutritionLogRoute: NutritionLogRoute,
+  NutritionRecipesRoute: NutritionRecipesRoute,
+  NutritionShoppingRoute: NutritionShoppingRoute,
   OnboardingActivityRoute: OnboardingActivityRoute,
   OnboardingAuthRoute: OnboardingAuthRoute,
   OnboardingCompleteRoute: OnboardingCompleteRoute,
@@ -2298,6 +2130,42 @@ const rootRouteChildren: RootRouteChildren = {
   OnboardingTrialRoute: OnboardingTrialRoute,
   OnboardingTypesRoute: OnboardingTypesRoute,
   OnboardingWelcomeRoute: OnboardingWelcomeRoute,
+  ProfileAboutRoute: ProfileAboutRoute,
+  ProfileBackupRoute: ProfileBackupRoute,
+  ProfileDeleteRoute: ProfileDeleteRoute,
+  ProfileDevicesRoute: ProfileDevicesRoute,
+  ProfileEditRoute: ProfileEditRoute,
+  ProfileExportRoute: ProfileExportRoute,
+  ProfileFeedbackRoute: ProfileFeedbackRoute,
+  ProfileHelpRoute: ProfileHelpRoute,
+  ProfileLanguageRoute: ProfileLanguageRoute,
+  ProfileNotificationsPrefsRoute: ProfileNotificationsPrefsRoute,
+  ProfilePaymentRoute: ProfilePaymentRoute,
+  ProfilePrivacyRoute: ProfilePrivacyRoute,
+  ProfileReferralRoute: ProfileReferralRoute,
+  ProfileSettingsRoute: ProfileSettingsRoute,
+  ProfileSubscriptionRoute: ProfileSubscriptionRoute,
+  ProfileTermsRoute: ProfileTermsRoute,
+  ProfileThemeRoute: ProfileThemeRoute,
+  ReportsIdRoute: ReportsIdRoute,
+  WorkoutsIdRoute: WorkoutsIdRouteWithChildren,
+  WorkoutsLiveRoute: WorkoutsLiveRoute,
+  WorkoutsProgramsRoute: WorkoutsProgramsRouteWithChildren,
+  WorkoutsSummaryRoute: WorkoutsSummaryRoute,
+  ArticlesIndexRoute: ArticlesIndexRoute,
+  ChallengesIndexRoute: ChallengesIndexRoute,
+  CheckinIndexRoute: CheckinIndexRoute,
+  CoachesIndexRoute: CoachesIndexRoute,
+  CommunityIndexRoute: CommunityIndexRoute,
+  CycleIndexRoute: CycleIndexRoute,
+  HabitsIndexRoute: HabitsIndexRoute,
+  JourneyIndexRoute: JourneyIndexRoute,
+  MindfulnessIndexRoute: MindfulnessIndexRoute,
+  NotificationsIndexRoute: NotificationsIndexRoute,
+  NutritionIndexRoute: NutritionIndexRoute,
+  ProfileIndexRoute: ProfileIndexRoute,
+  ReportsIndexRoute: ReportsIndexRoute,
+  WorkoutsIndexRoute: WorkoutsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

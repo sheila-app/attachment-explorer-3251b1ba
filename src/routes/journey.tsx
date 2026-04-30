@@ -94,6 +94,23 @@ function JourneyPage() {
           </Link>
         </div>
 
+        <div className="grid grid-cols-2 gap-2.5 mt-3">
+          <Link to="/journey/symptoms" className="glass rounded-2xl p-3.5 flex items-center gap-2.5">
+            <span className="relative z-10 text-2xl">💢</span>
+            <div className="relative z-10">
+              <div className="text-[12px] font-medium">الأعراض</div>
+              <div className="text-[10px] text-foreground/55">سجّلي اليوم</div>
+            </div>
+          </Link>
+          <Link to="/journey/mood" className="glass rounded-2xl p-3.5 flex items-center gap-2.5">
+            <span className="relative z-10 text-2xl">😊</span>
+            <div className="relative z-10">
+              <div className="text-[12px] font-medium">المزاج</div>
+              <div className="text-[10px] text-foreground/55">سجّلي اليوم</div>
+            </div>
+          </Link>
+        </div>
+
         <Link to="/journey/insights" className="glass-strong rounded-2xl p-4 mt-3 flex items-center gap-3">
           <div className="relative z-10 w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: "var(--gradient-primary)" }}>
             <Sparkles size={16} className="text-white" />

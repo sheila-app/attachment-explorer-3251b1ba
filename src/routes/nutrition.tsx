@@ -57,6 +57,11 @@ function NutritionPage() {
           </button>
         </div>
 
+        <Link to="/nutrition/recipes" className="glass-strong rounded-2xl p-3.5 flex items-center justify-between mt-3">
+          <span className="relative z-10 text-[13px] font-medium">📖 مكتبة الوصفات</span>
+          <span className="relative z-10 text-[11px] text-primary">تصفّحي ←</span>
+        </Link>
+
         {/* Meals */}
         <div className="flex items-center justify-between mt-6 mb-2.5">
           <h2 className="text-sm font-medium">وجبات اليوم</h2>

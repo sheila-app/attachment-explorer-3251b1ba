@@ -15,6 +15,10 @@ function CommunityPage() {
       }
     >
       <div className="px-5">
+        <Link to="/community/groups" className="glass-strong rounded-2xl p-3.5 flex items-center justify-between mb-3">
+          <span className="relative z-10 text-[13px] font-medium">تصفّحي المجموعات</span>
+          <span className="relative z-10 text-[11px] text-primary">عرض الكل ←</span>
+        </Link>
         <div className="flex gap-2 overflow-x-auto no-scrollbar pb-2 mb-4 -mx-1 px-1">
           {["الكل", "تحدّيات", "صحّة المرأة", "تغذية", "إنجازات"].map((t, i) => (
             <span key={t} className="glass shrink-0 px-3 py-1.5 rounded-full text-[11.5px]"

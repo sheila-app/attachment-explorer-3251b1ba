@@ -120,6 +120,37 @@ function JourneyPage() {
             <div className="text-[11px] text-foreground/60">تحليلاتٌ مخصّصة من شيلا</div>
           </div>
         </Link>
+
+        <div className="grid grid-cols-2 gap-2.5 mt-3">
+          <Link to="/mindfulness" className="glass rounded-2xl p-3.5 flex items-center gap-2.5">
+            <span className="relative z-10 text-2xl">🧘‍♀️</span>
+            <div className="relative z-10">
+              <div className="text-[12px] font-medium">التأمّل</div>
+              <div className="text-[10px] text-foreground/55">جلسات تنفّس</div>
+            </div>
+          </Link>
+          <Link to="/supplements" className="glass rounded-2xl p-3.5 flex items-center gap-2.5">
+            <span className="relative z-10 text-2xl">💊</span>
+            <div className="relative z-10">
+              <div className="text-[12px] font-medium">المكمّلات</div>
+              <div className="text-[10px] text-foreground/55">2/4 اليوم</div>
+            </div>
+          </Link>
+          <Link to="/articles" className="glass rounded-2xl p-3.5 flex items-center gap-2.5">
+            <span className="relative z-10 text-2xl">📚</span>
+            <div className="relative z-10">
+              <div className="text-[12px] font-medium">مقالات</div>
+              <div className="text-[10px] text-foreground/55">جديد كلّ أسبوع</div>
+            </div>
+          </Link>
+          <Link to="/pregnancy" className="glass rounded-2xl p-3.5 flex items-center gap-2.5">
+            <span className="relative z-10 text-2xl">🤰</span>
+            <div className="relative z-10">
+              <div className="text-[12px] font-medium">رحلة الحمل</div>
+              <div className="text-[10px] text-foreground/55">أسبوع 18</div>
+            </div>
+          </Link>
+        </div>
       </div>
     </FeatureShell>
   );

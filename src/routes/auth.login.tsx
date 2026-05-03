@@ -3,7 +3,7 @@ import { useState } from "react";
 import { DeviceFrame } from "@/components/sheila/DeviceFrame";
 import { LiquidBackdrop } from "@/components/sheila/LiquidBackdrop";
 import { PrimaryCTA } from "@/components/sheila/OnboardingShell";
-import { ArrowRight, Eye, EyeOff } from "lucide-react";
+import { ArrowRight, Eye, EyeOff, Globe, Apple } from "lucide-react";
 
 export const Route = createFileRoute("/auth/login")({ component: LoginPage });
 
@@ -12,7 +12,7 @@ function LoginPage() {
   const [remember, setRemember] = useState(true);
   return (
     <DeviceFrame>
-      <div className="relative h-full min-h-screen flex flex-col overflow-hidden">
+      <div className="relative h-full flex flex-col overflow-hidden">
         <LiquidBackdrop variant="calm" />
         <header className="relative z-10 px-5 pt-6 pb-3 flex items-center">
           <Link to="/onboarding/welcome" className="glass w-10 h-10 rounded-full flex items-center justify-center">
@@ -48,6 +48,23 @@ function LoginPage() {
 
         <div className="relative z-10 px-7 pb-9 space-y-3">
           <PrimaryCTA to="/home">تسجيل الدخول</PrimaryCTA>
+
+          <div className="flex items-center gap-3 my-2">
+            <div className="flex-1 h-px bg-border" />
+            <span className="text-xs text-muted-foreground">أو</span>
+            <div className="flex-1 h-px bg-border" />
+          </div>
+
+          <button className="w-full py-3.5 rounded-2xl border border-border bg-white/80 flex items-center justify-center gap-3 text-sm font-semibold text-foreground">
+            <Globe className="w-5 h-5 text-blue-500" strokeWidth={1.75} />
+            تسجيل الدخول بجوجل
+          </button>
+
+          <button className="w-full py-3.5 rounded-2xl border border-border bg-white/80 flex items-center justify-center gap-3 text-sm font-semibold text-foreground">
+            <Apple className="w-5 h-5 text-foreground" strokeWidth={1.75} />
+            تسجيل الدخول بآبل
+          </button>
+
           <p className="text-[12px] text-center text-foreground/65">
             ليس لديكِ حساب؟ <Link to="/onboarding/welcome" className="text-primary font-medium">ابدئي مجّاناً</Link>
           </p>

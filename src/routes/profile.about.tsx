@@ -33,7 +33,7 @@ function Page() {
           ))}
         </div>
 
-        <p className="text-center text-[10.5px] text-foreground/45">صُنع بـ ♡ في الرياض</p>
+        <p className="text-center text-[10.5px] text-foreground/45">صُنع في الرياض</p>
       </div>
     </FeatureShell>
   );

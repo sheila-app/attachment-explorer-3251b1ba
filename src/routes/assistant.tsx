@@ -1,14 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
-import { Send, Sparkles } from "lucide-react";
+import { Send, Sparkles, Zap, Apple, Moon } from "lucide-react";
 
 export const Route = createFileRoute("/assistant")({ component: Page });
 
 interface Msg { id: number; from: "me" | "ai"; text: string; }
 
 const seed: Msg[] = [
-  { id: 1, from: "ai", text: "أهلاً نورة 💜 أنا شيلا، مساعدتكِ الذكيّة. كيف أقدر أساعدكِ اليوم؟" },
+  { id: 1, from: "ai", text: "أهلاً نورة، أنا شيلا، مساعدتكِ الذكيّة. كيف أقدر أساعدكِ اليوم؟" },
 ];
 const suggestions = [
   "اقترحي لي تمرين اليوم",
@@ -41,6 +41,32 @@ function Page() {
             </div>
           </div>
         ))}
+
+        {/* Suggestion cards — shown when chat is fresh */}
+        {msgs.length === 1 && (
+          <div className="flex flex-col gap-2.5 px-4 mt-4">
+            {[
+              { Icon: Zap, title: "اقترحي لي تمريناً اليوم", sub: "بناءً على مرحلتي الحالية", color: "var(--phase-menstrual)" },
+              { Icon: Apple, title: "ما الأطعمة المناسبة الآن؟", sub: "توصيات غذائية للإباضة", color: "var(--phase-follicular)" },
+              { Icon: Moon, title: "كيف أتعامل مع تعب الدورة؟", sub: "نصائح للمرحلة الجسمية", color: "var(--phase-luteal)" },
+            ].map(({ Icon, title, sub, color }) => (
+              <button
+                key={title}
+                onClick={() => send(title)}
+                className="bg-white/90 backdrop-blur-sm rounded-2xl border border-border p-4 flex items-center gap-3 text-start w-full"
+              >
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                  style={{ background: `color-mix(in oklab, ${color} 15%, transparent)` }}>
+                  <Icon size={18} style={{ color }} strokeWidth={1.75} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-semibold text-foreground">{title}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>
+                </div>
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="absolute bottom-0 inset-x-0 z-30 p-4 space-y-2">

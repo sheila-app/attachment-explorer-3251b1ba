@@ -10,7 +10,7 @@ export const Route = createFileRoute("/onboarding/auth")({
 function AuthPage() {
   return (
     <DeviceFrame>
-      <div className="h-full min-h-screen flex flex-col relative overflow-hidden">
+      <div className="h-full flex flex-col relative overflow-hidden">
         <LiquidBackdrop variant="calm" />
 
         <header className="relative z-10 px-5 pt-6 pb-4 flex items-center justify-between">

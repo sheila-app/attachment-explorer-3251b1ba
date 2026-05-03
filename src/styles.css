@@ -96,18 +96,18 @@
   --ring: oklch(0.66 0.16 322);
 
   /* Cycle phase tokens — calibrated for harmony */
-  --phase-menstrual: oklch(0.62 0.17 25);
-  --phase-menstrual-soft: oklch(0.955 0.035 25);
-  --phase-menstrual-deep: oklch(0.45 0.15 25);
-  --phase-follicular: oklch(0.62 0.16 145);
-  --phase-follicular-soft: oklch(0.955 0.035 145);
-  --phase-follicular-deep: oklch(0.45 0.13 145);
-  --phase-ovulation: oklch(0.76 0.14 75);
-  --phase-ovulation-soft: oklch(0.96 0.04 75);
-  --phase-ovulation-deep: oklch(0.55 0.13 70);
-  --phase-luteal: oklch(0.55 0.13 305);
-  --phase-luteal-soft: oklch(0.95 0.03 305);
-  --phase-luteal-deep: oklch(0.4 0.12 305);
+  --phase-menstrual: oklch(0.65 0.18 12);
+  --phase-menstrual-soft: oklch(0.955 0.035 12);
+  --phase-menstrual-deep: oklch(0.45 0.16 12);
+  --phase-follicular: oklch(0.62 0.14 260);
+  --phase-follicular-soft: oklch(0.955 0.025 260);
+  --phase-follicular-deep: oklch(0.42 0.13 260);
+  --phase-ovulation: oklch(0.72 0.16 85);
+  --phase-ovulation-soft: oklch(0.96 0.04 85);
+  --phase-ovulation-deep: oklch(0.52 0.14 85);
+  --phase-luteal: oklch(0.58 0.14 290);
+  --phase-luteal-soft: oklch(0.95 0.03 290);
+  --phase-luteal-deep: oklch(0.4 0.13 290);
 
   /* Crafted shadow system — soft, layered, never harsh */
   --shadow-xs: 0 1px 2px 0 oklch(0.4 0.08 325 / 0.04);

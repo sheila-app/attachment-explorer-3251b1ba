@@ -23,7 +23,7 @@ function Post() {
             <span className="text-[10px] px-2 py-1 rounded-full glass">إنجاز</span>
           </div>
           <p className="relative z-10 mt-3 text-[13px] leading-relaxed text-foreground/85">
-            أكملتُ اليوم أسبوعي الثامن في رحلتي مع شيلا 💜 شعور لا يوصف بالقوّة والثقة. شكراً لكل الفتيات اللواتي شجّعنني!
+            أكملتُ اليوم أسبوعي الثامن في رحلتي مع شيلا، شعور لا يوصف بالقوّة والثقة. شكراً لكل الفتيات اللواتي شجّعنني!
           </p>
           <div className="relative z-10 aspect-video mt-3 rounded-xl overflow-hidden flex items-center justify-center"
             style={{ background: "linear-gradient(135deg, var(--phase-ovulation-soft), var(--primary-soft))" }}>
@@ -41,8 +41,8 @@ function Post() {
 
         <div className="space-y-2">
           {[
-            { n: "ليلى", t: "ما شاء الله! ملهمة 💪", a: "منذ ساعة" },
-            { n: "هند", t: "عشتي 🔥 شدّي حيلكِ", a: "منذ 30 دقيقة" },
+            { n: "ليلى", t: "ما شاء الله! ملهمة", a: "منذ ساعة" },
+            { n: "هند", t: "عشتي، شدّي حيلكِ", a: "منذ 30 دقيقة" },
             { n: "ريم", t: "كم تمرّنين أسبوعياً؟", a: "منذ 12 دقيقة" },
           ].map((c, i) => (
             <div key={i} className="glass rounded-xl p-3 flex gap-3">

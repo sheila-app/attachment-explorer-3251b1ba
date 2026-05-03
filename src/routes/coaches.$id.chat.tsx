@@ -8,7 +8,7 @@ export const Route = createFileRoute("/coaches/$id/chat")({ component: Page });
 type Msg = { id: string; from: "me" | "coach"; text: string; time: string };
 
 const initial: Msg[] = [
-  { id: "1", from: "coach", text: "أهلاً نورة 💜 كيف تشعرين اليوم؟", time: "10:24" },
+  { id: "1", from: "coach", text: "أهلاً نورة، كيف تشعرين اليوم؟", time: "10:24" },
   { id: "2", from: "me", text: "مرحباً، عندي ألم خفيف قبل الدورة وأريد نصائح.", time: "10:25" },
   { id: "3", from: "coach", text: "هذا طبيعي في المرحلة الأصفريّة. جرّبي تقليل الكافيين وزيادة الماغنيسيوم — هل تمارسين أيّ يوغا حالياً؟", time: "10:26" },
 ];

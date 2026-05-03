@@ -1,4 +1,5 @@
 import { Link, useLocation } from "@tanstack/react-router";
+import { motion } from "motion/react";
 import { Home, Calendar, Dumbbell, Apple, User } from "lucide-react";
 
 const items = [
@@ -27,7 +28,8 @@ export function BottomNav() {
                 className="relative flex flex-col items-center justify-center gap-1 text-[10px]"
               >
                 {active && (
-                  <span
+                  <motion.span
+                    layoutId="nav-indicator"
                     className="absolute inset-1.5 rounded-lg"
                     style={{
                       background:
@@ -37,16 +39,22 @@ export function BottomNav() {
                     }}
                   />
                 )}
-                <Icon
-                  size={20}
-                  strokeWidth={active ? 2.25 : 1.75}
-                  className={`relative ${active ? "text-primary" : "text-muted-foreground"}`}
-                />
-                <span
-                  className={`relative ${active ? "text-primary font-medium" : "text-muted-foreground"}`}
+                <motion.div
+                  whileTap={{ scale: 0.82 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  className="flex flex-col items-center gap-1"
                 >
-                  {label}
-                </span>
+                  <Icon
+                    size={20}
+                    strokeWidth={active ? 2.25 : 1.75}
+                    className={`relative ${active ? "text-primary" : "text-muted-foreground"}`}
+                  />
+                  <span
+                    className={`relative ${active ? "text-primary font-medium" : "text-muted-foreground"}`}
+                  >
+                    {label}
+                  </span>
+                </motion.div>
               </Link>
             );
           })}

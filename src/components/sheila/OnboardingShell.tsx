@@ -23,7 +23,7 @@ export function OnboardingShell({ step, total, back, title, subtitle, children, 
   const pct = (step / total) * 100;
   return (
     <DeviceFrame>
-      <div className="relative h-full min-h-screen flex flex-col overflow-hidden">
+      <div className="relative h-full flex flex-col overflow-hidden">
         <LiquidBackdrop variant={variant} />
 
         <header className="relative z-10 px-5 pt-6 pb-3 flex items-center gap-3">
@@ -55,13 +55,16 @@ interface CTAProps {
   onClick?: () => void;
   children: ReactNode;
   variant?: "primary" | "ghost";
+  disabled?: boolean;
 }
 
-export function PrimaryCTA({ to, onClick, children }: CTAProps) {
+export function PrimaryCTA({ to, onClick, children, disabled }: CTAProps) {
   const cls = "group relative flex items-center justify-center gap-2 w-full py-4 rounded-2xl text-primary-foreground font-medium text-sm transition-transform active:scale-[0.98] overflow-hidden";
   const style = {
     background: "var(--gradient-primary)",
     boxShadow: "0 12px 32px -8px oklch(0.46 0.135 328 / 0.5), inset 0 1px 0 0 oklch(1 0 0 / 0.4)",
+    opacity: disabled ? 0.45 : 1,
+    pointerEvents: disabled ? ("none" as const) : ("auto" as const),
   };
   const inner = (
     <>
@@ -73,7 +76,7 @@ export function PrimaryCTA({ to, onClick, children }: CTAProps) {
     </>
   );
   if (to) return <Link to={to as "/"} className={cls} style={style}>{inner}</Link>;
-  return <button onClick={onClick} className={cls} style={style}>{inner}</button>;
+  return <button onClick={onClick} disabled={disabled} className={cls} style={style}>{inner}</button>;
 }
 
 export function GhostCTA({ to, onClick, children }: CTAProps) {

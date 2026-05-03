@@ -2,19 +2,20 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { PrimaryCTA } from "@/components/sheila/OnboardingShell";
+import { Angry, Zap, Moon, Wind, Sparkles, Activity, Heart, Frown, Apple } from "lucide-react";
 
 export const Route = createFileRoute("/journey/symptoms")({ component: Page });
 
 const SYMPTOMS = [
-  { id: "cramp", name: "تشنّج", icon: "💢" },
-  { id: "headache", name: "صداع", icon: "🤕" },
-  { id: "fatigue", name: "إرهاق", icon: "😴" },
-  { id: "bloat", name: "انتفاخ", icon: "🎈" },
-  { id: "acne", name: "حبوب", icon: "🌸" },
-  { id: "back", name: "ألم الظهر", icon: "🦴" },
-  { id: "breast", name: "حساسية الصدر", icon: "💗" },
-  { id: "nausea", name: "غثيان", icon: "🤢" },
-  { id: "crave", name: "رغبة طعام", icon: "🍫" },
+  { id: "cramp", name: "تشنّج", Icon: Angry },
+  { id: "headache", name: "صداع", Icon: Zap },
+  { id: "fatigue", name: "إرهاق", Icon: Moon },
+  { id: "bloat", name: "انتفاخ", Icon: Wind },
+  { id: "acne", name: "حبوب", Icon: Sparkles },
+  { id: "back", name: "ألم الظهر", Icon: Activity },
+  { id: "breast", name: "حساسية الصدر", Icon: Heart },
+  { id: "nausea", name: "غثيان", Icon: Frown },
+  { id: "crave", name: "رغبة طعام", Icon: Apple },
 ];
 
 function Page() {
@@ -31,7 +32,7 @@ function Page() {
               <button key={s.id} onClick={() => toggle(s.id)}
                 className={`glass rounded-2xl p-3.5 flex flex-col items-center gap-1.5 transition-all ${on ? "ring-2 ring-primary/40" : ""}`}
                 style={on ? { background: "color-mix(in oklab, var(--primary) 10%, transparent)" } : undefined}>
-                <span className="relative z-10 text-2xl">{s.icon}</span>
+                <s.Icon size={22} strokeWidth={1.75} className="relative z-10 text-primary" />
                 <span className="relative z-10 text-[11.5px] font-medium">{s.name}</span>
               </button>
             );

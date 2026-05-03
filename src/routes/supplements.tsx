@@ -23,7 +23,7 @@ function Page() {
         <div className="glass-strong rounded-2xl p-4 text-center">
           <div className="relative z-10 text-[10px] tracking-[0.18em] uppercase text-foreground/55">تذكير اليوم</div>
           <div className="relative z-10 font-display text-[28px] text-primary mt-1 nums">{done} <span className="text-foreground/40 text-lg">/ {list.length}</span></div>
-          <div className="relative z-10 text-[11.5px] text-foreground/65 mt-1">أحسنتِ، أكملي روتينكِ 💜</div>
+          <div className="relative z-10 text-[11.5px] text-foreground/65 mt-1">أحسنتِ، أكملي روتينكِ</div>
         </div>
 
         <div className="space-y-2 stagger">

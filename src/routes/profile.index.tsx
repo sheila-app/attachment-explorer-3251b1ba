@@ -73,7 +73,7 @@ function Mini({ label, v, unit }: { label: string; v: string; unit?: string }) {
   return (
     <div className="glass rounded-xl p-3 text-center">
       <div className="relative z-10 text-[10px] text-foreground/55 uppercase tracking-widest">{label}</div>
-      <div className="relative z-10 font-display text-xl text-primary mt-1 nums">{v}{unit && <span className="text-[10px] text-foreground/55 font-normal mr-1">{unit}</span>}</div>
+      <div className="relative z-10 font-display text-xl text-primary mt-1 nums">{v}{unit && <span className="text-[10px] text-foreground/55 font-normal me-1">{unit}</span>}</div>
     </div>
   );
 }

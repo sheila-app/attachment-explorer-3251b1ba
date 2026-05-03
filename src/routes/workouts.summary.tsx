@@ -2,14 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { DeviceFrame } from "@/components/sheila/DeviceFrame";
 import { LiquidBackdrop } from "@/components/sheila/LiquidBackdrop";
 import { PrimaryCTA, GhostCTA } from "@/components/sheila/OnboardingShell";
-import { Flame, Clock, Heart, Trophy } from "lucide-react";
+import { Flame, Clock, Heart, Trophy, Star } from "lucide-react";
 
 export const Route = createFileRoute("/workouts/summary")({ component: SummaryPage });
 
 function SummaryPage() {
   return (
     <DeviceFrame>
-      <div className="relative h-full min-h-screen flex flex-col overflow-hidden">
+      <div className="relative h-full flex flex-col overflow-hidden">
         <LiquidBackdrop variant="energetic" />
 
         <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-7 text-center animate-rise">
@@ -30,12 +30,12 @@ function SummaryPage() {
             <div className="relative z-10 text-[11px] tracking-[0.2em] text-foreground/55 uppercase">السلسلة</div>
             <div className="relative z-10 flex items-center justify-between mt-2">
               <span className="font-display text-3xl text-primary nums">8 أيام</span>
-              <span className="text-2xl">🔥</span>
+              <Flame size={22} strokeWidth={1.75} className="text-primary" />
             </div>
             <div className="relative z-10 mt-3 h-1 rounded-full bg-foreground/10 overflow-hidden">
               <div className="h-full rounded-full" style={{ width: "65%", background: "var(--gradient-primary)" }} />
             </div>
-            <p className="relative z-10 text-[11px] text-foreground/60 mt-2">22 يوم لتحقيق سلسلة 30 يوم 💎</p>
+            <p className="relative z-10 text-[11px] text-foreground/60 mt-2">22 يوم لتحقيق سلسلة 30 يوم</p>
           </div>
         </div>
 

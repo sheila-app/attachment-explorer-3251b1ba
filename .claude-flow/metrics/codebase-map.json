@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-05-03T16:46:13.478Z",
+  "projectRoot": "/Users/amer/Desktop/sheila-lovable",
+  "structure": {
+    "hasPackageJson": true,
+    "hasTsConfig": true,
+    "hasClaudeConfig": true,
+    "hasClaudeFlow": true
+  },
+  "scannedAt": 1777826773478
+}

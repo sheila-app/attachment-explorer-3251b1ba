@@ -31,7 +31,7 @@ function DobPage() {
       subtitle="اسحبي العجلات لاختيار التاريخ. يجب أن تكوني 16 سنة فأكثر."
       footer={<PrimaryCTA to="/onboarding/goal">متابعة</PrimaryCTA>}
     >
-      <div className="glass rounded-2xl p-4">
+      <div className="glass rounded-2xl overflow-hidden p-4">
         <div className="relative z-10 flex justify-center gap-3" style={{ direction: "ltr" }}>
           <IOSWheel label="يوم" values={wheelRange(1, 31)} value={day} onChange={(v) => setDay(Number(v))} width={64} />
           <IOSWheel label="شهر" values={months} value={months[monthIdx]} onChange={(v) => setMonthIdx(months.indexOf(String(v)))} width={108} />

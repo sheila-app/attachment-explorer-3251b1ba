@@ -17,7 +17,7 @@ function SplashPage() {
 
   return (
     <DeviceFrame>
-      <div className="relative h-full min-h-screen w-full overflow-hidden">
+      <div className="relative h-full w-full overflow-hidden">
         <LiquidBackdrop variant="default" />
 
         {/* Concentric guide circles */}
@@ -40,7 +40,7 @@ function SplashPage() {
           ))}
         </svg>
 
-        <div className="relative z-10 h-full min-h-screen flex flex-col items-center justify-center px-8">
+        <div className="relative z-10 h-full flex flex-col items-center justify-center px-8">
           <div className="relative animate-rise">
             {/* Orbital ring */}
             <svg width="180" height="180" className="absolute -inset-5 -rotate-90 opacity-70">

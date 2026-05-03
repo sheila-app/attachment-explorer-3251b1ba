@@ -1,0 +1,135 @@
+{
+  "running": true,
+  "startedAt": "2026-05-03T00:05:58.115Z",
+  "workers": {
+    "map": {
+      "runCount": 50,
+      "successCount": 50,
+      "failureCount": 0,
+      "averageDurationMs": 1.0600000000000003,
+      "isRunning": false,
+      "nextRun": "2026-05-03T17:01:13.480Z",
+      "lastRun": "2026-05-03T16:46:13.478Z"
+    },
+    "audit": {
+      "runCount": 60,
+      "successCount": 60,
+      "failureCount": 0,
+      "averageDurationMs": 50368.86666666668,
+      "isRunning": false,
+      "nextRun": "2026-05-03T16:54:08.083Z",
+      "lastRun": "2026-05-03T16:44:08.082Z"
+    },
+    "optimize": {
+      "runCount": 50,
+      "successCount": 50,
+      "failureCount": 0,
+      "averageDurationMs": 51732.74000000001,
+      "isRunning": false,
+      "nextRun": "2026-05-03T16:46:13.515Z",
+      "lastRun": "2026-05-03T16:46:43.791Z"
+    },
+    "consolidate": {
+      "runCount": 28,
+      "successCount": 28,
+      "failureCount": 0,
+      "averageDurationMs": 1.2857142857142858,
+      "isRunning": false,
+      "nextRun": "2026-05-03T17:01:13.449Z",
+      "lastRun": "2026-05-03T16:39:22.808Z"
+    },
+    "testgaps": {
+      "runCount": 38,
+      "successCount": 38,
+      "failureCount": 0,
+      "averageDurationMs": 90428.42105263157,
+      "isRunning": false,
+      "nextRun": "2026-05-03T16:51:28.608Z",
+      "lastRun": "2026-05-03T16:41:47.146Z"
+    },
+    "predict": {
+      "runCount": 0,
+      "successCount": 0,
+      "failureCount": 0,
+      "averageDurationMs": 0,
+      "isRunning": false
+    },
+    "document": {
+      "runCount": 0,
+      "successCount": 0,
+      "failureCount": 0,
+      "averageDurationMs": 0,
+      "isRunning": false
+    }
+  },
+  "config": {
+    "autoStart": false,
+    "logDir": "/Users/amer/Desktop/sheila-lovable/.claude-flow/logs",
+    "stateFile": "/Users/amer/Desktop/sheila-lovable/.claude-flow/daemon-state.json",
+    "maxConcurrent": 2,
+    "workerTimeoutMs": 960000,
+    "resourceThresholds": {
+      "maxCpuLoad": 8,
+      "minFreeMemoryPercent": 5
+    },
+    "workers": [
+      {
+        "type": "map",
+        "intervalMs": 900000,
+        "offsetMs": 0,
+        "priority": "normal",
+        "description": "Codebase mapping",
+        "enabled": true
+      },
+      {
+        "type": "audit",
+        "intervalMs": 600000,
+        "offsetMs": 120000,
+        "priority": "critical",
+        "description": "Security analysis",
+        "enabled": true
+      },
+      {
+        "type": "optimize",
+        "intervalMs": 900000,
+        "offsetMs": 240000,
+        "priority": "high",
+        "description": "Performance optimization",
+        "enabled": true
+      },
+      {
+        "type": "consolidate",
+        "intervalMs": 1800000,
+        "offsetMs": 360000,
+        "priority": "low",
+        "description": "Memory consolidation",
+        "enabled": true
+      },
+      {
+        "type": "testgaps",
+        "intervalMs": 1200000,
+        "offsetMs": 480000,
+        "priority": "normal",
+        "description": "Test coverage analysis",
+        "enabled": true
+      },
+      {
+        "type": "predict",
+        "intervalMs": 600000,
+        "offsetMs": 0,
+        "priority": "low",
+        "description": "Predictive preloading",
+        "enabled": false
+      },
+      {
+        "type": "document",
+        "intervalMs": 3600000,
+        "offsetMs": 0,
+        "priority": "low",
+        "description": "Auto-documentation",
+        "enabled": false
+      }
+    ]
+  },
+  "savedAt": "2026-05-03T16:46:43.791Z"
+}

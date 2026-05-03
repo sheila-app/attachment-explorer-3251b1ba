@@ -13,7 +13,7 @@ function Page() {
       <div className="px-5 pb-8 space-y-5">
         <div className="glass-strong rounded-3xl p-5">
           <div className="text-[10px] tracking-[0.2em] text-foreground/55 uppercase mb-1">المجموع المستحقّ</div>
-          <div className="font-display text-3xl text-primary nums">$9.99 <span className="text-sm text-foreground/55">/ شهرياً</span></div>
+          <div className="font-display text-3xl text-primary nums">٩.٩٩ د.إ <span className="text-sm text-foreground/55">/ شهرياً</span></div>
           <p className="text-[11px] text-foreground/55 mt-2">يجدّد تلقائيّاً. يمكنكِ الإلغاء في أيّ وقت.</p>
         </div>
 

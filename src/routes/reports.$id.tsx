@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
-import { Share2, Download } from "lucide-react";
+import { Share2, Download, Sparkles, Droplets, Moon } from "lucide-react";
 
 export const Route = createFileRoute("/reports/$id")({ component: Page });
 
@@ -35,9 +35,9 @@ function Page() {
         <div className="glass rounded-2xl p-5">
           <h2 className="text-sm font-medium mb-3">رؤى شيلا</h2>
           <ul className="space-y-2 text-[12px] text-foreground/75 leading-relaxed">
-            <li>✨ أفضل أداء كان أيام الإباضة — كثفي التمارين عالية الكثافة فيها.</li>
-            <li>💧 نقص في شرب الماء أيام الأحد — احتفظي بزجاجة قريبة منكِ.</li>
-            <li>😴 جودة نومكِ تحسّنت بعد جلسات التأمّل المسائي — استمرّي.</li>
+            <li className="flex items-start gap-1.5"><Sparkles size={13} strokeWidth={1.75} className="text-primary shrink-0 mt-0.5" /> أفضل أداء كان أيام الإباضة — كثفي التمارين عالية الكثافة فيها.</li>
+            <li className="flex items-start gap-1.5"><Droplets size={13} strokeWidth={1.75} className="text-primary shrink-0 mt-0.5" /> نقص في شرب الماء أيام الأحد — احتفظي بزجاجة قريبة منكِ.</li>
+            <li className="flex items-start gap-1.5"><Moon size={13} strokeWidth={1.75} className="text-primary shrink-0 mt-0.5" /> جودة نومكِ تحسّنت بعد جلسات التأمّل المسائي — استمرّي.</li>
           </ul>
         </div>
 

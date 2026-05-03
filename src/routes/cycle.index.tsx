@@ -4,6 +4,7 @@ import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { mockUser, PHASE_META, type CyclePhase, mockCycleHistory } from "@/data/mock";
 import { ChevronRight, ChevronLeft, Plus } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import { toAr } from "@/lib/format";
 
 export const Route = createFileRoute("/cycle/")({ component: CyclePage });
 
@@ -34,7 +35,7 @@ function CyclePage() {
         {/* Month header */}
         <div className="flex items-center justify-between mb-4">
           <button className="glass w-9 h-9 rounded-full flex items-center justify-center"><ChevronRight size={16} className="relative z-10" /></button>
-          <span className="font-medium nums">يونيو 2026</span>
+          <span className="font-medium nums">يونيو {toAr(2026)}</span>
           <button className="glass w-9 h-9 rounded-full flex items-center justify-center"><ChevronLeft size={16} className="relative z-10" /></button>
         </div>
 

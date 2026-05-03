@@ -14,7 +14,7 @@ function Page() {
     <FeatureShell title="أخت المتابعة" back="/community" variant="warm">
       <div className="px-5 space-y-4">
         <div className="glass-strong rounded-3xl p-5">
-          <div className="font-display text-[18px] leading-tight">دعمكِ المتبادل ✨</div>
+          <div className="font-display text-[18px] leading-tight">دعمكِ المتبادل</div>
           <p className="text-[12px] text-foreground/65 mt-1.5 leading-relaxed">شاركي رحلتكِ مع صديقة موثوقة — تشجيع، تذكير، وتحدّيات أسبوعيّة.</p>
         </div>
 

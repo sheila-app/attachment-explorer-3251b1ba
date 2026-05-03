@@ -2,16 +2,17 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { PrimaryCTA } from "@/components/sheila/OnboardingShell";
+import { Smile, Meh, Zap, Moon, AlertCircle, Frown } from "lucide-react";
 
 export const Route = createFileRoute("/journey/mood")({ component: Page });
 
 const MOODS = [
-  { id: "joy", name: "سعيدة", emoji: "😊", color: "var(--phase-follicular)" },
-  { id: "calm", name: "هادئة", emoji: "😌", color: "var(--phase-luteal)" },
-  { id: "energetic", name: "نشيطة", emoji: "✨", color: "var(--phase-ovulation)" },
-  { id: "tired", name: "متعبة", emoji: "😔", color: "var(--phase-menstrual)" },
-  { id: "anxious", name: "قلقة", emoji: "😟", color: "var(--phase-luteal)" },
-  { id: "irritable", name: "متوتّرة", emoji: "😤", color: "var(--phase-menstrual)" },
+  { id: "joy", name: "سعيدة", Icon: Smile, color: "var(--phase-follicular)" },
+  { id: "calm", name: "هادئة", Icon: Meh, color: "var(--phase-luteal)" },
+  { id: "energetic", name: "نشيطة", Icon: Zap, color: "var(--phase-ovulation)" },
+  { id: "tired", name: "متعبة", Icon: Moon, color: "var(--phase-menstrual)" },
+  { id: "anxious", name: "قلقة", Icon: AlertCircle, color: "var(--phase-luteal)" },
+  { id: "irritable", name: "متوتّرة", Icon: Frown, color: "var(--phase-menstrual)" },
 ];
 
 function Page() {
@@ -28,7 +29,7 @@ function Page() {
               <button key={m.id} onClick={() => setMood(m.id)}
                 className={`glass rounded-2xl p-4 flex flex-col items-center gap-1.5 ${on ? "ring-2 ring-primary/40" : ""}`}
                 style={on ? { background: `color-mix(in oklab, ${m.color} 18%, transparent)` } : undefined}>
-                <span className="relative z-10 text-3xl">{m.emoji}</span>
+                <m.Icon size={28} strokeWidth={1.75} className="relative z-10" style={{ color: m.color }} />
                 <span className="relative z-10 text-[12px] font-medium">{m.name}</span>
               </button>
             );

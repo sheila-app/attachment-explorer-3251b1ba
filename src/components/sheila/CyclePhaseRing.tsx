@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+import { motion } from "motion/react";
 import { PHASE_META, type CyclePhase } from "@/data/mock";
 import { toAr } from "@/lib/format";
 
@@ -6,6 +8,7 @@ interface Props {
   day: number;
   cycleLength: number;
   size?: number;
+  showInnerFill?: boolean;
 }
 
 const PHASES: { key: CyclePhase; days: number }[] = [
@@ -17,11 +20,11 @@ const PHASES: { key: CyclePhase; days: number }[] = [
 
 /**
  * حلقة المراحل — متعدّدة الطبقات: مسار خلفي، أقواس المراحل الأربع بألوانها،
- * مؤشّر اليوم الحالي، وحلقة داخلية ناعمة. تصميم سريريّ-أنثوي.
+ * مؤشّر اليوم الحالي، وحلقة داخلية ناعمة. تصميم سريليّ-أنثوي.
  */
-export function CyclePhaseRing({ phase, day, cycleLength, size = 240 }: Props) {
-  const stroke = 10;
-  const innerStroke = 2;
+export function CyclePhaseRing({ phase, day, cycleLength, size = 240, showInnerFill = true }: Props) {
+  const stroke = 14;
+  const innerStroke = 2.5;
   const r = (size - stroke) / 2 - 18;
   const innerR = r - 16;
   const cx = size / 2;
@@ -29,6 +32,15 @@ export function CyclePhaseRing({ phase, day, cycleLength, size = 240 }: Props) {
   const C = 2 * Math.PI * r;
   const innerC = 2 * Math.PI * innerR;
   const meta = PHASE_META[phase];
+
+  // Animate inner progress arc on mount
+  const [animated, setAnimated] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setAnimated(true), 100);
+    return () => clearTimeout(t);
+  }, []);
+
+  const targetOffset = innerC - (day / cycleLength) * innerC;
 
   // Build phase arcs around the ring
   let cumulativeDays = 0;
@@ -50,14 +62,14 @@ export function CyclePhaseRing({ phase, day, cycleLength, size = 240 }: Props) {
       {/* Soft halo behind */}
       <div
         className="absolute inset-4 rounded-full blur-2xl opacity-50"
-        style={{ background: `radial-gradient(circle, ${meta.color}, transparent 70%)` }}
+        style={{ background: showInnerFill ? `radial-gradient(circle, ${meta.color}, transparent 70%)` : "transparent" }}
       />
 
       <svg width={size} height={size} className="relative">
         <defs>
           {PHASES.map((p) => (
             <linearGradient key={p.key} id={`arc-${p.key}`} x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor={`var(--phase-${p.key})`} stopOpacity="0.55" />
+              <stop offset="0%" stopColor={`var(--phase-${p.key})`} stopOpacity="0.85" />
               <stop offset="100%" stopColor={`var(--phase-${p.key})`} stopOpacity="1" />
             </linearGradient>
           ))}
@@ -83,14 +95,14 @@ export function CyclePhaseRing({ phase, day, cycleLength, size = 240 }: Props) {
               strokeLinecap="round"
               strokeDasharray={`${a.length} ${C}`}
               strokeDashoffset={-a.start}
-              opacity={a.key === phase ? 1 : 0.35}
+              opacity={a.key === phase ? 1 : 0.55}
               style={{ transition: "opacity 0.6s ease" }}
             />
           ))}
         </g>
 
-        {/* Inner thin progress line */}
-        <circle
+        {/* Inner thin progress line — animated entrance */}
+        <motion.circle
           cx={cx}
           cy={cy}
           r={innerR}
@@ -99,10 +111,10 @@ export function CyclePhaseRing({ phase, day, cycleLength, size = 240 }: Props) {
           strokeWidth={innerStroke}
           strokeLinecap="round"
           strokeDasharray={innerC}
-          strokeDashoffset={innerC - (day / cycleLength) * innerC}
+          animate={{ strokeDashoffset: animated ? targetOffset : innerC }}
+          transition={{ duration: 1.4, ease: "easeOut" }}
           transform={`rotate(-90 ${cx} ${cy})`}
-          opacity="0.5"
-          style={{ transition: "stroke-dashoffset 1.4s cubic-bezier(0.22,1,0.36,1)" }}
+          opacity="0.8"
         />
 
         {/* Day marker — pulsing dot */}

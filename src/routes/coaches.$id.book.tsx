@@ -62,7 +62,7 @@ function Page() {
           <div className="relative z-10 text-[13px] font-medium">{days[day].l} {days[day].d} — {slot}</div>
           <div className="relative z-10 flex items-center justify-between mt-2 pt-2 border-t border-foreground/10">
             <span className="text-[11px] text-foreground/55">الإجمالي</span>
-            <span className="font-display text-xl text-primary nums">$80</span>
+            <span className="font-display text-xl text-primary nums">٨٠ د.إ</span>
           </div>
         </div>
 

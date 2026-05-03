@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { GhostCTA } from "@/components/sheila/OnboardingShell";
-import { Star, MessageCircle, Calendar, Award } from "lucide-react";
+import { Star, MessageCircle, Calendar, Award, MessageSquare } from "lucide-react";
 
 export const Route = createFileRoute("/coaches/$id")({ component: Page });
 
@@ -59,8 +59,9 @@ function Page() {
             style={{ background: "var(--gradient-primary)" }}>
             احجزي الآن — ${c.price}
           </Link>
-          <Link to="/coaches/$id/chat" params={{ id: c.id }} className="glass-strong w-full rounded-2xl py-3.5 flex items-center justify-center text-[13px] font-medium">
-            <span className="relative z-10">💬 ابدئي محادثة</span>
+          <Link to="/coaches/$id/chat" params={{ id: c.id }} className="glass-strong w-full rounded-2xl py-3.5 flex items-center justify-center gap-2 text-[13px] font-medium">
+            <MessageSquare size={16} strokeWidth={1.75} className="relative z-10" />
+            <span className="relative z-10">ابدئي محادثة</span>
           </Link>
           <GhostCTA to="/coaches">عودة</GhostCTA>
         </div>

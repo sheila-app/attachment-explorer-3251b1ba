@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { mockUser, mockWeightLog } from "@/data/mock";
-import { TrendingDown, Flame, Activity, Trophy, Sparkles } from "lucide-react";
+import { TrendingDown, Flame, Activity, Trophy, Sparkles, Angry, Smile, Wind, Pill, BookOpen, Baby, CheckCircle, Calendar, BarChart2, Timer } from "lucide-react";
 
 export const Route = createFileRoute("/journey/")({ component: JourneyPage });
 
@@ -25,7 +25,7 @@ function JourneyPage() {
             </div>
           </div>
           <div className="relative z-10 flex-1">
-            <div className="text-[10px] tracking-[0.2em] text-foreground/55 uppercase">Body IQ</div>
+            <div className="text-[10px] tracking-[0.2em] text-foreground/55 uppercase">مؤشّر الجسم</div>
             <div className="font-display text-lg mt-0.5">في تحسّن مستمرّ</div>
             <p className="text-[11.5px] text-foreground/60 mt-1 leading-relaxed">مؤشّرك ارتفع 8 نقاط هذا الشهر.</p>
           </div>
@@ -40,7 +40,7 @@ function JourneyPage() {
         </div>
 
         {/* Weight chart */}
-        <div className="glass rounded-2xl p-4 mt-4">
+        <div className="bg-white/90 backdrop-blur-sm rounded-2xl border border-border p-4 mt-3">
           <div className="relative z-10 flex items-center justify-between mb-3">
             <h3 className="text-sm font-medium">تتبّع الوزن</h3>
             <span className="text-[11px] text-foreground/55 nums">آخر 6 أسابيع</span>
@@ -77,17 +77,17 @@ function JourneyPage() {
         </div>
 
         <div className="grid grid-cols-3 gap-2.5 mt-3">
-          <Link to="/journey/awards" className="glass rounded-2xl p-3 flex flex-col items-center text-center gap-1.5">
+          <Link to="/journey/awards" className="bg-white/90 backdrop-blur-sm rounded-2xl border border-border p-3 flex flex-col items-center text-center gap-1.5">
             <Trophy size={18} className="relative z-10 text-primary" strokeWidth={1.75} />
             <div className="relative z-10 text-[12px] font-medium">الإنجازات</div>
             <div className="relative z-10 text-[10px] text-foreground/55 nums">3/6</div>
           </Link>
-          <Link to="/journey/measurements" className="glass rounded-2xl p-3 flex flex-col items-center text-center gap-1.5">
+          <Link to="/journey/measurements" className="bg-white/90 backdrop-blur-sm rounded-2xl border border-border p-3 flex flex-col items-center text-center gap-1.5">
             <TrendingDown size={18} className="relative z-10 text-primary" strokeWidth={1.75} />
             <div className="relative z-10 text-[12px] font-medium">القياسات</div>
             <div className="relative z-10 text-[10px] text-foreground/55">سجّلي</div>
           </Link>
-          <Link to="/journey/goals" className="glass rounded-2xl p-3 flex flex-col items-center text-center gap-1.5">
+          <Link to="/journey/goals" className="bg-white/90 backdrop-blur-sm rounded-2xl border border-border p-3 flex flex-col items-center text-center gap-1.5">
             <Activity size={18} className="relative z-10 text-primary" strokeWidth={1.75} />
             <div className="relative z-10 text-[12px] font-medium">أهدافي</div>
             <div className="relative z-10 text-[10px] text-foreground/55 nums">4 نشطة</div>
@@ -95,15 +95,15 @@ function JourneyPage() {
         </div>
 
         <div className="grid grid-cols-2 gap-2.5 mt-3">
-          <Link to="/journey/symptoms" className="glass rounded-2xl p-3.5 flex items-center gap-2.5">
-            <span className="relative z-10 text-2xl">💢</span>
+          <Link to="/journey/symptoms" className="bg-white/90 backdrop-blur-sm rounded-2xl border border-border p-3.5 flex items-center gap-2.5">
+            <Angry size={22} strokeWidth={1.75} className="relative z-10 text-primary shrink-0" />
             <div className="relative z-10">
               <div className="text-[12px] font-medium">الأعراض</div>
               <div className="text-[10px] text-foreground/55">سجّلي اليوم</div>
             </div>
           </Link>
-          <Link to="/journey/mood" className="glass rounded-2xl p-3.5 flex items-center gap-2.5">
-            <span className="relative z-10 text-2xl">😊</span>
+          <Link to="/journey/mood" className="bg-white/90 backdrop-blur-sm rounded-2xl border border-border p-3.5 flex items-center gap-2.5">
+            <Smile size={22} strokeWidth={1.75} className="relative z-10 text-primary shrink-0" />
             <div className="relative z-10">
               <div className="text-[12px] font-medium">المزاج</div>
               <div className="text-[10px] text-foreground/55">سجّلي اليوم</div>
@@ -111,7 +111,7 @@ function JourneyPage() {
           </Link>
         </div>
 
-        <Link to="/journey/insights" className="glass-strong rounded-2xl p-4 mt-3 flex items-center gap-3">
+        <Link to="/journey/insights" className="bg-white/90 backdrop-blur-sm rounded-2xl border border-border p-4 mt-3 flex items-center gap-3">
           <div className="relative z-10 w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: "var(--gradient-primary)" }}>
             <Sparkles size={16} className="text-white" />
           </div>
@@ -122,57 +122,57 @@ function JourneyPage() {
         </Link>
 
         <div className="grid grid-cols-2 gap-2.5 mt-3">
-          <Link to="/mindfulness" className="glass rounded-2xl p-3.5 flex items-center gap-2.5">
-            <span className="relative z-10 text-2xl">🧘‍♀️</span>
+          <Link to="/mindfulness" className="bg-white/90 backdrop-blur-sm rounded-2xl border border-border p-3.5 flex items-center gap-2.5">
+            <Wind size={22} strokeWidth={1.75} className="relative z-10 text-primary shrink-0" />
             <div className="relative z-10">
               <div className="text-[12px] font-medium">التأمّل</div>
               <div className="text-[10px] text-foreground/55">جلسات تنفّس</div>
             </div>
           </Link>
-          <Link to="/supplements" className="glass rounded-2xl p-3.5 flex items-center gap-2.5">
-            <span className="relative z-10 text-2xl">💊</span>
+          <Link to="/supplements" className="bg-white/90 backdrop-blur-sm rounded-2xl border border-border p-3.5 flex items-center gap-2.5">
+            <Pill size={22} strokeWidth={1.75} className="relative z-10 text-primary shrink-0" />
             <div className="relative z-10">
               <div className="text-[12px] font-medium">المكمّلات</div>
               <div className="text-[10px] text-foreground/55">2/4 اليوم</div>
             </div>
           </Link>
-          <Link to="/articles" className="glass rounded-2xl p-3.5 flex items-center gap-2.5">
-            <span className="relative z-10 text-2xl">📚</span>
+          <Link to="/articles" className="bg-white/90 backdrop-blur-sm rounded-2xl border border-border p-3.5 flex items-center gap-2.5">
+            <BookOpen size={22} strokeWidth={1.75} className="relative z-10 text-primary shrink-0" />
             <div className="relative z-10">
               <div className="text-[12px] font-medium">مقالات</div>
               <div className="text-[10px] text-foreground/55">جديد كلّ أسبوع</div>
             </div>
           </Link>
-          <Link to="/pregnancy" className="glass rounded-2xl p-3.5 flex items-center gap-2.5">
-            <span className="relative z-10 text-2xl">🤰</span>
+          <Link to="/pregnancy" className="bg-white/90 backdrop-blur-sm rounded-2xl border border-border p-3.5 flex items-center gap-2.5">
+            <Baby size={22} strokeWidth={1.75} className="relative z-10 text-primary shrink-0" />
             <div className="relative z-10">
               <div className="text-[12px] font-medium">رحلة الحمل</div>
               <div className="text-[10px] text-foreground/55">أسبوع 18</div>
             </div>
           </Link>
-          <Link to="/habits" className="glass rounded-2xl p-3.5 flex items-center gap-2.5">
-            <span className="relative z-10 text-2xl">✅</span>
+          <Link to="/habits" className="bg-white/90 backdrop-blur-sm rounded-2xl border border-border p-3.5 flex items-center gap-2.5">
+            <CheckCircle size={22} strokeWidth={1.75} className="relative z-10 text-primary shrink-0" />
             <div className="relative z-10">
               <div className="text-[12px] font-medium">عاداتي</div>
               <div className="text-[10px] text-foreground/55">3/5 اليوم</div>
             </div>
           </Link>
-          <Link to="/calendar" className="glass rounded-2xl p-3.5 flex items-center gap-2.5">
-            <span className="relative z-10 text-2xl">🗓️</span>
+          <Link to="/calendar" className="bg-white/90 backdrop-blur-sm rounded-2xl border border-border p-3.5 flex items-center gap-2.5">
+            <Calendar size={22} strokeWidth={1.75} className="relative z-10 text-primary shrink-0" />
             <div className="relative z-10">
               <div className="text-[12px] font-medium">تقويمي</div>
               <div className="text-[10px] text-foreground/55">إدارة الأحداث</div>
             </div>
           </Link>
-          <Link to="/reports" className="glass rounded-2xl p-3.5 flex items-center gap-2.5">
-            <span className="relative z-10 text-2xl">📊</span>
+          <Link to="/reports" className="bg-white/90 backdrop-blur-sm rounded-2xl border border-border p-3.5 flex items-center gap-2.5">
+            <BarChart2 size={22} strokeWidth={1.75} className="relative z-10 text-primary shrink-0" />
             <div className="relative z-10">
               <div className="text-[12px] font-medium">التقارير</div>
               <div className="text-[10px] text-foreground/55">شهري وذكي</div>
             </div>
           </Link>
-          <Link to="/timer" className="glass rounded-2xl p-3.5 flex items-center gap-2.5">
-            <span className="relative z-10 text-2xl">⏱️</span>
+          <Link to="/timer" className="bg-white/90 backdrop-blur-sm rounded-2xl border border-border p-3.5 flex items-center gap-2.5">
+            <Timer size={22} strokeWidth={1.75} className="relative z-10 text-primary shrink-0" />
             <div className="relative z-10">
               <div className="text-[12px] font-medium">مؤقّت تركيز</div>
               <div className="text-[10px] text-foreground/55">بومودورو</div>
@@ -186,12 +186,12 @@ function JourneyPage() {
 
 function Stat({ icon: Icon, label, value, unit, color }: any) {
   return (
-    <div className="glass rounded-2xl p-3">
-      <Icon size={14} className="relative z-10" style={{ color }} strokeWidth={1.75} />
-      <div className="relative z-10 text-[10px] text-foreground/55 mt-1.5 uppercase tracking-widest">{label}</div>
-      <div className="relative z-10 flex items-baseline gap-1 mt-1">
-        <span className="font-display text-2xl nums" style={{ color }}>{value}</span>
-        <span className="text-[10px] text-foreground/55">{unit}</span>
+    <div className="bg-white/90 backdrop-blur-sm rounded-2xl border border-border p-4">
+      <Icon size={14} style={{ color }} strokeWidth={1.75} />
+      <div className="text-xs text-muted-foreground font-medium mt-2">{label}</div>
+      <div className="flex items-baseline gap-1 mt-1">
+        <span className="font-display text-3xl font-black text-foreground nums" style={{ color, fontWeight: 900 }}>{value}</span>
+        <span className="text-sm text-muted-foreground">{unit}</span>
       </div>
     </div>
   );

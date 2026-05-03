@@ -20,9 +20,9 @@ interface Props {
 export function FeatureShell({ title, back, trailing, children, showNav = true, variant = "default" }: Props) {
   return (
     <DeviceFrame>
-      <div className="relative h-full min-h-screen overflow-hidden">
+      <div className="relative h-full overflow-hidden">
         <LiquidBackdrop variant={variant} />
-        <div className={`relative z-10 h-full min-h-screen overflow-y-auto no-scrollbar ${showNav ? "pb-28" : "pb-8"}`}>
+        <div className={`relative z-10 h-full overflow-y-auto no-scrollbar ${showNav ? "pb-28" : "pb-8"}`}>
           <header className="px-5 pt-6 pb-3 flex items-center gap-3">
             {back ? (
               <Link to={back as "/"} className="glass w-10 h-10 rounded-full flex items-center justify-center shrink-0">

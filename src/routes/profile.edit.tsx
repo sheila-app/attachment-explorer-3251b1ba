@@ -10,7 +10,7 @@ function EditProfile() {
   const [name, setName] = useState("نورة العتيبي");
   const [email, setEmail] = useState("noura@example.com");
   const [phone, setPhone] = useState("+966500000000");
-  const [bio, setBio] = useState("في رحلة لتعزيز قوّتي وصحّتي ✨");
+  const [bio, setBio] = useState("في رحلة لتعزيز قوّتي وصحّتي");
 
   return (
     <FeatureShell title="تعديل الملف الشخصي" back="/profile" showNav={false}>

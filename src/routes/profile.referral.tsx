@@ -14,7 +14,7 @@ function Page() {
             style={{ background: "var(--gradient-primary)" }}>
             <Gift size={24} className="text-white" strokeWidth={1.75} />
           </div>
-          <div className="font-display text-[20px] leading-tight">شهر مجاني لكلتيكما 🎁</div>
+          <div className="font-display text-[20px] leading-tight">شهر مجاني لكلتيكما</div>
           <p className="text-[12px] text-foreground/65 mt-2 leading-relaxed">عند انضمام صديقتكِ بكوبونكِ، تحصلان على شهر برو مجّاناً.</p>
         </div>
 

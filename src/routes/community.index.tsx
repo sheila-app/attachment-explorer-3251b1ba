@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { mockPosts } from "@/data/mock";
-import { Heart, MessageCircle, Plus, UserPlus } from "lucide-react";
+import { Heart, MessageCircle, Plus, UserPlus, ChevronLeft, Trophy, Calendar } from "lucide-react";
 
 export const Route = createFileRoute("/community/")({ component: CommunityPage });
 
@@ -18,19 +18,19 @@ function CommunityPage() {
         <div className="grid grid-cols-2 gap-2 mb-3">
           <Link to="/community/groups" className="glass-strong rounded-2xl p-3 flex items-center justify-between">
             <span className="relative z-10 text-[12.5px] font-medium">المجموعات</span>
-            <span className="relative z-10 text-[10px] text-primary">عرض ←</span>
+            <ChevronLeft size={14} className="relative z-10 text-primary" strokeWidth={2} />
           </Link>
           <Link to="/challenges" className="glass-strong rounded-2xl p-3 flex items-center justify-between">
-            <span className="relative z-10 text-[12.5px] font-medium">🏆 التحدّيات</span>
-            <span className="relative z-10 text-[10px] text-primary">انضمّي ←</span>
+            <span className="relative z-10 text-[12.5px] font-medium flex items-center gap-1"><Trophy size={13} strokeWidth={1.75} className="text-primary" /> التحدّيات</span>
+            <ChevronLeft size={14} className="relative z-10 text-primary" strokeWidth={2} />
           </Link>
           <Link to="/community/events" className="glass-strong rounded-2xl p-3 flex items-center justify-between">
-            <span className="relative z-10 text-[12.5px] font-medium">📅 فعاليّات</span>
-            <span className="relative z-10 text-[10px] text-primary">عرض ←</span>
+            <span className="relative z-10 text-[12.5px] font-medium flex items-center gap-1"><Calendar size={13} strokeWidth={1.75} className="text-primary" /> فعاليّات</span>
+            <ChevronLeft size={14} className="relative z-10 text-primary" strokeWidth={2} />
           </Link>
           <Link to="/buddy" className="glass-strong rounded-2xl p-3 flex items-center justify-between">
-            <span className="relative z-10 text-[12.5px] font-medium">💜 أخت متابعة</span>
-            <span className="relative z-10 text-[10px] text-primary">ادعي ←</span>
+            <span className="relative z-10 text-[12.5px] font-medium flex items-center gap-1"><Heart size={13} strokeWidth={1.75} className="text-primary" /> أخت متابعة</span>
+            <ChevronLeft size={14} className="relative z-10 text-primary" strokeWidth={2} />
           </Link>
         </div>
         <div className="flex gap-2 overflow-x-auto no-scrollbar pb-2 mb-4 -mx-1 px-1">
@@ -44,24 +44,33 @@ function CommunityPage() {
 
         <div className="space-y-3 stagger">
           {mockPosts.map(p => (
-            <article key={p.id} className="glass rounded-2xl p-4">
-              <div className="relative z-10 flex items-center gap-3">
+            <article key={p.id} className="bg-white/90 backdrop-blur-sm rounded-2xl border border-border p-4">
+              <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full flex items-center justify-center text-primary-foreground font-medium"
                   style={{ background: "var(--gradient-primary)" }}>
                   {p.author.charAt(0)}
                 </div>
                 <div className="flex-1">
-                  <div className="text-[13px] font-medium">{p.author}</div>
-                  <div className="text-[10.5px] text-foreground/55">{p.time} · {p.group}</div>
+                  <div className="text-sm font-semibold text-foreground">{p.author}</div>
+                  <div className="text-xs text-muted-foreground">{p.time} · {p.group}</div>
                 </div>
               </div>
-              <p className="relative z-10 text-[13px] mt-3 leading-relaxed">{p.text}</p>
-              <div className="relative z-10 flex items-center gap-4 mt-3 text-[11.5px] text-foreground/65">
+              <p className="text-sm text-foreground mt-3 leading-relaxed">{p.text}</p>
+              <div className="flex items-center gap-4 mt-3 text-[11.5px] text-foreground/70">
                 <button className="inline-flex items-center gap-1"><Heart size={13} /><span className="nums">{p.likes}</span></button>
                 <button className="inline-flex items-center gap-1"><MessageCircle size={13} /><span className="nums">{p.comments}</span></button>
               </div>
             </article>
           ))}
+        </div>
+
+        <div className="relative">
+          <button
+            className="absolute bottom-0 left-5 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-lg"
+            style={{ background: "var(--gradient-primary)", boxShadow: "0 8px 24px -6px oklch(0.46 0.135 328 / 0.5)" }}
+          >
+            <Plus size={24} className="text-white" strokeWidth={2} />
+          </button>
         </div>
       </div>
     </FeatureShell>

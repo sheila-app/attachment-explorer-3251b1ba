@@ -11,7 +11,7 @@ function NewPwPage() {
   const [show, setShow] = useState(false);
   return (
     <DeviceFrame>
-      <div className="relative h-full min-h-screen flex flex-col overflow-hidden">
+      <div className="relative h-full flex flex-col overflow-hidden">
         <LiquidBackdrop variant="calm" />
         <header className="relative z-10 px-5 pt-6 pb-3 flex items-center">
           <Link to="/auth/otp" className="glass w-10 h-10 rounded-full flex items-center justify-center">

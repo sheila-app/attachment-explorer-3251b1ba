@@ -18,8 +18,8 @@ function Sub() {
             </div>
             <div className="font-display text-2xl mt-2">شيلا برو — سنوي</div>
             <div className="flex items-baseline gap-1 mt-1">
-              <span className="font-display text-3xl text-primary nums">29.99</span>
-              <span className="text-[12px] text-foreground/60">SAR / شهر</span>
+              <span className="font-display text-3xl text-primary nums">٢٩.٩٩</span>
+              <span className="text-[12px] text-foreground/60">د.إ / شهر</span>
             </div>
             <div className="mt-4 flex items-center gap-2 text-[12px] text-foreground/65">
               <Calendar size={13} strokeWidth={1.75} />

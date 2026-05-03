@@ -1,14 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
-import { PrimaryCTA, GhostCTA } from "@/components/sheila/OnboardingShell";
+import { PrimaryCTA } from "@/components/sheila/OnboardingShell";
 import { Sparkles, Check } from "lucide-react";
 
 export const Route = createFileRoute("/paywall")({ component: Page });
 
 const plans = [
-  { id: "year", title: "سنوي", price: "29.99", per: "شهر", note: "وفّري 40%", highlight: true },
-  { id: "month", title: "شهري", price: "49.99", per: "شهر", note: "" },
+  { id: "year", title: "سنوي", price: "٢٩.٩٩", per: "شهر", note: "فاتورة سنوية ٣٥٩.٨٨ د.إ · وفري ٤٠٪", highlight: true },
+  { id: "month", title: "شهري", price: "٤٩.٩٩", per: "شهر", note: "" },
 ];
 
 const features = [
@@ -50,12 +50,13 @@ function Page() {
                 <div className="flex items-center gap-2">
                   <span className="text-[14px] font-medium">{p.title}</span>
                   {p.highlight && <span className="rounded-full px-2 py-0.5 text-[9px] font-medium text-white" style={{ background: "var(--gradient-primary)" }}>الأكثر اختياراً</span>}
+                  <span className="text-xs bg-primary/10 text-primary rounded-full px-2 py-1 font-medium">الشهر الأول مجاناً</span>
                 </div>
-                {p.note && <div className="text-[11px] text-primary mt-0.5">{p.note}</div>}
+                {p.note && <div className="text-[11px] text-foreground/55 mt-0.5">{p.note}</div>}
               </div>
               <div className="relative z-10 text-left">
-                <div className="font-display text-xl text-primary nums">${p.price}</div>
-                <div className="text-[10px] text-foreground/55">/ {p.per}</div>
+                <div className="font-display text-xl text-primary nums">{p.price}</div>
+                <div className="text-[10px] text-foreground/55">د.إ / {p.per}</div>
               </div>
             </button>
           ))}
@@ -63,7 +64,6 @@ function Page() {
 
         <div className="space-y-2">
           <PrimaryCTA to="/profile/payment">ابدئي التجربة المجّانيّة</PrimaryCTA>
-          <GhostCTA to="/home">ربّما لاحقاً</GhostCTA>
         </div>
       </div>
     </FeatureShell>

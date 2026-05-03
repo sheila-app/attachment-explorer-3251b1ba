@@ -75,7 +75,7 @@ export const mockPosts = [
   { id: "p1", author: "ريم", time: "منذ ساعة", text: "أكملت اليوم تحدّي 30 يوم يوغا، الإحساس رائع!", likes: 24, comments: 6, group: "تحدّيات" },
   { id: "p2", author: "سارة", time: "منذ 3 ساعات", text: "هل من نصائح لتمارين خفيفة في فترة الطمث؟", likes: 12, comments: 18, group: "صحّة المرأة" },
   { id: "p3", author: "هند", time: "أمس", text: "وصفة العشاء اليوم كانت لذيذة جداً، شكراً شيلا.", likes: 41, comments: 9, group: "تغذية" },
-  { id: "p4", author: "ليان", time: "أمس", text: "أوّل أسبوع كامل ألتزم بالمشي 10,000 خطوة! 🎉", likes: 67, comments: 14, group: "إنجازات" },
+  { id: "p4", author: "ليان", time: "أمس", text: "أوّل أسبوع كامل ألتزم بالمشي 10,000 خطوة!", likes: 67, comments: 14, group: "إنجازات" },
 ];
 
 export const mockNotifications = [
@@ -86,12 +86,12 @@ export const mockNotifications = [
 ];
 
 export const mockAchievements = [
-  { id: "a1", name: "أوّل تمرين", icon: "🌱", unlocked: true, date: "قبل شهر" },
-  { id: "a2", name: "سلسلة 7 أيام", icon: "🔥", unlocked: true, date: "اليوم" },
-  { id: "a3", name: "سلسلة 30 يوم", icon: "💎", unlocked: false },
-  { id: "a4", name: "ملكة اليوغا", icon: "🧘‍♀️", unlocked: true, date: "قبل أسبوع" },
-  { id: "a5", name: "100 تمرين", icon: "🏆", unlocked: false },
-  { id: "a6", name: "أخت داعمة", icon: "💜", unlocked: true, date: "قبل أسبوعين" },
+  { id: "a1", name: "أوّل تمرين", iconName: "Sprout", unlocked: true, date: "قبل شهر" },
+  { id: "a2", name: "سلسلة 7 أيام", iconName: "Flame", unlocked: true, date: "اليوم" },
+  { id: "a3", name: "سلسلة 30 يوم", iconName: "Star", unlocked: false },
+  { id: "a4", name: "ملكة اليوغا", iconName: "Wind", unlocked: true, date: "قبل أسبوع" },
+  { id: "a5", name: "100 تمرين", iconName: "Trophy", unlocked: false },
+  { id: "a6", name: "أخت داعمة", iconName: "Heart", unlocked: true, date: "قبل أسبوعين" },
 ];
 
 export const mockWeightLog = [

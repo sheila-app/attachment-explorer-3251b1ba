@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { mockMeals, PHASE_META } from "@/data/mock";
-import { Apple, Droplet, Plus } from "lucide-react";
+import { Apple, Droplet, Plus, ChevronLeft, BookOpen, ShoppingCart } from "lucide-react";
 
 export const Route = createFileRoute("/nutrition/")({ component: NutritionPage });
 
@@ -59,12 +59,12 @@ function NutritionPage() {
 
         <div className="grid grid-cols-2 gap-2 mt-3">
           <Link to="/nutrition/recipes" className="glass-strong rounded-2xl p-3.5 flex items-center justify-between">
-            <span className="relative z-10 text-[12.5px] font-medium">📖 الوصفات</span>
-            <span className="relative z-10 text-[10px] text-primary">←</span>
+            <span className="relative z-10 text-[12.5px] font-medium flex items-center gap-1"><BookOpen size={13} strokeWidth={1.75} className="text-primary" /> الوصفات</span>
+            <ChevronLeft size={14} className="relative z-10 text-primary" strokeWidth={2} />
           </Link>
           <Link to="/nutrition/shopping" className="glass-strong rounded-2xl p-3.5 flex items-center justify-between">
-            <span className="relative z-10 text-[12.5px] font-medium">🛒 المشتريات</span>
-            <span className="relative z-10 text-[10px] text-primary">←</span>
+            <span className="relative z-10 text-[12.5px] font-medium flex items-center gap-1"><ShoppingCart size={13} strokeWidth={1.75} className="text-primary" /> المشتريات</span>
+            <ChevronLeft size={14} className="relative z-10 text-primary" strokeWidth={2} />
           </Link>
         </div>
 

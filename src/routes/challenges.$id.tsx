@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { PrimaryCTA } from "@/components/sheila/OnboardingShell";
-import { Trophy, Users, Calendar, Check } from "lucide-react";
+import { Trophy, Users, Calendar, Check, Wind } from "lucide-react";
 
 export const Route = createFileRoute("/challenges/$id")({ component: Page });
 
@@ -11,7 +11,7 @@ function Page() {
     <FeatureShell title="تفاصيل التحدّي" back="/challenges" showNav={false} variant="energetic">
       <div className="px-5 space-y-4">
         <div className="glass-strong rounded-2xl p-5 text-center">
-          <div className="relative z-10 text-5xl">🧘‍♀️</div>
+          <div className="relative z-10 flex items-center justify-center w-16 h-16 mx-auto rounded-2xl" style={{ background: "var(--gradient-primary)" }}><Wind size={32} strokeWidth={1.75} className="text-white" /></div>
           <h2 className="relative z-10 font-display text-[20px] mt-3">تحدّي 7 أيام يوغا</h2>
           <p className="relative z-10 text-[12px] text-foreground/65 mt-2">جلسة يوميّة 15 دقيقة، تتناسب مع مرحلتكِ من الدورة.</p>
           <div className="relative z-10 grid grid-cols-3 gap-2 mt-4 text-center">

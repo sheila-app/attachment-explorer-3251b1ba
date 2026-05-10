@@ -7,6 +7,7 @@ import { LiquidBackdrop } from "@/components/sheila/LiquidBackdrop";
 import { FloatingDoodles } from "@/components/sheila/FloatingDoodles";
 import { mockUser, mockWorkouts, PHASE_META } from "@/data/mock";
 import { toAr } from "@/lib/format";
+import { tierMeta, PHASE_WINDOWS } from "@/data/gamification";
 import {
   Bell,
   Search,
@@ -20,11 +21,12 @@ import {
   Zap,
   Sparkles,
   Dumbbell,
-  Activity,
+  TrendingUp,
   ChevronLeft,
   Scale,
   Trophy,
   Users,
+  Clock,
 } from "lucide-react";
 
 export const Route = createFileRoute("/home")({

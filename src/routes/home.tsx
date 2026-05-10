@@ -164,6 +164,46 @@ function HomePage() {
             </div>
           </motion.div>
 
+          {/* ─── Body IQ + Phase Window row ─── */}
+          <motion.div className="px-5 mb-3 grid grid-cols-2 gap-2.5" {...card(0.07)}>
+            <Link to="/bodyiq" className="bg-white/85 backdrop-blur-sm rounded-2xl border border-border p-4 active:scale-[0.98] transition-transform">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] tracking-[0.2em] text-foreground/55 uppercase">Body IQ</span>
+                <span className="inline-flex items-center gap-0.5 text-[10px] nums" style={{ color: bodyIQDelta >= 0 ? "var(--phase-follicular)" : "var(--phase-menstrual)" }}>
+                  <TrendingUp size={10} strokeWidth={2.5} />
+                  {bodyIQDelta >= 0 ? "+" : ""}{bodyIQDelta}
+                </span>
+              </div>
+              <div className="font-display text-[26px] leading-none mt-1.5 nums" style={{ color: tier.color }}>{mockUser.bodyIQ}</div>
+              <div className="text-[10.5px] font-semibold mt-1" style={{ color: tier.color }}>{tier.name}</div>
+              <div className="mt-2 h-1 rounded-full bg-foreground/10 overflow-hidden">
+                <div className="h-full rounded-full" style={{ width: `${pctInTier * 100}%`, background: tier.color }} />
+              </div>
+              {next && <div className="text-[9.5px] text-foreground/55 mt-1 nums">{toNext} للوصول إلى {next.name}</div>}
+            </Link>
+
+            <Link to="/challenges/phase" className="bg-white/85 backdrop-blur-sm rounded-2xl border border-border p-4 active:scale-[0.98] transition-transform">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] tracking-[0.2em] text-foreground/55 uppercase">نافذة المرحلة</span>
+                <span className="inline-flex items-center gap-0.5 text-[10px] nums" style={{ color: win.color }}>
+                  <Clock size={10} strokeWidth={2.5} />
+                  {win.days} ي
+                </span>
+              </div>
+              <div className="font-display text-[16px] leading-tight mt-1.5" style={{ color: win.color }}>{win.name}</div>
+              <div className="text-[10.5px] text-foreground/55 mt-1 nums">{win.challenges} تحدّيات متاحة</div>
+              <div className="flex gap-1 mt-2.5">
+                {Array.from({ length: Math.min(win.challenges || 1, 5) }).map((_, i) => (
+                  <span key={i} className="flex-1 h-1 rounded-full" style={{ background: i < 2 ? win.color : "color-mix(in oklab, var(--foreground) 10%, transparent)" }} />
+                ))}
+              </div>
+              <div className="inline-flex items-center gap-0.5 text-[10px] mt-2 font-semibold" style={{ color: win.color }}>
+                ابدئي
+                <ChevronLeft size={11} strokeWidth={2.5} />
+              </div>
+            </Link>
+          </motion.div>
+
           {/* ─── 2. Quick stats row ─── */}
           <motion.div className="px-5 mb-3" {...card(0.1)}>
             <div className="grid grid-cols-3 gap-2.5">

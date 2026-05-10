@@ -1,107 +1,98 @@
-# خطة بناء تطبيق SHEILA — نموذج أولي (Prototype)
 
-## نظرة عامة
+# خطة بناء الشاشات والمنطق الناقصة — SHEILA v2
 
-تطبيق نسائي للّياقة وتتبّع الدورة، **عربي فقط (RTL)**، **نموذج أولي للعرض** ببيانات وهمية، **موبايل ضيق** (`max-width: 430px`) مع إطار جانبي على الشاشات الكبيرة. النطاق: **MVP + P1** بحوالي 55 شاشة.
-
----
-
-## الاتجاه البصري
-
-**المرجعية البصرية:** صور sh01, sh02, sh03 كمرجع للإحساس والإيقاع فقط (توزيع، بطاقات، Hero، مساحات). الألوان من `Sheila-Color.pdf` حصراً.
-
-**نظام الألوان:**
-- بنفسجي أساسي `#8B4789`
-- ألوان مراحل الدورة: الطمث `#D96060`، الجريبية `#58A030`، الإباضة `#E8A838`، الأصفرية `#8B5FB8`
-- خلفيات محايدة دافئة، بطاقات بيضاء، ظلال خفيفة جداً
-
-**التدرّجات (بمنطق وظيفي فقط):**
-- Hero أعلى الشاشة الرئيسية — تدرّج خفيف من لون المرحلة الحالية إلى الأبيض
-- حلقة CyclePhaseRing — تدرّج دائري للتقدّم
-- أزرار CTA الرئيسية — تدرّج بنفسجي ناعم
-- باقي الواجهة: ألوان مسطّحة
-
-**الرسومات:** لا صور بشرية. أيقونات Lucide رفيعة + أشكال SVG مجرّدة (blobs، موجات، حلقات) + تدرّجات كعناصر بصرية.
-
-**الخطوط:** Tajawal للنصوص، Amiri للعناوين الكبرى المزخرفة فقط.
-
-**الإطار:** موبايل `max-width: 430px` داخل إطار جهاز (Device Frame) على الشاشات الكبيرة.
+بعد قراءة الملفات المرفقة (SRS v2، Use Cases v2، Check-In Flows، Gamification، Nutrition Spec، Meals Library) قارنّاها بالتطبيق الحالي. يوجد فجوات كبيرة في **التغذية، الـ Check-in، الـ Gamification، Onboarding**. يبقى النموذج أولياً ببيانات وهمية فقط — لا Backend.
 
 ---
 
-## الشاشات المشمولة (~55 شاشة)
+## المرحلة 1 — توسيع البيانات والمنطق المركزي (`src/data/mock.ts` + `src/lib/`)
 
-**1. Onboarding (17 شاشة)**
-- Splash، Welcome، اختيار اللغة، تسجيل/دخول، OTP
-- 12 سؤال إعداد: العمر، الطول/الوزن، الهدف، مستوى النشاط، آخر دورة، انتظامها، الأعراض، التغذية، الحساسيات، النوم، الحالة الصحية، ملخّص
-
-**2. الرئيسية والـ Dashboard (4 شاشات)**
-- Home مع CyclePhaseRing متحرّكة، بطاقة المرحلة اليوم، بطاقات AI، Daily Check-in
-- Calendar (تقويم الدورة)، تفاصيل يوم، إدخال أعراض
-
-**3. التمارين (10 شاشات)**
-- مكتبة التمارين، تصفية حسب المرحلة، تفاصيل تمرين، مشغّل جلسة نشطة مع مؤقّت، ملخّص ما بعد التمرين، خطط أسبوعية، سجّل التمارين
-
-**4. التغذية (8 شاشات)**
-- خطة اليوم، قاعدة الوجبات، تفاصيل وجبة، مخطّط أسبوعي، قائمة تسوّق، تتبّع الماء، تتبّع السعرات، مفضّلة
-
-**5. رحلة الصحة (6 شاشات)**
-- لوحة المؤشّرات، تتبّع الوزن، المزاج، النوم، التقارير، رؤى AI
-
-**6. المجتمع (5 شاشات)**
-- Feed، تفاصيل منشور، مجموعات، ملف عضو، إنشاء منشور
-
-**7. الملف الشخصي والإعدادات (5 شاشات)**
-- الملف، تعديل، الإعدادات، الإشعارات، الاشتراك/الخصوصية
+1. **توسيع `mockUser`**: `lifeStage` (reproductive / pregnant / postpartum / perimenopause / menopause / senior)، `trimester`، `postpartumWeeks`، `birthControl`، `dietaryPrefs[]`، `displayMacros`، `cyclePhase` بستّ حالات (menstrual / follicular / ovulation / luteal_early / luteal_late)، `bodyIQ`، `bodyIQTier`، `streak`، `streakGrace`، `ramadanMode`.
+2. **`gamification.ts`**: ثوابت النقاط والتدهور والتيرز الست، دالة `computeTier(bodyIQ)`، دالّ تدهور (decay) بحسب أيّام الخمول.
+3. **`mealsLibrary.ts`**: 30–40 وجبة عيّنة من المكتبة موزّعة على المراحل والوسوم (omnivore/vegan/vegetarian/halal/dairy-free/gluten-free) مع micros + “Why this works”.
+4. **`foodDatabase.ts`**: ~60 صنف غذائي مفرد للبحث (اسم/كالوري/ماكرو/Serving/barcode وهمي).
+5. **`checkinFlows.ts`**: تعريفات الفلوهات (A1–A4، B1–B3، C1–C7، D1–D2، E1–E3، F1–F2) — كلٌّ بـ greeting، tone، steps[].
+6. **`store.ts`** خفيف (Zustand أو Context) لحفظ: Body IQ، streak، nutritionLog يومي، waterLog، checkin records — كلّها بالذاكرة فقط.
 
 ---
 
-## البنية التقنية
+## المرحلة 2 — إعادة بناء وحدة التغذية (Nutrition)
 
-**Routing:** ~55 ملف route في `src/routes/` بالنمط المسطّح (`onboarding.welcome.tsx`، `cycle.calendar.tsx`، `workouts.$id.tsx`، ...).
+تطابق مواصفة `SHEILA_nutrition_page_spec.md`.
 
-**البيانات:** `src/data/mock.ts` مركزي يحوي المستخدم الوهمي، مراحل الدورة، التمارين، الوجبات، المنشورات، التقارير.
-
-**المكوّنات المشتركة** في `src/components/sheila/`:
-- `DeviceFrame` — إطار الموبايل
-- `CyclePhaseRing` — حلقة المراحل SVG متحرّكة
-- `BottomNav` — شريط سفلي (5 تبويبات)
-- `PhaseBadge`، `StatCard`، `AICard`، `WorkoutCard`، `MealCard`، `PostCard`
-- `OnboardingLayout` مع مؤشّر تقدّم
-- `EmptyState`، `SectionHeader`
-
-**RTL:** `<html dir="rtl" lang="ar">` في `__root.tsx`، Tailwind logical properties (ms/me/ps/pe)، خطوط Tajawal/Amiri من Google Fonts.
-
-**نظام الألوان في `styles.css`:** تحويل ألوان التطبيق إلى متغيّرات CSS (`--primary`, `--phase-menstrual`, `--phase-follicular`, ...) بصيغة oklch، وربطها بـ Tailwind theme.
-
-**التنقّل بين الشاشات:** Links حقيقية بين الـ routes، مع شاشة فهرس `/screens` تعرض كل الشاشات كقائمة للتنقّل السريع (للعرض/التقديم).
+- **`nutrition.index.tsx`**: Day navigation (سهم/تاريخ/سهم) + شارة الحالة (اليوم/سابق/تخطيط) + Phase chip حيّ + Macro Ring بـ kcal+P+C+F + زر Recipe Library الدائم + 4 بطاقات وجبات + Water Tracker (8 قطرات).
+- **`nutrition.ai.$slot.tsx`** — AI Suggestions: 3 بطاقات مرتّبة، Best Match مع “لماذا تنفع لكِ”، CTAs (إضافة/استبدال/إضافة بجانب)، زر Regenerate.
+- **`nutrition.add.$slot.tsx`** — Add Sheet (Bottom Sheet) بأربعة خيارات.
+- **`nutrition.search.$slot.tsx`** — بحث الطعام: Recent + Suggested for Phase + Serving Sheet ‎بـ Stepper (0.5×).
+- **`nutrition.barcode.$slot.tsx`** — صندوق ماسح وهمي → Loading → Result card.
+- **`nutrition.scan.$slot.tsx`** — Photograph My Meal: viewfinder وهمي → تحليل ‎1.4s → نتيجة + Confidence.
+- **`nutrition.recipes.tsx` (موجود — يُعاد بناؤه)**: شريط بحث + زر Create + 4 مجموعات فلاتر متعدّدة الاختيار + قسمَا SHEILA Recipes / My Recipes.
+- **`nutrition.recipes.build.tsx`** — Build a Recipe: حقول + قائمة مكوّنات حيّة + ماكرو يحسب تلقائياً + Save toggle.
+- **`nutrition.shopping.tsx` (موجود — يُحسّن)**: قائمة مجمّعة من اللوغ والخطّط مرتّبة بالتصنيف مع تحرير يدوي وExport.
+- **منطق Day State**: Today/Past/Planning يُخفي/يُظهر أزرار الكتابة. Past = banner للقراءة فقط.
+- **نظام Toast + Undo** عام (Sonner) لكل add/remove/clear.
 
 ---
 
-## مراحل التنفيذ
+## المرحلة 3 — منظومة الـ Check-in الديناميكية
 
-**المرحلة 1 — الأساس:**
-نظام الألوان والخطوط، `DeviceFrame`، `__root.tsx` بـ RTL، الصفحة الرئيسية `/` كـ Splash مع CTA للدخول، شاشة `/screens` كفهرس.
+استبدال `checkin.index.tsx` الحالي بمحرّك يقرأ الفلو من `checkinFlows.ts` بحسب حالة المستخدمة:
 
-**المرحلة 2 — Onboarding كامل:** 17 شاشة مع تدفّق متّصل ومؤشّر تقدّم.
-
-**المرحلة 3 — Home و Cycle:** Dashboard الرئيسي، CyclePhaseRing، التقويم، تفاصيل اليوم.
-
-**المرحلة 4 — التمارين والتغذية:** المكتبتان + مشغّلات الجلسة والوجبات.
-
-**المرحلة 5 — الصحة والمجتمع والملف:** رحلة الصحة، Feed المجتمع، الملف والإعدادات.
-
-**المرحلة 6 — التلميع:** انتقالات ناعمة، حالات فارغة، تحقّق نهائي من كل الشاشات.
+- محرّك Step-by-Step موحّد (`CheckinFlowRunner`) يقدّم: Mood Grid، Flow Intensity selector، Pain Scale dots، Symptoms multi-select، Energy slider، Sleep quality، Workout prompt، Body signals، Info Card، Barrier Audit.
+- **شاشات الفلوهات (تظهر تلقائياً حسب الحالة):**
+  - A1 Menstrual / A2 Follicular / A3 Ovulation / A4 Luteal Early / A5 Luteal Late.
+  - B1 No-cycle / B2 Birth-control / B3 Late period.
+  - C1–C3 Pregnancy T1/T2/T3 + C4–C6 Postpartum + C7 Adoption + C8 Perimenopause + C9 Menopause.
+  - D1 Ramadan fasting / D2 Eid.
+  - E1 Completed in-app / E2 Missed / E3 First-ever + E4 External workout.
+  - F1 High distress overlay / F2 Postpartum mental flag (warm، non-clinical، روابط مساعدة).
+- شاشة ملخّص ‎check-in تعطي Affirmation + +Body IQ.
 
 ---
 
-## ما هو خارج النطاق
+## المرحلة 4 — منظومة Gamification
 
-- لا Backend حقيقي (لا Lovable Cloud، لا قاعدة بيانات، لا Auth حقيقي)
-- لا AI فعلي (بطاقات AI محتواها وهمي ثابت)
-- لا إشعارات Push فعلية
-- لا دعم English (عربي فقط)
-- لا وضع Dark (فاتح فقط في هذه المرحلة)
-- لا شاشات P2 المتقدّمة (سيتم تخطّيها)
+- **مكوّن `BodyIQCard`** على الرئيسية: العدد، التير، شريط للتير التالي، أيقونة تدهور إن وُجد.
+- **شاشة `bodyiq.tsx`**: تفاصيل النقاط، السجلّ، سلسلة من +/– حركة آخر 14 يوم، شرح الـ6 تيرز.
+- **مكوّن `PhaseWindow`** على الرئيسية: عدّاد بالأيام/الساعات حسب المرحلة + تقدّم التحدّيات (مثلاً 2/5).
+- **شاشة `challenges.phase.tsx`**: تحدّيات المرحلة الحالية فقط، مع نتيجة Window عند انتهائه.
+- **`streak.tsx`**: شعلة، grace days menstrual تلقائي، Retroactive Fill (مرّة واحدة)، **The Wager** modal عند day 6.
+- **`circle.tsx`** (المجموعة الخاصّة): Leaderboard مباشر بأسماء وهمية (Phase pseudonyms)، إشعارات تجاوز/تجاوزكِ، تحدّي جماعيّ أسبوعي + Accountability Partner.
+- **شاشة `achievements.tsx` (محسّنة)**: ثلاث طبقات Micro / Macro / Legacy بتصاميم مختلفة.
 
-بعد الموافقة سأبدأ بالمرحلة 1 مباشرة.
+---
+
+## المرحلة 5 — استكمال Onboarding ليطابق Use Cases v2
+
+- إضافة الخطوات الناقصة:
+  - **Macro display preference** (Display/Hide).
+  - **Goal Check-in Frequency** (1/3/6 months / Don't).
+  - **Pregnancy / Planning Status** + متابعة (Trimester + Doctor clearance).
+  - **Birth Control Status** + ملاحظة تأثير التوقّع.
+  - **Cycle Length** (21–45، افتراضي 28).
+  - **Location** (Country dropdown + City).
+  - **Notifications breakdown** (Email/Push + checkboxes).
+- إعادة ترقيم خطوات الـ Onboarding وضبط مؤشّر التقدّم.
+
+---
+
+## المرحلة 6 — تحديثات الرئيسية (Home) والربط
+
+- تطعيم `home.tsx` بـ: BodyIQCard، Streak Flame، PhaseWindow countdown، Today’s Workout card، Daily Check-in CTA يفتح الفلو الصحيح، نسخة AI لاقتراح الوجبة بحسب المرحلة.
+- ربط جميع الشاشات في `screens.tsx` و`mock.ts › allScreens`.
+
+---
+
+## ما هو خارج النطاق (يبقى كما هو)
+- لا Backend / لا Auth حقيقي / لا AI فعلي / لا Push فعلي.
+- Dark mode غير مفعّل.
+- يبقى التطبيق عربي RTL.
+
+---
+
+## ملاحظات تقنية
+- لن نلمس `routeTree.gen.ts` يدوياً — يُولَّد ذاتياً.
+- منطق التدهور والـ Body IQ مُحاكَى بـ‎`useEffect` و‎mockNow مرنة في الذاكرة.
+- Toasts عبر `sonner` المتوفّر.
+- جميع البيانات الحسّاسة (Past-day write rejection، RLS) موصوفة في تعليقات داخل الكود لكن غير منفذة (لا backend).
+- التنفيذ على دفعات؛ بعد كلّ مرحلة سأتحقّق من البناء بصرياً قبل الانتقال للتي تليها.

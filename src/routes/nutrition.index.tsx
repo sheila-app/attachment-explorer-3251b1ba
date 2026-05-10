@@ -1,18 +1,56 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
-import { mockMeals, PHASE_META } from "@/data/mock";
-import { Apple, Droplet, Plus, ChevronLeft, BookOpen, ShoppingCart } from "lucide-react";
+import { mockMeals, mockUser, PHASE_META } from "@/data/mock";
+import { aiRankForMeal } from "@/data/mealsLibrary";
+import {
+  Apple,
+  Droplet,
+  Plus,
+  ChevronLeft,
+  BookOpen,
+  ShoppingCart,
+  Sparkles,
+  Barcode,
+  Search as SearchIcon,
+} from "lucide-react";
 
 export const Route = createFileRoute("/nutrition/")({ component: NutritionPage });
 
 function NutritionPage() {
-  const target = 1800;
+  const target = mockUser.dailyKcal;
   const eaten = 980;
   const pct = (eaten / target) * 100;
+
+  const protein = { v: 48, t: mockUser.dailyProtein };
+  const carbs = { v: 120, t: mockUser.dailyCarbs };
+  const fat = { v: 32, t: mockUser.dailyFat };
+
+  const phaseMeta = PHASE_META[mockUser.currentPhase];
+
+  // AI suggestion for next meal (lunch as example)
+  const aiSuggestions = aiRankForMeal({
+    type: "غداء",
+    phase: mockUser.currentPhase,
+    remainingProtein: protein.t - protein.v,
+    alreadyLoggedIds: [],
+    diet: ["halal"],
+  });
+  const topAi = aiSuggestions[0];
 
   return (
     <FeatureShell title="التغذية" variant="warm">
       <div className="px-5 pb-4">
+        {/* Phase chip + day nav */}
+        <div className="flex items-center justify-between mb-3">
+          <div className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] font-medium"
+            style={{ background: `color-mix(in oklab, ${phaseMeta.color} 14%, transparent)`, color: phaseMeta.color }}
+          >
+            <span className="w-1.5 h-1.5 rounded-full" style={{ background: phaseMeta.color }} />
+            مرحلة {phaseMeta.name}
+          </div>
+          <div className="text-[11px] text-foreground/55">اليوم</div>
+        </div>
+
         {/* Calories ring summary */}
         <div className="glass-strong rounded-2xl p-5 flex items-center gap-5">
           <div className="relative shrink-0">
@@ -30,9 +68,9 @@ function NutritionPage() {
             <div className="text-[10px] tracking-[0.2em] text-foreground/55 uppercase">السعرات اليوم</div>
             <div className="font-display text-2xl mt-1 nums">{target - eaten} متبقّية</div>
             <div className="grid grid-cols-3 gap-2 mt-3 text-center">
-              <Macro label="بروتين" v="48" t="120" color="var(--phase-follicular)" />
-              <Macro label="كارب" v="120" t="220" color="var(--phase-ovulation)" />
-              <Macro label="دهون" v="32" t="60" color="var(--phase-luteal)" />
+              <Macro label="بروتين" v={String(protein.v)} t={String(protein.t)} color="var(--phase-follicular)" />
+              <Macro label="كارب" v={String(carbs.v)} t={String(carbs.t)} color="var(--phase-ovulation)" />
+              <Macro label="دهون" v={String(fat.v)} t={String(fat.t)} color="var(--phase-luteal)" />
             </div>
           </div>
         </div>
@@ -57,15 +95,36 @@ function NutritionPage() {
           </button>
         </div>
 
-        <div className="grid grid-cols-2 gap-2 mt-3">
-          <Link to="/nutrition/recipes" className="glass-strong rounded-2xl p-3.5 flex items-center justify-between">
-            <span className="relative z-10 text-[12.5px] font-medium flex items-center gap-1"><BookOpen size={13} strokeWidth={1.75} className="text-primary" /> الوصفات</span>
-            <ChevronLeft size={14} className="relative z-10 text-primary" strokeWidth={2} />
+        {/* AI suggestion */}
+        {topAi && (
+          <Link
+            to="/nutrition/$id"
+            params={{ id: topAi.id }}
+            className="glass-strong mt-3 rounded-2xl p-4 flex items-center gap-3 active:scale-[0.99] transition-transform block"
+          >
+            <div className="relative z-10 w-12 h-12 rounded-xl flex items-center justify-center text-xl"
+              style={{ background: `linear-gradient(135deg, ${phaseMeta.color}55, ${phaseMeta.color}22)` }}
+            >
+              {topAi.emoji}
+            </div>
+            <div className="relative z-10 flex-1 min-w-0">
+              <div className="flex items-center gap-1.5">
+                <Sparkles size={11} className="text-primary" strokeWidth={2.5} />
+                <span className="text-[10px] tracking-[0.2em] text-primary uppercase font-semibold">اقتراح ذكيّ — {topAi.type}</span>
+              </div>
+              <div className="text-[13px] font-medium truncate mt-0.5">{topAi.arName}</div>
+              <div className="text-[11px] text-foreground/65 nums mt-0.5">{topAi.kcal} سعرة · {topAi.protein}غ بروتين · {topAi.prep + topAi.cookTime} د</div>
+            </div>
+            <ChevronLeft size={14} className="relative z-10 text-primary shrink-0" strokeWidth={2.5} />
           </Link>
-          <Link to="/nutrition/shopping" className="glass-strong rounded-2xl p-3.5 flex items-center justify-between">
-            <span className="relative z-10 text-[12.5px] font-medium flex items-center gap-1"><ShoppingCart size={13} strokeWidth={1.75} className="text-primary" /> المشتريات</span>
-            <ChevronLeft size={14} className="relative z-10 text-primary" strokeWidth={2} />
-          </Link>
+        )}
+
+        {/* Quick actions */}
+        <div className="grid grid-cols-4 gap-2 mt-3">
+          <QuickAction to="/nutrition/recipes" Icon={BookOpen} label="وصفات" />
+          <QuickAction to="/nutrition/shopping" Icon={ShoppingCart} label="مشتريات" />
+          <QuickAction to="/nutrition/log" Icon={SearchIcon} label="بحث" />
+          <QuickAction to="/nutrition/log" Icon={Barcode} label="باركود" />
         </div>
 
         {/* Meals */}
@@ -98,6 +157,15 @@ function NutritionPage() {
         </div>
       </div>
     </FeatureShell>
+  );
+}
+
+function QuickAction({ to, Icon, label }: { to: string; Icon: typeof Apple; label: string }) {
+  return (
+    <Link to={to as "/"} className="glass rounded-2xl p-3 flex flex-col items-center gap-1.5 active:scale-95 transition-transform">
+      <Icon size={16} className="relative z-10 text-primary" strokeWidth={1.75} />
+      <span className="relative z-10 text-[10.5px] font-medium">{label}</span>
+    </Link>
   );
 }
 

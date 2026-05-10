@@ -29,6 +29,8 @@ export const PHASE_META: Record<CyclePhase, { name: string; color: string; soft:
   },
 };
 
+export type LifeStage = "reproductive" | "pregnant" | "postpartum" | "perimenopause" | "menopause" | "senior";
+
 export const mockUser = {
   name: "نورة",
   age: 28,
@@ -37,13 +39,33 @@ export const mockUser = {
   currentPhase: "ovulation" as CyclePhase,
   streak: 7,
   bestStreak: 21,
+  streakGraceActive: false,
   goal: "تحسين اللّياقة العامة",
   location: "الرياض، السعودية",
+  country: "السعودية",
+  city: "الرياض",
   joinedDays: 142,
-  bodyIQ: 78,
+  bodyIQ: 589,
   weight: 62,
   height: 165,
   email: "noura@example.com",
+  // إعدادات إضافيّة (Use Cases v2)
+  lifeStage: "reproductive" as LifeStage,
+  trimester: null as 1 | 2 | 3 | null,
+  postpartumWeeks: null as number | null,
+  birthControl: false,
+  dietaryPrefs: ["halal"] as string[],
+  displayMacros: true,
+  ramadanMode: false,
+  doctorClearance: null as boolean | null,
+  goalCheckinFrequency: "3months",
+  // Body IQ
+  bodyIQYesterday: 571,
+  // ماكرو هدف يوميّ
+  dailyKcal: 1800,
+  dailyProtein: 120,
+  dailyCarbs: 220,
+  dailyFat: 60,
 };
 
 export const mockWorkouts = [

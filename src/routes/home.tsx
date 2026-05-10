@@ -47,6 +47,9 @@ function HomePage() {
   const phase = PHASE_META[mockUser.currentPhase];
   const todayWorkout = mockWorkouts[0];
   const todayWorkoutPhaseMeta = PHASE_META[todayWorkout.phase];
+  const { tier, next, toNext, pctInTier } = tierMeta(mockUser.bodyIQ);
+  const bodyIQDelta = mockUser.bodyIQ - mockUser.bodyIQYesterday;
+  const win = PHASE_WINDOWS[mockUser.currentPhase];
 
   return (
     <DeviceFrame>

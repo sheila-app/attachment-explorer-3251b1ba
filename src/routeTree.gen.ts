@@ -13,15 +13,19 @@ import { Route as WidgetsRouteImport } from './routes/widgets'
 import { Route as TimerRouteImport } from './routes/timer'
 import { Route as SystemRouteImport } from './routes/system'
 import { Route as SupplementsRouteImport } from './routes/supplements'
+import { Route as StreakRouteImport } from './routes/streak'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as ScreensRouteImport } from './routes/screens'
 import { Route as PregnancyRouteImport } from './routes/pregnancy'
 import { Route as PaywallRouteImport } from './routes/paywall'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as EmergencyRouteImport } from './routes/emergency'
+import { Route as CircleRouteImport } from './routes/circle'
 import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as BuddyRouteImport } from './routes/buddy'
+import { Route as BodyiqRouteImport } from './routes/bodyiq'
 import { Route as AssistantRouteImport } from './routes/assistant'
+import { Route as AchievementsRouteImport } from './routes/achievements'
 import { Route as R404RouteImport } from './routes/404'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WorkoutsIndexRouteImport } from './routes/workouts.index'
@@ -99,6 +103,7 @@ import { Route as CoachesIdRouteImport } from './routes/coaches.$id'
 import { Route as CheckinWaterRouteImport } from './routes/checkin.water'
 import { Route as CheckinStepsRouteImport } from './routes/checkin.steps'
 import { Route as CheckinSleepRouteImport } from './routes/checkin.sleep'
+import { Route as ChallengesPhaseRouteImport } from './routes/challenges.phase'
 import { Route as ChallengesIdRouteImport } from './routes/challenges.$id'
 import { Route as AuthOtpRouteImport } from './routes/auth.otp'
 import { Route as AuthNewPasswordRouteImport } from './routes/auth.new-password'
@@ -128,6 +133,11 @@ const SystemRoute = SystemRouteImport.update({
 const SupplementsRoute = SupplementsRouteImport.update({
   id: '/supplements',
   path: '/supplements',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StreakRoute = StreakRouteImport.update({
+  id: '/streak',
+  path: '/streak',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SearchRoute = SearchRouteImport.update({
@@ -160,6 +170,11 @@ const EmergencyRoute = EmergencyRouteImport.update({
   path: '/emergency',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CircleRoute = CircleRouteImport.update({
+  id: '/circle',
+  path: '/circle',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CalendarRoute = CalendarRouteImport.update({
   id: '/calendar',
   path: '/calendar',
@@ -170,9 +185,19 @@ const BuddyRoute = BuddyRouteImport.update({
   path: '/buddy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BodyiqRoute = BodyiqRouteImport.update({
+  id: '/bodyiq',
+  path: '/bodyiq',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AssistantRoute = AssistantRouteImport.update({
   id: '/assistant',
   path: '/assistant',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AchievementsRoute = AchievementsRouteImport.update({
+  id: '/achievements',
+  path: '/achievements',
   getParentRoute: () => rootRouteImport,
 } as any)
 const R404Route = R404RouteImport.update({
@@ -561,6 +586,11 @@ const CheckinSleepRoute = CheckinSleepRouteImport.update({
   path: '/checkin/sleep',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ChallengesPhaseRoute = ChallengesPhaseRouteImport.update({
+  id: '/challenges/phase',
+  path: '/challenges/phase',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ChallengesIdRoute = ChallengesIdRouteImport.update({
   id: '/challenges/$id',
   path: '/challenges/$id',
@@ -615,15 +645,19 @@ const CoachesIdBookRoute = CoachesIdBookRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/404': typeof R404Route
+  '/achievements': typeof AchievementsRoute
   '/assistant': typeof AssistantRoute
+  '/bodyiq': typeof BodyiqRoute
   '/buddy': typeof BuddyRoute
   '/calendar': typeof CalendarRoute
+  '/circle': typeof CircleRoute
   '/emergency': typeof EmergencyRoute
   '/home': typeof HomeRoute
   '/paywall': typeof PaywallRoute
   '/pregnancy': typeof PregnancyRoute
   '/screens': typeof ScreensRoute
   '/search': typeof SearchRoute
+  '/streak': typeof StreakRoute
   '/supplements': typeof SupplementsRoute
   '/system': typeof SystemRoute
   '/timer': typeof TimerRoute
@@ -634,6 +668,7 @@ export interface FileRoutesByFullPath {
   '/auth/new-password': typeof AuthNewPasswordRoute
   '/auth/otp': typeof AuthOtpRoute
   '/challenges/$id': typeof ChallengesIdRoute
+  '/challenges/phase': typeof ChallengesPhaseRoute
   '/checkin/sleep': typeof CheckinSleepRoute
   '/checkin/steps': typeof CheckinStepsRoute
   '/checkin/water': typeof CheckinWaterRoute
@@ -717,15 +752,19 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/404': typeof R404Route
+  '/achievements': typeof AchievementsRoute
   '/assistant': typeof AssistantRoute
+  '/bodyiq': typeof BodyiqRoute
   '/buddy': typeof BuddyRoute
   '/calendar': typeof CalendarRoute
+  '/circle': typeof CircleRoute
   '/emergency': typeof EmergencyRoute
   '/home': typeof HomeRoute
   '/paywall': typeof PaywallRoute
   '/pregnancy': typeof PregnancyRoute
   '/screens': typeof ScreensRoute
   '/search': typeof SearchRoute
+  '/streak': typeof StreakRoute
   '/supplements': typeof SupplementsRoute
   '/system': typeof SystemRoute
   '/timer': typeof TimerRoute
@@ -736,6 +775,7 @@ export interface FileRoutesByTo {
   '/auth/new-password': typeof AuthNewPasswordRoute
   '/auth/otp': typeof AuthOtpRoute
   '/challenges/$id': typeof ChallengesIdRoute
+  '/challenges/phase': typeof ChallengesPhaseRoute
   '/checkin/sleep': typeof CheckinSleepRoute
   '/checkin/steps': typeof CheckinStepsRoute
   '/checkin/water': typeof CheckinWaterRoute
@@ -820,15 +860,19 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/404': typeof R404Route
+  '/achievements': typeof AchievementsRoute
   '/assistant': typeof AssistantRoute
+  '/bodyiq': typeof BodyiqRoute
   '/buddy': typeof BuddyRoute
   '/calendar': typeof CalendarRoute
+  '/circle': typeof CircleRoute
   '/emergency': typeof EmergencyRoute
   '/home': typeof HomeRoute
   '/paywall': typeof PaywallRoute
   '/pregnancy': typeof PregnancyRoute
   '/screens': typeof ScreensRoute
   '/search': typeof SearchRoute
+  '/streak': typeof StreakRoute
   '/supplements': typeof SupplementsRoute
   '/system': typeof SystemRoute
   '/timer': typeof TimerRoute
@@ -839,6 +883,7 @@ export interface FileRoutesById {
   '/auth/new-password': typeof AuthNewPasswordRoute
   '/auth/otp': typeof AuthOtpRoute
   '/challenges/$id': typeof ChallengesIdRoute
+  '/challenges/phase': typeof ChallengesPhaseRoute
   '/checkin/sleep': typeof CheckinSleepRoute
   '/checkin/steps': typeof CheckinStepsRoute
   '/checkin/water': typeof CheckinWaterRoute
@@ -924,15 +969,19 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/404'
+    | '/achievements'
     | '/assistant'
+    | '/bodyiq'
     | '/buddy'
     | '/calendar'
+    | '/circle'
     | '/emergency'
     | '/home'
     | '/paywall'
     | '/pregnancy'
     | '/screens'
     | '/search'
+    | '/streak'
     | '/supplements'
     | '/system'
     | '/timer'
@@ -943,6 +992,7 @@ export interface FileRouteTypes {
     | '/auth/new-password'
     | '/auth/otp'
     | '/challenges/$id'
+    | '/challenges/phase'
     | '/checkin/sleep'
     | '/checkin/steps'
     | '/checkin/water'
@@ -1026,15 +1076,19 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/404'
+    | '/achievements'
     | '/assistant'
+    | '/bodyiq'
     | '/buddy'
     | '/calendar'
+    | '/circle'
     | '/emergency'
     | '/home'
     | '/paywall'
     | '/pregnancy'
     | '/screens'
     | '/search'
+    | '/streak'
     | '/supplements'
     | '/system'
     | '/timer'
@@ -1045,6 +1099,7 @@ export interface FileRouteTypes {
     | '/auth/new-password'
     | '/auth/otp'
     | '/challenges/$id'
+    | '/challenges/phase'
     | '/checkin/sleep'
     | '/checkin/steps'
     | '/checkin/water'
@@ -1128,15 +1183,19 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/404'
+    | '/achievements'
     | '/assistant'
+    | '/bodyiq'
     | '/buddy'
     | '/calendar'
+    | '/circle'
     | '/emergency'
     | '/home'
     | '/paywall'
     | '/pregnancy'
     | '/screens'
     | '/search'
+    | '/streak'
     | '/supplements'
     | '/system'
     | '/timer'
@@ -1147,6 +1206,7 @@ export interface FileRouteTypes {
     | '/auth/new-password'
     | '/auth/otp'
     | '/challenges/$id'
+    | '/challenges/phase'
     | '/checkin/sleep'
     | '/checkin/steps'
     | '/checkin/water'
@@ -1231,15 +1291,19 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   R404Route: typeof R404Route
+  AchievementsRoute: typeof AchievementsRoute
   AssistantRoute: typeof AssistantRoute
+  BodyiqRoute: typeof BodyiqRoute
   BuddyRoute: typeof BuddyRoute
   CalendarRoute: typeof CalendarRoute
+  CircleRoute: typeof CircleRoute
   EmergencyRoute: typeof EmergencyRoute
   HomeRoute: typeof HomeRoute
   PaywallRoute: typeof PaywallRoute
   PregnancyRoute: typeof PregnancyRoute
   ScreensRoute: typeof ScreensRoute
   SearchRoute: typeof SearchRoute
+  StreakRoute: typeof StreakRoute
   SupplementsRoute: typeof SupplementsRoute
   SystemRoute: typeof SystemRoute
   TimerRoute: typeof TimerRoute
@@ -1250,6 +1314,7 @@ export interface RootRouteChildren {
   AuthNewPasswordRoute: typeof AuthNewPasswordRoute
   AuthOtpRoute: typeof AuthOtpRoute
   ChallengesIdRoute: typeof ChallengesIdRoute
+  ChallengesPhaseRoute: typeof ChallengesPhaseRoute
   CheckinSleepRoute: typeof CheckinSleepRoute
   CheckinStepsRoute: typeof CheckinStepsRoute
   CheckinWaterRoute: typeof CheckinWaterRoute
@@ -1357,6 +1422,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SupplementsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/streak': {
+      id: '/streak'
+      path: '/streak'
+      fullPath: '/streak'
+      preLoaderRoute: typeof StreakRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/search': {
       id: '/search'
       path: '/search'
@@ -1399,6 +1471,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EmergencyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/circle': {
+      id: '/circle'
+      path: '/circle'
+      fullPath: '/circle'
+      preLoaderRoute: typeof CircleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/calendar': {
       id: '/calendar'
       path: '/calendar'
@@ -1413,11 +1492,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BuddyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/bodyiq': {
+      id: '/bodyiq'
+      path: '/bodyiq'
+      fullPath: '/bodyiq'
+      preLoaderRoute: typeof BodyiqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/assistant': {
       id: '/assistant'
       path: '/assistant'
       fullPath: '/assistant'
       preLoaderRoute: typeof AssistantRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/achievements': {
+      id: '/achievements'
+      path: '/achievements'
+      fullPath: '/achievements'
+      preLoaderRoute: typeof AchievementsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/404': {
@@ -1959,6 +2052,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CheckinSleepRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/challenges/phase': {
+      id: '/challenges/phase'
+      path: '/challenges/phase'
+      fullPath: '/challenges/phase'
+      preLoaderRoute: typeof ChallengesPhaseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/challenges/$id': {
       id: '/challenges/$id'
       path: '/challenges/$id'
@@ -2072,15 +2172,19 @@ const WorkoutsProgramsRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   R404Route: R404Route,
+  AchievementsRoute: AchievementsRoute,
   AssistantRoute: AssistantRoute,
+  BodyiqRoute: BodyiqRoute,
   BuddyRoute: BuddyRoute,
   CalendarRoute: CalendarRoute,
+  CircleRoute: CircleRoute,
   EmergencyRoute: EmergencyRoute,
   HomeRoute: HomeRoute,
   PaywallRoute: PaywallRoute,
   PregnancyRoute: PregnancyRoute,
   ScreensRoute: ScreensRoute,
   SearchRoute: SearchRoute,
+  StreakRoute: StreakRoute,
   SupplementsRoute: SupplementsRoute,
   SystemRoute: SystemRoute,
   TimerRoute: TimerRoute,
@@ -2091,6 +2195,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthNewPasswordRoute: AuthNewPasswordRoute,
   AuthOtpRoute: AuthOtpRoute,
   ChallengesIdRoute: ChallengesIdRoute,
+  ChallengesPhaseRoute: ChallengesPhaseRoute,
   CheckinSleepRoute: CheckinSleepRoute,
   CheckinStepsRoute: CheckinStepsRoute,
   CheckinWaterRoute: CheckinWaterRoute,
@@ -2170,3 +2275,12 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}

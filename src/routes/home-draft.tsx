@@ -362,7 +362,10 @@ function DateStrip({
                 return (
                   <button
                     key={it.offset}
-                    onClick={() => setOffset(it.offset)}
+                    onClick={() => {
+                      if (dragRef.current.moved) return;
+                      setOffset(it.offset);
+                    }}
                     className="flex-shrink-0 w-12 rounded-2xl flex flex-col items-center justify-center gap-1 py-2 transition-all"
                     style={{
                       scrollSnapAlign: "center",

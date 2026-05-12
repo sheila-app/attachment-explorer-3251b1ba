@@ -325,23 +325,6 @@ function DateStrip({
 
   return (
     <div className="mt-5 relative">
-      <div className="flex items-center justify-between px-5 mb-2">
-        <button
-          onClick={() => setOffset(Math.max(offset - 1, -RANGE))}
-          className="w-7 h-7 rounded-full bg-white/70 backdrop-blur border border-white/60 flex items-center justify-center"
-          aria-label="السابق"
-        >
-          <ChevronRight size={14} className="text-foreground/70" />
-        </button>
-        <span className="text-[11px] text-foreground/55">اسحب لتصفّح الأيام</span>
-        <button
-          onClick={() => setOffset(Math.min(offset + 1, RANGE))}
-          className="w-7 h-7 rounded-full bg-white/70 backdrop-blur border border-white/60 flex items-center justify-center"
-          aria-label="التالي"
-        >
-          <ChevronLeft size={14} className="text-foreground/70" />
-        </button>
-      </div>
 
       <div
         ref={scrollerRef}

@@ -1,10 +1,14 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "motion/react";
-import { Bell, Search, Sparkles, Droplet, Moon, Heart, Activity, BookOpen } from "lucide-react";
+import {
+  Bell, Search, Sparkles, Moon, Droplets, Apple, Smile, Meh, Frown, Zap,
+  Dumbbell, TrendingUp, ChevronLeft, Scale, Trophy, Users, Clock, Flame,
+} from "lucide-react";
 import { DeviceFrame } from "@/components/sheila/DeviceFrame";
 import { BottomNav } from "@/components/sheila/BottomNav";
-import { mockUser, PHASE_META, type CyclePhase } from "@/data/mock";
+import { mockUser, mockWorkouts, PHASE_META, type CyclePhase } from "@/data/mock";
+import { tierMeta, PHASE_WINDOWS } from "@/data/gamification";
 import { toAr } from "@/lib/format";
 
 export const Route = createFileRoute("/home")({ component: HomePage });

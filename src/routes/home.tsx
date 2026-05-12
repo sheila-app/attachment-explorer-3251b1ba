@@ -1,10 +1,14 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "motion/react";
-import { Bell, Search, Sparkles, Droplet, Moon, Heart, Activity, BookOpen } from "lucide-react";
+import {
+  Bell, Search, Sparkles, Moon, Droplets, Apple, Smile, Meh, Frown, Zap,
+  Dumbbell, TrendingUp, ChevronLeft, Scale, Trophy, Users, Clock, Flame,
+} from "lucide-react";
 import { DeviceFrame } from "@/components/sheila/DeviceFrame";
 import { BottomNav } from "@/components/sheila/BottomNav";
-import { mockUser, PHASE_META, type CyclePhase } from "@/data/mock";
+import { mockUser, mockWorkouts, PHASE_META, type CyclePhase } from "@/data/mock";
+import { tierMeta, PHASE_WINDOWS } from "@/data/gamification";
 import { toAr } from "@/lib/format";
 
 export const Route = createFileRoute("/home")({ component: HomePage });
@@ -49,6 +53,12 @@ function HomePage() {
     [day, cycleLength]
   );
   const meta = PHASE_META[currentPhase];
+
+  const todayWorkout = mockWorkouts[0];
+  const todayWorkoutPhaseMeta = PHASE_META[todayWorkout.phase];
+  const { tier, next, toNext, pctInTier } = tierMeta(mockUser.bodyIQ);
+  const bodyIQDelta = mockUser.bodyIQ - mockUser.bodyIQYesterday;
+  const win = PHASE_WINDOWS[mockUser.currentPhase];
 
   const ovulationStart = PHASE_SEQ[0].days + PHASE_SEQ[1].days + 1;
   const daysToOvulation = day < ovulationStart
@@ -169,60 +179,170 @@ function HomePage() {
             </div>
           </motion.div>
 
-          {/* عناصر إضافيّة لاختبار السكرول */}
-          <div className="mt-4 px-5 grid grid-cols-2 gap-3">
-            <QuickStat icon={<Droplet size={16} />} label="الترطيب" value={`${toAr(6)} كؤوس`} tint={meta.color} />
-            <QuickStat icon={<Moon size={16} />} label="النوم" value={`${toAr(7)}س ${toAr(20)}د`} tint={meta.color} />
-            <QuickStat icon={<Heart size={16} />} label="المزاج" value="هادئ" tint={meta.color} />
-            <QuickStat icon={<Activity size={16} />} label="الطاقة" value={`${toAr(72)}٪`} tint={meta.color} />
-          </div>
-
-          <SectionTitle>توصيّات اليوم</SectionTitle>
-          <div className="px-5 space-y-3">
-            <Suggestion
-              icon={<Sparkles size={16} />}
-              title="جرّبي تمرين تنفّس ٤-٧-٨"
-              subtitle="٥ دقائق · يقلّل التوتّر"
-              tint={meta.color}
-            />
-            <Suggestion
-              icon={<BookOpen size={16} />}
-              title="قراءة قصيرة عن مرحلتك"
-              subtitle={`${meta.name} · ٣ دقائق قراءة`}
-              tint={meta.color}
-            />
-            <Suggestion
-              icon={<Heart size={16} />}
-              title="وجبة مقترحة: سلطة العدس الدافئة"
-              subtitle="غنيّة بالحديد · مناسبة للمرحلة"
-              tint={meta.color}
-            />
-          </div>
-
-          <SectionTitle>جدول الأسبوع</SectionTitle>
-          <div className="px-5 space-y-2">
-            {[
-              { t: "موعد طبيب", d: "الثلاثاء · ١٠ صباحاً" },
-              { t: "تمرين يوغا", d: "الأربعاء · ٦ مساءً" },
-              { t: "تذكير مكمّلات", d: "كلّ يوم · ٩ صباحاً" },
-              { t: "جلسة تأمّل", d: "الجمعة · ٧ مساءً" },
-            ].map((it, i) => (
-              <div
-                key={i}
-                className="flex items-center justify-between bg-white/70 backdrop-blur border border-white/60 rounded-2xl px-4 py-3"
-              >
-                <div>
-                  <div className="text-[13px] font-medium text-foreground/85">{it.t}</div>
-                  <div className="text-[11.5px] text-foreground/55 mt-0.5">{it.d}</div>
-                </div>
-                <span
-                  className="w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-medium"
-                  style={{ background: `color-mix(in oklab, ${meta.color} 18%, white)`, color: meta.color }}
-                >
-                  ↗
+          {/* ─── Body IQ + Phase Window row ─── */}
+          <div className="px-5 mt-4 grid grid-cols-2 gap-2.5">
+            <Link to="/bodyiq" className="bg-white/85 backdrop-blur-sm rounded-2xl border border-border p-4 active:scale-[0.98] transition-transform">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] tracking-[0.2em] text-foreground/55 uppercase">Body IQ</span>
+                <span className="inline-flex items-center gap-0.5 text-[10px] nums" style={{ color: bodyIQDelta >= 0 ? "var(--phase-follicular)" : "var(--phase-menstrual)" }}>
+                  <TrendingUp size={10} strokeWidth={2.5} />
+                  {bodyIQDelta >= 0 ? "+" : ""}{bodyIQDelta}
                 </span>
               </div>
-            ))}
+              <div className="font-display text-[26px] leading-none mt-1.5 nums" style={{ color: tier.color }}>{mockUser.bodyIQ}</div>
+              <div className="text-[10.5px] font-semibold mt-1" style={{ color: tier.color }}>{tier.name}</div>
+              <div className="mt-2 h-1 rounded-full bg-foreground/10 overflow-hidden">
+                <div className="h-full rounded-full" style={{ width: `${pctInTier * 100}%`, background: tier.color }} />
+              </div>
+              {next && <div className="text-[9.5px] text-foreground/55 mt-1 nums">{toNext} للوصول إلى {next.name}</div>}
+            </Link>
+
+            <Link to="/challenges/phase" className="bg-white/85 backdrop-blur-sm rounded-2xl border border-border p-4 active:scale-[0.98] transition-transform">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] tracking-[0.2em] text-foreground/55 uppercase">نافذة المرحلة</span>
+                <span className="inline-flex items-center gap-0.5 text-[10px] nums" style={{ color: win.color }}>
+                  <Clock size={10} strokeWidth={2.5} />
+                  {win.days} ي
+                </span>
+              </div>
+              <div className="font-display text-[16px] leading-tight mt-1.5" style={{ color: win.color }}>{win.name}</div>
+              <div className="text-[10.5px] text-foreground/55 mt-1 nums">{win.challenges} تحدّيات متاحة</div>
+              <div className="flex gap-1 mt-2.5">
+                {Array.from({ length: Math.min(win.challenges || 1, 5) }).map((_, i) => (
+                  <span key={i} className="flex-1 h-1 rounded-full" style={{ background: i < 2 ? win.color : "color-mix(in oklab, var(--foreground) 10%, transparent)" }} />
+                ))}
+              </div>
+              <div className="inline-flex items-center gap-0.5 text-[10px] mt-2 font-semibold" style={{ color: win.color }}>
+                ابدئي
+                <ChevronLeft size={11} strokeWidth={2.5} />
+              </div>
+            </Link>
+          </div>
+
+          {/* ─── Quick stats row ─── */}
+          <div className="px-5 mt-3 grid grid-cols-3 gap-2.5">
+            <Link to="/checkin/sleep" className="block">
+              <StatCard icon={Moon} label="نوم" value={toAr("7.2")} hint="ساعة" color="var(--phase-luteal)" />
+            </Link>
+            <Link to="/checkin/water" className="block">
+              <StatCard icon={Droplets} label="ماء" value={`${toAr(6)}/${toAr(8)}`} hint="كأس" color="var(--primary)" />
+            </Link>
+            <Link to="/checkin" className="block">
+              <StatCard icon={Apple} label="سعرات" value={toAr(320)} hint={`من ${toAr(1800)}`} color="var(--phase-menstrual)" />
+            </Link>
+          </div>
+
+          {/* ─── Mood card ─── */}
+          <div className="px-5 mt-3">
+            <div className="bg-white/85 backdrop-blur-sm rounded-2xl border border-border p-5 relative overflow-hidden">
+              <div className="relative z-10 flex items-center justify-between">
+                <h3 className="font-medium text-sm">كيف تشعرين اليوم؟</h3>
+                <span className="text-[10px] text-foreground/60 nums">{toAr(10)} ثوانٍ</span>
+              </div>
+              <div className="relative z-10 flex justify-between mt-4 gap-1.5">
+                {[
+                  { label: "رائع", Icon: Smile, color: "var(--phase-follicular)" },
+                  { label: "جيّد", Icon: Meh, color: "var(--phase-ovulation)" },
+                  { label: "عادي", Icon: Frown, color: "var(--muted-foreground)" },
+                  { label: "نشيط", Icon: Zap, color: "var(--phase-luteal)" },
+                  { label: "تعب", Icon: Moon, color: "var(--phase-menstrual)" },
+                ].map(({ label, Icon, color }) => (
+                  <motion.button
+                    key={label}
+                    className="flex-1 flex flex-col items-center gap-1.5 py-2.5 rounded-lg bg-card/60 border border-border/60"
+                    whileTap={{ scale: 0.92 }}
+                  >
+                    <Icon size={16} strokeWidth={1.75} style={{ color }} />
+                    <span className="text-[10px]">{label}</span>
+                  </motion.button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* ─── AI Insight card ─── */}
+          <div className="px-5 mt-3">
+            <div className="bg-white/85 backdrop-blur-sm relative rounded-2xl border border-border p-5 overflow-hidden">
+              <div className="relative z-10 flex items-start gap-3">
+                <div
+                  className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 relative overflow-hidden"
+                  style={{
+                    background: "var(--gradient-primary)",
+                    boxShadow: "0 8px 20px -6px oklch(0.46 0.135 328 / 0.5), inset 0 1px 0 0 oklch(1 0 0 / 0.4)",
+                  }}
+                >
+                  <Sparkles size={18} className="text-primary-foreground relative z-10" strokeWidth={2} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-medium text-sm">رؤية اليوم</h3>
+                  <p className="text-[12.5px] text-foreground/75 mt-1.5 leading-relaxed">
+                    أنتِ في ذروة الطاقة — مناسب جدّاً لتمرين عالي الكثافة مع وجبة غنيّة بالبروتين.
+                  </p>
+                  <button className="mt-3 inline-flex items-center gap-1 text-[11px] font-medium text-primary">
+                    اعرفي المزيد
+                    <ChevronLeft size={13} strokeWidth={2.5} />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ─── Today's workout ─── */}
+          <div className="px-5 mt-4">
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="font-medium text-sm">تمرين اليوم</h2>
+              <Link to="/workouts" className="text-[11px] text-primary font-medium inline-flex items-center gap-0.5">
+                عرض الكل
+                <ChevronLeft size={12} strokeWidth={2.5} />
+              </Link>
+            </div>
+            <Link to="/workouts" className="block">
+              <div className="bg-white/85 backdrop-blur-sm w-full rounded-xl border border-border p-3.5 flex items-center gap-3 transition-transform active:scale-[0.99]">
+                <div
+                  className="relative z-10 w-14 h-14 rounded-xl flex items-center justify-center shrink-0 overflow-hidden"
+                  style={{
+                    background: `linear-gradient(135deg, ${todayWorkoutPhaseMeta.color}55, ${todayWorkoutPhaseMeta.color}22)`,
+                    boxShadow: "inset 0 1px 0 0 oklch(1 0 0 / 0.5), inset 0 -1px 0 0 oklch(0 0 0 / 0.05)",
+                  }}
+                >
+                  <Dumbbell size={20} style={{ color: todayWorkoutPhaseMeta.color }} strokeWidth={1.75} className="relative" />
+                </div>
+                <div className="relative z-10 flex-1 min-w-0">
+                  <h3 className="text-[13.5px] font-medium truncate">{todayWorkout.title}</h3>
+                  <div className="flex items-center gap-2 mt-1 text-[11px] text-foreground/60">
+                    <span className="nums">{toAr(todayWorkout.duration)} د</span>
+                    <span className="w-1 h-1 rounded-full bg-foreground/30" />
+                    <span>{todayWorkout.level}</span>
+                    <span className="w-1 h-1 rounded-full bg-foreground/30" />
+                    <span className="nums">{toAr(todayWorkout.calories)} سعرة</span>
+                  </div>
+                </div>
+                <ChevronLeft size={16} className="relative z-10 text-foreground/50" strokeWidth={2} />
+              </div>
+            </Link>
+          </div>
+
+          {/* ─── Shortcuts ─── */}
+          <div className="mt-5 mb-4">
+            <p className="text-sm font-semibold text-muted-foreground px-5 mb-2">اختصارات سريعة</p>
+            <div className="grid grid-cols-4 gap-3 px-5">
+              <Link to="/journey/measurements" className="flex flex-col items-center gap-2 bg-white/85 backdrop-blur-sm rounded-2xl border border-border p-3 active:scale-95 transition-all">
+                <Scale className="w-6 h-6 text-phase-ovulation" strokeWidth={1.75} />
+                <span className="text-xs text-muted-foreground">الوزن</span>
+              </Link>
+              <Link to="/checkin/water" className="flex flex-col items-center gap-2 bg-white/85 backdrop-blur-sm rounded-2xl border border-border p-3 active:scale-95 transition-all">
+                <Droplets className="w-6 h-6 text-blue-400" strokeWidth={1.75} />
+                <span className="text-xs text-muted-foreground">ماء</span>
+              </Link>
+              <Link to="/challenges" className="flex flex-col items-center gap-2 bg-white/85 backdrop-blur-sm rounded-2xl border border-border p-3 active:scale-95 transition-all">
+                <Trophy className="w-6 h-6 text-phase-luteal" strokeWidth={1.75} />
+                <span className="text-xs text-muted-foreground">التحدي</span>
+              </Link>
+              <Link to="/community" className="flex flex-col items-center gap-2 bg-white/85 backdrop-blur-sm rounded-2xl border border-border p-3 active:scale-95 transition-all">
+                <Users className="w-6 h-6 text-phase-follicular" strokeWidth={1.75} />
+                <span className="text-xs text-muted-foreground">المجتمع</span>
+              </Link>
+            </div>
           </div>
 
           <div className="h-6" />
@@ -586,6 +706,25 @@ function MultiPhaseRing({
         >
           {chip}
         </div>
+      </div>
+    </div>
+  );
+}
+
+function StatCard({
+  icon: Icon, label, value, hint, color,
+}: {
+  icon: typeof Flame; label: string; value: string; hint: string; color: string;
+}) {
+  return (
+    <div className="bg-white/70 backdrop-blur-md rounded-xl border border-white/50 p-3">
+      <div className="relative z-10 flex items-center justify-between mb-1.5">
+        <Icon size={14} style={{ color }} strokeWidth={2} />
+        <span className="text-[9px] tracking-wider text-foreground/55 uppercase">{label}</span>
+      </div>
+      <div className="relative z-10 flex items-baseline gap-1">
+        <span className="text-lg font-semibold nums">{value}</span>
+        <span className="text-[10px] text-foreground/55">{hint}</span>
       </div>
     </div>
   );

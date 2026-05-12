@@ -94,21 +94,33 @@ function HomeDraft() {
         </div>
 
         <div className="relative z-10 h-full overflow-y-auto no-scrollbar pb-28">
-          {/* الرأس */}
+          {/* الرأس: بحث | التاريخ في المنتصف | إشعارات */}
           <div className="flex items-center justify-between px-5 pt-5">
-            <div>
-              <div className="text-[11px] text-foreground/55 tracking-widest">مرحباً</div>
-              <div className="font-display text-2xl text-foreground/90 mt-0.5">{mockUser.name}</div>
+            <button className="w-10 h-10 rounded-full bg-white/70 backdrop-blur border border-white/60 flex items-center justify-center shadow-sm">
+              <Search size={17} strokeWidth={1.75} className="text-foreground/75" />
+            </button>
+
+            <div className="text-center">
+              <div className="font-display text-[15px] text-foreground/85 nums">
+                {selectedDate
+                  ? `${toAr(selectedDate.getDate())} ${MONTHS_AR[selectedDate.getMonth()]}`
+                  : "—"}
+              </div>
+              <div className="text-[10.5px] mt-0.5 font-medium" style={{ color: meta.color }}>
+                يوم {toAr(day)} · {meta.name}
+              </div>
             </div>
-            <div className="flex items-center gap-2">
-              <button className="w-10 h-10 rounded-full bg-white/70 backdrop-blur border border-white/60 flex items-center justify-center shadow-sm">
-                <Search size={17} strokeWidth={1.75} className="text-foreground/75" />
-              </button>
-              <button className="relative w-10 h-10 rounded-full bg-white/70 backdrop-blur border border-white/60 flex items-center justify-center shadow-sm">
-                <Bell size={17} strokeWidth={1.75} className="text-foreground/75" />
-                <span className="absolute top-2 end-2 w-1.5 h-1.5 rounded-full bg-destructive" />
-              </button>
-            </div>
+
+            <button className="relative w-10 h-10 rounded-full bg-white/70 backdrop-blur border border-white/60 flex items-center justify-center shadow-sm">
+              <Bell size={17} strokeWidth={1.75} className="text-foreground/75" />
+              <span className="absolute top-2 end-2 w-1.5 h-1.5 rounded-full bg-destructive" />
+            </button>
+          </div>
+
+          {/* تحيّة المستخدم */}
+          <div className="px-5 mt-3">
+            <div className="text-[11px] text-foreground/55 tracking-widest">مرحباً</div>
+            <div className="font-display text-xl text-foreground/90 mt-0.5">{mockUser.name}</div>
           </div>
 
           {/* شريط التاريخ القابل للسحب */}
@@ -121,19 +133,6 @@ function HomeDraft() {
             cycleDay={mockUser.cycleDay}
           />
 
-          {/* عنوان التاريخ المختار */}
-          <div className="mt-4 text-center">
-            <div className="text-[12px] text-foreground/60">
-              {selectedDate
-                ? `${toAr(selectedDate.getDate())} ${MONTHS_AR[selectedDate.getMonth()]}`
-                : "—"}
-            </div>
-            <div className="text-[11px] mt-0.5 font-medium" style={{ color: meta.color }}>
-              يوم {toAr(day)} · {meta.name}
-            </div>
-          </div>
-
-          {/* الدائرة متعدّدة الألوان */}
           <div className="mt-6 flex items-center justify-center">
             <MultiPhaseRing
               size={300}

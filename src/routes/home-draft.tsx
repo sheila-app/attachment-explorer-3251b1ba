@@ -289,6 +289,38 @@ function DateStrip({
     }
   };
 
+  // سحب بالماوس / اللمس
+  const dragRef = useRef<{ active: boolean; startX: number; startScroll: number; moved: boolean }>({
+    active: false,
+    startX: 0,
+    startScroll: 0,
+    moved: false,
+  });
+
+  const onPointerDown = (e: React.PointerEvent) => {
+    if (!scrollerRef.current) return;
+    dragRef.current = {
+      active: true,
+      startX: e.clientX,
+      startScroll: scrollerRef.current.scrollLeft,
+      moved: false,
+    };
+    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+  };
+  const onPointerMove = (e: React.PointerEvent) => {
+    const d = dragRef.current;
+    if (!d.active || !scrollerRef.current) return;
+    const dx = e.clientX - d.startX;
+    if (Math.abs(dx) > 3) d.moved = true;
+    scrollerRef.current.scrollLeft = d.startScroll - dx;
+  };
+  const onPointerUp = (e: React.PointerEvent) => {
+    dragRef.current.active = false;
+    try {
+      (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
+    } catch {}
+  };
+
   return (
     <div className="mt-5 relative">
       <div className="flex items-center justify-between px-5 mb-2">
@@ -312,8 +344,12 @@ function DateStrip({
       <div
         ref={scrollerRef}
         onScroll={onScroll}
-        className="overflow-x-auto no-scrollbar px-[calc(50%-24px)]"
-        style={{ scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onPointerCancel={onPointerUp}
+        className="overflow-x-auto no-scrollbar px-[calc(50%-24px)] cursor-grab active:cursor-grabbing select-none touch-pan-x"
+        style={{ WebkitOverflowScrolling: "touch" }}
       >
         <div className="flex gap-2 py-1">
           {!mounted

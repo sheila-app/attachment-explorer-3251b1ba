@@ -710,3 +710,22 @@ function MultiPhaseRing({
     </div>
   );
 }
+
+function StatCard({
+  icon: Icon, label, value, hint, color,
+}: {
+  icon: typeof Flame; label: string; value: string; hint: string; color: string;
+}) {
+  return (
+    <div className="bg-white/70 backdrop-blur-md rounded-xl border border-white/50 p-3">
+      <div className="relative z-10 flex items-center justify-between mb-1.5">
+        <Icon size={14} style={{ color }} strokeWidth={2} />
+        <span className="text-[9px] tracking-wider text-foreground/55 uppercase">{label}</span>
+      </div>
+      <div className="relative z-10 flex items-baseline gap-1">
+        <span className="text-lg font-semibold nums">{value}</span>
+        <span className="text-[10px] text-foreground/55">{hint}</span>
+      </div>
+    </div>
+  );
+}

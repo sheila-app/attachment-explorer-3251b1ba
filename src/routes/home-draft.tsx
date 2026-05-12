@@ -168,7 +168,7 @@ function HomeDraft() {
           </motion.div>
         </div>
 
-        <BottomNav activeTab="home" />
+        <BottomNav />
       </div>
     </DeviceFrame>
   );

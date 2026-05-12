@@ -18,6 +18,7 @@ import { Route as SearchRouteImport } from './routes/search'
 import { Route as ScreensRouteImport } from './routes/screens'
 import { Route as PregnancyRouteImport } from './routes/pregnancy'
 import { Route as PaywallRouteImport } from './routes/paywall'
+import { Route as HomeDraftRouteImport } from './routes/home-draft'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as EmergencyRouteImport } from './routes/emergency'
 import { Route as CircleRouteImport } from './routes/circle'
@@ -158,6 +159,11 @@ const PregnancyRoute = PregnancyRouteImport.update({
 const PaywallRoute = PaywallRouteImport.update({
   id: '/paywall',
   path: '/paywall',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomeDraftRoute = HomeDraftRouteImport.update({
+  id: '/home-draft',
+  path: '/home-draft',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HomeRoute = HomeRouteImport.update({
@@ -653,6 +659,7 @@ export interface FileRoutesByFullPath {
   '/circle': typeof CircleRoute
   '/emergency': typeof EmergencyRoute
   '/home': typeof HomeRoute
+  '/home-draft': typeof HomeDraftRoute
   '/paywall': typeof PaywallRoute
   '/pregnancy': typeof PregnancyRoute
   '/screens': typeof ScreensRoute
@@ -760,6 +767,7 @@ export interface FileRoutesByTo {
   '/circle': typeof CircleRoute
   '/emergency': typeof EmergencyRoute
   '/home': typeof HomeRoute
+  '/home-draft': typeof HomeDraftRoute
   '/paywall': typeof PaywallRoute
   '/pregnancy': typeof PregnancyRoute
   '/screens': typeof ScreensRoute
@@ -868,6 +876,7 @@ export interface FileRoutesById {
   '/circle': typeof CircleRoute
   '/emergency': typeof EmergencyRoute
   '/home': typeof HomeRoute
+  '/home-draft': typeof HomeDraftRoute
   '/paywall': typeof PaywallRoute
   '/pregnancy': typeof PregnancyRoute
   '/screens': typeof ScreensRoute
@@ -977,6 +986,7 @@ export interface FileRouteTypes {
     | '/circle'
     | '/emergency'
     | '/home'
+    | '/home-draft'
     | '/paywall'
     | '/pregnancy'
     | '/screens'
@@ -1084,6 +1094,7 @@ export interface FileRouteTypes {
     | '/circle'
     | '/emergency'
     | '/home'
+    | '/home-draft'
     | '/paywall'
     | '/pregnancy'
     | '/screens'
@@ -1191,6 +1202,7 @@ export interface FileRouteTypes {
     | '/circle'
     | '/emergency'
     | '/home'
+    | '/home-draft'
     | '/paywall'
     | '/pregnancy'
     | '/screens'
@@ -1299,6 +1311,7 @@ export interface RootRouteChildren {
   CircleRoute: typeof CircleRoute
   EmergencyRoute: typeof EmergencyRoute
   HomeRoute: typeof HomeRoute
+  HomeDraftRoute: typeof HomeDraftRoute
   PaywallRoute: typeof PaywallRoute
   PregnancyRoute: typeof PregnancyRoute
   ScreensRoute: typeof ScreensRoute
@@ -1455,6 +1468,13 @@ declare module '@tanstack/react-router' {
       path: '/paywall'
       fullPath: '/paywall'
       preLoaderRoute: typeof PaywallRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/home-draft': {
+      id: '/home-draft'
+      path: '/home-draft'
+      fullPath: '/home-draft'
+      preLoaderRoute: typeof HomeDraftRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/home': {
@@ -2180,6 +2200,7 @@ const rootRouteChildren: RootRouteChildren = {
   CircleRoute: CircleRoute,
   EmergencyRoute: EmergencyRoute,
   HomeRoute: HomeRoute,
+  HomeDraftRoute: HomeDraftRoute,
   PaywallRoute: PaywallRoute,
   PregnancyRoute: PregnancyRoute,
   ScreensRoute: ScreensRoute,
@@ -2275,12 +2296,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-  }
-}

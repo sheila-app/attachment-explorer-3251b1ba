@@ -94,21 +94,33 @@ function HomeDraft() {
         </div>
 
         <div className="relative z-10 h-full overflow-y-auto no-scrollbar pb-28">
-          {/* الرأس */}
+          {/* الرأس: بحث | التاريخ في المنتصف | إشعارات */}
           <div className="flex items-center justify-between px-5 pt-5">
-            <div>
-              <div className="text-[11px] text-foreground/55 tracking-widest">مرحباً</div>
-              <div className="font-display text-2xl text-foreground/90 mt-0.5">{mockUser.name}</div>
+            <button className="w-10 h-10 rounded-full bg-white/70 backdrop-blur border border-white/60 flex items-center justify-center shadow-sm">
+              <Search size={17} strokeWidth={1.75} className="text-foreground/75" />
+            </button>
+
+            <div className="text-center">
+              <div className="font-display text-[15px] text-foreground/85 nums">
+                {selectedDate
+                  ? `${toAr(selectedDate.getDate())} ${MONTHS_AR[selectedDate.getMonth()]}`
+                  : "—"}
+              </div>
+              <div className="text-[10.5px] mt-0.5 font-medium" style={{ color: meta.color }}>
+                يوم {toAr(day)} · {meta.name}
+              </div>
             </div>
-            <div className="flex items-center gap-2">
-              <button className="w-10 h-10 rounded-full bg-white/70 backdrop-blur border border-white/60 flex items-center justify-center shadow-sm">
-                <Search size={17} strokeWidth={1.75} className="text-foreground/75" />
-              </button>
-              <button className="relative w-10 h-10 rounded-full bg-white/70 backdrop-blur border border-white/60 flex items-center justify-center shadow-sm">
-                <Bell size={17} strokeWidth={1.75} className="text-foreground/75" />
-                <span className="absolute top-2 end-2 w-1.5 h-1.5 rounded-full bg-destructive" />
-              </button>
-            </div>
+
+            <button className="relative w-10 h-10 rounded-full bg-white/70 backdrop-blur border border-white/60 flex items-center justify-center shadow-sm">
+              <Bell size={17} strokeWidth={1.75} className="text-foreground/75" />
+              <span className="absolute top-2 end-2 w-1.5 h-1.5 rounded-full bg-destructive" />
+            </button>
+          </div>
+
+          {/* تحيّة المستخدم */}
+          <div className="px-5 mt-3">
+            <div className="text-[11px] text-foreground/55 tracking-widest">مرحباً</div>
+            <div className="font-display text-xl text-foreground/90 mt-0.5">{mockUser.name}</div>
           </div>
 
           {/* شريط التاريخ القابل للسحب */}
@@ -121,19 +133,6 @@ function HomeDraft() {
             cycleDay={mockUser.cycleDay}
           />
 
-          {/* عنوان التاريخ المختار */}
-          <div className="mt-4 text-center">
-            <div className="text-[12px] text-foreground/60">
-              {selectedDate
-                ? `${toAr(selectedDate.getDate())} ${MONTHS_AR[selectedDate.getMonth()]}`
-                : "—"}
-            </div>
-            <div className="text-[11px] mt-0.5 font-medium" style={{ color: meta.color }}>
-              يوم {toAr(day)} · {meta.name}
-            </div>
-          </div>
-
-          {/* الدائرة متعدّدة الألوان */}
           <div className="mt-6 flex items-center justify-center">
             <MultiPhaseRing
               size={300}
@@ -290,6 +289,38 @@ function DateStrip({
     }
   };
 
+  // سحب بالماوس / اللمس
+  const dragRef = useRef<{ active: boolean; startX: number; startScroll: number; moved: boolean }>({
+    active: false,
+    startX: 0,
+    startScroll: 0,
+    moved: false,
+  });
+
+  const onPointerDown = (e: React.PointerEvent) => {
+    if (!scrollerRef.current) return;
+    dragRef.current = {
+      active: true,
+      startX: e.clientX,
+      startScroll: scrollerRef.current.scrollLeft,
+      moved: false,
+    };
+    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+  };
+  const onPointerMove = (e: React.PointerEvent) => {
+    const d = dragRef.current;
+    if (!d.active || !scrollerRef.current) return;
+    const dx = e.clientX - d.startX;
+    if (Math.abs(dx) > 3) d.moved = true;
+    scrollerRef.current.scrollLeft = d.startScroll - dx;
+  };
+  const onPointerUp = (e: React.PointerEvent) => {
+    dragRef.current.active = false;
+    try {
+      (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
+    } catch {}
+  };
+
   return (
     <div className="mt-5 relative">
       <div className="flex items-center justify-between px-5 mb-2">
@@ -313,8 +344,12 @@ function DateStrip({
       <div
         ref={scrollerRef}
         onScroll={onScroll}
-        className="overflow-x-auto no-scrollbar px-[calc(50%-24px)]"
-        style={{ scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onPointerCancel={onPointerUp}
+        className="overflow-x-auto no-scrollbar px-[calc(50%-24px)] cursor-grab active:cursor-grabbing select-none touch-pan-x"
+        style={{ WebkitOverflowScrolling: "touch" }}
       >
         <div className="flex gap-2 py-1">
           {!mounted
@@ -327,7 +362,10 @@ function DateStrip({
                 return (
                   <button
                     key={it.offset}
-                    onClick={() => setOffset(it.offset)}
+                    onClick={() => {
+                      if (dragRef.current.moved) return;
+                      setOffset(it.offset);
+                    }}
                     className="flex-shrink-0 w-12 rounded-2xl flex flex-col items-center justify-center gap-1 py-2 transition-all"
                     style={{
                       scrollSnapAlign: "center",

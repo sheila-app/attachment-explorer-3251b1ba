@@ -54,6 +54,12 @@ function HomePage() {
   );
   const meta = PHASE_META[currentPhase];
 
+  const todayWorkout = mockWorkouts[0];
+  const todayWorkoutPhaseMeta = PHASE_META[todayWorkout.phase];
+  const { tier, next, toNext, pctInTier } = tierMeta(mockUser.bodyIQ);
+  const bodyIQDelta = mockUser.bodyIQ - mockUser.bodyIQYesterday;
+  const win = PHASE_WINDOWS[mockUser.currentPhase];
+
   const ovulationStart = PHASE_SEQ[0].days + PHASE_SEQ[1].days + 1;
   const daysToOvulation = day < ovulationStart
     ? ovulationStart - day

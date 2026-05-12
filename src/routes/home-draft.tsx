@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "motion/react";
-import { Bell, Search, Sparkles, Droplet, Moon, Heart, Activity, BookOpen, ChevronLeft, ChevronRight } from "lucide-react";
+import { Bell, Search, Sparkles, Droplet, Moon, Heart, Activity, BookOpen } from "lucide-react";
 import { DeviceFrame } from "@/components/sheila/DeviceFrame";
 import { BottomNav } from "@/components/sheila/BottomNav";
 import { mockUser, PHASE_META, type CyclePhase } from "@/data/mock";
@@ -94,13 +94,16 @@ function HomeDraft() {
         </div>
 
         <div className="relative z-10 h-full overflow-y-auto no-scrollbar pb-28">
-          {/* الرأس: بحث | التاريخ في المنتصف | إشعارات */}
-          <div className="flex items-center justify-between px-5 pt-5">
-            <button className="w-10 h-10 rounded-full bg-white/70 backdrop-blur border border-white/60 flex items-center justify-center shadow-sm">
-              <Search size={17} strokeWidth={1.75} className="text-foreground/75" />
-            </button>
+          {/* الرأس: الاسم (يمين) | التاريخ (وسط) | بحث+إشعارات (يسار) */}
+          <div className="flex items-center justify-between px-5 pt-5 gap-3">
+            <div className="min-w-0">
+              <div className="text-[11px] text-foreground/55 tracking-widest">مرحباً</div>
+              <div className="font-display text-lg text-foreground/90 mt-0.5 truncate">
+                {mockUser.name}
+              </div>
+            </div>
 
-            <div className="text-center">
+            <div className="text-center flex-1">
               <div className="font-display text-[15px] text-foreground/85 nums">
                 {selectedDate
                   ? `${toAr(selectedDate.getDate())} ${MONTHS_AR[selectedDate.getMonth()]}`
@@ -111,16 +114,15 @@ function HomeDraft() {
               </div>
             </div>
 
-            <button className="relative w-10 h-10 rounded-full bg-white/70 backdrop-blur border border-white/60 flex items-center justify-center shadow-sm">
-              <Bell size={17} strokeWidth={1.75} className="text-foreground/75" />
-              <span className="absolute top-2 end-2 w-1.5 h-1.5 rounded-full bg-destructive" />
-            </button>
-          </div>
-
-          {/* تحيّة المستخدم */}
-          <div className="px-5 mt-3">
-            <div className="text-[11px] text-foreground/55 tracking-widest">مرحباً</div>
-            <div className="font-display text-xl text-foreground/90 mt-0.5">{mockUser.name}</div>
+            <div className="flex items-center gap-2">
+              <button className="w-10 h-10 rounded-full bg-white/70 backdrop-blur border border-white/60 flex items-center justify-center shadow-sm">
+                <Search size={17} strokeWidth={1.75} className="text-foreground/75" />
+              </button>
+              <button className="relative w-10 h-10 rounded-full bg-white/70 backdrop-blur border border-white/60 flex items-center justify-center shadow-sm">
+                <Bell size={17} strokeWidth={1.75} className="text-foreground/75" />
+                <span className="absolute top-2 end-2 w-1.5 h-1.5 rounded-full bg-destructive" />
+              </button>
+            </div>
           </div>
 
           {/* شريط التاريخ القابل للسحب */}
@@ -323,23 +325,6 @@ function DateStrip({
 
   return (
     <div className="mt-5 relative">
-      <div className="flex items-center justify-between px-5 mb-2">
-        <button
-          onClick={() => setOffset(Math.max(offset - 1, -RANGE))}
-          className="w-7 h-7 rounded-full bg-white/70 backdrop-blur border border-white/60 flex items-center justify-center"
-          aria-label="السابق"
-        >
-          <ChevronRight size={14} className="text-foreground/70" />
-        </button>
-        <span className="text-[11px] text-foreground/55">اسحب لتصفّح الأيام</span>
-        <button
-          onClick={() => setOffset(Math.min(offset + 1, RANGE))}
-          className="w-7 h-7 rounded-full bg-white/70 backdrop-blur border border-white/60 flex items-center justify-center"
-          aria-label="التالي"
-        >
-          <ChevronLeft size={14} className="text-foreground/70" />
-        </button>
-      </div>
 
       <div
         ref={scrollerRef}

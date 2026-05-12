@@ -252,10 +252,11 @@ function DateStrip({
   cycleLength: number;
   cycleDay: number;
 }) {
-  const ITEM_W = 56; // العرض + الفجوة
   const RANGE = 30; // ٣٠ يوم لكل اتّجاه
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<Map<number, HTMLButtonElement>>(new Map());
   const lockRef = useRef(false);
+  const scrollTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const items = useMemo(() => {
     const arr: { offset: number; date: Date | null; phase: CyclePhase }[] = [];
@@ -268,27 +269,40 @@ function DateStrip({
     return arr;
   }, [baseDate, cycleDay, cycleLength]);
 
-  // مزامنة السكرول مع offset عند التغيير الخارجي
+  // مزامنة السكرول مع offset عند التغيير الخارجي + توسيط اليوم عند التركيب
   useEffect(() => {
-    if (!scrollerRef.current) return;
+    if (!mounted) return;
     const el = scrollerRef.current;
-    const target = (offset + RANGE) * ITEM_W - el.clientWidth / 2 + ITEM_W / 2;
+    const item = itemRefs.current.get(offset);
+    if (!el || !item) return;
     lockRef.current = true;
+    const target =
+      item.offsetLeft - el.clientWidth / 2 + item.clientWidth / 2;
     el.scrollTo({ left: target, behavior: "smooth" });
-    const t = setTimeout(() => (lockRef.current = false), 350);
+    const t = setTimeout(() => (lockRef.current = false), 400);
     return () => clearTimeout(t);
-  }, [offset]);
+  }, [offset, mounted]);
 
-  // عند سحب المستخدم، اقرأ العنصر المركزي
+  // عند سحب المستخدم، اقرأ العنصر الأقرب للمركز
   const onScroll = () => {
     if (lockRef.current || !scrollerRef.current) return;
-    const el = scrollerRef.current;
-    const center = el.scrollLeft + el.clientWidth / 2;
-    const idx = Math.round((center - ITEM_W / 2) / ITEM_W);
-    const newOffset = idx - RANGE;
-    if (newOffset !== offset && newOffset >= -RANGE && newOffset <= RANGE) {
-      setOffset(newOffset);
-    }
+    if (scrollTimer.current) clearTimeout(scrollTimer.current);
+    scrollTimer.current = setTimeout(() => {
+      const el = scrollerRef.current;
+      if (!el) return;
+      const center = el.scrollLeft + el.clientWidth / 2;
+      let bestOff = offset;
+      let bestDist = Infinity;
+      itemRefs.current.forEach((node, off) => {
+        const c = node.offsetLeft + node.clientWidth / 2;
+        const d = Math.abs(c - center);
+        if (d < bestDist) {
+          bestDist = d;
+          bestOff = off;
+        }
+      });
+      if (bestOff !== offset) setOffset(bestOff);
+    }, 80);
   };
 
   // سحب بالماوس / اللمس
@@ -333,8 +347,8 @@ function DateStrip({
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
         onPointerCancel={onPointerUp}
-        className="overflow-x-auto no-scrollbar px-[calc(50%-24px)] cursor-grab active:cursor-grabbing select-none touch-pan-x"
-        style={{ WebkitOverflowScrolling: "touch" }}
+        className="overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing select-none touch-pan-x"
+        style={{ WebkitOverflowScrolling: "touch", paddingInline: "calc(50% - 24px)" }}
       >
         <div className="flex gap-2 py-1">
           {!mounted
@@ -347,6 +361,10 @@ function DateStrip({
                 return (
                   <button
                     key={it.offset}
+                    ref={(el) => {
+                      if (el) itemRefs.current.set(it.offset, el);
+                      else itemRefs.current.delete(it.offset);
+                    }}
                     onClick={() => {
                       if (dragRef.current.moved) return;
                       setOffset(it.offset);

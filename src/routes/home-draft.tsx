@@ -347,8 +347,8 @@ function DateStrip({
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
         onPointerCancel={onPointerUp}
-        className="overflow-x-auto no-scrollbar px-[calc(50%-24px)] cursor-grab active:cursor-grabbing select-none touch-pan-x"
-        style={{ WebkitOverflowScrolling: "touch" }}
+        className="overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing select-none touch-pan-x"
+        style={{ WebkitOverflowScrolling: "touch", paddingInline: "calc(50% - 24px)" }}
       >
         <div className="flex gap-2 py-1">
           {!mounted

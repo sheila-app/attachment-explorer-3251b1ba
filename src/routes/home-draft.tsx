@@ -361,6 +361,10 @@ function DateStrip({
                 return (
                   <button
                     key={it.offset}
+                    ref={(el) => {
+                      if (el) itemRefs.current.set(it.offset, el);
+                      else itemRefs.current.delete(it.offset);
+                    }}
                     onClick={() => {
                       if (dragRef.current.moved) return;
                       setOffset(it.offset);

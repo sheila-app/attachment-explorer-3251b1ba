@@ -96,6 +96,7 @@ import { Route as JourneyGoalsRouteImport } from './routes/journey.goals'
 import { Route as JourneyCalendarRouteImport } from './routes/journey.calendar'
 import { Route as JourneyAwardsRouteImport } from './routes/journey.awards'
 import { Route as HabitsNewRouteImport } from './routes/habits.new'
+import { Route as CycleLogDraftRouteImport } from './routes/cycle.log-draft'
 import { Route as CycleLogRouteImport } from './routes/cycle.log'
 import { Route as CommunityInviteRouteImport } from './routes/community.invite'
 import { Route as CommunityGroupsRouteImport } from './routes/community.groups'
@@ -554,6 +555,11 @@ const HabitsNewRoute = HabitsNewRouteImport.update({
   path: '/habits/new',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CycleLogDraftRoute = CycleLogDraftRouteImport.update({
+  id: '/cycle/log-draft',
+  path: '/cycle/log-draft',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CycleLogRoute = CycleLogRouteImport.update({
   id: '/cycle/log',
   path: '/cycle/log',
@@ -698,6 +704,7 @@ export interface FileRoutesByFullPath {
   '/community/groups': typeof CommunityGroupsRoute
   '/community/invite': typeof CommunityInviteRoute
   '/cycle/log': typeof CycleLogRoute
+  '/cycle/log-draft': typeof CycleLogDraftRoute
   '/habits/new': typeof HabitsNewRoute
   '/journey/awards': typeof JourneyAwardsRoute
   '/journey/calendar': typeof JourneyCalendarRoute
@@ -808,6 +815,7 @@ export interface FileRoutesByTo {
   '/community/groups': typeof CommunityGroupsRoute
   '/community/invite': typeof CommunityInviteRoute
   '/cycle/log': typeof CycleLogRoute
+  '/cycle/log-draft': typeof CycleLogDraftRoute
   '/habits/new': typeof HabitsNewRoute
   '/journey/awards': typeof JourneyAwardsRoute
   '/journey/calendar': typeof JourneyCalendarRoute
@@ -919,6 +927,7 @@ export interface FileRoutesById {
   '/community/groups': typeof CommunityGroupsRoute
   '/community/invite': typeof CommunityInviteRoute
   '/cycle/log': typeof CycleLogRoute
+  '/cycle/log-draft': typeof CycleLogDraftRoute
   '/habits/new': typeof HabitsNewRoute
   '/journey/awards': typeof JourneyAwardsRoute
   '/journey/calendar': typeof JourneyCalendarRoute
@@ -1031,6 +1040,7 @@ export interface FileRouteTypes {
     | '/community/groups'
     | '/community/invite'
     | '/cycle/log'
+    | '/cycle/log-draft'
     | '/habits/new'
     | '/journey/awards'
     | '/journey/calendar'
@@ -1141,6 +1151,7 @@ export interface FileRouteTypes {
     | '/community/groups'
     | '/community/invite'
     | '/cycle/log'
+    | '/cycle/log-draft'
     | '/habits/new'
     | '/journey/awards'
     | '/journey/calendar'
@@ -1251,6 +1262,7 @@ export interface FileRouteTypes {
     | '/community/groups'
     | '/community/invite'
     | '/cycle/log'
+    | '/cycle/log-draft'
     | '/habits/new'
     | '/journey/awards'
     | '/journey/calendar'
@@ -1362,6 +1374,7 @@ export interface RootRouteChildren {
   CommunityGroupsRoute: typeof CommunityGroupsRoute
   CommunityInviteRoute: typeof CommunityInviteRoute
   CycleLogRoute: typeof CycleLogRoute
+  CycleLogDraftRoute: typeof CycleLogDraftRoute
   HabitsNewRoute: typeof HabitsNewRoute
   JourneyAwardsRoute: typeof JourneyAwardsRoute
   JourneyCalendarRoute: typeof JourneyCalendarRoute
@@ -2042,6 +2055,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HabitsNewRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cycle/log-draft': {
+      id: '/cycle/log-draft'
+      path: '/cycle/log-draft'
+      fullPath: '/cycle/log-draft'
+      preLoaderRoute: typeof CycleLogDraftRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cycle/log': {
       id: '/cycle/log'
       path: '/cycle/log'
@@ -2267,6 +2287,7 @@ const rootRouteChildren: RootRouteChildren = {
   CommunityGroupsRoute: CommunityGroupsRoute,
   CommunityInviteRoute: CommunityInviteRoute,
   CycleLogRoute: CycleLogRoute,
+  CycleLogDraftRoute: CycleLogDraftRoute,
   HabitsNewRoute: HabitsNewRoute,
   JourneyAwardsRoute: JourneyAwardsRoute,
   JourneyCalendarRoute: JourneyCalendarRoute,

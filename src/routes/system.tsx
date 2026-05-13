@@ -163,7 +163,7 @@ function Page() {
                           ? { background: `color-mix(in oklab, ${m.tone} 18%, transparent)`, boxShadow: `inset 0 0 0 1.5px ${m.tone}` }
                           : { background: "color-mix(in oklab, var(--foreground) 4%, transparent)" }}
                       >
-                        <m.Icon size={22} strokeWidth={1.75} style={{ color: on ? m.tone : "color-mix(in oklab, var(--foreground) 65%, transparent)" }} />
+                        <img src={m.img} alt={m.name} className="w-9 h-9 object-contain" style={{ opacity: on ? 1 : 0.75 }} />
                         <span className="text-[10.5px] font-medium leading-tight text-center" style={{ color: on ? m.tone : "var(--foreground)" }}>{m.name}</span>
                       </button>
                     );

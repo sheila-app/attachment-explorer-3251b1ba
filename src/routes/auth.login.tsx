@@ -3,7 +3,26 @@ import { useState } from "react";
 import { DeviceFrame } from "@/components/sheila/DeviceFrame";
 import { LiquidBackdrop } from "@/components/sheila/LiquidBackdrop";
 import { PrimaryCTA } from "@/components/sheila/OnboardingShell";
-import { ArrowRight, Eye, EyeOff, Globe, Apple } from "lucide-react";
+import { ArrowRight, Eye, EyeOff } from "lucide-react";
+
+function GoogleIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 48 48" aria-hidden>
+      <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3l5.7-5.7C34.1 6.1 29.3 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.3-.4-3.5z"/>
+      <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.8 1.2 7.9 3l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/>
+      <path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.5-5.2l-6.2-5.2c-2 1.5-4.6 2.4-7.3 2.4-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.6 39.6 16.2 44 24 44z"/>
+      <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.2 5.6l6.2 5.2C41.3 35.7 44 30.3 44 24c0-1.3-.1-2.3-.4-3.5z"/>
+    </svg>
+  );
+}
+
+function AppleIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M16.365 1.43c0 1.14-.42 2.22-1.26 3.06-.84.84-1.86 1.32-3 1.26-.06-1.14.42-2.22 1.2-3.06.84-.84 2.04-1.32 3.06-1.26zM20.94 17.34c-.6 1.32-1.32 2.58-2.34 3.78-1.02 1.2-2.46 2.7-4.32 2.7-1.74 0-2.22-1.08-4.5-1.08-2.28 0-2.82 1.08-4.5 1.08-1.86 0-3.18-1.38-4.2-2.58C-1.5 17.4-.84 11.34 3.06 9.12c1.62-.96 3.18-1.5 4.86-1.5 1.74 0 2.82 1.08 4.5 1.08 1.62 0 2.58-1.08 4.5-1.08 1.5 0 3.06.84 4.2 2.22-3.66 2.04-3.06 7.32-.18 7.5z"/>
+    </svg>
+  );
+}
 
 export const Route = createFileRoute("/auth/login")({ component: LoginPage });
 

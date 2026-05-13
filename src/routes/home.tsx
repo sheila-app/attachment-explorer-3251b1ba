@@ -502,15 +502,6 @@ function DateStrip({
                     }}
                   >
                     <span
-                      className="text-[10px]"
-                      style={{
-                        opacity: isSelected ? 0.9 : 0.55,
-                        color: isSelected ? "white" : color,
-                      }}
-                    >
-                      {it.date ? DAY_LETTERS[it.date.getDay()] : "—"}
-                    </span>
-                    <span
                       className="font-display text-[15px] nums leading-none"
                       style={{ color: isSelected ? "white" : "var(--foreground)" }}
                     >

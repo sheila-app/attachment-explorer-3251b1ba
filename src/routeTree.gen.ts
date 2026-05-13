@@ -101,6 +101,7 @@ import { Route as CommunityGroupsRouteImport } from './routes/community.groups'
 import { Route as CommunityEventsRouteImport } from './routes/community.events'
 import { Route as CommunityIdRouteImport } from './routes/community.$id'
 import { Route as CoachesIdRouteImport } from './routes/coaches.$id'
+import { Route as CheckinWaterDraftRouteImport } from './routes/checkin.water-draft'
 import { Route as CheckinWaterRouteImport } from './routes/checkin.water'
 import { Route as CheckinStepsRouteImport } from './routes/checkin.steps'
 import { Route as CheckinSleepRouteImport } from './routes/checkin.sleep'
@@ -577,6 +578,11 @@ const CoachesIdRoute = CoachesIdRouteImport.update({
   path: '/coaches/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CheckinWaterDraftRoute = CheckinWaterDraftRouteImport.update({
+  id: '/checkin/water-draft',
+  path: '/checkin/water-draft',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CheckinWaterRoute = CheckinWaterRouteImport.update({
   id: '/checkin/water',
   path: '/checkin/water',
@@ -679,6 +685,7 @@ export interface FileRoutesByFullPath {
   '/checkin/sleep': typeof CheckinSleepRoute
   '/checkin/steps': typeof CheckinStepsRoute
   '/checkin/water': typeof CheckinWaterRoute
+  '/checkin/water-draft': typeof CheckinWaterDraftRoute
   '/coaches/$id': typeof CoachesIdRouteWithChildren
   '/community/$id': typeof CommunityIdRoute
   '/community/events': typeof CommunityEventsRoute
@@ -787,6 +794,7 @@ export interface FileRoutesByTo {
   '/checkin/sleep': typeof CheckinSleepRoute
   '/checkin/steps': typeof CheckinStepsRoute
   '/checkin/water': typeof CheckinWaterRoute
+  '/checkin/water-draft': typeof CheckinWaterDraftRoute
   '/coaches/$id': typeof CoachesIdRouteWithChildren
   '/community/$id': typeof CommunityIdRoute
   '/community/events': typeof CommunityEventsRoute
@@ -896,6 +904,7 @@ export interface FileRoutesById {
   '/checkin/sleep': typeof CheckinSleepRoute
   '/checkin/steps': typeof CheckinStepsRoute
   '/checkin/water': typeof CheckinWaterRoute
+  '/checkin/water-draft': typeof CheckinWaterDraftRoute
   '/coaches/$id': typeof CoachesIdRouteWithChildren
   '/community/$id': typeof CommunityIdRoute
   '/community/events': typeof CommunityEventsRoute
@@ -1006,6 +1015,7 @@ export interface FileRouteTypes {
     | '/checkin/sleep'
     | '/checkin/steps'
     | '/checkin/water'
+    | '/checkin/water-draft'
     | '/coaches/$id'
     | '/community/$id'
     | '/community/events'
@@ -1114,6 +1124,7 @@ export interface FileRouteTypes {
     | '/checkin/sleep'
     | '/checkin/steps'
     | '/checkin/water'
+    | '/checkin/water-draft'
     | '/coaches/$id'
     | '/community/$id'
     | '/community/events'
@@ -1222,6 +1233,7 @@ export interface FileRouteTypes {
     | '/checkin/sleep'
     | '/checkin/steps'
     | '/checkin/water'
+    | '/checkin/water-draft'
     | '/coaches/$id'
     | '/community/$id'
     | '/community/events'
@@ -1331,6 +1343,7 @@ export interface RootRouteChildren {
   CheckinSleepRoute: typeof CheckinSleepRoute
   CheckinStepsRoute: typeof CheckinStepsRoute
   CheckinWaterRoute: typeof CheckinWaterRoute
+  CheckinWaterDraftRoute: typeof CheckinWaterDraftRoute
   CoachesIdRoute: typeof CoachesIdRouteWithChildren
   CommunityIdRoute: typeof CommunityIdRoute
   CommunityEventsRoute: typeof CommunityEventsRoute
@@ -2051,6 +2064,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CoachesIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/checkin/water-draft': {
+      id: '/checkin/water-draft'
+      path: '/checkin/water-draft'
+      fullPath: '/checkin/water-draft'
+      preLoaderRoute: typeof CheckinWaterDraftRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/checkin/water': {
       id: '/checkin/water'
       path: '/checkin/water'
@@ -2220,6 +2240,7 @@ const rootRouteChildren: RootRouteChildren = {
   CheckinSleepRoute: CheckinSleepRoute,
   CheckinStepsRoute: CheckinStepsRoute,
   CheckinWaterRoute: CheckinWaterRoute,
+  CheckinWaterDraftRoute: CheckinWaterDraftRoute,
   CoachesIdRoute: CoachesIdRouteWithChildren,
   CommunityIdRoute: CommunityIdRoute,
   CommunityEventsRoute: CommunityEventsRoute,
@@ -2296,12 +2317,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-  }
-}

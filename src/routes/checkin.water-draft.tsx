@@ -13,7 +13,7 @@ function Page() {
 
   return (
     <DeviceFrame>
-      <div className="relative h-full overflow-hidden bg-[oklch(0.98_0.01_240)]">
+      <div className="relative h-full overflow-hidden" style={{ background: "linear-gradient(180deg, oklch(0.95 0.04 230) 0%, oklch(0.92 0.06 230) 100%)" }}>
         {/* Water fill background */}
         <div
           className="absolute inset-x-0 bottom-0 transition-[height] duration-700 ease-out overflow-hidden"

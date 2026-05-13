@@ -124,16 +124,7 @@ function Page() {
                 <Plus size={26} />
               </button>
             </div>
-            <Link
-              to="/home"
-              className={`block w-full text-center rounded-full py-3.5 font-semibold backdrop-blur transition-colors ${
-                fillPct > 50
-                  ? "bg-white text-primary"
-                  : "bg-primary text-primary-foreground"
-              }`}
-            >
-              حفظ
-            </Link>
+            <PrimaryCTA to="/home">حفظ</PrimaryCTA>
           </div>
         </div>
 

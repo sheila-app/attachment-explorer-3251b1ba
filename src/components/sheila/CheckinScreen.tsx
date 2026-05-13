@@ -110,7 +110,7 @@ function StepInput({
   onChange: (v: AnswerValue) => void;
   color: string;
 }) {
-  if ((step.type === "pain" || step.type === "energy") && !step.options) {
+  if (step.type === "scale") {
     const sel = typeof value === "number" ? value : 0;
     return (
       <div className="flex gap-2">
@@ -139,8 +139,22 @@ function StepInput({
     );
   }
 
+  if (step.type === "text") {
+    const v = typeof value === "string" ? value : "";
+    return (
+      <textarea
+        value={v}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={step.hint || "اكتبي ما تشعرين به..."}
+        rows={3}
+        className="w-full glass rounded-2xl p-4 text-[13px] leading-relaxed bg-transparent resize-none focus:outline-none focus:ring-2"
+        style={{ outline: "none" }}
+      />
+    );
+  }
+
   if (!step.options) return null;
-  const multi = step.type === "symptoms" || step.type === "bodySignals";
+  const multi = step.type === "multi";
   const arr: string[] = Array.isArray(value) ? value : [];
   const one = typeof value === "string" ? value : null;
 

@@ -55,7 +55,7 @@ function LogDraftPage() {
     <FeatureShell title="تسجيل الدورة" back="/cycle" showNav={false} variant="warm">
       <div className="px-5 pb-6">
         <h2 className="text-sm font-medium mb-2.5">التاريخ</h2>
-        <div className="glass rounded-2xl p-4 mb-6 mx-auto max-w-[300px]">
+        <div className="glass rounded-2xl p-4 mb-6">
           <div className="relative z-10 flex justify-center gap-2" style={{ direction: "ltr" }}>
             <IOSWheel values={wheelRange(1, 31)} value={day} onChange={(v) => setDay(Number(v))} width={56} />
             <IOSWheel values={months} value={months[monthIdx]} onChange={(v) => setMonthIdx(months.indexOf(String(v)))} width={92} />

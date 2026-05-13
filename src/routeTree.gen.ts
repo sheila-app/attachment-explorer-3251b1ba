@@ -107,6 +107,7 @@ import { Route as CheckinWaterDraftRouteImport } from './routes/checkin.water-dr
 import { Route as CheckinWaterRouteImport } from './routes/checkin.water'
 import { Route as CheckinStepsRouteImport } from './routes/checkin.steps'
 import { Route as CheckinSleepRouteImport } from './routes/checkin.sleep'
+import { Route as CheckinSlugRouteImport } from './routes/checkin.$slug'
 import { Route as ChallengesPhaseRouteImport } from './routes/challenges.phase'
 import { Route as ChallengesIdRouteImport } from './routes/challenges.$id'
 import { Route as AuthOtpRouteImport } from './routes/auth.otp'
@@ -610,6 +611,11 @@ const CheckinSleepRoute = CheckinSleepRouteImport.update({
   path: '/checkin/sleep',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CheckinSlugRoute = CheckinSlugRouteImport.update({
+  id: '/checkin/$slug',
+  path: '/checkin/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ChallengesPhaseRoute = ChallengesPhaseRouteImport.update({
   id: '/challenges/phase',
   path: '/challenges/phase',
@@ -694,6 +700,7 @@ export interface FileRoutesByFullPath {
   '/auth/otp': typeof AuthOtpRoute
   '/challenges/$id': typeof ChallengesIdRoute
   '/challenges/phase': typeof ChallengesPhaseRoute
+  '/checkin/$slug': typeof CheckinSlugRoute
   '/checkin/sleep': typeof CheckinSleepRoute
   '/checkin/steps': typeof CheckinStepsRoute
   '/checkin/water': typeof CheckinWaterRoute
@@ -805,6 +812,7 @@ export interface FileRoutesByTo {
   '/auth/otp': typeof AuthOtpRoute
   '/challenges/$id': typeof ChallengesIdRoute
   '/challenges/phase': typeof ChallengesPhaseRoute
+  '/checkin/$slug': typeof CheckinSlugRoute
   '/checkin/sleep': typeof CheckinSleepRoute
   '/checkin/steps': typeof CheckinStepsRoute
   '/checkin/water': typeof CheckinWaterRoute
@@ -917,6 +925,7 @@ export interface FileRoutesById {
   '/auth/otp': typeof AuthOtpRoute
   '/challenges/$id': typeof ChallengesIdRoute
   '/challenges/phase': typeof ChallengesPhaseRoute
+  '/checkin/$slug': typeof CheckinSlugRoute
   '/checkin/sleep': typeof CheckinSleepRoute
   '/checkin/steps': typeof CheckinStepsRoute
   '/checkin/water': typeof CheckinWaterRoute
@@ -1030,6 +1039,7 @@ export interface FileRouteTypes {
     | '/auth/otp'
     | '/challenges/$id'
     | '/challenges/phase'
+    | '/checkin/$slug'
     | '/checkin/sleep'
     | '/checkin/steps'
     | '/checkin/water'
@@ -1141,6 +1151,7 @@ export interface FileRouteTypes {
     | '/auth/otp'
     | '/challenges/$id'
     | '/challenges/phase'
+    | '/checkin/$slug'
     | '/checkin/sleep'
     | '/checkin/steps'
     | '/checkin/water'
@@ -1252,6 +1263,7 @@ export interface FileRouteTypes {
     | '/auth/otp'
     | '/challenges/$id'
     | '/challenges/phase'
+    | '/checkin/$slug'
     | '/checkin/sleep'
     | '/checkin/steps'
     | '/checkin/water'
@@ -1364,6 +1376,7 @@ export interface RootRouteChildren {
   AuthOtpRoute: typeof AuthOtpRoute
   ChallengesIdRoute: typeof ChallengesIdRoute
   ChallengesPhaseRoute: typeof ChallengesPhaseRoute
+  CheckinSlugRoute: typeof CheckinSlugRoute
   CheckinSleepRoute: typeof CheckinSleepRoute
   CheckinStepsRoute: typeof CheckinStepsRoute
   CheckinWaterRoute: typeof CheckinWaterRoute
@@ -2132,6 +2145,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CheckinSleepRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/checkin/$slug': {
+      id: '/checkin/$slug'
+      path: '/checkin/$slug'
+      fullPath: '/checkin/$slug'
+      preLoaderRoute: typeof CheckinSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/challenges/phase': {
       id: '/challenges/phase'
       path: '/challenges/phase'
@@ -2277,6 +2297,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthOtpRoute: AuthOtpRoute,
   ChallengesIdRoute: ChallengesIdRoute,
   ChallengesPhaseRoute: ChallengesPhaseRoute,
+  CheckinSlugRoute: CheckinSlugRoute,
   CheckinSleepRoute: CheckinSleepRoute,
   CheckinStepsRoute: CheckinStepsRoute,
   CheckinWaterRoute: CheckinWaterRoute,
@@ -2359,12 +2380,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-  }
-}

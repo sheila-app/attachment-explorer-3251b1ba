@@ -5,6 +5,7 @@ import { OptionCard, PrimaryCTA } from "@/components/sheila/OnboardingShell";
 import { IOSWheel, wheelRange } from "@/components/sheila/IOSWheel";
 import { Droplet } from "lucide-react";
 import { MOOD_LIST } from "@/data/moods";
+import { SYMPTOM_LIST } from "@/data/symptoms";
 
 export const Route = createFileRoute("/cycle/log-draft")({ component: LogDraftPage });
 
@@ -48,10 +49,6 @@ function LogDraftPage() {
     { id: "heavy", t: "غزير", dots: 3 },
   ];
 
-  const sym = [
-    { id: "cramp", t: "تشنّج" }, { id: "head", t: "صداع" }, { id: "tired", t: "إرهاق" },
-    { id: "mood", t: "تقلّب مزاجي" }, { id: "bloat", t: "انتفاخ" }, { id: "back", t: "ألم ظهر" },
-  ];
   const toggle = (id: string) => setSymptoms(s => s.includes(id) ? s.filter(x => x !== id) : [...s, id]);
 
   return (

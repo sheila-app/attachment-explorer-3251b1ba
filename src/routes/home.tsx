@@ -506,7 +506,7 @@ function DateStrip({
                       className="font-display text-[15px] nums leading-none"
                       style={{ color: isSelected ? "white" : "var(--foreground)" }}
                     >
-                      {it.date ? toAr(it.date.getDate()) : "—"}
+                      {toAr(it.cDay)}
                     </span>
                     <span
                       className="w-1 h-1 rounded-full mt-0.5"

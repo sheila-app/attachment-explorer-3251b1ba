@@ -371,12 +371,13 @@ function DateStrip({
   const scrollTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const items = useMemo(() => {
-    const arr: { offset: number; date: Date | null; phase: CyclePhase }[] = [];
+    const arr: { offset: number; date: Date | null; phase: CyclePhase; cDay: number }[] = [];
     for (let i = -RANGE; i <= RANGE; i++) {
       const d = baseDate ? new Date(baseDate.getTime()) : null;
       if (d) d.setDate(baseDate!.getDate() + i);
       const phase = phaseForDay(cycleDay + i, cycleLength);
-      arr.push({ offset: i, date: d, phase });
+      const cDay = ((cycleDay - 1 + i) % cycleLength + cycleLength) % cycleLength + 1;
+      arr.push({ offset: i, date: d, phase, cDay });
     }
     return arr;
   }, [baseDate, cycleDay, cycleLength]);

@@ -49,9 +49,6 @@ function Page() {
       {showCalendar && (
         <>
           <div className="glass rounded-2xl p-4 mb-3">
-            <div className="relative z-10 text-[10px] tracking-[0.2em] text-foreground/55 uppercase mb-3 text-center">
-              تاريخ بدء آخر دورة
-            </div>
             <div className="relative z-10 flex justify-center gap-3" style={{ direction: "ltr" }}>
               <IOSWheel label="يوم" values={wheelRange(1, 31)} value={day} onChange={(v) => setDay(Number(v))} width={64} />
               <IOSWheel label="شهر" values={months} value={months[monthIdx]} onChange={(v) => setMonthIdx(months.indexOf(String(v)))} width={108} />
@@ -60,9 +57,6 @@ function Page() {
           </div>
 
           <div className="glass rounded-2xl p-4">
-            <div className="relative z-10 text-[10px] tracking-[0.2em] text-foreground/55 uppercase mb-3 text-center">
-              معدّل طول الدورة (يوم)
-            </div>
             <div className="relative z-10 flex justify-center" style={{ direction: "ltr" }}>
               <IOSWheel values={wheelRange(21, 45)} value={length} onChange={(v) => setLength(Number(v))} width={86} />
             </div>

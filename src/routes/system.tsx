@@ -167,6 +167,28 @@ function Page() {
               <p className="text-[10px] text-foreground/55 mt-2 px-1 font-mono">DateWheelCard · <span className="nums">{day}/{monthIdx + 1}/{year}</span></p>
             </Block>
 
+            <Block title="بطاقة اختيار المزاج">
+              <div className="glass rounded-2xl p-3">
+                <div className="relative z-10 grid grid-cols-4 gap-2">
+                  {moodList.map(m => {
+                    const on = moods.includes(m.id);
+                    return (
+                      <button key={m.id} onClick={() => toggleMood(m.id)}
+                        className="rounded-2xl py-2.5 px-1 flex flex-col items-center gap-1 transition"
+                        style={on
+                          ? { background: `color-mix(in oklab, ${m.tone} 18%, transparent)`, boxShadow: `inset 0 0 0 1.5px ${m.tone}` }
+                          : { background: "color-mix(in oklab, var(--foreground) 4%, transparent)" }}
+                      >
+                        <m.Icon size={22} strokeWidth={1.75} style={{ color: on ? m.tone : "color-mix(in oklab, var(--foreground) 65%, transparent)" }} />
+                        <span className="text-[10.5px] font-medium leading-tight text-center" style={{ color: on ? m.tone : "var(--foreground)" }}>{m.name}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+              <p className="text-[10px] text-foreground/55 mt-2 px-1 font-mono">MoodPicker · {moods.length} محدّد</p>
+            </Block>
+
             <Block title="حلقة مرحلة الدورة">
               <div className="flex justify-center"><CyclePhaseRing phase="ovulation" day={14} cycleLength={28} size={150} /></div>
             </Block>

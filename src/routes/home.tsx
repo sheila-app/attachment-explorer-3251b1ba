@@ -105,26 +105,26 @@ function HomePage() {
 
         <div className="relative z-10 h-full overflow-y-auto no-scrollbar pb-28">
           {/* الرأس: الاسم (يمين) | التاريخ (وسط) | بحث+إشعارات (يسار) */}
-          <div className="flex items-center justify-between px-5 pt-5 gap-3">
-            <div className="min-w-0">
+          <div className="grid grid-cols-3 items-center px-5 pt-5 gap-3">
+            <div className="min-w-0 justify-self-start">
               <div className="text-[11px] text-foreground/55 tracking-widest">مرحباً</div>
               <div className="font-display text-lg text-foreground/90 mt-0.5 truncate">
                 {mockUser.name}
               </div>
             </div>
 
-            <div className="text-center flex-1">
-              <div className="font-display text-[15px] text-foreground/85 nums">
+            <div className="text-center justify-self-center">
+              <div className="font-display text-[15px] text-foreground/85 nums whitespace-nowrap">
                 {selectedDate
                   ? `${toAr(selectedDate.getDate())} ${MONTHS_AR[selectedDate.getMonth()]}`
                   : "—"}
               </div>
-              <div className="text-[10.5px] mt-0.5 font-medium" style={{ color: meta.color }}>
+              <div className="text-[10.5px] mt-0.5 font-medium whitespace-nowrap" style={{ color: meta.color }}>
                 يوم {toAr(day)} · {meta.name}
               </div>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 justify-self-end">
               <button className="w-10 h-10 rounded-full bg-white/70 backdrop-blur border border-white/60 flex items-center justify-center shadow-sm">
                 <Search size={17} strokeWidth={1.75} className="text-foreground/75" />
               </button>
@@ -492,13 +492,9 @@ function DateStrip({
                     className="flex-shrink-0 w-12 rounded-2xl flex flex-col items-center justify-center gap-1 py-2 transition-all"
                     style={{
                       scrollSnapAlign: "center",
-                      background: isSelected
-                        ? color
-                        : `color-mix(in oklab, ${color} 14%, white)`,
+                      background: isSelected ? color : "transparent",
                       color: isSelected ? "white" : "var(--foreground)",
-                      border: isSelected
-                        ? "none"
-                        : `1px solid color-mix(in oklab, ${color} 25%, transparent)`,
+                      border: "none",
                       boxShadow: isSelected
                         ? `0 10px 22px -10px ${color}`
                         : undefined,
@@ -507,18 +503,24 @@ function DateStrip({
                   >
                     <span
                       className="text-[10px]"
-                      style={{ opacity: isSelected ? 0.9 : 0.65 }}
+                      style={{
+                        opacity: isSelected ? 0.9 : 0.55,
+                        color: isSelected ? "white" : color,
+                      }}
                     >
                       {it.date ? DAY_LETTERS[it.date.getDay()] : "—"}
                     </span>
-                    <span className="font-display text-[15px] nums leading-none">
+                    <span
+                      className="font-display text-[15px] nums leading-none"
+                      style={{ color: isSelected ? "white" : "var(--foreground)" }}
+                    >
                       {it.date ? toAr(it.date.getDate()) : "—"}
                     </span>
                     <span
                       className="w-1 h-1 rounded-full mt-0.5"
                       style={{
                         background: isSelected ? "white" : color,
-                        opacity: isSelected ? 0.9 : 0.55,
+                        opacity: isSelected ? 0.9 : 0.85,
                       }}
                     />
                   </button>

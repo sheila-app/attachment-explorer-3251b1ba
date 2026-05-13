@@ -5,6 +5,7 @@ import { OptionCard, PrimaryCTA } from "@/components/sheila/OnboardingShell";
 import { IOSWheel, wheelRange } from "@/components/sheila/IOSWheel";
 import { Droplet } from "lucide-react";
 import { MOOD_LIST } from "@/data/moods";
+import { SYMPTOM_LIST } from "@/data/symptoms";
 
 export const Route = createFileRoute("/cycle/log-draft")({ component: LogDraftPage });
 
@@ -48,10 +49,6 @@ function LogDraftPage() {
     { id: "heavy", t: "غزير", dots: 3 },
   ];
 
-  const sym = [
-    { id: "cramp", t: "تشنّج" }, { id: "head", t: "صداع" }, { id: "tired", t: "إرهاق" },
-    { id: "mood", t: "تقلّب مزاجي" }, { id: "bloat", t: "انتفاخ" }, { id: "back", t: "ألم ظهر" },
-  ];
   const toggle = (id: string) => setSymptoms(s => s.includes(id) ? s.filter(x => x !== id) : [...s, id]);
 
   return (
@@ -103,10 +100,24 @@ function LogDraftPage() {
         </div>
 
         <h2 className="text-sm font-medium mb-2.5">الأعراض</h2>
-        <div className="grid grid-cols-2 gap-2 mb-6">
-          {sym.map(s => (
-            <OptionCard key={s.id} title={s.t} selected={symptoms.includes(s.id)} onClick={() => toggle(s.id)} />
-          ))}
+        <div className="glass rounded-2xl p-3 mb-6">
+          <div className="relative z-10 grid grid-cols-4 gap-2">
+            {SYMPTOM_LIST.map(s => {
+              const on = symptoms.includes(s.id);
+              const tone = "var(--phase-menstrual)";
+              return (
+                <button key={s.id} onClick={() => toggle(s.id)}
+                  className="rounded-2xl py-2.5 px-1 flex flex-col items-center gap-1 transition"
+                  style={on
+                    ? { background: `color-mix(in oklab, ${tone} 18%, transparent)`, boxShadow: `inset 0 0 0 1.5px ${tone}` }
+                    : { background: "color-mix(in oklab, var(--foreground) 4%, transparent)" }}
+                >
+                  <img src={s.img} alt={s.name} className="w-9 h-9 object-contain" style={{ opacity: on ? 1 : 0.75 }} />
+                  <span className="text-[10.5px] font-medium leading-tight text-center" style={{ color: on ? tone : "var(--foreground)" }}>{s.name}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         <h2 className="text-sm font-medium mb-2.5">ملاحظات</h2>

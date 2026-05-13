@@ -108,7 +108,7 @@ export const flowsByPhase: Record<CyclePhase, CheckinFlow> = {
 };
 
 // حالات استثنائيّة
-export const exceptionFlows = {
+export const exceptionFlows: Record<"noCycle" | "pregnancyT1" | "ramadan", CheckinFlow> = {
   noCycle: {
     key: "B1",
     greeting: "صحّتكِ، بشروطكِ ✨",

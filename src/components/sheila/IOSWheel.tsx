@@ -15,7 +15,7 @@ interface Props {
  * تستخدم scroll عمودي حقيقي مع padding بحيث ينطبق العنصر الفعّال على المنتصف.
  */
 export function IOSWheel({
-  values, value, onChange, width = 86, itemHeight = 36, visible = 5, label,
+  values, value, onChange, width = 86, itemHeight = 40, visible = 7, label,
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(() => Math.max(0, values.findIndex(v => v === value)));
@@ -57,15 +57,13 @@ export function IOSWheel({
         className="relative"
         style={{ width, height }}
       >
-        {/* خطوط المحور */}
+        {/* خطوط المحور — iOS style */}
         <div
           className="absolute left-0 right-0 pointer-events-none z-10"
           style={{
             top: padding, height: itemHeight,
-            borderTop: "1px solid color-mix(in oklab, var(--primary) 35%, transparent)",
-            borderBottom: "1px solid color-mix(in oklab, var(--primary) 35%, transparent)",
-            background: "color-mix(in oklab, var(--primary) 6%, transparent)",
-            borderRadius: 8,
+            borderTop: "1px solid color-mix(in oklab, var(--foreground) 12%, transparent)",
+            borderBottom: "1px solid color-mix(in oklab, var(--foreground) 12%, transparent)",
           }}
         />
         {/* تدرّج تلاشي أعلى/أسفل */}
@@ -86,19 +84,20 @@ export function IOSWheel({
           <div style={{ height: padding }} />
           {values.map((v, i) => {
             const dist = Math.abs(i - active);
-            const opacity = Math.max(0.25, 1 - dist * 0.28);
-            const scale = Math.max(0.78, 1 - dist * 0.08);
+            const opacity = Math.max(0.18, 1 - dist * 0.32);
+            const scale = Math.max(0.82, 1 - dist * 0.06);
             return (
               <div
                 key={`${v}-${i}`}
                 className="snap-center flex items-center justify-center font-display nums tabular-nums"
                 style={{
                   height: itemHeight,
-                  fontSize: dist === 0 ? 22 : 18,
-                  color: dist === 0 ? "var(--primary-deep)" : "var(--foreground)",
+                  fontSize: dist === 0 ? 22 : 19,
+                  fontWeight: dist === 0 ? 600 : 400,
+                  color: "var(--foreground)",
                   opacity,
                   transform: `scale(${scale})`,
-                  transition: "opacity 120ms, transform 120ms, font-size 120ms",
+                  transition: "opacity 120ms, transform 120ms, font-size 120ms, font-weight 120ms",
                 }}
               >
                 {v}

@@ -75,12 +75,12 @@ function LoginPage() {
           </div>
 
           <button className="w-full py-3.5 rounded-2xl border border-border bg-white/80 flex items-center justify-center gap-3 text-sm font-semibold text-foreground">
-            <Globe className="w-5 h-5 text-blue-500" strokeWidth={1.75} />
+            <GoogleIcon className="w-5 h-5" />
             تسجيل الدخول بجوجل
           </button>
 
-          <button className="w-full py-3.5 rounded-2xl border border-border bg-white/80 flex items-center justify-center gap-3 text-sm font-semibold text-foreground">
-            <Apple className="w-5 h-5 text-foreground" strokeWidth={1.75} />
+          <button className="w-full py-3.5 rounded-2xl border border-border bg-black flex items-center justify-center gap-3 text-sm font-semibold text-white">
+            <AppleIcon className="w-5 h-5 text-white" />
             تسجيل الدخول بآبل
           </button>
 

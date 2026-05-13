@@ -46,6 +46,7 @@ import { Route as ArticlesIndexRouteImport } from './routes/articles.index'
 import { Route as WorkoutsSummaryRouteImport } from './routes/workouts.summary'
 import { Route as WorkoutsProgramsRouteImport } from './routes/workouts.programs'
 import { Route as WorkoutsLiveRouteImport } from './routes/workouts.live'
+import { Route as WorkoutsDraftRouteImport } from './routes/workouts.draft'
 import { Route as WorkoutsIdRouteImport } from './routes/workouts.$id'
 import { Route as ReportsIdRouteImport } from './routes/reports.$id'
 import { Route as ProfileThemeRouteImport } from './routes/profile.theme'
@@ -300,6 +301,11 @@ const WorkoutsProgramsRoute = WorkoutsProgramsRouteImport.update({
 const WorkoutsLiveRoute = WorkoutsLiveRouteImport.update({
   id: '/workouts/live',
   path: '/workouts/live',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkoutsDraftRoute = WorkoutsDraftRouteImport.update({
+  id: '/workouts/draft',
+  path: '/workouts/draft',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WorkoutsIdRoute = WorkoutsIdRouteImport.update({
@@ -741,6 +747,7 @@ export interface FileRoutesByFullPath {
   '/profile/theme': typeof ProfileThemeRoute
   '/reports/$id': typeof ReportsIdRoute
   '/workouts/$id': typeof WorkoutsIdRouteWithChildren
+  '/workouts/draft': typeof WorkoutsDraftRoute
   '/workouts/live': typeof WorkoutsLiveRoute
   '/workouts/programs': typeof WorkoutsProgramsRouteWithChildren
   '/workouts/summary': typeof WorkoutsSummaryRoute
@@ -850,6 +857,7 @@ export interface FileRoutesByTo {
   '/profile/theme': typeof ProfileThemeRoute
   '/reports/$id': typeof ReportsIdRoute
   '/workouts/$id': typeof WorkoutsIdRouteWithChildren
+  '/workouts/draft': typeof WorkoutsDraftRoute
   '/workouts/live': typeof WorkoutsLiveRoute
   '/workouts/programs': typeof WorkoutsProgramsRouteWithChildren
   '/workouts/summary': typeof WorkoutsSummaryRoute
@@ -960,6 +968,7 @@ export interface FileRoutesById {
   '/profile/theme': typeof ProfileThemeRoute
   '/reports/$id': typeof ReportsIdRoute
   '/workouts/$id': typeof WorkoutsIdRouteWithChildren
+  '/workouts/draft': typeof WorkoutsDraftRoute
   '/workouts/live': typeof WorkoutsLiveRoute
   '/workouts/programs': typeof WorkoutsProgramsRouteWithChildren
   '/workouts/summary': typeof WorkoutsSummaryRoute
@@ -1071,6 +1080,7 @@ export interface FileRouteTypes {
     | '/profile/theme'
     | '/reports/$id'
     | '/workouts/$id'
+    | '/workouts/draft'
     | '/workouts/live'
     | '/workouts/programs'
     | '/workouts/summary'
@@ -1180,6 +1190,7 @@ export interface FileRouteTypes {
     | '/profile/theme'
     | '/reports/$id'
     | '/workouts/$id'
+    | '/workouts/draft'
     | '/workouts/live'
     | '/workouts/programs'
     | '/workouts/summary'
@@ -1289,6 +1300,7 @@ export interface FileRouteTypes {
     | '/profile/theme'
     | '/reports/$id'
     | '/workouts/$id'
+    | '/workouts/draft'
     | '/workouts/live'
     | '/workouts/programs'
     | '/workouts/summary'
@@ -1399,6 +1411,7 @@ export interface RootRouteChildren {
   ProfileThemeRoute: typeof ProfileThemeRoute
   ReportsIdRoute: typeof ReportsIdRoute
   WorkoutsIdRoute: typeof WorkoutsIdRouteWithChildren
+  WorkoutsDraftRoute: typeof WorkoutsDraftRoute
   WorkoutsLiveRoute: typeof WorkoutsLiveRoute
   WorkoutsProgramsRoute: typeof WorkoutsProgramsRouteWithChildren
   WorkoutsSummaryRoute: typeof WorkoutsSummaryRoute
@@ -1677,6 +1690,13 @@ declare module '@tanstack/react-router' {
       path: '/workouts/live'
       fullPath: '/workouts/live'
       preLoaderRoute: typeof WorkoutsLiveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/workouts/draft': {
+      id: '/workouts/draft'
+      path: '/workouts/draft'
+      fullPath: '/workouts/draft'
+      preLoaderRoute: typeof WorkoutsDraftRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/workouts/$id': {
@@ -2296,6 +2316,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileThemeRoute: ProfileThemeRoute,
   ReportsIdRoute: ReportsIdRoute,
   WorkoutsIdRoute: WorkoutsIdRouteWithChildren,
+  WorkoutsDraftRoute: WorkoutsDraftRoute,
   WorkoutsLiveRoute: WorkoutsLiveRoute,
   WorkoutsProgramsRoute: WorkoutsProgramsRouteWithChildren,
   WorkoutsSummaryRoute: WorkoutsSummaryRoute,

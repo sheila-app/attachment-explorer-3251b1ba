@@ -107,6 +107,8 @@ import { Route as CheckinWaterDraftRouteImport } from './routes/checkin.water-dr
 import { Route as CheckinWaterRouteImport } from './routes/checkin.water'
 import { Route as CheckinStepsRouteImport } from './routes/checkin.steps'
 import { Route as CheckinSleepRouteImport } from './routes/checkin.sleep'
+import { Route as CheckinOvulationRouteImport } from './routes/checkin.ovulation'
+import { Route as CheckinMenstrualRouteImport } from './routes/checkin.menstrual'
 import { Route as ChallengesPhaseRouteImport } from './routes/challenges.phase'
 import { Route as ChallengesIdRouteImport } from './routes/challenges.$id'
 import { Route as AuthOtpRouteImport } from './routes/auth.otp'
@@ -610,6 +612,16 @@ const CheckinSleepRoute = CheckinSleepRouteImport.update({
   path: '/checkin/sleep',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CheckinOvulationRoute = CheckinOvulationRouteImport.update({
+  id: '/checkin/ovulation',
+  path: '/checkin/ovulation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckinMenstrualRoute = CheckinMenstrualRouteImport.update({
+  id: '/checkin/menstrual',
+  path: '/checkin/menstrual',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ChallengesPhaseRoute = ChallengesPhaseRouteImport.update({
   id: '/challenges/phase',
   path: '/challenges/phase',
@@ -694,6 +706,8 @@ export interface FileRoutesByFullPath {
   '/auth/otp': typeof AuthOtpRoute
   '/challenges/$id': typeof ChallengesIdRoute
   '/challenges/phase': typeof ChallengesPhaseRoute
+  '/checkin/menstrual': typeof CheckinMenstrualRoute
+  '/checkin/ovulation': typeof CheckinOvulationRoute
   '/checkin/sleep': typeof CheckinSleepRoute
   '/checkin/steps': typeof CheckinStepsRoute
   '/checkin/water': typeof CheckinWaterRoute
@@ -805,6 +819,8 @@ export interface FileRoutesByTo {
   '/auth/otp': typeof AuthOtpRoute
   '/challenges/$id': typeof ChallengesIdRoute
   '/challenges/phase': typeof ChallengesPhaseRoute
+  '/checkin/menstrual': typeof CheckinMenstrualRoute
+  '/checkin/ovulation': typeof CheckinOvulationRoute
   '/checkin/sleep': typeof CheckinSleepRoute
   '/checkin/steps': typeof CheckinStepsRoute
   '/checkin/water': typeof CheckinWaterRoute
@@ -917,6 +933,8 @@ export interface FileRoutesById {
   '/auth/otp': typeof AuthOtpRoute
   '/challenges/$id': typeof ChallengesIdRoute
   '/challenges/phase': typeof ChallengesPhaseRoute
+  '/checkin/menstrual': typeof CheckinMenstrualRoute
+  '/checkin/ovulation': typeof CheckinOvulationRoute
   '/checkin/sleep': typeof CheckinSleepRoute
   '/checkin/steps': typeof CheckinStepsRoute
   '/checkin/water': typeof CheckinWaterRoute
@@ -1030,6 +1048,8 @@ export interface FileRouteTypes {
     | '/auth/otp'
     | '/challenges/$id'
     | '/challenges/phase'
+    | '/checkin/menstrual'
+    | '/checkin/ovulation'
     | '/checkin/sleep'
     | '/checkin/steps'
     | '/checkin/water'
@@ -1141,6 +1161,8 @@ export interface FileRouteTypes {
     | '/auth/otp'
     | '/challenges/$id'
     | '/challenges/phase'
+    | '/checkin/menstrual'
+    | '/checkin/ovulation'
     | '/checkin/sleep'
     | '/checkin/steps'
     | '/checkin/water'
@@ -1252,6 +1274,8 @@ export interface FileRouteTypes {
     | '/auth/otp'
     | '/challenges/$id'
     | '/challenges/phase'
+    | '/checkin/menstrual'
+    | '/checkin/ovulation'
     | '/checkin/sleep'
     | '/checkin/steps'
     | '/checkin/water'
@@ -1364,6 +1388,8 @@ export interface RootRouteChildren {
   AuthOtpRoute: typeof AuthOtpRoute
   ChallengesIdRoute: typeof ChallengesIdRoute
   ChallengesPhaseRoute: typeof ChallengesPhaseRoute
+  CheckinMenstrualRoute: typeof CheckinMenstrualRoute
+  CheckinOvulationRoute: typeof CheckinOvulationRoute
   CheckinSleepRoute: typeof CheckinSleepRoute
   CheckinStepsRoute: typeof CheckinStepsRoute
   CheckinWaterRoute: typeof CheckinWaterRoute
@@ -2132,6 +2158,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CheckinSleepRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/checkin/ovulation': {
+      id: '/checkin/ovulation'
+      path: '/checkin/ovulation'
+      fullPath: '/checkin/ovulation'
+      preLoaderRoute: typeof CheckinOvulationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkin/menstrual': {
+      id: '/checkin/menstrual'
+      path: '/checkin/menstrual'
+      fullPath: '/checkin/menstrual'
+      preLoaderRoute: typeof CheckinMenstrualRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/challenges/phase': {
       id: '/challenges/phase'
       path: '/challenges/phase'
@@ -2277,6 +2317,8 @@ const rootRouteChildren: RootRouteChildren = {
   AuthOtpRoute: AuthOtpRoute,
   ChallengesIdRoute: ChallengesIdRoute,
   ChallengesPhaseRoute: ChallengesPhaseRoute,
+  CheckinMenstrualRoute: CheckinMenstrualRoute,
+  CheckinOvulationRoute: CheckinOvulationRoute,
   CheckinSleepRoute: CheckinSleepRoute,
   CheckinStepsRoute: CheckinStepsRoute,
   CheckinWaterRoute: CheckinWaterRoute,
@@ -2359,12 +2401,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-  }
-}

@@ -22,7 +22,7 @@ export interface CheckinStep {
 
 export interface CheckinFlow {
   key: string;
-  trigger: string;            // وصف منطقي للترايقر
+  trigger?: string;            // وصف منطقي للترايقر
   greeting: string;
   tone: string;
   affirmation: string;
@@ -52,7 +52,7 @@ export const flowsByPhase: Record<CyclePhase, CheckinFlow> = {
       { type: "flow", label: "كيف تدفّق الدم اليوم؟", options: ["نزّاز خفيف", "خفيف", "متوسّط", "غزير", "غزير جدّاً"] },
       { type: "pain", label: "مستوى التشنّج / الألم", hint: "من ١ (لا شيء) إلى ٥ (شديد)" },
       { type: "symptoms", label: "أعراض اليوم", options: ["انتفاخ", "صداع", "ألم ظهر", "حسّاسيّة الصدر", "غثيان", "حبوب", "إرهاق", "قشعريرة"] },
-      { type: "workout", label: "تمرين اليوم", hint: "اقتراح: حركة لطيفة أو راحة", options: ["ابدئي الآن", "عدّليه", "راحة اليوم"] },
+      { type: "workout", label: "تمرين اليوم", hint: "اقتراح: حركة لطيفة أو راحة", options: ["ابدئي الآن", "لاحقاً", "راحة اليوم"] },
     ],
   },
   follicular: {
@@ -68,7 +68,7 @@ export const flowsByPhase: Record<CyclePhase, CheckinFlow> = {
       { type: "mood", label: "كيف تشعرين اليوم؟", options: moodFollicular },
       { type: "energy", label: "مستوى الطاقة اليوم؟", hint: "١ منخفض جداً → ٥ مرتفع جداً" },
       { type: "sleep", label: "كيف كان نومكِ؟", options: ["سيّئ جدّاً", "ضعيف", "عاديّ", "جيّد", "ممتاز"] },
-      { type: "workout", label: "تمرين اليوم", hint: "اقتراح: قوّة أو كارديو", options: ["ابدئي الآن", "عدّليه", "راحة اليوم"] },
+      { type: "workout", label: "تمرين اليوم", hint: "اقتراح: قوّة أو كارديو", options: ["ابدئي الآن", "لاحقاً", "راحة اليوم"] },
     ],
   },
   ovulation: {
@@ -85,7 +85,7 @@ export const flowsByPhase: Record<CyclePhase, CheckinFlow> = {
       { type: "energy", label: "مستوى الطاقة اليوم؟" },
       { type: "sleep", label: "كيف كان نومكِ؟", options: ["سيّئ جدّاً", "ضعيف", "عاديّ", "جيّد", "ممتاز"] },
       { type: "bodySignals", label: "إشارات جسديّة (اختياري)", options: ["تشنّج خفيف", "إفرازات", "تغيّرات الصدر"] },
-      { type: "workout", label: "تمرين اليوم", hint: "اقتراح: HIIT أو تحدّي جديد", options: ["ابدئي الآن", "عدّليه", "تخطّي اليوم"] },
+      { type: "workout", label: "تمرين اليوم", hint: "اقتراح: HIIT أو تحدّي جديد", options: ["ابدئي الآن", "لاحقاً", "تخطّي اليوم"] },
     ],
   },
   luteal: {
@@ -102,13 +102,13 @@ export const flowsByPhase: Record<CyclePhase, CheckinFlow> = {
       { type: "energy", label: "مستوى الطاقة اليوم؟" },
       { type: "sleep", label: "كيف كان نومكِ؟", options: ["سيّئ جدّاً", "ضعيف", "عاديّ", "جيّد", "ممتاز"] },
       { type: "symptoms", label: "ما تلاحظينه", options: ["انتفاخ", "حبوب", "حسّاسيّة الصدر", "اشتهاء", "تقلّب مزاج", "صداع", "إرهاق", "أرق"] },
-      { type: "workout", label: "تمرين اليوم", hint: "اقتراح: حركة معتدلة", options: ["ابدئي الآن", "عدّليه", "راحة اليوم"] },
+      { type: "workout", label: "تمرين اليوم", hint: "اقتراح: حركة معتدلة", options: ["ابدئي الآن", "لاحقاً", "راحة اليوم"] },
     ],
   },
 };
 
 // حالات استثنائيّة
-export const exceptionFlows = {
+export const exceptionFlows: Record<"noCycle" | "pregnancyT1" | "ramadan", CheckinFlow> = {
   noCycle: {
     key: "B1",
     greeting: "صحّتكِ، بشروطكِ ✨",

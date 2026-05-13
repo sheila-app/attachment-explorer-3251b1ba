@@ -16,6 +16,12 @@ export const Route = createFileRoute("/system")({ component: Page });
 function Page() {
   const [tab, setTab] = useState<"tokens" | "components" | "screens">("tokens");
   const [wheel, setWheel] = useState<number>(28);
+  const today = new Date();
+  const months = ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];
+  const yearNow = today.getFullYear();
+  const [day, setDay] = useState<number>(today.getDate());
+  const [monthIdx, setMonthIdx] = useState<number>(today.getMonth());
+  const [year, setYear] = useState<number>(yearNow);
 
   return (
     <FeatureShell title="نظام التصميم" back="/" showNav={false} variant="default">

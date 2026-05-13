@@ -99,7 +99,8 @@ function Field({ label, placeholder, type, suffix }: { label: string; placeholde
       <label className="relative z-10 block text-[10px] tracking-[0.2em] text-foreground/55 uppercase mb-1">{label}</label>
       <div className="relative z-10 flex items-center gap-2">
         <input type={type} placeholder={placeholder}
-          className="flex-1 bg-transparent text-sm outline-none placeholder:text-foreground/30 nums" />
+          dir={type === "email" ? "ltr" : "rtl"}
+          className="flex-1 bg-transparent text-sm outline-none placeholder:text-foreground/30 nums text-right" />
         {suffix}
       </div>
     </div>

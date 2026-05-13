@@ -15,7 +15,7 @@ interface Props {
  * تستخدم scroll عمودي حقيقي مع padding بحيث ينطبق العنصر الفعّال على المنتصف.
  */
 export function IOSWheel({
-  values, value, onChange, width = 86, itemHeight = 36, visible = 5, label,
+  values, value, onChange, width = 86, itemHeight = 32, visible = 3, label,
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(() => Math.max(0, values.findIndex(v => v === value)));

@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { DeviceFrame } from "@/components/sheila/DeviceFrame";
+import { PrimaryCTA } from "@/components/sheila/OnboardingShell";
 import { ArrowRight, Plus, Minus, Droplet } from "lucide-react";
 
 export const Route = createFileRoute("/checkin/water-draft")({ component: Page });

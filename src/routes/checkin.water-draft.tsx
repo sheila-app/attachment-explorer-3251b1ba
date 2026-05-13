@@ -77,13 +77,16 @@ function Page() {
             >
               <ArrowRight size={17} strokeWidth={1.75} />
             </Link>
-            <h1
-              className={`flex-1 font-display text-[22px] leading-none transition-colors ${
-                fillPct > 50 ? "text-white" : "text-foreground"
-              }`}
-            >
+            <h1 className="flex-1 font-display text-[22px] leading-none text-foreground">
               تتبّع الماء
             </h1>
+            <Link
+              to="/checkin"
+              className="h-10 px-3 rounded-full bg-white/70 backdrop-blur flex items-center gap-1.5 shadow-sm text-[12px] font-medium text-foreground"
+            >
+              <Droplet size={13} strokeWidth={1.75} className="text-primary" />
+              سجل الأيام
+            </Link>
           </header>
 
           <div className="flex-1 flex flex-col items-center justify-center gap-4 px-5">

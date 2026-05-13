@@ -84,6 +84,26 @@ function LogDraftPage() {
           </div>
         </div>
 
+        <h2 className="text-sm font-medium mb-2.5">المزاج</h2>
+        <div className="glass rounded-2xl p-3 mb-6">
+          <div className="relative z-10 grid grid-cols-4 gap-2">
+            {MOOD_LIST.map(m => {
+              const on = moods.includes(m.id);
+              return (
+                <button key={m.id} onClick={() => toggleMood(m.id)}
+                  className="rounded-2xl py-2.5 px-1 flex flex-col items-center gap-1 transition"
+                  style={on
+                    ? { background: `color-mix(in oklab, ${m.tone} 18%, transparent)`, boxShadow: `inset 0 0 0 1.5px ${m.tone}` }
+                    : { background: "color-mix(in oklab, var(--foreground) 4%, transparent)" }}
+                >
+                  <m.Icon size={22} strokeWidth={1.75} style={{ color: on ? m.tone : "color-mix(in oklab, var(--foreground) 65%, transparent)" }} />
+                  <span className="text-[10.5px] font-medium leading-tight text-center" style={{ color: on ? m.tone : "var(--foreground)" }}>{m.name}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
         <h2 className="text-sm font-medium mb-2.5">شدّة التدفّق</h2>
         <div className="grid grid-cols-3 gap-2 mb-6">
           {flows.map(f => {

@@ -29,56 +29,13 @@ function getWorkoutGradient(type: string): string {
 }
 
 function Page() {
-  const [filter, setFilter] = useState("الكل");
-  const [query, setQuery] = useState("");
-
-  const filteredWorkouts = useMemo(() => {
-    return mockWorkouts.filter(w => {
-      const matchType = filter === "الكل" || w.type === filter;
-      const matchQuery = !query || w.title.includes(query) || w.type.includes(query);
-      return matchType && matchQuery;
-    });
-  }, [filter, query]);
-
-  const filteredPrograms = useMemo(() => {
-    return PROGRAMS.filter(p => !query || p.name.includes(query) || p.level.includes(query));
-  }, [query]);
-
-  const filteredChallenges = useMemo(() => {
-    return CHALLENGES.filter(c => !query || c.title.includes(query));
-  }, [query]);
+  const filteredWorkouts = mockWorkouts;
+  const filteredPrograms = PROGRAMS;
+  const filteredChallenges = CHALLENGES;
 
   return (
     <FeatureShell title="مكتبة التمارين" variant="energetic">
       <div className="px-5 space-y-5">
-        {/* Search */}
-        <div className="glass rounded-full px-4 py-2.5 flex items-center gap-2">
-          <Search size={15} className="relative z-10 text-foreground/55 shrink-0" />
-          <input
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="ابحثي عن تمرين أو برنامج..."
-            className="relative z-10 bg-transparent outline-none text-[12.5px] flex-1 min-w-0 placeholder:text-foreground/45"
-          />
-        </div>
-
-        {/* Filters */}
-        <div className="flex gap-2 overflow-x-auto no-scrollbar -mx-1 px-1">
-          {FILTERS.map(f => (
-            <motion.button
-              key={f}
-              onClick={() => setFilter(f)}
-              className="glass shrink-0 px-4 py-2 rounded-full text-[12px] whitespace-nowrap"
-              style={filter === f
-                ? { background: "var(--gradient-primary)", color: "white", boxShadow: "0 8px 20px -8px oklch(0.46 0.135 328 / 0.5)" }
-                : undefined}
-              whileTap={{ scale: 0.94 }}
-            >
-              <span className={`relative z-10 ${filter === f ? "font-semibold text-white" : "font-medium text-foreground/70"}`}>{f}</span>
-            </motion.button>
-          ))}
-        </div>
-
         {/* Section: Workouts */}
         <Section title="التمارين" to="/workouts" count={filteredWorkouts.length}>
           <HorizontalScroll>

@@ -5,7 +5,7 @@ import { OptionCard, PrimaryCTA, GhostCTA } from "@/components/sheila/Onboarding
 import { IOSWheel, wheelRange } from "@/components/sheila/IOSWheel";
 import { CyclePhaseRing } from "@/components/sheila/CyclePhaseRing";
 import { allScreens, PHASE_META } from "@/data/mock";
-import { Bell, Sparkles, Flame, Droplet, Moon, ChevronLeft, Activity } from "lucide-react";
+import { Bell, Sparkles, Flame, Droplet, Moon, ChevronLeft, Activity, Smile, Laugh, Zap, PartyPopper, CloudRain, Angry, Frown, Annoyed, CloudLightning, Brain, BatteryLow, HeartCrack, Meh, HelpCircle, AlertTriangle } from "lucide-react";
 
 export const Route = createFileRoute("/system")({ component: Page });
 
@@ -22,6 +22,27 @@ function Page() {
   const [day, setDay] = useState<number>(today.getDate());
   const [monthIdx, setMonthIdx] = useState<number>(today.getMonth());
   const [year, setYear] = useState<number>(yearNow);
+  const [moods, setMoods] = useState<string[]>(["calm"]);
+  const toggleMood = (id: string) => setMoods(s => s.includes(id) ? s.filter(x => x !== id) : [...s, id]);
+
+  const moodList: { id: string; name: string; Icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string; style?: React.CSSProperties }>; tone: string }[] = [
+    { id: "calm",        name: "هادي",          Icon: Smile,          tone: "var(--phase-luteal)" },
+    { id: "happy",       name: "سعيد",          Icon: Laugh,          tone: "var(--phase-follicular)" },
+    { id: "energetic",   name: "نشيط",          Icon: Zap,            tone: "var(--phase-ovulation)" },
+    { id: "playful",     name: "مرح",           Icon: PartyPopper,    tone: "var(--phase-follicular)" },
+    { id: "moodSwings",  name: "تقلّب المزاج",  Icon: CloudRain,      tone: "var(--phase-menstrual)" },
+    { id: "stressed",    name: "متوتّر",        Icon: CloudLightning, tone: "var(--phase-menstrual)" },
+    { id: "sad",         name: "حزين",          Icon: Frown,          tone: "var(--phase-luteal)" },
+    { id: "anxious",     name: "قلق",           Icon: AlertTriangle,  tone: "var(--phase-menstrual)" },
+    { id: "annoyed",     name: "مُزعج",         Icon: Angry,          tone: "var(--phase-menstrual)" },
+    { id: "depressed",   name: "مكتئب",         Icon: HeartCrack,     tone: "var(--phase-luteal)" },
+    { id: "overthink",   name: "أفكار مُفرطة",  Icon: Brain,          tone: "var(--phase-luteal)" },
+    { id: "lowEnergy",   name: "طاقة منخفضة",   Icon: BatteryLow,     tone: "var(--phase-menstrual)" },
+    { id: "guilt",       name: "الشعور بالذنب", Icon: HeartCrack,     tone: "var(--phase-luteal)" },
+    { id: "apathetic",   name: "غير مبالي",     Icon: Meh,            tone: "var(--foreground)" },
+    { id: "confused",    name: "مُرتبك",        Icon: HelpCircle,     tone: "var(--phase-luteal)" },
+    { id: "selfCritic",  name: "ناقد ذاتي",     Icon: Annoyed,        tone: "var(--phase-menstrual)" },
+  ];
 
   return (
     <FeatureShell title="نظام التصميم" back="/" showNav={false} variant="default">
@@ -144,6 +165,28 @@ function Page() {
                 </div>
               </div>
               <p className="text-[10px] text-foreground/55 mt-2 px-1 font-mono">DateWheelCard · <span className="nums">{day}/{monthIdx + 1}/{year}</span></p>
+            </Block>
+
+            <Block title="بطاقة اختيار المزاج">
+              <div className="glass rounded-2xl p-3">
+                <div className="relative z-10 grid grid-cols-4 gap-2">
+                  {moodList.map(m => {
+                    const on = moods.includes(m.id);
+                    return (
+                      <button key={m.id} onClick={() => toggleMood(m.id)}
+                        className="rounded-2xl py-2.5 px-1 flex flex-col items-center gap-1 transition"
+                        style={on
+                          ? { background: `color-mix(in oklab, ${m.tone} 18%, transparent)`, boxShadow: `inset 0 0 0 1.5px ${m.tone}` }
+                          : { background: "color-mix(in oklab, var(--foreground) 4%, transparent)" }}
+                      >
+                        <m.Icon size={22} strokeWidth={1.75} style={{ color: on ? m.tone : "color-mix(in oklab, var(--foreground) 65%, transparent)" }} />
+                        <span className="text-[10.5px] font-medium leading-tight text-center" style={{ color: on ? m.tone : "var(--foreground)" }}>{m.name}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+              <p className="text-[10px] text-foreground/55 mt-2 px-1 font-mono">MoodPicker · {moods.length} محدّد</p>
             </Block>
 
             <Block title="حلقة مرحلة الدورة">

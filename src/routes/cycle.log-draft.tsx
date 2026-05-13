@@ -3,7 +3,26 @@ import { useState } from "react";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { OptionCard, PrimaryCTA } from "@/components/sheila/OnboardingShell";
 import { IOSWheel, wheelRange } from "@/components/sheila/IOSWheel";
-import { Droplet } from "lucide-react";
+import { Droplet, Smile, Laugh, Zap, PartyPopper, CloudRain, Angry, Frown, Annoyed, CloudLightning, Brain, BatteryLow, HeartCrack, Meh, HelpCircle, AlertTriangle } from "lucide-react";
+
+const MOOD_LIST: { id: string; name: string; Icon: React.ComponentType<{ size?: number; strokeWidth?: number; style?: React.CSSProperties }>; tone: string }[] = [
+  { id: "calm",       name: "هادي",          Icon: Smile,          tone: "var(--phase-luteal)" },
+  { id: "happy",      name: "سعيد",          Icon: Laugh,          tone: "var(--phase-follicular)" },
+  { id: "energetic",  name: "نشيط",          Icon: Zap,            tone: "var(--phase-ovulation)" },
+  { id: "playful",    name: "مرح",           Icon: PartyPopper,    tone: "var(--phase-follicular)" },
+  { id: "moodSwings", name: "تقلّب المزاج",  Icon: CloudRain,      tone: "var(--phase-menstrual)" },
+  { id: "stressed",   name: "متوتّر",        Icon: CloudLightning, tone: "var(--phase-menstrual)" },
+  { id: "sad",        name: "حزين",          Icon: Frown,          tone: "var(--phase-luteal)" },
+  { id: "anxious",    name: "قلق",           Icon: AlertTriangle,  tone: "var(--phase-menstrual)" },
+  { id: "annoyed",    name: "مُزعج",         Icon: Angry,          tone: "var(--phase-menstrual)" },
+  { id: "depressed",  name: "مكتئب",         Icon: HeartCrack,     tone: "var(--phase-luteal)" },
+  { id: "overthink",  name: "أفكار مُفرطة",  Icon: Brain,          tone: "var(--phase-luteal)" },
+  { id: "lowEnergy",  name: "طاقة منخفضة",   Icon: BatteryLow,     tone: "var(--phase-menstrual)" },
+  { id: "guilt",      name: "الشعور بالذنب", Icon: HeartCrack,     tone: "var(--phase-luteal)" },
+  { id: "apathetic",  name: "غير مبالي",     Icon: Meh,            tone: "var(--foreground)" },
+  { id: "confused",   name: "مُرتبك",        Icon: HelpCircle,     tone: "var(--phase-luteal)" },
+  { id: "selfCritic", name: "ناقد ذاتي",     Icon: Annoyed,        tone: "var(--phase-menstrual)" },
+];
 
 export const Route = createFileRoute("/cycle/log-draft")({ component: LogDraftPage });
 
@@ -38,6 +57,8 @@ function LogDraftPage() {
   const [year, setYear] = useState<number>(yearNow);
   const [flow, setFlow] = useState<"light" | "med" | "heavy">("med");
   const [symptoms, setSymptoms] = useState<string[]>(["cramp"]);
+  const [moods, setMoods] = useState<string[]>(["calm"]);
+  const toggleMood = (id: string) => setMoods(s => s.includes(id) ? s.filter(x => x !== id) : [...s, id]);
 
   const flows: { id: "light" | "med" | "heavy"; t: string; dots: 1 | 2 | 3 }[] = [
     { id: "light", t: "خفيف", dots: 1 },
@@ -60,6 +81,26 @@ function LogDraftPage() {
             <IOSWheel values={wheelRange(1, 31)} value={day} onChange={(v) => setDay(Number(v))} width={56} />
             <IOSWheel values={months} value={months[monthIdx]} onChange={(v) => setMonthIdx(months.indexOf(String(v)))} width={92} />
             <IOSWheel values={wheelRange(yearNow - 5, yearNow)} value={year} onChange={(v) => setYear(Number(v))} width={64} />
+          </div>
+        </div>
+
+        <h2 className="text-sm font-medium mb-2.5">المزاج</h2>
+        <div className="glass rounded-2xl p-3 mb-6">
+          <div className="relative z-10 grid grid-cols-4 gap-2">
+            {MOOD_LIST.map(m => {
+              const on = moods.includes(m.id);
+              return (
+                <button key={m.id} onClick={() => toggleMood(m.id)}
+                  className="rounded-2xl py-2.5 px-1 flex flex-col items-center gap-1 transition"
+                  style={on
+                    ? { background: `color-mix(in oklab, ${m.tone} 18%, transparent)`, boxShadow: `inset 0 0 0 1.5px ${m.tone}` }
+                    : { background: "color-mix(in oklab, var(--foreground) 4%, transparent)" }}
+                >
+                  <m.Icon size={22} strokeWidth={1.75} style={{ color: on ? m.tone : "color-mix(in oklab, var(--foreground) 65%, transparent)" }} />
+                  <span className="text-[10.5px] font-medium leading-tight text-center" style={{ color: on ? m.tone : "var(--foreground)" }}>{m.name}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
 

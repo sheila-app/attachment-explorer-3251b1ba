@@ -457,8 +457,20 @@ function DateStrip({
     } catch {}
   };
 
+  // لون اليوم المختار للحلقة الثابتة في المنتصف
+  const selectedItem = items.find((it) => it.offset === offset);
+  const selectedColor = selectedItem ? `var(--phase-${selectedItem.phase})` : "var(--primary)";
+
   return (
     <div className="mt-5 relative">
+      {/* حلقة ثابتة في المنتصف تشير لليوم المختار */}
+      <div
+        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-16 rounded-2xl z-10 transition-colors"
+        style={{
+          background: selectedColor,
+          boxShadow: `0 10px 22px -10px ${selectedColor}`,
+        }}
+      />
 
       <div
         ref={scrollerRef}
@@ -467,7 +479,7 @@ function DateStrip({
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
         onPointerCancel={onPointerUp}
-        className="overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing select-none touch-pan-x"
+        className="overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing select-none touch-pan-x relative z-20"
         style={{ WebkitOverflowScrolling: "touch", paddingInline: "calc(50% - 24px)" }}
       >
         <div className="flex gap-2 py-1">
@@ -489,16 +501,12 @@ function DateStrip({
                       if (dragRef.current.moved) return;
                       setOffset(it.offset);
                     }}
-                    className="flex-shrink-0 w-12 rounded-2xl flex flex-col items-center justify-center gap-1 py-2 transition-all"
+                    className="flex-shrink-0 w-12 h-16 rounded-2xl flex flex-col items-center justify-center gap-1 py-2 transition-colors"
                     style={{
                       scrollSnapAlign: "center",
-                      background: isSelected ? color : "transparent",
+                      background: "transparent",
                       color: isSelected ? "white" : "var(--foreground)",
                       border: "none",
-                      boxShadow: isSelected
-                        ? `0 10px 22px -10px ${color}`
-                        : undefined,
-                      transform: isSelected ? "scale(1.06)" : "scale(1)",
                     }}
                   >
                     <span

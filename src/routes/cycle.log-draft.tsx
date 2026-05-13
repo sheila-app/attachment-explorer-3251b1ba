@@ -63,6 +63,22 @@ function LogDraftPage() {
           </div>
         </div>
 
+        <h2 className="text-sm font-medium mb-2.5">شدّة التدفّق</h2>
+        <div className="grid grid-cols-3 gap-2 mb-6">
+          {flows.map(f => {
+            const active = flow === f.id;
+            return (
+              <button key={f.id} onClick={() => setFlow(f.id)}
+                className="glass rounded-2xl py-3 flex flex-col items-center justify-center gap-1.5"
+                style={active ? { boxShadow: "0 0 0 2px var(--phase-menstrual), inset 0 1px 0 0 oklch(1 0 0 / 0.6)", color: "var(--phase-menstrual-deep)" } : undefined}
+              >
+                <span className="relative z-10"><FlowDroplets count={f.dots} active={active} /></span>
+                <span className="relative z-10 text-[12.5px] font-medium">{f.t}</span>
+              </button>
+            );
+          })}
+        </div>
+
         <h2 className="text-sm font-medium mb-2.5">المزاج</h2>
         <div className="glass rounded-2xl p-3 mb-6">
           <div className="relative z-10 grid grid-cols-4 gap-2">
@@ -81,22 +97,6 @@ function LogDraftPage() {
               );
             })}
           </div>
-        </div>
-
-        <h2 className="text-sm font-medium mb-2.5">شدّة التدفّق</h2>
-        <div className="grid grid-cols-3 gap-2 mb-6">
-          {flows.map(f => {
-            const active = flow === f.id;
-            return (
-              <button key={f.id} onClick={() => setFlow(f.id)}
-                className="glass rounded-2xl py-3 flex flex-col items-center justify-center gap-1.5"
-                style={active ? { boxShadow: "0 0 0 2px var(--phase-menstrual), inset 0 1px 0 0 oklch(1 0 0 / 0.6)", color: "var(--phase-menstrual-deep)" } : undefined}
-              >
-                <span className="relative z-10"><FlowDroplets count={f.dots} active={active} /></span>
-                <span className="relative z-10 text-[12.5px] font-medium">{f.t}</span>
-              </button>
-            );
-          })}
         </div>
 
         <h2 className="text-sm font-medium mb-2.5">الأعراض</h2>

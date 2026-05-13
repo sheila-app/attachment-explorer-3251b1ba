@@ -55,14 +55,11 @@ function LogDraftPage() {
     <FeatureShell title="تسجيل الدورة" back="/cycle" showNav={false} variant="warm">
       <div className="px-5 pb-6">
         <h2 className="text-sm font-medium mb-2.5">التاريخ</h2>
-        <div className="glass rounded-2xl p-4 mb-6">
-          <div className="relative z-10 text-[10px] tracking-[0.2em] text-foreground/55 uppercase mb-3 text-center">
-            يوم التسجيل
-          </div>
-          <div className="relative z-10 flex justify-center gap-3" style={{ direction: "ltr" }}>
-            <IOSWheel label="يوم" values={wheelRange(1, 31)} value={day} onChange={(v) => setDay(Number(v))} width={64} />
-            <IOSWheel label="شهر" values={months} value={months[monthIdx]} onChange={(v) => setMonthIdx(months.indexOf(String(v)))} width={108} />
-            <IOSWheel label="سنة" values={wheelRange(yearNow - 5, yearNow)} value={year} onChange={(v) => setYear(Number(v))} width={78} />
+        <div className="glass rounded-2xl p-4 mb-6 mx-auto max-w-[300px]">
+          <div className="relative z-10 flex justify-center gap-2" style={{ direction: "ltr" }}>
+            <IOSWheel values={wheelRange(1, 31)} value={day} onChange={(v) => setDay(Number(v))} width={56} />
+            <IOSWheel values={months} value={months[monthIdx]} onChange={(v) => setMonthIdx(months.indexOf(String(v)))} width={92} />
+            <IOSWheel values={wheelRange(yearNow - 5, yearNow)} value={year} onChange={(v) => setYear(Number(v))} width={64} />
           </div>
         </div>
 

@@ -2,22 +2,29 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { OptionCard, PrimaryCTA } from "@/components/sheila/OnboardingShell";
-import { Calendar } from "@/components/ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { CalendarIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { IOSWheel, wheelRange } from "@/components/sheila/IOSWheel";
+import { Droplet } from "lucide-react";
 
 export const Route = createFileRoute("/cycle/log-draft")({ component: LogDraftPage });
 
-function FlowDots({ count, active }: { count: 1 | 2 | 3; active: boolean }) {
+const months = [
+  "يناير","فبراير","مارس","أبريل","مايو","يونيو",
+  "يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",
+];
+const today = new Date();
+const yearNow = today.getFullYear();
+
+function FlowDroplets({ count, active }: { count: 1 | 2 | 3; active: boolean }) {
   return (
     <div className="flex items-center gap-1">
       {Array.from({ length: count }).map((_, i) => (
-        <span
+        <Droplet
           key={i}
-          className="w-2 h-2 rounded-full transition-colors"
+          size={16}
+          strokeWidth={2}
           style={{
-            background: active ? "var(--phase-menstrual-deep)" : "color-mix(in oklab, var(--phase-menstrual) 55%, transparent)",
+            color: active ? "var(--phase-menstrual-deep)" : "color-mix(in oklab, var(--phase-menstrual) 70%, transparent)",
+            fill: active ? "var(--phase-menstrual-deep)" : "transparent",
           }}
         />
       ))}
@@ -25,13 +32,10 @@ function FlowDots({ count, active }: { count: 1 | 2 | 3; active: boolean }) {
   );
 }
 
-function formatDateAr(d: Date) {
-  return d.toLocaleDateString("ar", { day: "numeric", month: "long", year: "numeric" });
-}
-
 function LogDraftPage() {
-  const [date, setDate] = useState<Date | undefined>(new Date());
-  const [open, setOpen] = useState(false);
+  const [day, setDay] = useState<number>(today.getDate());
+  const [monthIdx, setMonthIdx] = useState<number>(today.getMonth());
+  const [year, setYear] = useState<number>(yearNow);
   const [flow, setFlow] = useState<"light" | "med" | "heavy">("med");
   const [symptoms, setSymptoms] = useState<string[]>(["cramp"]);
 
@@ -51,35 +55,16 @@ function LogDraftPage() {
     <FeatureShell title="تسجيل الدورة" back="/cycle" showNav={false} variant="warm">
       <div className="px-5 pb-6">
         <h2 className="text-sm font-medium mb-2.5">التاريخ</h2>
-        <Popover open={open} onOpenChange={setOpen}>
-          <PopoverTrigger asChild>
-            <button
-              className="glass w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl text-right mb-6 transition-transform active:scale-[0.99]"
-            >
-              <div className="relative z-10 w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
-                style={{ background: "color-mix(in oklab, var(--phase-menstrual) 18%, transparent)" }}
-              >
-                <CalendarIcon size={16} className="text-phase-menstrual-deep" strokeWidth={2} />
-              </div>
-              <div className="relative z-10 flex-1 min-w-0">
-                <div className="text-[10px] tracking-[0.18em] text-foreground/55 uppercase">يوم التسجيل</div>
-                <div className="text-[14px] font-medium mt-0.5">
-                  {date ? formatDateAr(date) : "اختاري التاريخ"}
-                </div>
-              </div>
-            </button>
-          </PopoverTrigger>
-          <PopoverContent className="w-auto p-0" align="center">
-            <Calendar
-              mode="single"
-              selected={date}
-              onSelect={(d) => { setDate(d); setOpen(false); }}
-              disabled={(d) => d > new Date()}
-              initialFocus
-              className={cn("p-3 pointer-events-auto")}
-            />
-          </PopoverContent>
-        </Popover>
+        <div className="glass rounded-2xl p-4 mb-6">
+          <div className="relative z-10 text-[10px] tracking-[0.2em] text-foreground/55 uppercase mb-3 text-center">
+            يوم التسجيل
+          </div>
+          <div className="relative z-10 flex justify-center gap-3" style={{ direction: "ltr" }}>
+            <IOSWheel label="يوم" values={wheelRange(1, 31)} value={day} onChange={(v) => setDay(Number(v))} width={64} />
+            <IOSWheel label="شهر" values={months} value={months[monthIdx]} onChange={(v) => setMonthIdx(months.indexOf(String(v)))} width={108} />
+            <IOSWheel label="سنة" values={wheelRange(yearNow - 5, yearNow)} value={year} onChange={(v) => setYear(Number(v))} width={78} />
+          </div>
+        </div>
 
         <h2 className="text-sm font-medium mb-2.5">شدّة التدفّق</h2>
         <div className="grid grid-cols-3 gap-2 mb-6">
@@ -90,7 +75,7 @@ function LogDraftPage() {
                 className="glass rounded-2xl py-3 flex flex-col items-center justify-center gap-1.5"
                 style={active ? { boxShadow: "0 0 0 2px var(--phase-menstrual), inset 0 1px 0 0 oklch(1 0 0 / 0.6)", color: "var(--phase-menstrual-deep)" } : undefined}
               >
-                <span className="relative z-10"><FlowDots count={f.dots} active={active} /></span>
+                <span className="relative z-10"><FlowDroplets count={f.dots} active={active} /></span>
                 <span className="relative z-10 text-[12.5px] font-medium">{f.t}</span>
               </button>
             );

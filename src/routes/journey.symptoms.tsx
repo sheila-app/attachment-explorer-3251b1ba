@@ -2,21 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { PrimaryCTA } from "@/components/sheila/OnboardingShell";
-import { Angry, Zap, Moon, Wind, Sparkles, Activity, Heart, Frown, Apple } from "lucide-react";
+import { SYMPTOM_LIST } from "@/data/symptoms";
 
 export const Route = createFileRoute("/journey/symptoms")({ component: Page });
-
-const SYMPTOMS = [
-  { id: "cramp", name: "تشنّج", Icon: Angry },
-  { id: "headache", name: "صداع", Icon: Zap },
-  { id: "fatigue", name: "إرهاق", Icon: Moon },
-  { id: "bloat", name: "انتفاخ", Icon: Wind },
-  { id: "acne", name: "حبوب", Icon: Sparkles },
-  { id: "back", name: "ألم الظهر", Icon: Activity },
-  { id: "breast", name: "حساسية الصدر", Icon: Heart },
-  { id: "nausea", name: "غثيان", Icon: Frown },
-  { id: "crave", name: "رغبة طعام", Icon: Apple },
-];
 
 function Page() {
   const [sel, setSel] = useState<string[]>(["cramp", "fatigue"]);

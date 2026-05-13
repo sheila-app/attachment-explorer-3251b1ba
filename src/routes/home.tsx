@@ -113,16 +113,8 @@ function HomePage() {
               </div>
             </div>
 
-            <div className="text-center justify-self-center">
-              <div className="font-display text-[15px] text-foreground/85 nums whitespace-nowrap">
-                {selectedDate
-                  ? `${toAr(selectedDate.getDate())} ${MONTHS_AR[selectedDate.getMonth()]}`
-                  : "—"}
-              </div>
-              <div className="text-[10.5px] mt-0.5 font-medium whitespace-nowrap" style={{ color: meta.color }}>
-                يوم {toAr(day)} · {meta.name}
-              </div>
-            </div>
+            <div className="justify-self-center" />
+
 
             <div className="flex items-center gap-2 justify-self-end">
               <button className="w-10 h-10 rounded-full bg-white/70 backdrop-blur border border-white/60 flex items-center justify-center shadow-sm">
@@ -379,12 +371,13 @@ function DateStrip({
   const scrollTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const items = useMemo(() => {
-    const arr: { offset: number; date: Date | null; phase: CyclePhase }[] = [];
+    const arr: { offset: number; date: Date | null; phase: CyclePhase; cDay: number }[] = [];
     for (let i = -RANGE; i <= RANGE; i++) {
       const d = baseDate ? new Date(baseDate.getTime()) : null;
       if (d) d.setDate(baseDate!.getDate() + i);
       const phase = phaseForDay(cycleDay + i, cycleLength);
-      arr.push({ offset: i, date: d, phase });
+      const cDay = ((cycleDay - 1 + i) % cycleLength + cycleLength) % cycleLength + 1;
+      arr.push({ offset: i, date: d, phase, cDay });
     }
     return arr;
   }, [baseDate, cycleDay, cycleLength]);
@@ -513,7 +506,7 @@ function DateStrip({
                       className="font-display text-[15px] nums leading-none"
                       style={{ color: isSelected ? "white" : "var(--foreground)" }}
                     >
-                      {it.date ? toAr(it.date.getDate()) : "—"}
+                      {toAr(it.cDay)}
                     </span>
                     <span
                       className="w-1 h-1 rounded-full mt-0.5"

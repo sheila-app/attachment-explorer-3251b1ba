@@ -71,8 +71,8 @@ export function IOSWheel({
           <div style={{ height: padding }} />
           {values.map((v, i) => {
             const dist = Math.abs(i - active);
-            const opacity = Math.max(0.18, 1 - dist * 0.32);
-            const scale = Math.max(0.82, 1 - dist * 0.06);
+            const opacity = dist === 0 ? 1 : Math.max(0.12, 0.4 - (dist - 1) * 0.18);
+            const scale = dist === 0 ? 1 : 0.82;
             return (
               <div
                 key={`${v}-${i}`}

@@ -145,6 +145,8 @@ function Page() {
               </div>
               <p className="text-[10px] text-foreground/55 mt-2 px-1 font-mono">DateWheelCard · <span className="nums">{day}/{monthIdx + 1}/{year}</span></p>
             </Block>
+
+            <Block title="حلقة مرحلة الدورة">
               <div className="flex justify-center"><CyclePhaseRing phase="ovulation" day={14} cycleLength={28} size={150} /></div>
             </Block>
 

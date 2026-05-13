@@ -5,7 +5,7 @@ import { OptionCard, PrimaryCTA, GhostCTA } from "@/components/sheila/Onboarding
 import { IOSWheel, wheelRange } from "@/components/sheila/IOSWheel";
 import { CyclePhaseRing } from "@/components/sheila/CyclePhaseRing";
 import { allScreens, PHASE_META } from "@/data/mock";
-import { Bell, Sparkles, Flame, Droplet, Moon, ChevronLeft, Activity, Smile, Laugh, Zap, PartyPopper, CloudRain, Angry, Frown, Annoyed, CloudLightning, ArrowDownCircle, Brain, BatteryLow, HeartCrack, MehIcon as Meh, HelpCircle, AlertTriangle } from "lucide-react";
+import { Bell, Sparkles, Flame, Droplet, Moon, ChevronLeft, Activity, Smile, Laugh, Zap, PartyPopper, CloudRain, Angry, Frown, Annoyed, CloudLightning, Brain, BatteryLow, HeartCrack, Meh, HelpCircle, AlertTriangle } from "lucide-react";
 
 export const Route = createFileRoute("/system")({ component: Page });
 

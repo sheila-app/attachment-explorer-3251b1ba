@@ -1,13 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState, useMemo } from "react";
-import { motion } from "motion/react";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { mockWorkouts, PHASE_META } from "@/data/mock";
-import { Search, Flame, ChevronLeft, Calendar, Trophy, Users, Clock, Wind, Footprints, Droplets, Dumbbell } from "lucide-react";
+import { Flame, ChevronLeft, Calendar, Users, Clock, Wind, Footprints, Droplets, Dumbbell } from "lucide-react";
 
 export const Route = createFileRoute("/workouts/draft")({ component: Page });
-
-const FILTERS = ["الكل", "يوغا", "كارديو", "HIIT", "قوّة", "بيلاتس", "تمدّد"];
 
 const PROGRAMS = [
   { id: "p1", name: "30 يوم قوّة", weeks: 4, level: "متوسّط", sessions: 20, color: "var(--phase-ovulation)" },

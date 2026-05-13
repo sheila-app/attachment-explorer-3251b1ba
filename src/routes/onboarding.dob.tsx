@@ -33,9 +33,9 @@ function DobPage() {
     >
       <div className="glass rounded-2xl overflow-hidden p-4">
         <div className="relative z-10 flex justify-center gap-3" style={{ direction: "ltr" }}>
-          <IOSWheel label="يوم" values={wheelRange(1, 31)} value={day} onChange={(v) => setDay(Number(v))} width={64} />
-          <IOSWheel label="شهر" values={months} value={months[monthIdx]} onChange={(v) => setMonthIdx(months.indexOf(String(v)))} width={108} />
-          <IOSWheel label="سنة" values={wheelRange(yearNow - 80, yearNow - 16)} value={year} onChange={(v) => setYear(Number(v))} width={78} />
+          <IOSWheel values={wheelRange(1, 31)} value={day} onChange={(v) => setDay(Number(v))} width={64} />
+          <IOSWheel values={months} value={months[monthIdx]} onChange={(v) => setMonthIdx(months.indexOf(String(v)))} width={108} />
+          <IOSWheel values={wheelRange(yearNow - 80, yearNow - 16)} value={year} onChange={(v) => setYear(Number(v))} width={78} />
         </div>
       </div>
       <p className="text-[11px] text-foreground/55 mt-4 text-center">

@@ -57,6 +57,8 @@ function LogDraftPage() {
   const [year, setYear] = useState<number>(yearNow);
   const [flow, setFlow] = useState<"light" | "med" | "heavy">("med");
   const [symptoms, setSymptoms] = useState<string[]>(["cramp"]);
+  const [moods, setMoods] = useState<string[]>(["calm"]);
+  const toggleMood = (id: string) => setMoods(s => s.includes(id) ? s.filter(x => x !== id) : [...s, id]);
 
   const flows: { id: "light" | "med" | "heavy"; t: string; dots: 1 | 2 | 3 }[] = [
     { id: "light", t: "خفيف", dots: 1 },

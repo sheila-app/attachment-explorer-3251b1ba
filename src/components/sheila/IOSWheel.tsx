@@ -57,15 +57,13 @@ export function IOSWheel({
         className="relative"
         style={{ width, height }}
       >
-        {/* خطوط المحور */}
+        {/* خطوط المحور — iOS style */}
         <div
           className="absolute left-0 right-0 pointer-events-none z-10"
           style={{
             top: padding, height: itemHeight,
-            borderTop: "1px solid color-mix(in oklab, var(--primary) 35%, transparent)",
-            borderBottom: "1px solid color-mix(in oklab, var(--primary) 35%, transparent)",
-            background: "color-mix(in oklab, var(--primary) 6%, transparent)",
-            borderRadius: 8,
+            borderTop: "1px solid color-mix(in oklab, var(--foreground) 12%, transparent)",
+            borderBottom: "1px solid color-mix(in oklab, var(--foreground) 12%, transparent)",
           }}
         />
         {/* تدرّج تلاشي أعلى/أسفل */}

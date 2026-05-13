@@ -15,7 +15,7 @@ interface Props {
  * تستخدم scroll عمودي حقيقي مع padding بحيث ينطبق العنصر الفعّال على المنتصف.
  */
 export function IOSWheel({
-  values, value, onChange, width = 86, itemHeight = 36, visible = 5, label,
+  values, value, onChange, width = 86, itemHeight = 32, visible = 3, label,
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(() => Math.max(0, values.findIndex(v => v === value)));
@@ -71,16 +71,16 @@ export function IOSWheel({
           <div style={{ height: padding }} />
           {values.map((v, i) => {
             const dist = Math.abs(i - active);
-            const opacity = Math.max(0.18, 1 - dist * 0.32);
-            const scale = Math.max(0.82, 1 - dist * 0.06);
+            const opacity = dist === 0 ? 1 : Math.max(0.12, 0.4 - (dist - 1) * 0.18);
+            const scale = dist === 0 ? 1 : 0.82;
             return (
               <div
                 key={`${v}-${i}`}
                 className="snap-center flex items-center justify-center font-display nums tabular-nums"
                 style={{
                   height: itemHeight,
-                  fontSize: dist === 0 ? 22 : 19,
-                  fontWeight: dist === 0 ? 600 : 400,
+                  fontSize: dist === 0 ? 20 : 14,
+                  fontWeight: dist === 0 ? 700 : 400,
                   color: "var(--foreground)",
                   opacity,
                   transform: `scale(${scale})`,

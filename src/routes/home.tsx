@@ -492,13 +492,9 @@ function DateStrip({
                     className="flex-shrink-0 w-12 rounded-2xl flex flex-col items-center justify-center gap-1 py-2 transition-all"
                     style={{
                       scrollSnapAlign: "center",
-                      background: isSelected
-                        ? color
-                        : `color-mix(in oklab, ${color} 14%, white)`,
+                      background: isSelected ? color : "transparent",
                       color: isSelected ? "white" : "var(--foreground)",
-                      border: isSelected
-                        ? "none"
-                        : `1px solid color-mix(in oklab, ${color} 25%, transparent)`,
+                      border: "none",
                       boxShadow: isSelected
                         ? `0 10px 22px -10px ${color}`
                         : undefined,
@@ -507,18 +503,24 @@ function DateStrip({
                   >
                     <span
                       className="text-[10px]"
-                      style={{ opacity: isSelected ? 0.9 : 0.65 }}
+                      style={{
+                        opacity: isSelected ? 0.9 : 0.55,
+                        color: isSelected ? "white" : color,
+                      }}
                     >
                       {it.date ? DAY_LETTERS[it.date.getDay()] : "—"}
                     </span>
-                    <span className="font-display text-[15px] nums leading-none">
+                    <span
+                      className="font-display text-[15px] nums leading-none"
+                      style={{ color: isSelected ? "white" : "var(--foreground)" }}
+                    >
                       {it.date ? toAr(it.date.getDate()) : "—"}
                     </span>
                     <span
                       className="w-1 h-1 rounded-full mt-0.5"
                       style={{
                         background: isSelected ? "white" : color,
-                        opacity: isSelected ? 0.9 : 0.55,
+                        opacity: isSelected ? 0.9 : 0.85,
                       }}
                     />
                   </button>

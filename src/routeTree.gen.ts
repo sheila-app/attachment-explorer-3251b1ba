@@ -107,8 +107,13 @@ import { Route as CheckinWaterDraftRouteImport } from './routes/checkin.water-dr
 import { Route as CheckinWaterRouteImport } from './routes/checkin.water'
 import { Route as CheckinStepsRouteImport } from './routes/checkin.steps'
 import { Route as CheckinSleepRouteImport } from './routes/checkin.sleep'
+import { Route as CheckinRamadanRouteImport } from './routes/checkin.ramadan'
+import { Route as CheckinPregnancyRouteImport } from './routes/checkin.pregnancy'
 import { Route as CheckinOvulationRouteImport } from './routes/checkin.ovulation'
+import { Route as CheckinNoCycleRouteImport } from './routes/checkin.no-cycle'
 import { Route as CheckinMenstrualRouteImport } from './routes/checkin.menstrual'
+import { Route as CheckinLutealRouteImport } from './routes/checkin.luteal'
+import { Route as CheckinFollicularRouteImport } from './routes/checkin.follicular'
 import { Route as ChallengesPhaseRouteImport } from './routes/challenges.phase'
 import { Route as ChallengesIdRouteImport } from './routes/challenges.$id'
 import { Route as AuthOtpRouteImport } from './routes/auth.otp'
@@ -612,14 +617,39 @@ const CheckinSleepRoute = CheckinSleepRouteImport.update({
   path: '/checkin/sleep',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CheckinRamadanRoute = CheckinRamadanRouteImport.update({
+  id: '/checkin/ramadan',
+  path: '/checkin/ramadan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckinPregnancyRoute = CheckinPregnancyRouteImport.update({
+  id: '/checkin/pregnancy',
+  path: '/checkin/pregnancy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CheckinOvulationRoute = CheckinOvulationRouteImport.update({
   id: '/checkin/ovulation',
   path: '/checkin/ovulation',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CheckinNoCycleRoute = CheckinNoCycleRouteImport.update({
+  id: '/checkin/no-cycle',
+  path: '/checkin/no-cycle',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CheckinMenstrualRoute = CheckinMenstrualRouteImport.update({
   id: '/checkin/menstrual',
   path: '/checkin/menstrual',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckinLutealRoute = CheckinLutealRouteImport.update({
+  id: '/checkin/luteal',
+  path: '/checkin/luteal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckinFollicularRoute = CheckinFollicularRouteImport.update({
+  id: '/checkin/follicular',
+  path: '/checkin/follicular',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ChallengesPhaseRoute = ChallengesPhaseRouteImport.update({
@@ -706,8 +736,13 @@ export interface FileRoutesByFullPath {
   '/auth/otp': typeof AuthOtpRoute
   '/challenges/$id': typeof ChallengesIdRoute
   '/challenges/phase': typeof ChallengesPhaseRoute
+  '/checkin/follicular': typeof CheckinFollicularRoute
+  '/checkin/luteal': typeof CheckinLutealRoute
   '/checkin/menstrual': typeof CheckinMenstrualRoute
+  '/checkin/no-cycle': typeof CheckinNoCycleRoute
   '/checkin/ovulation': typeof CheckinOvulationRoute
+  '/checkin/pregnancy': typeof CheckinPregnancyRoute
+  '/checkin/ramadan': typeof CheckinRamadanRoute
   '/checkin/sleep': typeof CheckinSleepRoute
   '/checkin/steps': typeof CheckinStepsRoute
   '/checkin/water': typeof CheckinWaterRoute
@@ -819,8 +854,13 @@ export interface FileRoutesByTo {
   '/auth/otp': typeof AuthOtpRoute
   '/challenges/$id': typeof ChallengesIdRoute
   '/challenges/phase': typeof ChallengesPhaseRoute
+  '/checkin/follicular': typeof CheckinFollicularRoute
+  '/checkin/luteal': typeof CheckinLutealRoute
   '/checkin/menstrual': typeof CheckinMenstrualRoute
+  '/checkin/no-cycle': typeof CheckinNoCycleRoute
   '/checkin/ovulation': typeof CheckinOvulationRoute
+  '/checkin/pregnancy': typeof CheckinPregnancyRoute
+  '/checkin/ramadan': typeof CheckinRamadanRoute
   '/checkin/sleep': typeof CheckinSleepRoute
   '/checkin/steps': typeof CheckinStepsRoute
   '/checkin/water': typeof CheckinWaterRoute
@@ -933,8 +973,13 @@ export interface FileRoutesById {
   '/auth/otp': typeof AuthOtpRoute
   '/challenges/$id': typeof ChallengesIdRoute
   '/challenges/phase': typeof ChallengesPhaseRoute
+  '/checkin/follicular': typeof CheckinFollicularRoute
+  '/checkin/luteal': typeof CheckinLutealRoute
   '/checkin/menstrual': typeof CheckinMenstrualRoute
+  '/checkin/no-cycle': typeof CheckinNoCycleRoute
   '/checkin/ovulation': typeof CheckinOvulationRoute
+  '/checkin/pregnancy': typeof CheckinPregnancyRoute
+  '/checkin/ramadan': typeof CheckinRamadanRoute
   '/checkin/sleep': typeof CheckinSleepRoute
   '/checkin/steps': typeof CheckinStepsRoute
   '/checkin/water': typeof CheckinWaterRoute
@@ -1048,8 +1093,13 @@ export interface FileRouteTypes {
     | '/auth/otp'
     | '/challenges/$id'
     | '/challenges/phase'
+    | '/checkin/follicular'
+    | '/checkin/luteal'
     | '/checkin/menstrual'
+    | '/checkin/no-cycle'
     | '/checkin/ovulation'
+    | '/checkin/pregnancy'
+    | '/checkin/ramadan'
     | '/checkin/sleep'
     | '/checkin/steps'
     | '/checkin/water'
@@ -1161,8 +1211,13 @@ export interface FileRouteTypes {
     | '/auth/otp'
     | '/challenges/$id'
     | '/challenges/phase'
+    | '/checkin/follicular'
+    | '/checkin/luteal'
     | '/checkin/menstrual'
+    | '/checkin/no-cycle'
     | '/checkin/ovulation'
+    | '/checkin/pregnancy'
+    | '/checkin/ramadan'
     | '/checkin/sleep'
     | '/checkin/steps'
     | '/checkin/water'
@@ -1274,8 +1329,13 @@ export interface FileRouteTypes {
     | '/auth/otp'
     | '/challenges/$id'
     | '/challenges/phase'
+    | '/checkin/follicular'
+    | '/checkin/luteal'
     | '/checkin/menstrual'
+    | '/checkin/no-cycle'
     | '/checkin/ovulation'
+    | '/checkin/pregnancy'
+    | '/checkin/ramadan'
     | '/checkin/sleep'
     | '/checkin/steps'
     | '/checkin/water'
@@ -1388,8 +1448,13 @@ export interface RootRouteChildren {
   AuthOtpRoute: typeof AuthOtpRoute
   ChallengesIdRoute: typeof ChallengesIdRoute
   ChallengesPhaseRoute: typeof ChallengesPhaseRoute
+  CheckinFollicularRoute: typeof CheckinFollicularRoute
+  CheckinLutealRoute: typeof CheckinLutealRoute
   CheckinMenstrualRoute: typeof CheckinMenstrualRoute
+  CheckinNoCycleRoute: typeof CheckinNoCycleRoute
   CheckinOvulationRoute: typeof CheckinOvulationRoute
+  CheckinPregnancyRoute: typeof CheckinPregnancyRoute
+  CheckinRamadanRoute: typeof CheckinRamadanRoute
   CheckinSleepRoute: typeof CheckinSleepRoute
   CheckinStepsRoute: typeof CheckinStepsRoute
   CheckinWaterRoute: typeof CheckinWaterRoute
@@ -2158,6 +2223,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CheckinSleepRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/checkin/ramadan': {
+      id: '/checkin/ramadan'
+      path: '/checkin/ramadan'
+      fullPath: '/checkin/ramadan'
+      preLoaderRoute: typeof CheckinRamadanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkin/pregnancy': {
+      id: '/checkin/pregnancy'
+      path: '/checkin/pregnancy'
+      fullPath: '/checkin/pregnancy'
+      preLoaderRoute: typeof CheckinPregnancyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/checkin/ovulation': {
       id: '/checkin/ovulation'
       path: '/checkin/ovulation'
@@ -2165,11 +2244,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CheckinOvulationRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/checkin/no-cycle': {
+      id: '/checkin/no-cycle'
+      path: '/checkin/no-cycle'
+      fullPath: '/checkin/no-cycle'
+      preLoaderRoute: typeof CheckinNoCycleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/checkin/menstrual': {
       id: '/checkin/menstrual'
       path: '/checkin/menstrual'
       fullPath: '/checkin/menstrual'
       preLoaderRoute: typeof CheckinMenstrualRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkin/luteal': {
+      id: '/checkin/luteal'
+      path: '/checkin/luteal'
+      fullPath: '/checkin/luteal'
+      preLoaderRoute: typeof CheckinLutealRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkin/follicular': {
+      id: '/checkin/follicular'
+      path: '/checkin/follicular'
+      fullPath: '/checkin/follicular'
+      preLoaderRoute: typeof CheckinFollicularRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/challenges/phase': {
@@ -2317,8 +2417,13 @@ const rootRouteChildren: RootRouteChildren = {
   AuthOtpRoute: AuthOtpRoute,
   ChallengesIdRoute: ChallengesIdRoute,
   ChallengesPhaseRoute: ChallengesPhaseRoute,
+  CheckinFollicularRoute: CheckinFollicularRoute,
+  CheckinLutealRoute: CheckinLutealRoute,
   CheckinMenstrualRoute: CheckinMenstrualRoute,
+  CheckinNoCycleRoute: CheckinNoCycleRoute,
   CheckinOvulationRoute: CheckinOvulationRoute,
+  CheckinPregnancyRoute: CheckinPregnancyRoute,
+  CheckinRamadanRoute: CheckinRamadanRoute,
   CheckinSleepRoute: CheckinSleepRoute,
   CheckinStepsRoute: CheckinStepsRoute,
   CheckinWaterRoute: CheckinWaterRoute,

@@ -84,19 +84,20 @@ export function IOSWheel({
           <div style={{ height: padding }} />
           {values.map((v, i) => {
             const dist = Math.abs(i - active);
-            const opacity = Math.max(0.25, 1 - dist * 0.28);
-            const scale = Math.max(0.78, 1 - dist * 0.08);
+            const opacity = Math.max(0.18, 1 - dist * 0.32);
+            const scale = Math.max(0.82, 1 - dist * 0.06);
             return (
               <div
                 key={`${v}-${i}`}
                 className="snap-center flex items-center justify-center font-display nums tabular-nums"
                 style={{
                   height: itemHeight,
-                  fontSize: dist === 0 ? 22 : 18,
-                  color: dist === 0 ? "var(--primary-deep)" : "var(--foreground)",
+                  fontSize: dist === 0 ? 22 : 19,
+                  fontWeight: dist === 0 ? 600 : 400,
+                  color: "var(--foreground)",
                   opacity,
                   transform: `scale(${scale})`,
-                  transition: "opacity 120ms, transform 120ms, font-size 120ms",
+                  transition: "opacity 120ms, transform 120ms, font-size 120ms, font-weight 120ms",
                 }}
               >
                 {v}

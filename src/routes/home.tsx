@@ -105,26 +105,26 @@ function HomePage() {
 
         <div className="relative z-10 h-full overflow-y-auto no-scrollbar pb-28">
           {/* الرأس: الاسم (يمين) | التاريخ (وسط) | بحث+إشعارات (يسار) */}
-          <div className="flex items-center justify-between px-5 pt-5 gap-3">
-            <div className="min-w-0">
+          <div className="grid grid-cols-3 items-center px-5 pt-5 gap-3">
+            <div className="min-w-0 justify-self-start">
               <div className="text-[11px] text-foreground/55 tracking-widest">مرحباً</div>
               <div className="font-display text-lg text-foreground/90 mt-0.5 truncate">
                 {mockUser.name}
               </div>
             </div>
 
-            <div className="text-center flex-1">
-              <div className="font-display text-[15px] text-foreground/85 nums">
+            <div className="text-center justify-self-center">
+              <div className="font-display text-[15px] text-foreground/85 nums whitespace-nowrap">
                 {selectedDate
                   ? `${toAr(selectedDate.getDate())} ${MONTHS_AR[selectedDate.getMonth()]}`
                   : "—"}
               </div>
-              <div className="text-[10.5px] mt-0.5 font-medium" style={{ color: meta.color }}>
+              <div className="text-[10.5px] mt-0.5 font-medium whitespace-nowrap" style={{ color: meta.color }}>
                 يوم {toAr(day)} · {meta.name}
               </div>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 justify-self-end">
               <button className="w-10 h-10 rounded-full bg-white/70 backdrop-blur border border-white/60 flex items-center justify-center shadow-sm">
                 <Search size={17} strokeWidth={1.75} className="text-foreground/75" />
               </button>

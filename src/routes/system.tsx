@@ -135,7 +135,16 @@ function Page() {
               <p className="text-[10px] text-foreground/55 mt-2 px-1 font-mono">IOSWheel · القيمة: <span className="nums">{wheel}</span></p>
             </Block>
 
-            <Block title="حلقة مرحلة الدورة">
+            <Block title="بطاقة اختيار التاريخ">
+              <div className="glass rounded-2xl p-4">
+                <div className="relative z-10 flex justify-center gap-2" style={{ direction: "ltr" }}>
+                  <IOSWheel values={wheelRange(1, 31)} value={day} onChange={(v) => setDay(Number(v))} width={56} />
+                  <IOSWheel values={months} value={months[monthIdx]} onChange={(v) => setMonthIdx(months.indexOf(String(v)))} width={92} />
+                  <IOSWheel values={wheelRange(yearNow - 5, yearNow)} value={year} onChange={(v) => setYear(Number(v))} width={64} />
+                </div>
+              </div>
+              <p className="text-[10px] text-foreground/55 mt-2 px-1 font-mono">DateWheelCard · <span className="nums">{day}/{monthIdx + 1}/{year}</span></p>
+            </Block>
               <div className="flex justify-center"><CyclePhaseRing phase="ovulation" day={14} cycleLength={28} size={150} /></div>
             </Block>
 

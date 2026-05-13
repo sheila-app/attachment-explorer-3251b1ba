@@ -57,29 +57,16 @@ export function IOSWheel({
         className="relative"
         style={{ width, height }}
       >
-        {/* خطوط المحور — iOS style */}
-        <div
-          className="absolute left-0 right-0 pointer-events-none z-10"
-          style={{
-            top: padding, height: itemHeight,
-            borderTop: "1px solid color-mix(in oklab, var(--foreground) 12%, transparent)",
-            borderBottom: "1px solid color-mix(in oklab, var(--foreground) 12%, transparent)",
-          }}
-        />
-        {/* تدرّج تلاشي أعلى/أسفل */}
-        <div
-          className="absolute inset-x-0 top-0 pointer-events-none z-20"
-          style={{ height: padding, background: "linear-gradient(180deg, var(--background) 0%, transparent 100%)" }}
-        />
-        <div
-          className="absolute inset-x-0 bottom-0 pointer-events-none z-20"
-          style={{ height: padding, background: "linear-gradient(0deg, var(--background) 0%, transparent 100%)" }}
-        />
         <div
           ref={ref}
           onScroll={handleScroll}
           className="h-full w-full overflow-y-scroll no-scrollbar snap-y snap-mandatory"
-          style={{ scrollSnapType: "y mandatory", direction: "ltr" }}
+          style={{
+            scrollSnapType: "y mandatory",
+            direction: "ltr",
+            maskImage: "linear-gradient(180deg, transparent 0%, #000 35%, #000 65%, transparent 100%)",
+            WebkitMaskImage: "linear-gradient(180deg, transparent 0%, #000 35%, #000 65%, transparent 100%)",
+          }}
         >
           <div style={{ height: padding }} />
           {values.map((v, i) => {

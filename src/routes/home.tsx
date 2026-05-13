@@ -113,16 +113,8 @@ function HomePage() {
               </div>
             </div>
 
-            <div className="text-center justify-self-center">
-              <div className="font-display text-[15px] text-foreground/85 nums whitespace-nowrap">
-                {selectedDate
-                  ? `${toAr(selectedDate.getDate())} ${MONTHS_AR[selectedDate.getMonth()]}`
-                  : "—"}
-              </div>
-              <div className="text-[10.5px] mt-0.5 font-medium whitespace-nowrap" style={{ color: meta.color }}>
-                يوم {toAr(day)} · {meta.name}
-              </div>
-            </div>
+            <div className="justify-self-center" />
+
 
             <div className="flex items-center gap-2 justify-self-end">
               <button className="w-10 h-10 rounded-full bg-white/70 backdrop-blur border border-white/60 flex items-center justify-center shadow-sm">

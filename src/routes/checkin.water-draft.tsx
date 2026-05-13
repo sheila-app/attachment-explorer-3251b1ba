@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { DeviceFrame } from "@/components/sheila/DeviceFrame";
+import { PrimaryCTA } from "@/components/sheila/OnboardingShell";
 import { ArrowRight, Plus, Minus, Droplet } from "lucide-react";
 
 export const Route = createFileRoute("/checkin/water-draft")({ component: Page });
@@ -12,7 +13,7 @@ function Page() {
 
   return (
     <DeviceFrame>
-      <div className="relative h-full overflow-hidden bg-[oklch(0.98_0.01_240)]">
+      <div className="relative h-full overflow-hidden" style={{ background: "linear-gradient(180deg, oklch(0.95 0.04 230) 0%, oklch(0.92 0.06 230) 100%)" }}>
         {/* Water fill background */}
         <div
           className="absolute inset-x-0 bottom-0 transition-[height] duration-700 ease-out overflow-hidden"
@@ -123,16 +124,7 @@ function Page() {
                 <Plus size={26} />
               </button>
             </div>
-            <Link
-              to="/home"
-              className={`block w-full text-center rounded-full py-3.5 font-semibold backdrop-blur transition-colors ${
-                fillPct > 50
-                  ? "bg-white text-primary"
-                  : "bg-primary text-primary-foreground"
-              }`}
-            >
-              حفظ
-            </Link>
+            <PrimaryCTA to="/home">حفظ</PrimaryCTA>
           </div>
         </div>
 

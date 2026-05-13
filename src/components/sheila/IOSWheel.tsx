@@ -79,8 +79,8 @@ export function IOSWheel({
                 className="snap-center flex items-center justify-center font-display nums tabular-nums"
                 style={{
                   height: itemHeight,
-                  fontSize: dist === 0 ? 22 : 19,
-                  fontWeight: dist === 0 ? 600 : 400,
+                  fontSize: dist === 0 ? 20 : 14,
+                  fontWeight: dist === 0 ? 700 : 400,
                   color: "var(--foreground)",
                   opacity,
                   transform: `scale(${scale})`,

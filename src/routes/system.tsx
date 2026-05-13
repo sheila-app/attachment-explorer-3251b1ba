@@ -16,6 +16,12 @@ export const Route = createFileRoute("/system")({ component: Page });
 function Page() {
   const [tab, setTab] = useState<"tokens" | "components" | "screens">("tokens");
   const [wheel, setWheel] = useState<number>(28);
+  const today = new Date();
+  const months = ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];
+  const yearNow = today.getFullYear();
+  const [day, setDay] = useState<number>(today.getDate());
+  const [monthIdx, setMonthIdx] = useState<number>(today.getMonth());
+  const [year, setYear] = useState<number>(yearNow);
 
   return (
     <FeatureShell title="نظام التصميم" back="/" showNav={false} variant="default">
@@ -127,6 +133,17 @@ function Page() {
                 <IOSWheel values={wheelRange(20, 40)} value={wheel} onChange={(v) => setWheel(Number(v))} />
               </div>
               <p className="text-[10px] text-foreground/55 mt-2 px-1 font-mono">IOSWheel · القيمة: <span className="nums">{wheel}</span></p>
+            </Block>
+
+            <Block title="بطاقة اختيار التاريخ">
+              <div className="glass rounded-2xl p-4">
+                <div className="relative z-10 flex justify-center gap-2" style={{ direction: "ltr" }}>
+                  <IOSWheel values={wheelRange(1, 31)} value={day} onChange={(v) => setDay(Number(v))} width={56} />
+                  <IOSWheel values={months} value={months[monthIdx]} onChange={(v) => setMonthIdx(months.indexOf(String(v)))} width={92} />
+                  <IOSWheel values={wheelRange(yearNow - 5, yearNow)} value={year} onChange={(v) => setYear(Number(v))} width={64} />
+                </div>
+              </div>
+              <p className="text-[10px] text-foreground/55 mt-2 px-1 font-mono">DateWheelCard · <span className="nums">{day}/{monthIdx + 1}/{year}</span></p>
             </Block>
 
             <Block title="حلقة مرحلة الدورة">

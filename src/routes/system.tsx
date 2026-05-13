@@ -25,7 +25,7 @@ function Page() {
   const [moods, setMoods] = useState<string[]>(["calm"]);
   const toggleMood = (id: string) => setMoods(s => s.includes(id) ? s.filter(x => x !== id) : [...s, id]);
 
-  const moodList: { id: string; name: string; Icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>; tone: string }[] = [
+  const moodList: { id: string; name: string; Icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string; style?: React.CSSProperties }>; tone: string }[] = [
     { id: "calm",        name: "هادي",          Icon: Smile,          tone: "var(--phase-luteal)" },
     { id: "happy",       name: "سعيد",          Icon: Laugh,          tone: "var(--phase-follicular)" },
     { id: "energetic",   name: "نشيط",          Icon: Zap,            tone: "var(--phase-ovulation)" },

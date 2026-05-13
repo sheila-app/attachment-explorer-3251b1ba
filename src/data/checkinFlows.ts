@@ -22,7 +22,7 @@ export interface CheckinStep {
 
 export interface CheckinFlow {
   key: string;
-  trigger: string;            // وصف منطقي للترايقر
+  trigger?: string;            // وصف منطقي للترايقر
   greeting: string;
   tone: string;
   affirmation: string;

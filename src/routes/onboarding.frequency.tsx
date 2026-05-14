@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { OnboardingShell, PrimaryCTA } from "@/components/sheila/OnboardingShell";
+import { OnboardingShell, PrimaryCTA, GhostCTA } from "@/components/sheila/OnboardingShell";
 import { toAr } from "@/lib/format";
 
 export const Route = createFileRoute("/onboarding/frequency")({ component: Page });
@@ -31,7 +31,7 @@ function Page() {
       back="/onboarding/diet"
       title="كم مرّة تودّين التمرين أسبوعياً؟"
       subtitle="سنوزّع جلساتكِ على الأيّام الأنسب لكِ."
-      footer={<PrimaryCTA to="/onboarding/types">متابعة</PrimaryCTA>}
+      footer={<div className="space-y-1"><PrimaryCTA to="/onboarding/types">متابعة</PrimaryCTA><GhostCTA to="/onboarding/types">تخطّي</GhostCTA></div>}
     >
       <div>
         {/* large number display */}
@@ -103,19 +103,24 @@ function Page() {
               <button
                 key={label}
                 onClick={() => setCount(idx + 1)}
-                className="w-10 h-10 rounded-full border-2 transition-all"
+                className="w-10 h-10 rounded-full border-2 transition-all flex items-center justify-center text-[13px] font-semibold nums"
                 style={
                   filled
                     ? {
                         background: "var(--primary)",
                         borderColor: "var(--primary)",
+                        color: "var(--primary-foreground)",
                       }
                     : {
                         background: "transparent",
                         borderColor: "var(--border)",
+                        color: "var(--foreground)",
+                        opacity: 0.55,
                       }
                 }
-              />
+              >
+                {toAr(idx + 1)}
+              </button>
             );
           })}
         </div>

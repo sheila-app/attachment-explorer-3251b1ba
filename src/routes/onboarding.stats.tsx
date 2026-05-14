@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { OnboardingShell, PrimaryCTA } from "@/components/sheila/OnboardingShell";
+import { OnboardingShell, PrimaryCTA, GhostCTA } from "@/components/sheila/OnboardingShell";
 import { IOSWheel, wheelRange } from "@/components/sheila/IOSWheel";
 
 export const Route = createFileRoute("/onboarding/stats")({ component: StatsPage });

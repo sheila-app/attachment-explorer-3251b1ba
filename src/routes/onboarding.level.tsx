@@ -79,8 +79,8 @@ function LevelPage() {
                   >
                     {active && (
                       <div
-                        className="absolute -top-4 -end-4 w-24 h-24 rounded-full opacity-25 pointer-events-none"
-                        style={{ background: lv.color, filter: "blur(30px)" }}
+                        className="w-24 h-24 rounded-full opacity-25 pointer-events-none"
+                        style={{ background: lv.color, filter: "blur(30px)", position: "absolute", top: "-1rem", insetInlineEnd: "-1rem" }}
                       />
                     )}
 

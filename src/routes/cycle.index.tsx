@@ -64,7 +64,7 @@ function CyclePage() {
                         }
                   }
                 >
-                  <span className="text-[12px] font-medium nums leading-none">{d}</span>
+                  <span className="text-[12px] font-medium nums leading-none translate-y-[1px]">{d}</span>
                 </button>
               );
             })}

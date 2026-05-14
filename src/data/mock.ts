@@ -255,4 +255,11 @@ export const allScreens = [
     { path: "/profile/terms", name: "الشروط والأحكام" },
     { path: "/profile/delete", name: "حذف الحساب" },
   ]},
+  ...flowSections.map((section) => ({
+    group: `حالات تسجيل اليوم — ${section.id}: ${section.title}`,
+    items: section.slugs.map((slug) => ({
+      path: `/checkin/${slug}`,
+      name: `${allFlows[slug].key} — ${allFlows[slug].greeting}`,
+    })),
+  })),
 ];

@@ -94,17 +94,6 @@ function CyclePage() {
           </div>
           <p className="relative z-10 text-[12.5px] text-foreground/75 mt-3 leading-relaxed">{meta.description}</p>
         </div>
-
-        {/* Legend */}
-        <div className="grid grid-cols-2 gap-2 mt-4">
-          {(["menstrual","follicular","ovulation","luteal"] as CyclePhase[]).map(p => (
-            <div key={p} className="glass rounded-xl px-3 py-2 flex items-center gap-2">
-              <span className="relative z-10 w-2.5 h-2.5 rounded-full" style={{ background: PHASE_META[p].color }} />
-              <span className="relative z-10 text-[12px]">{PHASE_META[p].name}</span>
-            </div>
-          ))}
-        </div>
-
         {/* Cycle history */}
         <h2 className="text-sm font-medium mt-6 mb-2 px-1">السجلّ</h2>
         <div className="space-y-2">

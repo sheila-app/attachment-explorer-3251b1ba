@@ -144,6 +144,7 @@ export const allScreens = [
   { group: "Onboarding", items: [
     { path: "/onboarding/welcome", name: "ترحيب" },
     { path: "/onboarding/auth", name: "تسجيل / دخول" },
+    { path: "/onboarding/name", name: "إدخال الاسم" },
     { path: "/onboarding/dob", name: "تاريخ الميلاد" },
     { path: "/onboarding/goal", name: "الهدف" },
     { path: "/onboarding/location-pref", name: "مكان التمرين" },

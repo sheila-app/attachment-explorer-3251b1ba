@@ -27,7 +27,7 @@ export const SYMPTOM_LIST: SymptomItem[] = [
   { id: "insomnia",       name: "أرق",              img: insomnia },
   { id: "nightSweats",    name: "تعرّق ليلي",       img: nightSweats },
   { id: "hotFlashes",     name: "هبّات ساخنة",      img: hotFlashes },
-  { id: "vaginalDryness", name: "جفاف مهبلي",       img: vaginalDryness },
-  { id: "vaginalItching", name: "حكّة مهبلية",      img: vaginalItching },
+  { id: "vaginalDryness", name: "حكّة مهبلية",      img: vaginalDryness },
+  { id: "vaginalItching", name: "جفاف مهبلي",       img: vaginalItching },
   { id: "fine",           name: "كل شيء بخير",      img: fine },
 ];

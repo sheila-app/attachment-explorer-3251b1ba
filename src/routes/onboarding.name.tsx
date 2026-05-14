@@ -5,7 +5,7 @@ import { User, Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/onboarding/name")({ component: NamePage });
 
-const SUGGESTIONS = ["سارة", "نور", "ريم", "ليلى", "هدى"];
+
 
 function NamePage() {
   const [name, setName] = useState("");

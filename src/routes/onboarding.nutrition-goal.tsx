@@ -99,8 +99,8 @@ function Page() {
               >
                 {active && (
                   <div
-                    className="absolute -top-6 -start-6 w-28 h-28 rounded-full opacity-20 pointer-events-none"
-                    style={{ background: g.calColor, filter: "blur(35px)" }}
+                    className="w-28 h-28 rounded-full opacity-20 pointer-events-none"
+                    style={{ position: "absolute", top: "-1.5rem", insetInlineStart: "-1.5rem", background: g.calColor, filter: "blur(35px)" }}
                   />
                 )}
 

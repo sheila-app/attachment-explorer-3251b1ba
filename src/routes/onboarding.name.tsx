@@ -57,12 +57,8 @@ function NamePage() {
         {/* عبارة الترحيب المتغيّرة */}
         <div className="mt-4 h-6 flex items-center justify-center">
           {valid ? (
-            <p
-              key={greetIdx}
-              className="text-[14px] font-medium text-foreground/85 animate-rise flex items-center gap-1.5"
-            >
-              <span>{greeting.emoji}</span>
-              <span>{greeting.text(trimmed)}</span>
+            <p className="text-[14px] font-medium text-foreground/85 animate-rise">
+              يسعدنا انضمامكِ لعائلة شيلا
             </p>
           ) : (
             <p className="text-[12.5px] text-foreground/45 flex items-center gap-1.5">

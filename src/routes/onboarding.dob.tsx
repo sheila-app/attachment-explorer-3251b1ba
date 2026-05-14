@@ -26,7 +26,7 @@ function DobPage() {
 
   return (
     <OnboardingShell
-      step={2} total={12} back="/onboarding/auth"
+      step={2} total={12} back="/onboarding/name"
       title="ما تاريخ ميلادكِ؟"
       subtitle="اسحبي العجلات لاختيار التاريخ. يجب أن تكوني 16 سنة فأكثر."
       footer={<PrimaryCTA to="/onboarding/goal">متابعة</PrimaryCTA>}

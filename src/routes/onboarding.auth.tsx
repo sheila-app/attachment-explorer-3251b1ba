@@ -114,7 +114,7 @@ function AuthPage() {
 
         <div className="relative z-10 px-7 pb-8 pt-3 space-y-3">
           <Link
-            to="/home"
+            to="/onboarding/name"
             className="group relative flex items-center justify-center gap-2 w-full py-4 rounded-2xl text-primary-foreground font-medium text-sm transition-transform active:scale-[0.98] overflow-hidden"
             style={{
               background: "var(--gradient-primary)",

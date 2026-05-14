@@ -72,6 +72,7 @@ import { Route as OnboardingTrialRouteImport } from './routes/onboarding.trial'
 import { Route as OnboardingStatsRouteImport } from './routes/onboarding.stats'
 import { Route as OnboardingPermissionsRouteImport } from './routes/onboarding.permissions'
 import { Route as OnboardingNutritionGoalRouteImport } from './routes/onboarding.nutrition-goal'
+import { Route as OnboardingNameRouteImport } from './routes/onboarding.name'
 import { Route as OnboardingLocationPrefRouteImport } from './routes/onboarding.location-pref'
 import { Route as OnboardingLevelRouteImport } from './routes/onboarding.level'
 import { Route as OnboardingGoalRouteImport } from './routes/onboarding.goal'
@@ -436,6 +437,11 @@ const OnboardingNutritionGoalRoute = OnboardingNutritionGoalRouteImport.update({
   path: '/onboarding/nutrition-goal',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OnboardingNameRoute = OnboardingNameRouteImport.update({
+  id: '/onboarding/name',
+  path: '/onboarding/name',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OnboardingLocationPrefRoute = OnboardingLocationPrefRouteImport.update({
   id: '/onboarding/location-pref',
   path: '/onboarding/location-pref',
@@ -736,6 +742,7 @@ export interface FileRoutesByFullPath {
   '/onboarding/goal': typeof OnboardingGoalRoute
   '/onboarding/level': typeof OnboardingLevelRoute
   '/onboarding/location-pref': typeof OnboardingLocationPrefRoute
+  '/onboarding/name': typeof OnboardingNameRoute
   '/onboarding/nutrition-goal': typeof OnboardingNutritionGoalRoute
   '/onboarding/permissions': typeof OnboardingPermissionsRoute
   '/onboarding/stats': typeof OnboardingStatsRoute
@@ -848,6 +855,7 @@ export interface FileRoutesByTo {
   '/onboarding/goal': typeof OnboardingGoalRoute
   '/onboarding/level': typeof OnboardingLevelRoute
   '/onboarding/location-pref': typeof OnboardingLocationPrefRoute
+  '/onboarding/name': typeof OnboardingNameRoute
   '/onboarding/nutrition-goal': typeof OnboardingNutritionGoalRoute
   '/onboarding/permissions': typeof OnboardingPermissionsRoute
   '/onboarding/stats': typeof OnboardingStatsRoute
@@ -961,6 +969,7 @@ export interface FileRoutesById {
   '/onboarding/goal': typeof OnboardingGoalRoute
   '/onboarding/level': typeof OnboardingLevelRoute
   '/onboarding/location-pref': typeof OnboardingLocationPrefRoute
+  '/onboarding/name': typeof OnboardingNameRoute
   '/onboarding/nutrition-goal': typeof OnboardingNutritionGoalRoute
   '/onboarding/permissions': typeof OnboardingPermissionsRoute
   '/onboarding/stats': typeof OnboardingStatsRoute
@@ -1075,6 +1084,7 @@ export interface FileRouteTypes {
     | '/onboarding/goal'
     | '/onboarding/level'
     | '/onboarding/location-pref'
+    | '/onboarding/name'
     | '/onboarding/nutrition-goal'
     | '/onboarding/permissions'
     | '/onboarding/stats'
@@ -1187,6 +1197,7 @@ export interface FileRouteTypes {
     | '/onboarding/goal'
     | '/onboarding/level'
     | '/onboarding/location-pref'
+    | '/onboarding/name'
     | '/onboarding/nutrition-goal'
     | '/onboarding/permissions'
     | '/onboarding/stats'
@@ -1299,6 +1310,7 @@ export interface FileRouteTypes {
     | '/onboarding/goal'
     | '/onboarding/level'
     | '/onboarding/location-pref'
+    | '/onboarding/name'
     | '/onboarding/nutrition-goal'
     | '/onboarding/permissions'
     | '/onboarding/stats'
@@ -1412,6 +1424,7 @@ export interface RootRouteChildren {
   OnboardingGoalRoute: typeof OnboardingGoalRoute
   OnboardingLevelRoute: typeof OnboardingLevelRoute
   OnboardingLocationPrefRoute: typeof OnboardingLocationPrefRoute
+  OnboardingNameRoute: typeof OnboardingNameRoute
   OnboardingNutritionGoalRoute: typeof OnboardingNutritionGoalRoute
   OnboardingPermissionsRoute: typeof OnboardingPermissionsRoute
   OnboardingStatsRoute: typeof OnboardingStatsRoute
@@ -1900,6 +1913,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingNutritionGoalRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/onboarding/name': {
+      id: '/onboarding/name'
+      path: '/onboarding/name'
+      fullPath: '/onboarding/name'
+      preLoaderRoute: typeof OnboardingNameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/onboarding/location-pref': {
       id: '/onboarding/location-pref'
       path: '/onboarding/location-pref'
@@ -2333,6 +2353,7 @@ const rootRouteChildren: RootRouteChildren = {
   OnboardingGoalRoute: OnboardingGoalRoute,
   OnboardingLevelRoute: OnboardingLevelRoute,
   OnboardingLocationPrefRoute: OnboardingLocationPrefRoute,
+  OnboardingNameRoute: OnboardingNameRoute,
   OnboardingNutritionGoalRoute: OnboardingNutritionGoalRoute,
   OnboardingPermissionsRoute: OnboardingPermissionsRoute,
   OnboardingStatsRoute: OnboardingStatsRoute,

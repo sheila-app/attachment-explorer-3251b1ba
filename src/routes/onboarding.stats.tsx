@@ -15,7 +15,7 @@ function StatsPage() {
       step={6} total={12} back="/onboarding/level"
       title="إحصاءاتكِ الجسديّة"
       subtitle="اسحبي العجلة لاختيار القيمة بدقّة."
-      footer={<PrimaryCTA to="/onboarding/nutrition-goal">متابعة</PrimaryCTA>}
+      footer={<><PrimaryCTA to="/onboarding/nutrition-goal">متابعة</PrimaryCTA><GhostCTA to="/onboarding/nutrition-goal">تخطّي</GhostCTA></>}
     >
       <div className="grid grid-cols-2 gap-3">
         <div className="glass rounded-2xl p-4">

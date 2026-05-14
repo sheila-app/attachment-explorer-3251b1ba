@@ -47,22 +47,38 @@ function CyclePage() {
             ))}
             {days.map((d) => {
               const p = PHASE_BY_DAY(d);
-              const isSel = d === selected;
               const isToday = d === mockUser.cycleDay;
+              const isSel = d === selected;
+              const phaseColor = PHASE_META[p].color;
               return (
                 <button key={d} onClick={() => setSelected(d)}
-                  className="aspect-square rounded-xl flex flex-col items-center justify-center relative"
-                  style={{
-                    background: isSel ? "var(--gradient-primary)" : `color-mix(in oklab, ${PHASE_META[p].color} 18%, transparent)`,
-                    color: isSel ? "white" : undefined,
-                  }}
+                  className="aspect-square rounded-full flex items-center justify-center relative"
+                  style={
+                    isToday
+                      ? { background: "var(--gradient-primary)", color: "white" }
+                      : {
+                          border: `1.5px solid ${phaseColor}`,
+                          color: phaseColor,
+                          background: "transparent",
+                          boxShadow: isSel ? `0 0 0 2px color-mix(in oklab, ${phaseColor} 35%, transparent)` : undefined,
+                        }
+                  }
                 >
                   <span className="text-[12px] font-medium nums">{d}</span>
-                  {isToday && !isSel && <span className="absolute bottom-1 w-1 h-1 rounded-full bg-primary" />}
                 </button>
               );
             })}
           </div>
+        </div>
+
+        {/* Legend — قبل بطاقة الشرح */}
+        <div className="grid grid-cols-2 gap-2 mt-4">
+          {(["menstrual","follicular","ovulation","luteal"] as CyclePhase[]).map(p => (
+            <div key={p} className="glass rounded-xl px-3 py-2 flex items-center gap-2">
+              <span className="relative z-10 w-2.5 h-2.5 rounded-full" style={{ background: PHASE_META[p].color }} />
+              <span className="relative z-10 text-[12px]">{PHASE_META[p].name}</span>
+            </div>
+          ))}
         </div>
 
         {/* Selected day card */}
@@ -78,17 +94,6 @@ function CyclePage() {
           </div>
           <p className="relative z-10 text-[12.5px] text-foreground/75 mt-3 leading-relaxed">{meta.description}</p>
         </div>
-
-        {/* Legend */}
-        <div className="grid grid-cols-2 gap-2 mt-4">
-          {(["menstrual","follicular","ovulation","luteal"] as CyclePhase[]).map(p => (
-            <div key={p} className="glass rounded-xl px-3 py-2 flex items-center gap-2">
-              <span className="relative z-10 w-2.5 h-2.5 rounded-full" style={{ background: PHASE_META[p].color }} />
-              <span className="relative z-10 text-[12px]">{PHASE_META[p].name}</span>
-            </div>
-          ))}
-        </div>
-
         {/* Cycle history */}
         <h2 className="text-sm font-medium mt-6 mb-2 px-1">السجلّ</h2>
         <div className="space-y-2">

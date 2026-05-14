@@ -59,7 +59,7 @@ function LevelPage() {
             return (
               <motion.div
                 key={lv.id}
-                animate={active ? { scale: 1.02 } : { scale: 1 }}
+                animate={active ? { scale: 1.01 } : { scale: 1 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <button
@@ -67,7 +67,7 @@ function LevelPage() {
                   className="w-full text-right transition-all active:scale-[0.99]"
                 >
                   <div
-                    className="glass rounded-2xl p-4 relative overflow-hidden"
+                    className="glass rounded-2xl px-4 pt-3 pb-4 relative overflow-hidden"
                     style={
                       active
                         ? {
@@ -84,8 +84,8 @@ function LevelPage() {
                       />
                     )}
 
-                    <div className="relative z-10 flex items-start justify-between gap-3">
-                      <span className="leading-none">{lv.icon}</span>
+                    <div className="relative z-10 flex items-center justify-between gap-3 min-h-7">
+                      <span className="leading-none flex items-center">{lv.icon}</span>
                       {active && (
                         <div
                           className="w-6 h-6 rounded-full flex items-center justify-center shrink-0"
@@ -97,7 +97,7 @@ function LevelPage() {
                     </div>
 
                     <h3
-                      className="relative z-10 font-display text-xl mt-2 leading-tight"
+                      className="relative z-10 font-display text-xl mt-1 leading-tight"
                       style={active ? { color: lv.color } : undefined}
                     >
                       {lv.title}

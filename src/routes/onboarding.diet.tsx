@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { OnboardingShell, PrimaryCTA } from "@/components/sheila/OnboardingShell";
-import { Sparkles, UtensilsCrossed, Salad, Sprout, Wheat, Milk, CheckCircle, Zap, Leaf, type LucideIcon } from "lucide-react";
+import { Sparkles, UtensilsCrossed, Salad, Sprout, Wheat, Milk, Zap, Leaf, type LucideIcon } from "lucide-react";
 
 export const Route = createFileRoute("/onboarding/diet")({ component: Page });
 

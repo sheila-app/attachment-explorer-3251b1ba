@@ -1,4 +1,5 @@
 // بيانات وهمية مركزية لنموذج SHEILA الأولي
+import { allFlows, flowSections } from "./checkinFlows";
 
 export type CyclePhase = "menstrual" | "follicular" | "ovulation" | "luteal";
 

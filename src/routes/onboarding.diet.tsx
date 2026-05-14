@@ -11,7 +11,6 @@ const DIETS: { id: string; Icon: LucideIcon; title: string; desc: string; exclus
   { id: "vegan", Icon: Sprout, title: "نباتي صرف", desc: "لا منتجات حيوانيّة" },
   { id: "gf", Icon: Wheat, title: "خالٍ من الجلوتين", desc: "بدون قمح وشعير" },
   { id: "df", Icon: Milk, title: "خالٍ من اللاكتوز", desc: "بدون منتجات الألبان" },
-  { id: "halal", Icon: CheckCircle, title: "حلال", desc: "وفق أحكام الشريعة" },
   { id: "keto", Icon: Zap, title: "كيتو", desc: "دهون عالية، كربوهيدرات منخفضة" },
   { id: "med", Icon: Leaf, title: "بحر متوسّط", desc: "زيت زيتون، خضار، أسماك" },
 ];

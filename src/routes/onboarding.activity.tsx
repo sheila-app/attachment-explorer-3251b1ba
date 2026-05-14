@@ -82,7 +82,7 @@ function Page() {
                   {active && (
                     <div
                       className="absolute top-2 end-2 w-4 h-4 rounded-full flex items-center justify-center"
-                      style={{ background: "var(--primary)", boxShadow: "0 0 0 2px oklch(1 0 0 / 0.95), 0 0 0 3px var(--primary)" }}
+                      style={{ background: "var(--primary)" }}
                     >
                       <svg width="8" height="6" viewBox="0 0 8 6" fill="none">
                         <path d="M1 3L3 5L7 1" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

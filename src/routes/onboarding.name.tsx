@@ -1,35 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { OnboardingShell, PrimaryCTA } from "@/components/sheila/OnboardingShell";
 import { User, Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/onboarding/name")({ component: NamePage });
 
-const GREETINGS = [
-  { emoji: "🌸", text: (n: string) => `أهلاً بكِ يا ${n}` },
-  { emoji: "✨", text: (n: string) => `سعيدة بلقائكِ يا ${n}` },
-  { emoji: "🌷", text: (n: string) => `يا ${n}، رحلتكِ تبدأ من هنا` },
-  { emoji: "💫", text: (n: string) => `مرحباً ${n}، شيلا بانتظاركِ` },
-  { emoji: "🌼", text: (n: string) => `${n}.. اسمٌ جميل!` },
-];
-
 const SUGGESTIONS = ["سارة", "نور", "ريم", "ليلى", "هدى"];
 
 function NamePage() {
   const [name, setName] = useState("");
-  const [greetIdx, setGreetIdx] = useState(0);
   const trimmed = name.trim();
   const valid = trimmed.length >= 2;
 
-  // تدوير عبارات الترحيب كل ثانيتين عند إدخال اسم صالح
-  useEffect(() => {
-    if (!valid) return;
-    const t = setInterval(() => setGreetIdx((i) => (i + 1) % GREETINGS.length), 2200);
-    return () => clearInterval(t);
-  }, [valid]);
-
   const initial = useMemo(() => (trimmed ? trimmed[0] : ""), [trimmed]);
-  const greeting = GREETINGS[greetIdx];
 
   return (
     <OnboardingShell

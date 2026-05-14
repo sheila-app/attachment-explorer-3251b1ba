@@ -52,7 +52,7 @@ function CyclePage() {
               const phaseColor = PHASE_META[p].color;
               return (
                 <button key={d} onClick={() => setSelected(d)}
-                  className="aspect-square rounded-full flex items-center justify-center relative"
+                  className="aspect-square rounded-full flex items-center justify-center relative p-0 leading-none"
                   style={
                     isToday
                       ? { background: "var(--gradient-primary)", color: "white" }
@@ -64,7 +64,7 @@ function CyclePage() {
                         }
                   }
                 >
-                  <span className="text-[12px] font-medium nums">{d}</span>
+                  <span className="text-[12px] font-medium nums leading-none">{d}</span>
                 </button>
               );
             })}

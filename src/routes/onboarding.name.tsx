@@ -97,24 +97,6 @@ function NamePage() {
         )}
       </div>
 
-      {/* اقتراحات أسماء سريعة */}
-      {!valid && (
-        <div className="mt-5 animate-rise">
-          <p className="text-[11px] text-foreground/55 mb-2 text-center">اقتراحات سريعة</p>
-          <div className="flex flex-wrap justify-center gap-2">
-            {SUGGESTIONS.map((s) => (
-              <button
-                key={s}
-                onClick={() => setName(s)}
-                className="glass px-4 py-1.5 rounded-full text-[12.5px] text-foreground/75 transition-transform active:scale-95"
-              >
-                {s}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
       <p className="text-[11px] text-foreground/50 mt-5 text-center leading-relaxed">
         يمكنكِ تغيير الاسم لاحقاً من إعدادات الحساب.
       </p>

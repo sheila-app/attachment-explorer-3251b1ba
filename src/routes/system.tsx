@@ -7,15 +7,64 @@ import { CyclePhaseRing } from "@/components/sheila/CyclePhaseRing";
 import { allScreens, PHASE_META } from "@/data/mock";
 import { Bell, Sparkles, Flame, Droplet, Moon, ChevronLeft, Activity } from "lucide-react";
 import { MOOD_LIST } from "@/data/moods";
+import { AITyping, AIGenerating } from "@/components/sheila-v2/AITyping";
+import { TierBadge } from "@/components/sheila-v2/TierBadge";
+import { TIERS, PHASE_META as V2_PHASE_META } from "@/data/sheila-v2";
 
 export const Route = createFileRoute("/system")({ component: Page });
+
+const V2_SCREENS: { group: string; items: { name: string; path: string }[] }[] = [
+  { group: "v2 · رئيسي", items: [
+    { name: "معرض v2", path: "/sheila-v2" },
+    { name: "الرئيسية", path: "/sheila-v2/home" },
+    { name: "شيلا (شات)", path: "/sheila-v2/sheila" },
+    { name: "الإشعارات", path: "/sheila-v2/notifications" },
+    { name: "الطوارئ", path: "/sheila-v2/emergency" },
+    { name: "الصحّة", path: "/sheila-v2/health" },
+  ]},
+  { group: "v2 · تغذية", items: [
+    { name: "هاب التغذية", path: "/sheila-v2/nutrition" },
+    { name: "تسجيل وجبة", path: "/sheila-v2/nutrition/log" },
+    { name: "صورة وجبة", path: "/sheila-v2/nutrition/photo" },
+    { name: "وصفات", path: "/sheila-v2/nutrition/recipes" },
+    { name: "تسوّق", path: "/sheila-v2/nutrition/shopping" },
+  ]},
+  { group: "v2 · تمارين", items: [
+    { name: "هاب التمارين", path: "/sheila-v2/workouts" },
+    { name: "بناء التمرين", path: "/sheila-v2/workouts/builder" },
+    { name: "مشغّل التمرين", path: "/sheila-v2/workouts/player" },
+  ]},
+  { group: "v2 · دورة ومراحل", items: [
+    { name: "الدورة", path: "/sheila-v2/cycle" },
+    { name: "الحمل", path: "/sheila-v2/pregnancy" },
+    { name: "ما بعد الولادة", path: "/sheila-v2/postpartum" },
+  ]},
+  { group: "v2 · دائرة", items: [
+    { name: "الدائرة", path: "/sheila-v2/circle" },
+    { name: "أصحاب المسؤوليّة", path: "/sheila-v2/circle/accountability" },
+    { name: "نشر منشور", path: "/sheila-v2/circle/compose" },
+    { name: "الفعاليّات", path: "/sheila-v2/circle/events" },
+    { name: "المجموعات", path: "/sheila-v2/circle/groups" },
+  ]},
+  { group: "v2 · رحلتي", items: [
+    { name: "الرحلة", path: "/sheila-v2/journey" },
+    { name: "الإنجازات", path: "/sheila-v2/journey/achievements" },
+    { name: "رؤى", path: "/sheila-v2/journey/insights" },
+    { name: "تقرير", path: "/sheila-v2/journey/report" },
+  ]},
+  { group: "v2 · بروفايل", items: [
+    { name: "البروفايل", path: "/sheila-v2/profile" },
+    { name: "المظهر", path: "/sheila-v2/profile/appearance" },
+    { name: "الاشتراك", path: "/sheila-v2/profile/subscription" },
+  ]},
+];
 
 /**
  * صفحة نظام التصميم — مرجع شامل للألوان والمكوّنات والشاشات.
  * تحديث إلزامي عند إضافة عنصر جديد أو شاشة جديدة (يُسحب فهرس الشاشات تلقائيّاً من mock.ts).
  */
 function Page() {
-  const [tab, setTab] = useState<"tokens" | "components" | "screens">("tokens");
+  const [tab, setTab] = useState<"tokens" | "components" | "screens" | "v2">("tokens");
   const [wheel, setWheel] = useState<number>(28);
   const today = new Date();
   const months = ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];
@@ -32,11 +81,12 @@ function Page() {
     <FeatureShell title="نظام التصميم" back="/" showNav={false} variant="default">
       <div className="px-5 pb-10 space-y-5">
         {/* Tabs */}
-        <div className="glass-strong rounded-2xl p-1 grid grid-cols-3 gap-1">
+        <div className="glass-strong rounded-2xl p-1 grid grid-cols-4 gap-1">
           {([
             ["tokens", "الرموز"],
             ["components", "المكوّنات"],
             ["screens", "الشاشات"],
+            ["v2", "v2"],
           ] as const).map(([k, t]) => (
             <button key={k} onClick={() => setTab(k)}
               className="rounded-xl py-2 text-[12px] font-medium relative"
@@ -241,6 +291,95 @@ function Page() {
               </div>
             ))}
           </div>
+        )}
+
+        {tab === "v2" && (
+          <>
+            <Block title="ألوان مراحل v2">
+              <div className="grid grid-cols-2 gap-2">
+                {(Object.keys(V2_PHASE_META) as Array<keyof typeof V2_PHASE_META>).map(k => (
+                  <div key={k} className="glass rounded-2xl p-3 flex items-center gap-3">
+                    <span className="w-9 h-9 rounded-full" style={{ background: V2_PHASE_META[k].color }} />
+                    <div className="relative z-10 min-w-0">
+                      <div className="text-[12px] font-medium truncate">{V2_PHASE_META[k].name}</div>
+                      <div className="text-[10px] text-foreground/55 font-mono">{k}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Block>
+
+            <Block title="مستويات Body IQ (TierBadge)">
+              <div className="glass rounded-2xl p-4 grid grid-cols-4 gap-3 place-items-center">
+                {TIERS.map(t => (
+                  <div key={t.id} className="flex flex-col items-center gap-1.5">
+                    <TierBadge score={t.min} size="sm" />
+                    <span className="text-[10.5px] font-medium" style={{ color: t.color }}>{t.name}</span>
+                    <span className="text-[9px] text-foreground/55 font-mono nums">{t.min}–{t.max}</span>
+                  </div>
+                ))}
+              </div>
+            </Block>
+
+            <Block title="AI Typing — كتابة متدرّجة">
+              <div className="glass rounded-2xl p-4 text-[12.5px] leading-relaxed">
+                <AITyping text="مرحباً، أنا شيلا — رفيقتك الذكيّة لرحلة الصحّة." speed={28} />
+              </div>
+            </Block>
+
+            <Block title="AI Generating — حالة التوليد">
+              <AIGenerating label="شيلا تبني وصفتك…" />
+            </Block>
+
+            <Block title="بطاقة زجاجيّة v2">
+              <div className="rounded-3xl p-4 glass-strong">
+                <div className="relative z-10 flex items-center gap-2 mb-2">
+                  <Sparkles size={14} className="text-primary" />
+                  <span className="text-[11px] font-semibold text-primary">عنصر شيلا</span>
+                </div>
+                <div className="relative z-10 text-[13px]">محتوى داخل بطاقة <span className="font-mono">.glass-strong</span> مع حافّة وردية ناعمة.</div>
+              </div>
+            </Block>
+
+            <Block title="رقاقة المرحلة (PhasePill)">
+              <div className="flex flex-wrap gap-2">
+                {(Object.keys(V2_PHASE_META) as Array<keyof typeof V2_PHASE_META>).map(k => (
+                  <span key={k} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full glass text-[11px] font-medium">
+                    <span className="w-1.5 h-1.5 rounded-full relative z-10" style={{ background: V2_PHASE_META[k].color }} />
+                    <span className="relative z-10">{V2_PHASE_META[k].name}</span>
+                  </span>
+                ))}
+              </div>
+            </Block>
+
+            <Block title="زرّ تدرّج v2">
+              <button className="w-full py-3 rounded-2xl text-primary-foreground text-[13px] font-semibold" style={{ background: "var(--gradient-primary)" }}>
+                زرّ رئيسي v2
+              </button>
+            </Block>
+
+            <Block title="شاشات v2">
+              <p className="text-[11px] text-foreground/55 px-1 mb-2">
+                عدد شاشات v2: <span className="nums text-primary font-medium">{V2_SCREENS.reduce((a, g) => a + g.items.length, 0)}</span>
+              </p>
+              <div className="space-y-3">
+                {V2_SCREENS.map(group => (
+                  <div key={group.group}>
+                    <h3 className="text-[11px] font-medium text-foreground/55 mb-1.5 px-1 uppercase tracking-wider">{group.group}</h3>
+                    <div className="glass rounded-2xl divide-y divide-foreground/5 overflow-hidden">
+                      {group.items.map(it => (
+                        <Link key={it.path} to={it.path as "/"}
+                          className="relative z-10 flex items-center justify-between px-4 py-2.5 hover:bg-primary/5 transition">
+                          <span className="text-[13px]">{it.name}</span>
+                          <span className="text-[10px] text-foreground/55 font-mono">{it.path}</span>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Block>
+          </>
         )}
       </div>
     </FeatureShell>

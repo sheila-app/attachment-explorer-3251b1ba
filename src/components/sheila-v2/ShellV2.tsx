@@ -25,7 +25,7 @@ export function ShellV2({
   variant = "default", rightSlot, bare = false,
 }: Props) {
   return (
-    <LifeStageProvider>
+    <SheilaV2Provider>
       <DeviceFrame>
         <div className="relative h-full overflow-hidden">
           <LiquidBackdrop variant={variant} />
@@ -47,7 +47,7 @@ export function ShellV2({
           {showNav && <BottomNavV2 />}
         </div>
       </DeviceFrame>
-    </LifeStageProvider>
+    </SheilaV2Provider>
   );
 }
 

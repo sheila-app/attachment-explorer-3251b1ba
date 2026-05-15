@@ -4,6 +4,7 @@ import { ChevronLeft, Sparkles, Droplets, Moon, Apple, Dumbbell, Users, Trophy }
 import { ShellV2, HomeHeader, PhasePill } from "@/components/sheila-v2/ShellV2";
 import { AITyping, AIGenerating, useFakeGenerate } from "@/components/sheila-v2/AITyping";
 import { TierBadge } from "@/components/sheila-v2/TierBadge";
+import { CyclePhaseRing } from "@/components/sheila/CyclePhaseRing";
 import { userV2, PHASE_META, DAILY_MESSAGES, WORKOUTS, MEALS, tierFor } from "@/data/sheila-v2";
 
 export const Route = createFileRoute("/sheila-v2/home")({ component: HomeV2 });
@@ -26,11 +27,23 @@ function HomeV2() {
         <div className="flex items-center justify-between">
           <div>
             <div className="text-[11px] tracking-widest text-foreground/50">اليوم</div>
-            <div className="font-display text-[26px] leading-tight mt-1">يوم إباضة مشرق</div>
+            <div className="font-display text-[24px] leading-tight mt-1">يوم {meta.name} مشرق</div>
           </div>
           <PhasePill phase={phase} name={meta.name} color={meta.color} />
         </div>
       </div>
+
+      {/* حلقة الدورة — تنقل إلى صفحة الدورة */}
+      <Link to="/sheila-v2/cycle" className="block mt-3">
+        <div className="flex items-center justify-center">
+          <CyclePhaseRing
+            phase={phase as any}
+            day={userV2.cycleDay}
+            cycleLength={userV2.cycleLength}
+            size={260}
+          />
+        </div>
+      </Link>
 
       {/* Block 2 — Daily Message من شيلا */}
       <div className="px-5 mt-4">

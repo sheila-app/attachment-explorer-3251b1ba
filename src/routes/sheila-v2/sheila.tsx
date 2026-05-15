@@ -1,12 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useRef, useEffect } from "react";
-import { Send, Sparkles, AlertCircle, ChevronLeft } from "lucide-react";
+import { Send, Sparkles, AlertCircle, ChevronLeft, Dumbbell, Apple, Droplets } from "lucide-react";
 import { motion } from "motion/react";
 import { ShellV2 } from "@/components/sheila-v2/ShellV2";
 import { AITyping } from "@/components/sheila-v2/AITyping";
-import { SHEILA_REPLIES, SHEILA_DEFAULT } from "@/data/sheila-v2";
+import { useSheilaV2 } from "@/components/sheila-v2/SheilaV2Store";
+import { SHEILA_REPLIES, SHEILA_DEFAULT, MEALS, WORKOUTS } from "@/data/sheila-v2";
 
 export const Route = createFileRoute("/sheila-v2/sheila")({ component: SheilaChat });
+
+type ChatAction = { kind: "workout" | "meal" | "water"; id?: string; label: string };
 
 type Msg = { role: "user" | "ai"; text: string; distress?: boolean };
 

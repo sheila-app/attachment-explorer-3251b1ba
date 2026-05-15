@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Crown } from "lucide-react";
 import { ShellV2 } from "@/components/sheila-v2/ShellV2";
 
-export const Route = createFileRoute("/sheila-v2/profile/subscription")({ component: Sub });
+export const Route = createFileRoute("/sheila-v2/profile_/subscription")({ component: Sub });
 
 function Sub() {
   return (

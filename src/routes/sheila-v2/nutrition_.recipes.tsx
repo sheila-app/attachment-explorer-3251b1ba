@@ -4,7 +4,7 @@ import { Sparkles, ChefHat } from "lucide-react";
 import { ShellV2 } from "@/components/sheila-v2/ShellV2";
 import { AITyping, AIGenerating } from "@/components/sheila-v2/AITyping";
 
-export const Route = createFileRoute("/sheila-v2/nutrition/recipes")({ component: Recipes });
+export const Route = createFileRoute("/sheila-v2/nutrition_/recipes")({ component: Recipes });
 const PRESETS = ["عندي دجاج وطماطم وأرز", "عشاء غنيّ بالبروتين خفيف", "وصفة سريعة بدون جلوتين"];
 const SAVED = [
   { name: "شوربة عدس بالكمّون", cal: 320, t: "30 د" },

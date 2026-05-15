@@ -4,7 +4,7 @@ import { Sparkles, Check } from "lucide-react";
 import { ShellV2 } from "@/components/sheila-v2/ShellV2";
 import { AIGenerating, AITyping } from "@/components/sheila-v2/AITyping";
 
-export const Route = createFileRoute("/sheila-v2/nutrition/log")({ component: LogMeal });
+export const Route = createFileRoute("/sheila-v2/nutrition_/log")({ component: LogMeal });
 
 function LogMeal() {
   const [txt, setTxt] = useState("");

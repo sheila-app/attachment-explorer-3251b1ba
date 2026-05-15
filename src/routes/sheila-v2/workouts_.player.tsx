@@ -4,7 +4,7 @@ import { Pause, Play, X, Check } from "lucide-react";
 import { ShellV2 } from "@/components/sheila-v2/ShellV2";
 import { WORKOUTS } from "@/data/sheila-v2";
 
-export const Route = createFileRoute("/sheila-v2/workouts/player")({ component: Player });
+export const Route = createFileRoute("/sheila-v2/workouts_/player")({ component: Player });
 
 function Player() {
   const w = WORKOUTS[0];

@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ShellV2 } from "@/components/sheila-v2/ShellV2";
 import { EVENTS } from "@/data/sheila-v2";
 
-export const Route = createFileRoute("/sheila-v2/circle/events")({ component: Events });
+export const Route = createFileRoute("/sheila-v2/circle_/events")({ component: Events });
 
 function Events() {
   return (

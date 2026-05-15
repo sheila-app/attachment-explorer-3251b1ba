@@ -4,7 +4,7 @@ import { ShellV2 } from "@/components/sheila-v2/ShellV2";
 import { TierBadge } from "@/components/sheila-v2/TierBadge";
 import { ACHIEVEMENTS, PILLARS, TIERS, userV2 } from "@/data/sheila-v2";
 
-export const Route = createFileRoute("/sheila-v2/journey/achievements")({ component: Achievements });
+export const Route = createFileRoute("/sheila-v2/journey_/achievements")({ component: Achievements });
 
 function Achievements() {
   return (

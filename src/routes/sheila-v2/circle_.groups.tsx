@@ -3,7 +3,7 @@ import { ChevronLeft } from "lucide-react";
 import { ShellV2 } from "@/components/sheila-v2/ShellV2";
 import { GROUPS } from "@/data/sheila-v2";
 
-export const Route = createFileRoute("/sheila-v2/circle/groups")({ component: Groups });
+export const Route = createFileRoute("/sheila-v2/circle_/groups")({ component: Groups });
 
 function Groups() {
   return (

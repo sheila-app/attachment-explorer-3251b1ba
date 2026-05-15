@@ -4,7 +4,7 @@ import { ShellV2 } from "@/components/sheila-v2/ShellV2";
 import { AITyping, useFakeGenerate } from "@/components/sheila-v2/AITyping";
 import { SMART_INSIGHTS } from "@/data/sheila-v2";
 
-export const Route = createFileRoute("/sheila-v2/journey/insights")({ component: Insights });
+export const Route = createFileRoute("/sheila-v2/journey_/insights")({ component: Insights });
 
 const COLORS: Record<string, string> = {
   "أفضل أداء": "var(--phase-ovulation)",

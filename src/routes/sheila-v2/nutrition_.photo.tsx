@@ -4,7 +4,7 @@ import { Camera, Check } from "lucide-react";
 import { ShellV2 } from "@/components/sheila-v2/ShellV2";
 import { AIGenerating, AITyping } from "@/components/sheila-v2/AITyping";
 
-export const Route = createFileRoute("/sheila-v2/nutrition/photo")({ component: PhotoMeal });
+export const Route = createFileRoute("/sheila-v2/nutrition_/photo")({ component: PhotoMeal });
 
 function PhotoMeal() {
   const [stage, setStage] = useState<"camera" | "gen" | "done">("camera");

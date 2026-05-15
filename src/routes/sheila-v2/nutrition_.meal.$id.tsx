@@ -3,7 +3,7 @@ import { Heart, Plus } from "lucide-react";
 import { ShellV2 } from "@/components/sheila-v2/ShellV2";
 import { MEALS } from "@/data/sheila-v2";
 
-export const Route = createFileRoute("/sheila-v2/nutrition/meal/$id")({ component: MealDetail });
+export const Route = createFileRoute("/sheila-v2/nutrition_/meal/$id")({ component: MealDetail });
 
 function MealDetail() {
   const { id } = Route.useParams();

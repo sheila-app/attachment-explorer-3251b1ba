@@ -5,7 +5,7 @@ import { ShellV2 } from "@/components/sheila-v2/ShellV2";
 import { AITyping, AIGenerating } from "@/components/sheila-v2/AITyping";
 import { WORKOUTS } from "@/data/sheila-v2";
 
-export const Route = createFileRoute("/sheila-v2/workouts/builder")({ component: Builder });
+export const Route = createFileRoute("/sheila-v2/workouts_/builder")({ component: Builder });
 
 const PRESETS = ["20 دقيقة، بدون معدات، البطن", "قوّة الجزء العلوي بالدمبل", "متعبة، أريد تمدّد فقط"];
 

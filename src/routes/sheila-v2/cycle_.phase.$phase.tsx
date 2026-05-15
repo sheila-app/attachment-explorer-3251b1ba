@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ShellV2 } from "@/components/sheila-v2/ShellV2";
 import { PHASE_META, type CyclePhase } from "@/data/sheila-v2";
 
-export const Route = createFileRoute("/sheila-v2/cycle/phase/$phase")({ component: PhaseEdu });
+export const Route = createFileRoute("/sheila-v2/cycle_/phase/$phase")({ component: PhaseEdu });
 
 const TIPS: Record<CyclePhase, { food: string[]; move: string[]; mood: string[] }> = {
   menstrual: { food: ["أطعمة غنيّة بالحديد", "شاي زنجبيل دافئ", "مكسّرات وبذور"], move: ["يوغا تعافي", "مشي خفيف 20 د", "تمدّد لطيف"], mood: ["إذن للراحة", "تجنّبي القرارات الكبيرة", "نوم جيّد ضروري"] },

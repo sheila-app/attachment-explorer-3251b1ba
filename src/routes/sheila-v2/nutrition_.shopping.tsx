@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { ShellV2 } from "@/components/sheila-v2/ShellV2";
 
-export const Route = createFileRoute("/sheila-v2/nutrition/shopping")({ component: Shopping });
+export const Route = createFileRoute("/sheila-v2/nutrition_/shopping")({ component: Shopping });
 
 const ITEMS = [
   { cat: "خضار", items: ["طماطم", "خيار", "خس", "بصل"] },

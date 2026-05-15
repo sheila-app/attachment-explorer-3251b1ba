@@ -5,7 +5,7 @@ import { ShellV2 } from "@/components/sheila-v2/ShellV2";
 import { AIGenerating, AITyping } from "@/components/sheila-v2/AITyping";
 import { PARTNER_SUGGESTIONS } from "@/data/sheila-v2";
 
-export const Route = createFileRoute("/sheila-v2/circle/accountability")({ component: Accountability });
+export const Route = createFileRoute("/sheila-v2/circle_/accountability")({ component: Accountability });
 
 function Accountability() {
   const [stage, setStage] = useState<"idle" | "gen" | "done">("idle");

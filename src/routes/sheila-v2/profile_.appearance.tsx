@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Lock } from "lucide-react";
 import { ShellV2 } from "@/components/sheila-v2/ShellV2";
 
-export const Route = createFileRoute("/sheila-v2/profile/appearance")({ component: Appearance });
+export const Route = createFileRoute("/sheila-v2/profile_/appearance")({ component: Appearance });
 const ACCENTS = [
   { id: "samai", name: "سماوي", color: "oklch(0.66 0.16 322)" },
   { id: "green", name: "أخضر", color: "oklch(0.65 0.14 165)" },

@@ -4,7 +4,7 @@ import { ShellV2 } from "@/components/sheila-v2/ShellV2";
 import { AITyping, useFakeGenerate } from "@/components/sheila-v2/AITyping";
 import { MONTHLY_INSIGHTS } from "@/data/sheila-v2";
 
-export const Route = createFileRoute("/sheila-v2/journey/report")({ component: Report });
+export const Route = createFileRoute("/sheila-v2/journey_/report")({ component: Report });
 
 function Report() {
   const ready = useFakeGenerate("report", 1100);

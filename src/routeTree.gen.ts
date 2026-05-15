@@ -132,25 +132,25 @@ import { Route as AuthForgotRouteImport } from './routes/auth.forgot'
 import { Route as ArticlesIdRouteImport } from './routes/articles.$id'
 import { Route as WorkoutsProgramsIdRouteImport } from './routes/workouts.programs.$id'
 import { Route as WorkoutsIdPlayRouteImport } from './routes/workouts.$id.play'
-import { Route as SheilaV2WorkoutsPlayerRouteImport } from './routes/sheila-v2/workouts.player'
-import { Route as SheilaV2WorkoutsBuilderRouteImport } from './routes/sheila-v2/workouts.builder'
-import { Route as SheilaV2ProfileSubscriptionRouteImport } from './routes/sheila-v2/profile.subscription'
-import { Route as SheilaV2ProfileAppearanceRouteImport } from './routes/sheila-v2/profile.appearance'
-import { Route as SheilaV2NutritionShoppingRouteImport } from './routes/sheila-v2/nutrition.shopping'
-import { Route as SheilaV2NutritionRecipesRouteImport } from './routes/sheila-v2/nutrition.recipes'
-import { Route as SheilaV2NutritionPhotoRouteImport } from './routes/sheila-v2/nutrition.photo'
-import { Route as SheilaV2NutritionLogRouteImport } from './routes/sheila-v2/nutrition.log'
-import { Route as SheilaV2JourneyReportRouteImport } from './routes/sheila-v2/journey.report'
-import { Route as SheilaV2JourneyInsightsRouteImport } from './routes/sheila-v2/journey.insights'
-import { Route as SheilaV2JourneyAchievementsRouteImport } from './routes/sheila-v2/journey.achievements'
-import { Route as SheilaV2CircleGroupsRouteImport } from './routes/sheila-v2/circle.groups'
-import { Route as SheilaV2CircleEventsRouteImport } from './routes/sheila-v2/circle.events'
-import { Route as SheilaV2CircleComposeRouteImport } from './routes/sheila-v2/circle.compose'
-import { Route as SheilaV2CircleAccountabilityRouteImport } from './routes/sheila-v2/circle.accountability'
+import { Route as SheilaV2WorkoutsPlayerRouteImport } from './routes/sheila-v2/workouts_.player'
+import { Route as SheilaV2WorkoutsBuilderRouteImport } from './routes/sheila-v2/workouts_.builder'
+import { Route as SheilaV2ProfileSubscriptionRouteImport } from './routes/sheila-v2/profile_.subscription'
+import { Route as SheilaV2ProfileAppearanceRouteImport } from './routes/sheila-v2/profile_.appearance'
+import { Route as SheilaV2NutritionShoppingRouteImport } from './routes/sheila-v2/nutrition_.shopping'
+import { Route as SheilaV2NutritionRecipesRouteImport } from './routes/sheila-v2/nutrition_.recipes'
+import { Route as SheilaV2NutritionPhotoRouteImport } from './routes/sheila-v2/nutrition_.photo'
+import { Route as SheilaV2NutritionLogRouteImport } from './routes/sheila-v2/nutrition_.log'
+import { Route as SheilaV2JourneyReportRouteImport } from './routes/sheila-v2/journey_.report'
+import { Route as SheilaV2JourneyInsightsRouteImport } from './routes/sheila-v2/journey_.insights'
+import { Route as SheilaV2JourneyAchievementsRouteImport } from './routes/sheila-v2/journey_.achievements'
+import { Route as SheilaV2CircleGroupsRouteImport } from './routes/sheila-v2/circle_.groups'
+import { Route as SheilaV2CircleEventsRouteImport } from './routes/sheila-v2/circle_.events'
+import { Route as SheilaV2CircleComposeRouteImport } from './routes/sheila-v2/circle_.compose'
+import { Route as SheilaV2CircleAccountabilityRouteImport } from './routes/sheila-v2/circle_.accountability'
 import { Route as CoachesIdChatRouteImport } from './routes/coaches.$id.chat'
 import { Route as CoachesIdBookRouteImport } from './routes/coaches.$id.book'
-import { Route as SheilaV2NutritionMealIdRouteImport } from './routes/sheila-v2/nutrition.meal.$id'
-import { Route as SheilaV2CyclePhasePhaseRouteImport } from './routes/sheila-v2/cycle.phase.$phase'
+import { Route as SheilaV2NutritionMealIdRouteImport } from './routes/sheila-v2/nutrition_.meal.$id'
+import { Route as SheilaV2CyclePhasePhaseRouteImport } from './routes/sheila-v2/cycle_.phase.$phase'
 
 const WidgetsRoute = WidgetsRouteImport.update({
   id: '/widgets',
@@ -769,85 +769,85 @@ const WorkoutsIdPlayRoute = WorkoutsIdPlayRouteImport.update({
   getParentRoute: () => WorkoutsIdRoute,
 } as any)
 const SheilaV2WorkoutsPlayerRoute = SheilaV2WorkoutsPlayerRouteImport.update({
-  id: '/player',
-  path: '/player',
-  getParentRoute: () => SheilaV2WorkoutsRoute,
+  id: '/sheila-v2/workouts_/player',
+  path: '/sheila-v2/workouts/player',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const SheilaV2WorkoutsBuilderRoute = SheilaV2WorkoutsBuilderRouteImport.update({
-  id: '/builder',
-  path: '/builder',
-  getParentRoute: () => SheilaV2WorkoutsRoute,
+  id: '/sheila-v2/workouts_/builder',
+  path: '/sheila-v2/workouts/builder',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const SheilaV2ProfileSubscriptionRoute =
   SheilaV2ProfileSubscriptionRouteImport.update({
-    id: '/subscription',
-    path: '/subscription',
-    getParentRoute: () => SheilaV2ProfileRoute,
+    id: '/sheila-v2/profile_/subscription',
+    path: '/sheila-v2/profile/subscription',
+    getParentRoute: () => rootRouteImport,
   } as any)
 const SheilaV2ProfileAppearanceRoute =
   SheilaV2ProfileAppearanceRouteImport.update({
-    id: '/appearance',
-    path: '/appearance',
-    getParentRoute: () => SheilaV2ProfileRoute,
+    id: '/sheila-v2/profile_/appearance',
+    path: '/sheila-v2/profile/appearance',
+    getParentRoute: () => rootRouteImport,
   } as any)
 const SheilaV2NutritionShoppingRoute =
   SheilaV2NutritionShoppingRouteImport.update({
-    id: '/shopping',
-    path: '/shopping',
-    getParentRoute: () => SheilaV2NutritionRoute,
+    id: '/sheila-v2/nutrition_/shopping',
+    path: '/sheila-v2/nutrition/shopping',
+    getParentRoute: () => rootRouteImport,
   } as any)
 const SheilaV2NutritionRecipesRoute =
   SheilaV2NutritionRecipesRouteImport.update({
-    id: '/recipes',
-    path: '/recipes',
-    getParentRoute: () => SheilaV2NutritionRoute,
+    id: '/sheila-v2/nutrition_/recipes',
+    path: '/sheila-v2/nutrition/recipes',
+    getParentRoute: () => rootRouteImport,
   } as any)
 const SheilaV2NutritionPhotoRoute = SheilaV2NutritionPhotoRouteImport.update({
-  id: '/photo',
-  path: '/photo',
-  getParentRoute: () => SheilaV2NutritionRoute,
+  id: '/sheila-v2/nutrition_/photo',
+  path: '/sheila-v2/nutrition/photo',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const SheilaV2NutritionLogRoute = SheilaV2NutritionLogRouteImport.update({
-  id: '/log',
-  path: '/log',
-  getParentRoute: () => SheilaV2NutritionRoute,
+  id: '/sheila-v2/nutrition_/log',
+  path: '/sheila-v2/nutrition/log',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const SheilaV2JourneyReportRoute = SheilaV2JourneyReportRouteImport.update({
-  id: '/report',
-  path: '/report',
-  getParentRoute: () => SheilaV2JourneyRoute,
+  id: '/sheila-v2/journey_/report',
+  path: '/sheila-v2/journey/report',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const SheilaV2JourneyInsightsRoute = SheilaV2JourneyInsightsRouteImport.update({
-  id: '/insights',
-  path: '/insights',
-  getParentRoute: () => SheilaV2JourneyRoute,
+  id: '/sheila-v2/journey_/insights',
+  path: '/sheila-v2/journey/insights',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const SheilaV2JourneyAchievementsRoute =
   SheilaV2JourneyAchievementsRouteImport.update({
-    id: '/achievements',
-    path: '/achievements',
-    getParentRoute: () => SheilaV2JourneyRoute,
+    id: '/sheila-v2/journey_/achievements',
+    path: '/sheila-v2/journey/achievements',
+    getParentRoute: () => rootRouteImport,
   } as any)
 const SheilaV2CircleGroupsRoute = SheilaV2CircleGroupsRouteImport.update({
-  id: '/groups',
-  path: '/groups',
-  getParentRoute: () => SheilaV2CircleRoute,
+  id: '/sheila-v2/circle_/groups',
+  path: '/sheila-v2/circle/groups',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const SheilaV2CircleEventsRoute = SheilaV2CircleEventsRouteImport.update({
-  id: '/events',
-  path: '/events',
-  getParentRoute: () => SheilaV2CircleRoute,
+  id: '/sheila-v2/circle_/events',
+  path: '/sheila-v2/circle/events',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const SheilaV2CircleComposeRoute = SheilaV2CircleComposeRouteImport.update({
-  id: '/compose',
-  path: '/compose',
-  getParentRoute: () => SheilaV2CircleRoute,
+  id: '/sheila-v2/circle_/compose',
+  path: '/sheila-v2/circle/compose',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const SheilaV2CircleAccountabilityRoute =
   SheilaV2CircleAccountabilityRouteImport.update({
-    id: '/accountability',
-    path: '/accountability',
-    getParentRoute: () => SheilaV2CircleRoute,
+    id: '/sheila-v2/circle_/accountability',
+    path: '/sheila-v2/circle/accountability',
+    getParentRoute: () => rootRouteImport,
   } as any)
 const CoachesIdChatRoute = CoachesIdChatRouteImport.update({
   id: '/chat',
@@ -860,14 +860,14 @@ const CoachesIdBookRoute = CoachesIdBookRouteImport.update({
   getParentRoute: () => CoachesIdRoute,
 } as any)
 const SheilaV2NutritionMealIdRoute = SheilaV2NutritionMealIdRouteImport.update({
-  id: '/meal/$id',
-  path: '/meal/$id',
-  getParentRoute: () => SheilaV2NutritionRoute,
+  id: '/sheila-v2/nutrition_/meal/$id',
+  path: '/sheila-v2/nutrition/meal/$id',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const SheilaV2CyclePhasePhaseRoute = SheilaV2CyclePhasePhaseRouteImport.update({
-  id: '/phase/$phase',
-  path: '/phase/$phase',
-  getParentRoute: () => SheilaV2CycleRoute,
+  id: '/sheila-v2/cycle_/phase/$phase',
+  path: '/sheila-v2/cycle/phase/$phase',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -959,19 +959,19 @@ export interface FileRoutesByFullPath {
   '/profile/terms': typeof ProfileTermsRoute
   '/profile/theme': typeof ProfileThemeRoute
   '/reports/$id': typeof ReportsIdRoute
-  '/sheila-v2/circle': typeof SheilaV2CircleRouteWithChildren
-  '/sheila-v2/cycle': typeof SheilaV2CycleRouteWithChildren
+  '/sheila-v2/circle': typeof SheilaV2CircleRoute
+  '/sheila-v2/cycle': typeof SheilaV2CycleRoute
   '/sheila-v2/emergency': typeof SheilaV2EmergencyRoute
   '/sheila-v2/health': typeof SheilaV2HealthRoute
   '/sheila-v2/home': typeof SheilaV2HomeRoute
-  '/sheila-v2/journey': typeof SheilaV2JourneyRouteWithChildren
+  '/sheila-v2/journey': typeof SheilaV2JourneyRoute
   '/sheila-v2/notifications': typeof SheilaV2NotificationsRoute
-  '/sheila-v2/nutrition': typeof SheilaV2NutritionRouteWithChildren
+  '/sheila-v2/nutrition': typeof SheilaV2NutritionRoute
   '/sheila-v2/postpartum': typeof SheilaV2PostpartumRoute
   '/sheila-v2/pregnancy': typeof SheilaV2PregnancyRoute
-  '/sheila-v2/profile': typeof SheilaV2ProfileRouteWithChildren
+  '/sheila-v2/profile': typeof SheilaV2ProfileRoute
   '/sheila-v2/sheila': typeof SheilaV2SheilaRoute
-  '/sheila-v2/workouts': typeof SheilaV2WorkoutsRouteWithChildren
+  '/sheila-v2/workouts': typeof SheilaV2WorkoutsRoute
   '/workouts/$id': typeof WorkoutsIdRouteWithChildren
   '/workouts/draft': typeof WorkoutsDraftRoute
   '/workouts/live': typeof WorkoutsLiveRoute
@@ -1103,19 +1103,19 @@ export interface FileRoutesByTo {
   '/profile/terms': typeof ProfileTermsRoute
   '/profile/theme': typeof ProfileThemeRoute
   '/reports/$id': typeof ReportsIdRoute
-  '/sheila-v2/circle': typeof SheilaV2CircleRouteWithChildren
-  '/sheila-v2/cycle': typeof SheilaV2CycleRouteWithChildren
+  '/sheila-v2/circle': typeof SheilaV2CircleRoute
+  '/sheila-v2/cycle': typeof SheilaV2CycleRoute
   '/sheila-v2/emergency': typeof SheilaV2EmergencyRoute
   '/sheila-v2/health': typeof SheilaV2HealthRoute
   '/sheila-v2/home': typeof SheilaV2HomeRoute
-  '/sheila-v2/journey': typeof SheilaV2JourneyRouteWithChildren
+  '/sheila-v2/journey': typeof SheilaV2JourneyRoute
   '/sheila-v2/notifications': typeof SheilaV2NotificationsRoute
-  '/sheila-v2/nutrition': typeof SheilaV2NutritionRouteWithChildren
+  '/sheila-v2/nutrition': typeof SheilaV2NutritionRoute
   '/sheila-v2/postpartum': typeof SheilaV2PostpartumRoute
   '/sheila-v2/pregnancy': typeof SheilaV2PregnancyRoute
-  '/sheila-v2/profile': typeof SheilaV2ProfileRouteWithChildren
+  '/sheila-v2/profile': typeof SheilaV2ProfileRoute
   '/sheila-v2/sheila': typeof SheilaV2SheilaRoute
-  '/sheila-v2/workouts': typeof SheilaV2WorkoutsRouteWithChildren
+  '/sheila-v2/workouts': typeof SheilaV2WorkoutsRoute
   '/workouts/$id': typeof WorkoutsIdRouteWithChildren
   '/workouts/draft': typeof WorkoutsDraftRoute
   '/workouts/live': typeof WorkoutsLiveRoute
@@ -1248,19 +1248,19 @@ export interface FileRoutesById {
   '/profile/terms': typeof ProfileTermsRoute
   '/profile/theme': typeof ProfileThemeRoute
   '/reports/$id': typeof ReportsIdRoute
-  '/sheila-v2/circle': typeof SheilaV2CircleRouteWithChildren
-  '/sheila-v2/cycle': typeof SheilaV2CycleRouteWithChildren
+  '/sheila-v2/circle': typeof SheilaV2CircleRoute
+  '/sheila-v2/cycle': typeof SheilaV2CycleRoute
   '/sheila-v2/emergency': typeof SheilaV2EmergencyRoute
   '/sheila-v2/health': typeof SheilaV2HealthRoute
   '/sheila-v2/home': typeof SheilaV2HomeRoute
-  '/sheila-v2/journey': typeof SheilaV2JourneyRouteWithChildren
+  '/sheila-v2/journey': typeof SheilaV2JourneyRoute
   '/sheila-v2/notifications': typeof SheilaV2NotificationsRoute
-  '/sheila-v2/nutrition': typeof SheilaV2NutritionRouteWithChildren
+  '/sheila-v2/nutrition': typeof SheilaV2NutritionRoute
   '/sheila-v2/postpartum': typeof SheilaV2PostpartumRoute
   '/sheila-v2/pregnancy': typeof SheilaV2PregnancyRoute
-  '/sheila-v2/profile': typeof SheilaV2ProfileRouteWithChildren
+  '/sheila-v2/profile': typeof SheilaV2ProfileRoute
   '/sheila-v2/sheila': typeof SheilaV2SheilaRoute
-  '/sheila-v2/workouts': typeof SheilaV2WorkoutsRouteWithChildren
+  '/sheila-v2/workouts': typeof SheilaV2WorkoutsRoute
   '/workouts/$id': typeof WorkoutsIdRouteWithChildren
   '/workouts/draft': typeof WorkoutsDraftRoute
   '/workouts/live': typeof WorkoutsLiveRoute
@@ -1283,25 +1283,25 @@ export interface FileRoutesById {
   '/workouts/': typeof WorkoutsIndexRoute
   '/coaches/$id/book': typeof CoachesIdBookRoute
   '/coaches/$id/chat': typeof CoachesIdChatRoute
-  '/sheila-v2/circle/accountability': typeof SheilaV2CircleAccountabilityRoute
-  '/sheila-v2/circle/compose': typeof SheilaV2CircleComposeRoute
-  '/sheila-v2/circle/events': typeof SheilaV2CircleEventsRoute
-  '/sheila-v2/circle/groups': typeof SheilaV2CircleGroupsRoute
-  '/sheila-v2/journey/achievements': typeof SheilaV2JourneyAchievementsRoute
-  '/sheila-v2/journey/insights': typeof SheilaV2JourneyInsightsRoute
-  '/sheila-v2/journey/report': typeof SheilaV2JourneyReportRoute
-  '/sheila-v2/nutrition/log': typeof SheilaV2NutritionLogRoute
-  '/sheila-v2/nutrition/photo': typeof SheilaV2NutritionPhotoRoute
-  '/sheila-v2/nutrition/recipes': typeof SheilaV2NutritionRecipesRoute
-  '/sheila-v2/nutrition/shopping': typeof SheilaV2NutritionShoppingRoute
-  '/sheila-v2/profile/appearance': typeof SheilaV2ProfileAppearanceRoute
-  '/sheila-v2/profile/subscription': typeof SheilaV2ProfileSubscriptionRoute
-  '/sheila-v2/workouts/builder': typeof SheilaV2WorkoutsBuilderRoute
-  '/sheila-v2/workouts/player': typeof SheilaV2WorkoutsPlayerRoute
+  '/sheila-v2/circle_/accountability': typeof SheilaV2CircleAccountabilityRoute
+  '/sheila-v2/circle_/compose': typeof SheilaV2CircleComposeRoute
+  '/sheila-v2/circle_/events': typeof SheilaV2CircleEventsRoute
+  '/sheila-v2/circle_/groups': typeof SheilaV2CircleGroupsRoute
+  '/sheila-v2/journey_/achievements': typeof SheilaV2JourneyAchievementsRoute
+  '/sheila-v2/journey_/insights': typeof SheilaV2JourneyInsightsRoute
+  '/sheila-v2/journey_/report': typeof SheilaV2JourneyReportRoute
+  '/sheila-v2/nutrition_/log': typeof SheilaV2NutritionLogRoute
+  '/sheila-v2/nutrition_/photo': typeof SheilaV2NutritionPhotoRoute
+  '/sheila-v2/nutrition_/recipes': typeof SheilaV2NutritionRecipesRoute
+  '/sheila-v2/nutrition_/shopping': typeof SheilaV2NutritionShoppingRoute
+  '/sheila-v2/profile_/appearance': typeof SheilaV2ProfileAppearanceRoute
+  '/sheila-v2/profile_/subscription': typeof SheilaV2ProfileSubscriptionRoute
+  '/sheila-v2/workouts_/builder': typeof SheilaV2WorkoutsBuilderRoute
+  '/sheila-v2/workouts_/player': typeof SheilaV2WorkoutsPlayerRoute
   '/workouts/$id/play': typeof WorkoutsIdPlayRoute
   '/workouts/programs/$id': typeof WorkoutsProgramsIdRoute
-  '/sheila-v2/cycle/phase/$phase': typeof SheilaV2CyclePhasePhaseRoute
-  '/sheila-v2/nutrition/meal/$id': typeof SheilaV2NutritionMealIdRoute
+  '/sheila-v2/cycle_/phase/$phase': typeof SheilaV2CyclePhasePhaseRoute
+  '/sheila-v2/nutrition_/meal/$id': typeof SheilaV2NutritionMealIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -1717,25 +1717,25 @@ export interface FileRouteTypes {
     | '/workouts/'
     | '/coaches/$id/book'
     | '/coaches/$id/chat'
-    | '/sheila-v2/circle/accountability'
-    | '/sheila-v2/circle/compose'
-    | '/sheila-v2/circle/events'
-    | '/sheila-v2/circle/groups'
-    | '/sheila-v2/journey/achievements'
-    | '/sheila-v2/journey/insights'
-    | '/sheila-v2/journey/report'
-    | '/sheila-v2/nutrition/log'
-    | '/sheila-v2/nutrition/photo'
-    | '/sheila-v2/nutrition/recipes'
-    | '/sheila-v2/nutrition/shopping'
-    | '/sheila-v2/profile/appearance'
-    | '/sheila-v2/profile/subscription'
-    | '/sheila-v2/workouts/builder'
-    | '/sheila-v2/workouts/player'
+    | '/sheila-v2/circle_/accountability'
+    | '/sheila-v2/circle_/compose'
+    | '/sheila-v2/circle_/events'
+    | '/sheila-v2/circle_/groups'
+    | '/sheila-v2/journey_/achievements'
+    | '/sheila-v2/journey_/insights'
+    | '/sheila-v2/journey_/report'
+    | '/sheila-v2/nutrition_/log'
+    | '/sheila-v2/nutrition_/photo'
+    | '/sheila-v2/nutrition_/recipes'
+    | '/sheila-v2/nutrition_/shopping'
+    | '/sheila-v2/profile_/appearance'
+    | '/sheila-v2/profile_/subscription'
+    | '/sheila-v2/workouts_/builder'
+    | '/sheila-v2/workouts_/player'
     | '/workouts/$id/play'
     | '/workouts/programs/$id'
-    | '/sheila-v2/cycle/phase/$phase'
-    | '/sheila-v2/nutrition/meal/$id'
+    | '/sheila-v2/cycle_/phase/$phase'
+    | '/sheila-v2/nutrition_/meal/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -1827,19 +1827,19 @@ export interface RootRouteChildren {
   ProfileTermsRoute: typeof ProfileTermsRoute
   ProfileThemeRoute: typeof ProfileThemeRoute
   ReportsIdRoute: typeof ReportsIdRoute
-  SheilaV2CircleRoute: typeof SheilaV2CircleRouteWithChildren
-  SheilaV2CycleRoute: typeof SheilaV2CycleRouteWithChildren
+  SheilaV2CircleRoute: typeof SheilaV2CircleRoute
+  SheilaV2CycleRoute: typeof SheilaV2CycleRoute
   SheilaV2EmergencyRoute: typeof SheilaV2EmergencyRoute
   SheilaV2HealthRoute: typeof SheilaV2HealthRoute
   SheilaV2HomeRoute: typeof SheilaV2HomeRoute
-  SheilaV2JourneyRoute: typeof SheilaV2JourneyRouteWithChildren
+  SheilaV2JourneyRoute: typeof SheilaV2JourneyRoute
   SheilaV2NotificationsRoute: typeof SheilaV2NotificationsRoute
-  SheilaV2NutritionRoute: typeof SheilaV2NutritionRouteWithChildren
+  SheilaV2NutritionRoute: typeof SheilaV2NutritionRoute
   SheilaV2PostpartumRoute: typeof SheilaV2PostpartumRoute
   SheilaV2PregnancyRoute: typeof SheilaV2PregnancyRoute
-  SheilaV2ProfileRoute: typeof SheilaV2ProfileRouteWithChildren
+  SheilaV2ProfileRoute: typeof SheilaV2ProfileRoute
   SheilaV2SheilaRoute: typeof SheilaV2SheilaRoute
-  SheilaV2WorkoutsRoute: typeof SheilaV2WorkoutsRouteWithChildren
+  SheilaV2WorkoutsRoute: typeof SheilaV2WorkoutsRoute
   WorkoutsIdRoute: typeof WorkoutsIdRouteWithChildren
   WorkoutsDraftRoute: typeof WorkoutsDraftRoute
   WorkoutsLiveRoute: typeof WorkoutsLiveRoute
@@ -1860,6 +1860,23 @@ export interface RootRouteChildren {
   ReportsIndexRoute: typeof ReportsIndexRoute
   SheilaV2IndexRoute: typeof SheilaV2IndexRoute
   WorkoutsIndexRoute: typeof WorkoutsIndexRoute
+  SheilaV2CircleAccountabilityRoute: typeof SheilaV2CircleAccountabilityRoute
+  SheilaV2CircleComposeRoute: typeof SheilaV2CircleComposeRoute
+  SheilaV2CircleEventsRoute: typeof SheilaV2CircleEventsRoute
+  SheilaV2CircleGroupsRoute: typeof SheilaV2CircleGroupsRoute
+  SheilaV2JourneyAchievementsRoute: typeof SheilaV2JourneyAchievementsRoute
+  SheilaV2JourneyInsightsRoute: typeof SheilaV2JourneyInsightsRoute
+  SheilaV2JourneyReportRoute: typeof SheilaV2JourneyReportRoute
+  SheilaV2NutritionLogRoute: typeof SheilaV2NutritionLogRoute
+  SheilaV2NutritionPhotoRoute: typeof SheilaV2NutritionPhotoRoute
+  SheilaV2NutritionRecipesRoute: typeof SheilaV2NutritionRecipesRoute
+  SheilaV2NutritionShoppingRoute: typeof SheilaV2NutritionShoppingRoute
+  SheilaV2ProfileAppearanceRoute: typeof SheilaV2ProfileAppearanceRoute
+  SheilaV2ProfileSubscriptionRoute: typeof SheilaV2ProfileSubscriptionRoute
+  SheilaV2WorkoutsBuilderRoute: typeof SheilaV2WorkoutsBuilderRoute
+  SheilaV2WorkoutsPlayerRoute: typeof SheilaV2WorkoutsPlayerRoute
+  SheilaV2CyclePhasePhaseRoute: typeof SheilaV2CyclePhasePhaseRoute
+  SheilaV2NutritionMealIdRoute: typeof SheilaV2NutritionMealIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -2725,110 +2742,110 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkoutsIdPlayRouteImport
       parentRoute: typeof WorkoutsIdRoute
     }
-    '/sheila-v2/workouts/player': {
-      id: '/sheila-v2/workouts/player'
-      path: '/player'
+    '/sheila-v2/workouts_/player': {
+      id: '/sheila-v2/workouts_/player'
+      path: '/sheila-v2/workouts/player'
       fullPath: '/sheila-v2/workouts/player'
       preLoaderRoute: typeof SheilaV2WorkoutsPlayerRouteImport
-      parentRoute: typeof SheilaV2WorkoutsRoute
+      parentRoute: typeof rootRouteImport
     }
-    '/sheila-v2/workouts/builder': {
-      id: '/sheila-v2/workouts/builder'
-      path: '/builder'
+    '/sheila-v2/workouts_/builder': {
+      id: '/sheila-v2/workouts_/builder'
+      path: '/sheila-v2/workouts/builder'
       fullPath: '/sheila-v2/workouts/builder'
       preLoaderRoute: typeof SheilaV2WorkoutsBuilderRouteImport
-      parentRoute: typeof SheilaV2WorkoutsRoute
+      parentRoute: typeof rootRouteImport
     }
-    '/sheila-v2/profile/subscription': {
-      id: '/sheila-v2/profile/subscription'
-      path: '/subscription'
+    '/sheila-v2/profile_/subscription': {
+      id: '/sheila-v2/profile_/subscription'
+      path: '/sheila-v2/profile/subscription'
       fullPath: '/sheila-v2/profile/subscription'
       preLoaderRoute: typeof SheilaV2ProfileSubscriptionRouteImport
-      parentRoute: typeof SheilaV2ProfileRoute
+      parentRoute: typeof rootRouteImport
     }
-    '/sheila-v2/profile/appearance': {
-      id: '/sheila-v2/profile/appearance'
-      path: '/appearance'
+    '/sheila-v2/profile_/appearance': {
+      id: '/sheila-v2/profile_/appearance'
+      path: '/sheila-v2/profile/appearance'
       fullPath: '/sheila-v2/profile/appearance'
       preLoaderRoute: typeof SheilaV2ProfileAppearanceRouteImport
-      parentRoute: typeof SheilaV2ProfileRoute
+      parentRoute: typeof rootRouteImport
     }
-    '/sheila-v2/nutrition/shopping': {
-      id: '/sheila-v2/nutrition/shopping'
-      path: '/shopping'
+    '/sheila-v2/nutrition_/shopping': {
+      id: '/sheila-v2/nutrition_/shopping'
+      path: '/sheila-v2/nutrition/shopping'
       fullPath: '/sheila-v2/nutrition/shopping'
       preLoaderRoute: typeof SheilaV2NutritionShoppingRouteImport
-      parentRoute: typeof SheilaV2NutritionRoute
+      parentRoute: typeof rootRouteImport
     }
-    '/sheila-v2/nutrition/recipes': {
-      id: '/sheila-v2/nutrition/recipes'
-      path: '/recipes'
+    '/sheila-v2/nutrition_/recipes': {
+      id: '/sheila-v2/nutrition_/recipes'
+      path: '/sheila-v2/nutrition/recipes'
       fullPath: '/sheila-v2/nutrition/recipes'
       preLoaderRoute: typeof SheilaV2NutritionRecipesRouteImport
-      parentRoute: typeof SheilaV2NutritionRoute
+      parentRoute: typeof rootRouteImport
     }
-    '/sheila-v2/nutrition/photo': {
-      id: '/sheila-v2/nutrition/photo'
-      path: '/photo'
+    '/sheila-v2/nutrition_/photo': {
+      id: '/sheila-v2/nutrition_/photo'
+      path: '/sheila-v2/nutrition/photo'
       fullPath: '/sheila-v2/nutrition/photo'
       preLoaderRoute: typeof SheilaV2NutritionPhotoRouteImport
-      parentRoute: typeof SheilaV2NutritionRoute
+      parentRoute: typeof rootRouteImport
     }
-    '/sheila-v2/nutrition/log': {
-      id: '/sheila-v2/nutrition/log'
-      path: '/log'
+    '/sheila-v2/nutrition_/log': {
+      id: '/sheila-v2/nutrition_/log'
+      path: '/sheila-v2/nutrition/log'
       fullPath: '/sheila-v2/nutrition/log'
       preLoaderRoute: typeof SheilaV2NutritionLogRouteImport
-      parentRoute: typeof SheilaV2NutritionRoute
+      parentRoute: typeof rootRouteImport
     }
-    '/sheila-v2/journey/report': {
-      id: '/sheila-v2/journey/report'
-      path: '/report'
+    '/sheila-v2/journey_/report': {
+      id: '/sheila-v2/journey_/report'
+      path: '/sheila-v2/journey/report'
       fullPath: '/sheila-v2/journey/report'
       preLoaderRoute: typeof SheilaV2JourneyReportRouteImport
-      parentRoute: typeof SheilaV2JourneyRoute
+      parentRoute: typeof rootRouteImport
     }
-    '/sheila-v2/journey/insights': {
-      id: '/sheila-v2/journey/insights'
-      path: '/insights'
+    '/sheila-v2/journey_/insights': {
+      id: '/sheila-v2/journey_/insights'
+      path: '/sheila-v2/journey/insights'
       fullPath: '/sheila-v2/journey/insights'
       preLoaderRoute: typeof SheilaV2JourneyInsightsRouteImport
-      parentRoute: typeof SheilaV2JourneyRoute
+      parentRoute: typeof rootRouteImport
     }
-    '/sheila-v2/journey/achievements': {
-      id: '/sheila-v2/journey/achievements'
-      path: '/achievements'
+    '/sheila-v2/journey_/achievements': {
+      id: '/sheila-v2/journey_/achievements'
+      path: '/sheila-v2/journey/achievements'
       fullPath: '/sheila-v2/journey/achievements'
       preLoaderRoute: typeof SheilaV2JourneyAchievementsRouteImport
-      parentRoute: typeof SheilaV2JourneyRoute
+      parentRoute: typeof rootRouteImport
     }
-    '/sheila-v2/circle/groups': {
-      id: '/sheila-v2/circle/groups'
-      path: '/groups'
+    '/sheila-v2/circle_/groups': {
+      id: '/sheila-v2/circle_/groups'
+      path: '/sheila-v2/circle/groups'
       fullPath: '/sheila-v2/circle/groups'
       preLoaderRoute: typeof SheilaV2CircleGroupsRouteImport
-      parentRoute: typeof SheilaV2CircleRoute
+      parentRoute: typeof rootRouteImport
     }
-    '/sheila-v2/circle/events': {
-      id: '/sheila-v2/circle/events'
-      path: '/events'
+    '/sheila-v2/circle_/events': {
+      id: '/sheila-v2/circle_/events'
+      path: '/sheila-v2/circle/events'
       fullPath: '/sheila-v2/circle/events'
       preLoaderRoute: typeof SheilaV2CircleEventsRouteImport
-      parentRoute: typeof SheilaV2CircleRoute
+      parentRoute: typeof rootRouteImport
     }
-    '/sheila-v2/circle/compose': {
-      id: '/sheila-v2/circle/compose'
-      path: '/compose'
+    '/sheila-v2/circle_/compose': {
+      id: '/sheila-v2/circle_/compose'
+      path: '/sheila-v2/circle/compose'
       fullPath: '/sheila-v2/circle/compose'
       preLoaderRoute: typeof SheilaV2CircleComposeRouteImport
-      parentRoute: typeof SheilaV2CircleRoute
+      parentRoute: typeof rootRouteImport
     }
-    '/sheila-v2/circle/accountability': {
-      id: '/sheila-v2/circle/accountability'
-      path: '/accountability'
+    '/sheila-v2/circle_/accountability': {
+      id: '/sheila-v2/circle_/accountability'
+      path: '/sheila-v2/circle/accountability'
       fullPath: '/sheila-v2/circle/accountability'
       preLoaderRoute: typeof SheilaV2CircleAccountabilityRouteImport
-      parentRoute: typeof SheilaV2CircleRoute
+      parentRoute: typeof rootRouteImport
     }
     '/coaches/$id/chat': {
       id: '/coaches/$id/chat'
@@ -2844,19 +2861,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CoachesIdBookRouteImport
       parentRoute: typeof CoachesIdRoute
     }
-    '/sheila-v2/nutrition/meal/$id': {
-      id: '/sheila-v2/nutrition/meal/$id'
-      path: '/meal/$id'
+    '/sheila-v2/nutrition_/meal/$id': {
+      id: '/sheila-v2/nutrition_/meal/$id'
+      path: '/sheila-v2/nutrition/meal/$id'
       fullPath: '/sheila-v2/nutrition/meal/$id'
       preLoaderRoute: typeof SheilaV2NutritionMealIdRouteImport
-      parentRoute: typeof SheilaV2NutritionRoute
+      parentRoute: typeof rootRouteImport
     }
-    '/sheila-v2/cycle/phase/$phase': {
-      id: '/sheila-v2/cycle/phase/$phase'
-      path: '/phase/$phase'
+    '/sheila-v2/cycle_/phase/$phase': {
+      id: '/sheila-v2/cycle_/phase/$phase'
+      path: '/sheila-v2/cycle/phase/$phase'
       fullPath: '/sheila-v2/cycle/phase/$phase'
       preLoaderRoute: typeof SheilaV2CyclePhasePhaseRouteImport
-      parentRoute: typeof SheilaV2CycleRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -2874,98 +2891,6 @@ const CoachesIdRouteChildren: CoachesIdRouteChildren = {
 const CoachesIdRouteWithChildren = CoachesIdRoute._addFileChildren(
   CoachesIdRouteChildren,
 )
-
-interface SheilaV2CircleRouteChildren {
-  SheilaV2CircleAccountabilityRoute: typeof SheilaV2CircleAccountabilityRoute
-  SheilaV2CircleComposeRoute: typeof SheilaV2CircleComposeRoute
-  SheilaV2CircleEventsRoute: typeof SheilaV2CircleEventsRoute
-  SheilaV2CircleGroupsRoute: typeof SheilaV2CircleGroupsRoute
-}
-
-const SheilaV2CircleRouteChildren: SheilaV2CircleRouteChildren = {
-  SheilaV2CircleAccountabilityRoute: SheilaV2CircleAccountabilityRoute,
-  SheilaV2CircleComposeRoute: SheilaV2CircleComposeRoute,
-  SheilaV2CircleEventsRoute: SheilaV2CircleEventsRoute,
-  SheilaV2CircleGroupsRoute: SheilaV2CircleGroupsRoute,
-}
-
-const SheilaV2CircleRouteWithChildren = SheilaV2CircleRoute._addFileChildren(
-  SheilaV2CircleRouteChildren,
-)
-
-interface SheilaV2CycleRouteChildren {
-  SheilaV2CyclePhasePhaseRoute: typeof SheilaV2CyclePhasePhaseRoute
-}
-
-const SheilaV2CycleRouteChildren: SheilaV2CycleRouteChildren = {
-  SheilaV2CyclePhasePhaseRoute: SheilaV2CyclePhasePhaseRoute,
-}
-
-const SheilaV2CycleRouteWithChildren = SheilaV2CycleRoute._addFileChildren(
-  SheilaV2CycleRouteChildren,
-)
-
-interface SheilaV2JourneyRouteChildren {
-  SheilaV2JourneyAchievementsRoute: typeof SheilaV2JourneyAchievementsRoute
-  SheilaV2JourneyInsightsRoute: typeof SheilaV2JourneyInsightsRoute
-  SheilaV2JourneyReportRoute: typeof SheilaV2JourneyReportRoute
-}
-
-const SheilaV2JourneyRouteChildren: SheilaV2JourneyRouteChildren = {
-  SheilaV2JourneyAchievementsRoute: SheilaV2JourneyAchievementsRoute,
-  SheilaV2JourneyInsightsRoute: SheilaV2JourneyInsightsRoute,
-  SheilaV2JourneyReportRoute: SheilaV2JourneyReportRoute,
-}
-
-const SheilaV2JourneyRouteWithChildren = SheilaV2JourneyRoute._addFileChildren(
-  SheilaV2JourneyRouteChildren,
-)
-
-interface SheilaV2NutritionRouteChildren {
-  SheilaV2NutritionLogRoute: typeof SheilaV2NutritionLogRoute
-  SheilaV2NutritionPhotoRoute: typeof SheilaV2NutritionPhotoRoute
-  SheilaV2NutritionRecipesRoute: typeof SheilaV2NutritionRecipesRoute
-  SheilaV2NutritionShoppingRoute: typeof SheilaV2NutritionShoppingRoute
-  SheilaV2NutritionMealIdRoute: typeof SheilaV2NutritionMealIdRoute
-}
-
-const SheilaV2NutritionRouteChildren: SheilaV2NutritionRouteChildren = {
-  SheilaV2NutritionLogRoute: SheilaV2NutritionLogRoute,
-  SheilaV2NutritionPhotoRoute: SheilaV2NutritionPhotoRoute,
-  SheilaV2NutritionRecipesRoute: SheilaV2NutritionRecipesRoute,
-  SheilaV2NutritionShoppingRoute: SheilaV2NutritionShoppingRoute,
-  SheilaV2NutritionMealIdRoute: SheilaV2NutritionMealIdRoute,
-}
-
-const SheilaV2NutritionRouteWithChildren =
-  SheilaV2NutritionRoute._addFileChildren(SheilaV2NutritionRouteChildren)
-
-interface SheilaV2ProfileRouteChildren {
-  SheilaV2ProfileAppearanceRoute: typeof SheilaV2ProfileAppearanceRoute
-  SheilaV2ProfileSubscriptionRoute: typeof SheilaV2ProfileSubscriptionRoute
-}
-
-const SheilaV2ProfileRouteChildren: SheilaV2ProfileRouteChildren = {
-  SheilaV2ProfileAppearanceRoute: SheilaV2ProfileAppearanceRoute,
-  SheilaV2ProfileSubscriptionRoute: SheilaV2ProfileSubscriptionRoute,
-}
-
-const SheilaV2ProfileRouteWithChildren = SheilaV2ProfileRoute._addFileChildren(
-  SheilaV2ProfileRouteChildren,
-)
-
-interface SheilaV2WorkoutsRouteChildren {
-  SheilaV2WorkoutsBuilderRoute: typeof SheilaV2WorkoutsBuilderRoute
-  SheilaV2WorkoutsPlayerRoute: typeof SheilaV2WorkoutsPlayerRoute
-}
-
-const SheilaV2WorkoutsRouteChildren: SheilaV2WorkoutsRouteChildren = {
-  SheilaV2WorkoutsBuilderRoute: SheilaV2WorkoutsBuilderRoute,
-  SheilaV2WorkoutsPlayerRoute: SheilaV2WorkoutsPlayerRoute,
-}
-
-const SheilaV2WorkoutsRouteWithChildren =
-  SheilaV2WorkoutsRoute._addFileChildren(SheilaV2WorkoutsRouteChildren)
 
 interface WorkoutsIdRouteChildren {
   WorkoutsIdPlayRoute: typeof WorkoutsIdPlayRoute
@@ -3079,19 +3004,19 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileTermsRoute: ProfileTermsRoute,
   ProfileThemeRoute: ProfileThemeRoute,
   ReportsIdRoute: ReportsIdRoute,
-  SheilaV2CircleRoute: SheilaV2CircleRouteWithChildren,
-  SheilaV2CycleRoute: SheilaV2CycleRouteWithChildren,
+  SheilaV2CircleRoute: SheilaV2CircleRoute,
+  SheilaV2CycleRoute: SheilaV2CycleRoute,
   SheilaV2EmergencyRoute: SheilaV2EmergencyRoute,
   SheilaV2HealthRoute: SheilaV2HealthRoute,
   SheilaV2HomeRoute: SheilaV2HomeRoute,
-  SheilaV2JourneyRoute: SheilaV2JourneyRouteWithChildren,
+  SheilaV2JourneyRoute: SheilaV2JourneyRoute,
   SheilaV2NotificationsRoute: SheilaV2NotificationsRoute,
-  SheilaV2NutritionRoute: SheilaV2NutritionRouteWithChildren,
+  SheilaV2NutritionRoute: SheilaV2NutritionRoute,
   SheilaV2PostpartumRoute: SheilaV2PostpartumRoute,
   SheilaV2PregnancyRoute: SheilaV2PregnancyRoute,
-  SheilaV2ProfileRoute: SheilaV2ProfileRouteWithChildren,
+  SheilaV2ProfileRoute: SheilaV2ProfileRoute,
   SheilaV2SheilaRoute: SheilaV2SheilaRoute,
-  SheilaV2WorkoutsRoute: SheilaV2WorkoutsRouteWithChildren,
+  SheilaV2WorkoutsRoute: SheilaV2WorkoutsRoute,
   WorkoutsIdRoute: WorkoutsIdRouteWithChildren,
   WorkoutsDraftRoute: WorkoutsDraftRoute,
   WorkoutsLiveRoute: WorkoutsLiveRoute,
@@ -3112,7 +3037,33 @@ const rootRouteChildren: RootRouteChildren = {
   ReportsIndexRoute: ReportsIndexRoute,
   SheilaV2IndexRoute: SheilaV2IndexRoute,
   WorkoutsIndexRoute: WorkoutsIndexRoute,
+  SheilaV2CircleAccountabilityRoute: SheilaV2CircleAccountabilityRoute,
+  SheilaV2CircleComposeRoute: SheilaV2CircleComposeRoute,
+  SheilaV2CircleEventsRoute: SheilaV2CircleEventsRoute,
+  SheilaV2CircleGroupsRoute: SheilaV2CircleGroupsRoute,
+  SheilaV2JourneyAchievementsRoute: SheilaV2JourneyAchievementsRoute,
+  SheilaV2JourneyInsightsRoute: SheilaV2JourneyInsightsRoute,
+  SheilaV2JourneyReportRoute: SheilaV2JourneyReportRoute,
+  SheilaV2NutritionLogRoute: SheilaV2NutritionLogRoute,
+  SheilaV2NutritionPhotoRoute: SheilaV2NutritionPhotoRoute,
+  SheilaV2NutritionRecipesRoute: SheilaV2NutritionRecipesRoute,
+  SheilaV2NutritionShoppingRoute: SheilaV2NutritionShoppingRoute,
+  SheilaV2ProfileAppearanceRoute: SheilaV2ProfileAppearanceRoute,
+  SheilaV2ProfileSubscriptionRoute: SheilaV2ProfileSubscriptionRoute,
+  SheilaV2WorkoutsBuilderRoute: SheilaV2WorkoutsBuilderRoute,
+  SheilaV2WorkoutsPlayerRoute: SheilaV2WorkoutsPlayerRoute,
+  SheilaV2CyclePhasePhaseRoute: SheilaV2CyclePhasePhaseRoute,
+  SheilaV2NutritionMealIdRoute: SheilaV2NutritionMealIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}

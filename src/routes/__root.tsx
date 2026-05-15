@@ -1,4 +1,5 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { SheilaV2Provider } from "@/components/sheila-v2/SheilaV2Store";
 
 import appCss from "../styles.css?url";
 

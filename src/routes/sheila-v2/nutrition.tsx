@@ -1,13 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Camera, Sparkles, Plus, BookOpen, ChevronLeft } from "lucide-react";
+import { Camera, Sparkles, Plus, BookOpen, ChevronLeft, Check, Droplets, ListChecks } from "lucide-react";
 import { ShellV2, PhasePill } from "@/components/sheila-v2/ShellV2";
 import { AITyping, useFakeGenerate } from "@/components/sheila-v2/AITyping";
+import { useSheilaV2 } from "@/components/sheila-v2/SheilaV2Store";
 import { userV2, PHASE_META, MEALS, MEAL_TYPES } from "@/data/sheila-v2";
 
 export const Route = createFileRoute("/sheila-v2/nutrition")({ component: NutritionIdx });
 
 function NutritionIdx() {
-  const phase = userV2.currentPhase;
+  const { state, dispatch, caloriesToday, proteinToday, isMealLogged } = useSheilaV2();
+  const phase = state.currentPhase;
   const meta = PHASE_META[phase];
   const ready = useFakeGenerate(phase, 900);
 
@@ -15,9 +17,21 @@ function NutritionIdx() {
     <ShellV2 title="التغذية" rightSlot={<PhasePill phase={phase} name={meta.name} color={meta.color} />}>
       <div className="px-5">
         <div className="grid grid-cols-3 gap-2 rounded-2xl bg-white/80 border border-border p-3">
-          <Sum label="السعرات" v={`${userV2.caloriesToday}`} of={`${userV2.caloriesTarget}`} c="var(--phase-menstrual)" />
-          <Sum label="بروتين" v={`${userV2.proteinG}غ`} of={`${userV2.proteinTarget}غ`} c="var(--primary)" />
-          <Sum label="ماء" v={`${userV2.waterCups}/${userV2.waterTarget}`} of="كأس" c="var(--phase-ovulation)" />
+          <Sum label="السعرات" v={`${caloriesToday}`} of={`${userV2.caloriesTarget}`} c="var(--phase-menstrual)" />
+          <Sum label="بروتين" v={`${proteinToday}غ`} of={`${userV2.proteinTarget}غ`} c="var(--primary)" />
+          <Sum label="ماء" v={`${state.waterCups}/${userV2.waterTarget}`} of="كأس" c="var(--phase-ovulation)" />
+        </div>
+
+        <div className="grid grid-cols-2 gap-2 mt-2">
+          <button
+            onClick={() => dispatch({ type: "addWater" })}
+            className="rounded-2xl py-2.5 bg-white/85 border border-border flex items-center justify-center gap-1.5 text-[12px] font-medium active:scale-[0.98]"
+          >
+            <Droplets size={13} className="text-primary" /> +1 كأس
+          </button>
+          <Link to="/sheila-v2/nutrition/shopping" className="rounded-2xl py-2.5 bg-white/85 border border-border flex items-center justify-center gap-1.5 text-[12px] font-medium">
+            <ListChecks size={13} className="text-foreground/65" /> قائمة التسوّق
+          </Link>
         </div>
 
         <Link to="/sheila-v2/nutrition/recipes" className="mt-3 rounded-2xl p-3.5 flex items-center gap-3 active:scale-[0.99]"
@@ -31,10 +45,14 @@ function NutritionIdx() {
         <div className="space-y-2.5">
           {MEAL_TYPES.map((mt, i) => {
             const m = MEALS.find((x) => x.type === mt.id && x.phase?.includes(phase)) ?? MEALS.find((x) => x.type === mt.id)!;
+            const logged = isMealLogged(m.id);
             return (
               <div key={mt.id} className="rounded-2xl bg-white/85 border border-border p-3.5">
                 <div className="flex items-center justify-between mb-2">
-                  <div className="text-[12.5px] font-semibold">{mt.label}</div>
+                  <div className="text-[12.5px] font-semibold flex items-center gap-1.5">
+                    {mt.label}
+                    {logged && <Check size={12} className="text-primary" strokeWidth={2.5} />}
+                  </div>
                   <div className="text-[10px] text-foreground/55">{mt.time}</div>
                 </div>
                 <Link to="/sheila-v2/nutrition/meal/$id" params={{ id: m.id }} className="block rounded-xl bg-secondary/40 p-3 mb-2">
@@ -47,7 +65,18 @@ function NutritionIdx() {
                 <div className="grid grid-cols-3 gap-1.5">
                   <Action to="/sheila-v2/nutrition/photo" icon={Camera} label="صوّري" />
                   <Action to="/sheila-v2/sheila" icon={Sparkles} label="شيلا" />
-                  <Action to="/sheila-v2/nutrition/log" icon={Plus} label="أضيفي" />
+                  {logged ? (
+                    <button disabled className="rounded-xl bg-primary/10 border border-primary/30 py-2 flex flex-col items-center gap-0.5 text-[10.5px] text-primary">
+                      <Check size={14} strokeWidth={2.2} /> مسجّلة
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => dispatch({ type: "logMeal", mealId: m.id })}
+                      className="rounded-xl bg-white/70 border border-border py-2 flex flex-col items-center gap-0.5 text-[10.5px] text-foreground/70 active:scale-95"
+                    >
+                      <Plus size={14} strokeWidth={1.9} /> سجّلي
+                    </button>
+                  )}
                 </div>
               </div>
             );

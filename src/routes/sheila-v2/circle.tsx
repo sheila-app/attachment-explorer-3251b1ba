@@ -1,14 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Heart, MessageCircle, Plus, Users, CalendarDays, UserPlus } from "lucide-react";
 import { ShellV2 } from "@/components/sheila-v2/ShellV2";
+import { useSheilaV2 } from "@/components/sheila-v2/SheilaV2Store";
 import { FEED, tierFor } from "@/data/sheila-v2";
 
 export const Route = createFileRoute("/sheila-v2/circle")({ component: Circle });
 
 function Circle() {
+  const { state } = useSheilaV2();
+  const allPosts = [...state.feedPosts, ...FEED];
+
   return (
     <ShellV2 title="دائرة شيلا" fabSide="end">
-      {/* الزر العائم للنشر يمين-أسفل (FAB شيلا ينتقل لـ end أيضاً، لكن دائرة شيلا الحقيقية ستضع زر النشر start) */}
       <Link to="/sheila-v2/circle/compose" className="absolute z-40 bottom-[92px] start-5">
         <div className="w-14 h-14 rounded-full flex items-center justify-center bg-white shadow-lg border border-border">
           <Plus size={22} className="text-primary" strokeWidth={2.2} />
@@ -19,11 +22,14 @@ function Circle() {
         <div className="grid grid-cols-3 gap-2">
           <Link to="/sheila-v2/circle/groups" className="rounded-2xl bg-white/85 border border-border p-3 flex flex-col items-center gap-1.5"><Users size={18} className="text-primary" /><span className="text-[10.5px]">المجموعات</span></Link>
           <Link to="/sheila-v2/circle/events" className="rounded-2xl bg-white/85 border border-border p-3 flex flex-col items-center gap-1.5"><CalendarDays size={18} className="text-phase-follicular" /><span className="text-[10.5px]">الفعاليّات</span></Link>
-          <Link to="/sheila-v2/circle/accountability" className="rounded-2xl bg-white/85 border border-border p-3 flex flex-col items-center gap-1.5"><UserPlus size={18} className="text-phase-ovulation" /><span className="text-[10.5px]">شريك</span></Link>
+          <Link to="/sheila-v2/circle/accountability" className="rounded-2xl bg-white/85 border border-border p-3 flex flex-col items-center gap-1.5">
+            <UserPlus size={18} className="text-phase-ovulation" />
+            <span className="text-[10.5px]">{state.partner ? state.partner.name : "شريك"}</span>
+          </Link>
         </div>
 
         <div className="mt-4 space-y-3">
-          {FEED.map(p => {
+          {allPosts.map((p) => {
             const t = tierFor(p.tier === "sharp" ? 500 : p.tier === "fluent" ? 850 : 250);
             return (
               <div key={p.id} className="rounded-2xl bg-white/85 border border-border p-4">

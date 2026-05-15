@@ -5,7 +5,7 @@ import { DeviceFrame } from "@/components/sheila/DeviceFrame";
 import { LiquidBackdrop } from "@/components/sheila/LiquidBackdrop";
 import { BottomNavV2 } from "./BottomNavV2";
 import { SheilaFAB } from "./SheilaFAB";
-import { LifeStageProvider } from "./LifeStageContext";
+import { SheilaV2Provider, useSheilaV2 } from "./SheilaV2Store";
 
 interface Props {
   title?: string;
@@ -25,7 +25,7 @@ export function ShellV2({
   variant = "default", rightSlot, bare = false,
 }: Props) {
   return (
-    <LifeStageProvider>
+    <SheilaV2Provider>
       <DeviceFrame>
         <div className="relative h-full overflow-hidden">
           <LiquidBackdrop variant={variant} />
@@ -47,12 +47,13 @@ export function ShellV2({
           {showNav && <BottomNavV2 />}
         </div>
       </DeviceFrame>
-    </LifeStageProvider>
+    </SheilaV2Provider>
   );
 }
 
 /** هيدر الرئيسيّة — أفاتار يمين، جرس يسار، عنوان مخصّص. */
 export function HomeHeader({ name, onAvatar = "/sheila-v2/profile" }: { name: string; onAvatar?: string }) {
+  const { unreadCount } = useSheilaV2();
   return (
     <div className="grid grid-cols-3 items-center px-5 pt-5 gap-3">
       <Link to={onAvatar as "/"} className="justify-self-start flex items-center gap-2.5">
@@ -68,7 +69,11 @@ export function HomeHeader({ name, onAvatar = "/sheila-v2/profile" }: { name: st
       <div className="justify-self-center" />
       <Link to="/sheila-v2/notifications" className="justify-self-end relative w-10 h-10 rounded-full bg-white/70 backdrop-blur border border-white/60 flex items-center justify-center shadow-sm">
         <Bell size={17} strokeWidth={1.75} className="text-foreground/75" />
-        <span className="absolute top-2 end-2 w-1.5 h-1.5 rounded-full bg-destructive" />
+        {unreadCount > 0 && (
+          <span className="absolute -top-1 -end-1 min-w-[18px] h-[18px] px-1 rounded-full bg-destructive text-white text-[10px] font-bold flex items-center justify-center nums">
+            {unreadCount}
+          </span>
+        )}
       </Link>
     </div>
   );

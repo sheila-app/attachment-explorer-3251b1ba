@@ -5,7 +5,7 @@ import { DeviceFrame } from "@/components/sheila/DeviceFrame";
 import { LiquidBackdrop } from "@/components/sheila/LiquidBackdrop";
 import { BottomNavV2 } from "./BottomNavV2";
 import { SheilaFAB } from "./SheilaFAB";
-import { SheilaV2Provider, useSheilaV2 } from "./SheilaV2Store";
+import { useSheilaV2 } from "./SheilaV2Store";
 
 interface Props {
   title?: string;

@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ShellV2 } from "@/components/sheila-v2/ShellV2";
+import { useSheilaV2 } from "@/components/sheila-v2/SheilaV2Store";
 import { PHASE_META, type CyclePhase } from "@/data/sheila-v2";
+import { useNavigate } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/sheila-v2/cycle_/phase/$phase")({ component: PhaseEdu });
 
@@ -13,15 +15,26 @@ const TIPS: Record<CyclePhase, { food: string[]; move: string[]; mood: string[] 
 
 function PhaseEdu() {
   const { phase } = Route.useParams();
+  const { state, dispatch } = useSheilaV2();
+  const navigate = useNavigate();
   const p = phase as CyclePhase;
   const m = PHASE_META[p];
   const t = TIPS[p];
+  const isCurrent = state.currentPhase === p;
   return (
     <ShellV2 title={m.name} back="/sheila-v2/cycle" showFAB={false}>
       <div className="px-5">
         <div className="rounded-3xl p-5 relative overflow-hidden" style={{ background: `linear-gradient(135deg, ${m.color}33, ${m.color}11)`, border: `1px solid ${m.color}33` }}>
           <div className="font-display text-[22px]" style={{ color: m.deep }}>{m.name}</div>
           <p className="text-[13px] text-foreground/75 mt-2 leading-relaxed">{m.description}</p>
+          <button
+            disabled={isCurrent}
+            onClick={() => { dispatch({ type: "setPhase", phase: p }); navigate({ to: "/sheila-v2/home" }); }}
+            className="mt-3 w-full py-2.5 rounded-xl text-[12px] font-semibold disabled:opacity-50"
+            style={{ background: isCurrent ? "transparent" : m.color, color: isCurrent ? m.deep : "white", border: isCurrent ? `1px solid ${m.color}` : "none" }}
+          >
+            {isCurrent ? "هذه مرحلتك الحاليّة" : "اعتمدي هذه المرحلة"}
+          </button>
         </div>
 
         {([["تغذية", t.food], ["حركة", t.move], ["مزاج", t.mood]] as const).map(([title, items]) => (

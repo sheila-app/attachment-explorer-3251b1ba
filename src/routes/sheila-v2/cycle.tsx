@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 import { ShellV2 } from "@/components/sheila-v2/ShellV2";
+import { useSheilaV2 } from "@/components/sheila-v2/SheilaV2Store";
 import { userV2, PHASE_META, type CyclePhase } from "@/data/sheila-v2";
 
 export const Route = createFileRoute("/sheila-v2/cycle")({ component: CycleIndex });
@@ -11,8 +12,9 @@ const PHASES: { key: CyclePhase; days: number }[] = [
 ];
 
 function CycleIndex() {
-  const { cycleDay, cycleLength, currentPhase } = userV2;
-  const meta = PHASE_META[currentPhase];
+  const { state } = useSheilaV2();
+  const { cycleDay, cycleLength } = userV2;
+  const meta = PHASE_META[state.currentPhase];
   const days = Array.from({ length: cycleLength }, (_, i) => i + 1);
   function phaseOf(d: number): CyclePhase {
     let acc = 0;

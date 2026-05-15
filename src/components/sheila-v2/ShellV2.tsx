@@ -5,7 +5,7 @@ import { DeviceFrame } from "@/components/sheila/DeviceFrame";
 import { LiquidBackdrop } from "@/components/sheila/LiquidBackdrop";
 import { BottomNavV2 } from "./BottomNavV2";
 import { SheilaFAB } from "./SheilaFAB";
-import { SheilaV2Provider, useSheilaV2 } from "./SheilaV2Store";
+import { useSheilaV2 } from "./SheilaV2Store";
 
 interface Props {
   title?: string;
@@ -25,29 +25,27 @@ export function ShellV2({
   variant = "default", rightSlot, bare = false,
 }: Props) {
   return (
-    <SheilaV2Provider>
-      <DeviceFrame>
-        <div className="relative h-full overflow-hidden">
-          <LiquidBackdrop variant={variant} />
-          <div className={`relative z-10 h-full overflow-y-auto no-scrollbar ${showNav ? "pb-28" : "pb-8"}`}>
-            {!bare && (title || back || rightSlot) && (
-              <header className="px-5 pt-6 pb-3 flex items-center gap-3">
-                {back ? (
-                  <Link to={back as "/"} className="glass w-10 h-10 rounded-full flex items-center justify-center shrink-0">
-                    <ArrowRight size={17} strokeWidth={1.75} className="relative z-10" />
-                  </Link>
-                ) : <div className="w-10" />}
-                <h1 className="flex-1 font-display text-[22px] leading-none">{title}</h1>
-                {rightSlot}
-              </header>
-            )}
-            {children}
-          </div>
-          {showFAB && <SheilaFAB side={fabSide} />}
-          {showNav && <BottomNavV2 />}
+    <DeviceFrame>
+      <div className="relative h-full overflow-hidden">
+        <LiquidBackdrop variant={variant} />
+        <div className={`relative z-10 h-full overflow-y-auto no-scrollbar ${showNav ? "pb-28" : "pb-8"}`}>
+          {!bare && (title || back || rightSlot) && (
+            <header className="px-5 pt-6 pb-3 flex items-center gap-3">
+              {back ? (
+                <Link to={back as "/"} className="glass w-10 h-10 rounded-full flex items-center justify-center shrink-0">
+                  <ArrowRight size={17} strokeWidth={1.75} className="relative z-10" />
+                </Link>
+              ) : <div className="w-10" />}
+              <h1 className="flex-1 font-display text-[22px] leading-none">{title}</h1>
+              {rightSlot}
+            </header>
+          )}
+          {children}
         </div>
-      </DeviceFrame>
-    </SheilaV2Provider>
+        {showFAB && <SheilaFAB side={fabSide} />}
+        {showNav && <BottomNavV2 />}
+      </div>
+    </DeviceFrame>
   );
 }
 

@@ -1,4 +1,5 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { SheilaV2Provider } from "@/components/sheila-v2/SheilaV2Store";
 
 import appCss from "../styles.css?url";
 
@@ -71,5 +72,9 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  return <Outlet />;
+  return (
+    <SheilaV2Provider>
+      <Outlet />
+    </SheilaV2Provider>
+  );
 }

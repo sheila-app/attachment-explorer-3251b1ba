@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Wand2, Play } from "lucide-react";
 import { ShellV2 } from "@/components/sheila-v2/ShellV2";
 import { AITyping, AIGenerating } from "@/components/sheila-v2/AITyping";
+import { useSheilaV2 } from "@/components/sheila-v2/SheilaV2Store";
 import { WORKOUTS } from "@/data/sheila-v2";
 
 export const Route = createFileRoute("/sheila-v2/workouts_/builder")({ component: Builder });
@@ -10,6 +11,7 @@ export const Route = createFileRoute("/sheila-v2/workouts_/builder")({ component
 const PRESETS = ["20 دقيقة، بدون معدات، البطن", "قوّة الجزء العلوي بالدمبل", "متعبة، أريد تمدّد فقط"];
 
 function Builder() {
+  const { dispatch } = useSheilaV2();
   const [q, setQ] = useState("");
   const [stage, setStage] = useState<"idle" | "gen" | "done">("idle");
   const result = WORKOUTS[0];
@@ -33,7 +35,7 @@ function Builder() {
         </div>
 
         <div className="mt-3 flex flex-wrap gap-2">
-          {PRESETS.map(p => (
+          {PRESETS.map((p) => (
             <button key={p} onClick={() => go(p)} className="text-[11.5px] px-3 py-1.5 rounded-full bg-white/70 border border-border">{p}</button>
           ))}
         </div>
@@ -56,7 +58,12 @@ function Builder() {
                 </div>
               ))}
             </div>
-            <Link to="/sheila-v2/workouts/player" className="mt-4 flex items-center justify-center gap-2 py-3 rounded-2xl text-primary-foreground text-[13px] font-semibold" style={{ background: "var(--gradient-primary)" }}>
+            <Link
+              to="/sheila-v2/workouts/player"
+              onClick={() => dispatch({ type: "selectWorkout", workoutId: result.id })}
+              className="mt-4 flex items-center justify-center gap-2 py-3 rounded-2xl text-primary-foreground text-[13px] font-semibold"
+              style={{ background: "var(--gradient-primary)" }}
+            >
               <Play size={14} strokeWidth={2.5} /> ابدئي
             </Link>
           </div>

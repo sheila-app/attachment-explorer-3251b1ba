@@ -72,5 +72,9 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  return <Outlet />;
+  return (
+    <SheilaV2Provider>
+      <Outlet />
+    </SheilaV2Provider>
+  );
 }

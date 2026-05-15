@@ -30,6 +30,7 @@ import { Route as AchievementsRouteImport } from './routes/achievements'
 import { Route as R404RouteImport } from './routes/404'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WorkoutsIndexRouteImport } from './routes/workouts.index'
+import { Route as SheilaV2IndexRouteImport } from './routes/sheila-v2/index'
 import { Route as ReportsIndexRouteImport } from './routes/reports.index'
 import { Route as ProfileIndexRouteImport } from './routes/profile.index'
 import { Route as NutritionIndexRouteImport } from './routes/nutrition.index'
@@ -48,6 +49,8 @@ import { Route as WorkoutsProgramsRouteImport } from './routes/workouts.programs
 import { Route as WorkoutsLiveRouteImport } from './routes/workouts.live'
 import { Route as WorkoutsDraftRouteImport } from './routes/workouts.draft'
 import { Route as WorkoutsIdRouteImport } from './routes/workouts.$id'
+import { Route as SheilaV2SheilaRouteImport } from './routes/sheila-v2/sheila'
+import { Route as SheilaV2HomeRouteImport } from './routes/sheila-v2/home'
 import { Route as ReportsIdRouteImport } from './routes/reports.$id'
 import { Route as ProfileThemeRouteImport } from './routes/profile.theme'
 import { Route as ProfileTermsRouteImport } from './routes/profile.terms'
@@ -226,6 +229,11 @@ const WorkoutsIndexRoute = WorkoutsIndexRouteImport.update({
   path: '/workouts/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SheilaV2IndexRoute = SheilaV2IndexRouteImport.update({
+  id: '/sheila-v2/',
+  path: '/sheila-v2/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReportsIndexRoute = ReportsIndexRouteImport.update({
   id: '/reports/',
   path: '/reports/',
@@ -314,6 +322,16 @@ const WorkoutsDraftRoute = WorkoutsDraftRouteImport.update({
 const WorkoutsIdRoute = WorkoutsIdRouteImport.update({
   id: '/workouts/$id',
   path: '/workouts/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SheilaV2SheilaRoute = SheilaV2SheilaRouteImport.update({
+  id: '/sheila-v2/sheila',
+  path: '/sheila-v2/sheila',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SheilaV2HomeRoute = SheilaV2HomeRouteImport.update({
+  id: '/sheila-v2/home',
+  path: '/sheila-v2/home',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ReportsIdRoute = ReportsIdRouteImport.update({
@@ -767,6 +785,8 @@ export interface FileRoutesByFullPath {
   '/profile/terms': typeof ProfileTermsRoute
   '/profile/theme': typeof ProfileThemeRoute
   '/reports/$id': typeof ReportsIdRoute
+  '/sheila-v2/home': typeof SheilaV2HomeRoute
+  '/sheila-v2/sheila': typeof SheilaV2SheilaRoute
   '/workouts/$id': typeof WorkoutsIdRouteWithChildren
   '/workouts/draft': typeof WorkoutsDraftRoute
   '/workouts/live': typeof WorkoutsLiveRoute
@@ -785,6 +805,7 @@ export interface FileRoutesByFullPath {
   '/nutrition/': typeof NutritionIndexRoute
   '/profile/': typeof ProfileIndexRoute
   '/reports/': typeof ReportsIndexRoute
+  '/sheila-v2/': typeof SheilaV2IndexRoute
   '/workouts/': typeof WorkoutsIndexRoute
   '/coaches/$id/book': typeof CoachesIdBookRoute
   '/coaches/$id/chat': typeof CoachesIdChatRoute
@@ -880,6 +901,8 @@ export interface FileRoutesByTo {
   '/profile/terms': typeof ProfileTermsRoute
   '/profile/theme': typeof ProfileThemeRoute
   '/reports/$id': typeof ReportsIdRoute
+  '/sheila-v2/home': typeof SheilaV2HomeRoute
+  '/sheila-v2/sheila': typeof SheilaV2SheilaRoute
   '/workouts/$id': typeof WorkoutsIdRouteWithChildren
   '/workouts/draft': typeof WorkoutsDraftRoute
   '/workouts/live': typeof WorkoutsLiveRoute
@@ -898,6 +921,7 @@ export interface FileRoutesByTo {
   '/nutrition': typeof NutritionIndexRoute
   '/profile': typeof ProfileIndexRoute
   '/reports': typeof ReportsIndexRoute
+  '/sheila-v2': typeof SheilaV2IndexRoute
   '/workouts': typeof WorkoutsIndexRoute
   '/coaches/$id/book': typeof CoachesIdBookRoute
   '/coaches/$id/chat': typeof CoachesIdChatRoute
@@ -994,6 +1018,8 @@ export interface FileRoutesById {
   '/profile/terms': typeof ProfileTermsRoute
   '/profile/theme': typeof ProfileThemeRoute
   '/reports/$id': typeof ReportsIdRoute
+  '/sheila-v2/home': typeof SheilaV2HomeRoute
+  '/sheila-v2/sheila': typeof SheilaV2SheilaRoute
   '/workouts/$id': typeof WorkoutsIdRouteWithChildren
   '/workouts/draft': typeof WorkoutsDraftRoute
   '/workouts/live': typeof WorkoutsLiveRoute
@@ -1012,6 +1038,7 @@ export interface FileRoutesById {
   '/nutrition/': typeof NutritionIndexRoute
   '/profile/': typeof ProfileIndexRoute
   '/reports/': typeof ReportsIndexRoute
+  '/sheila-v2/': typeof SheilaV2IndexRoute
   '/workouts/': typeof WorkoutsIndexRoute
   '/coaches/$id/book': typeof CoachesIdBookRoute
   '/coaches/$id/chat': typeof CoachesIdChatRoute
@@ -1109,6 +1136,8 @@ export interface FileRouteTypes {
     | '/profile/terms'
     | '/profile/theme'
     | '/reports/$id'
+    | '/sheila-v2/home'
+    | '/sheila-v2/sheila'
     | '/workouts/$id'
     | '/workouts/draft'
     | '/workouts/live'
@@ -1127,6 +1156,7 @@ export interface FileRouteTypes {
     | '/nutrition/'
     | '/profile/'
     | '/reports/'
+    | '/sheila-v2/'
     | '/workouts/'
     | '/coaches/$id/book'
     | '/coaches/$id/chat'
@@ -1222,6 +1252,8 @@ export interface FileRouteTypes {
     | '/profile/terms'
     | '/profile/theme'
     | '/reports/$id'
+    | '/sheila-v2/home'
+    | '/sheila-v2/sheila'
     | '/workouts/$id'
     | '/workouts/draft'
     | '/workouts/live'
@@ -1240,6 +1272,7 @@ export interface FileRouteTypes {
     | '/nutrition'
     | '/profile'
     | '/reports'
+    | '/sheila-v2'
     | '/workouts'
     | '/coaches/$id/book'
     | '/coaches/$id/chat'
@@ -1335,6 +1368,8 @@ export interface FileRouteTypes {
     | '/profile/terms'
     | '/profile/theme'
     | '/reports/$id'
+    | '/sheila-v2/home'
+    | '/sheila-v2/sheila'
     | '/workouts/$id'
     | '/workouts/draft'
     | '/workouts/live'
@@ -1353,6 +1388,7 @@ export interface FileRouteTypes {
     | '/nutrition/'
     | '/profile/'
     | '/reports/'
+    | '/sheila-v2/'
     | '/workouts/'
     | '/coaches/$id/book'
     | '/coaches/$id/chat'
@@ -1449,6 +1485,8 @@ export interface RootRouteChildren {
   ProfileTermsRoute: typeof ProfileTermsRoute
   ProfileThemeRoute: typeof ProfileThemeRoute
   ReportsIdRoute: typeof ReportsIdRoute
+  SheilaV2HomeRoute: typeof SheilaV2HomeRoute
+  SheilaV2SheilaRoute: typeof SheilaV2SheilaRoute
   WorkoutsIdRoute: typeof WorkoutsIdRouteWithChildren
   WorkoutsDraftRoute: typeof WorkoutsDraftRoute
   WorkoutsLiveRoute: typeof WorkoutsLiveRoute
@@ -1467,6 +1505,7 @@ export interface RootRouteChildren {
   NutritionIndexRoute: typeof NutritionIndexRoute
   ProfileIndexRoute: typeof ProfileIndexRoute
   ReportsIndexRoute: typeof ReportsIndexRoute
+  SheilaV2IndexRoute: typeof SheilaV2IndexRoute
   WorkoutsIndexRoute: typeof WorkoutsIndexRoute
 }
 
@@ -1619,6 +1658,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkoutsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sheila-v2/': {
+      id: '/sheila-v2/'
+      path: '/sheila-v2'
+      fullPath: '/sheila-v2/'
+      preLoaderRoute: typeof SheilaV2IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reports/': {
       id: '/reports/'
       path: '/reports'
@@ -1743,6 +1789,20 @@ declare module '@tanstack/react-router' {
       path: '/workouts/$id'
       fullPath: '/workouts/$id'
       preLoaderRoute: typeof WorkoutsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sheila-v2/sheila': {
+      id: '/sheila-v2/sheila'
+      path: '/sheila-v2/sheila'
+      fullPath: '/sheila-v2/sheila'
+      preLoaderRoute: typeof SheilaV2SheilaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sheila-v2/home': {
+      id: '/sheila-v2/home'
+      path: '/sheila-v2/home'
+      fullPath: '/sheila-v2/home'
+      preLoaderRoute: typeof SheilaV2HomeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reports/$id': {
@@ -2378,6 +2438,8 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileTermsRoute: ProfileTermsRoute,
   ProfileThemeRoute: ProfileThemeRoute,
   ReportsIdRoute: ReportsIdRoute,
+  SheilaV2HomeRoute: SheilaV2HomeRoute,
+  SheilaV2SheilaRoute: SheilaV2SheilaRoute,
   WorkoutsIdRoute: WorkoutsIdRouteWithChildren,
   WorkoutsDraftRoute: WorkoutsDraftRoute,
   WorkoutsLiveRoute: WorkoutsLiveRoute,
@@ -2396,6 +2458,7 @@ const rootRouteChildren: RootRouteChildren = {
   NutritionIndexRoute: NutritionIndexRoute,
   ProfileIndexRoute: ProfileIndexRoute,
   ReportsIndexRoute: ReportsIndexRoute,
+  SheilaV2IndexRoute: SheilaV2IndexRoute,
   WorkoutsIndexRoute: WorkoutsIndexRoute,
 }
 export const routeTree = rootRouteImport

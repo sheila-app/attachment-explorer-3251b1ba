@@ -81,11 +81,12 @@ function Page() {
     <FeatureShell title="نظام التصميم" back="/" showNav={false} variant="default">
       <div className="px-5 pb-10 space-y-5">
         {/* Tabs */}
-        <div className="glass-strong rounded-2xl p-1 grid grid-cols-3 gap-1">
+        <div className="glass-strong rounded-2xl p-1 grid grid-cols-4 gap-1">
           {([
             ["tokens", "الرموز"],
             ["components", "المكوّنات"],
             ["screens", "الشاشات"],
+            ["v2", "v2"],
           ] as const).map(([k, t]) => (
             <button key={k} onClick={() => setTab(k)}
               className="rounded-xl py-2 text-[12px] font-medium relative"

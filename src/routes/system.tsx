@@ -64,7 +64,7 @@ const V2_SCREENS: { group: string; items: { name: string; path: string }[] }[] =
  * تحديث إلزامي عند إضافة عنصر جديد أو شاشة جديدة (يُسحب فهرس الشاشات تلقائيّاً من mock.ts).
  */
 function Page() {
-  const [tab, setTab] = useState<"tokens" | "components" | "screens">("tokens");
+  const [tab, setTab] = useState<"tokens" | "components" | "screens" | "v2">("tokens");
   const [wheel, setWheel] = useState<number>(28);
   const today = new Date();
   const months = ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];

@@ -1,21 +1,33 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { Sparkles, ChefHat } from "lucide-react";
+import { Sparkles, ChefHat, Plus, Check } from "lucide-react";
 import { ShellV2 } from "@/components/sheila-v2/ShellV2";
 import { AITyping, AIGenerating } from "@/components/sheila-v2/AITyping";
+import { useSheilaV2 } from "@/components/sheila-v2/SheilaV2Store";
+import { MEALS } from "@/data/sheila-v2";
 
 export const Route = createFileRoute("/sheila-v2/nutrition_/recipes")({ component: Recipes });
+
 const PRESETS = ["عندي دجاج وطماطم وأرز", "عشاء غنيّ بالبروتين خفيف", "وصفة سريعة بدون جلوتين"];
 const SAVED = [
   { name: "شوربة عدس بالكمّون", cal: 320, t: "30 د" },
-  { name: "كفتة دجاج بالفرن",   cal: 410, t: "40 د" },
+  { name: "كفتة دجاج بالفرن", cal: 410, t: "40 د" },
   { name: "سلطة كينوا متوسّطية", cal: 380, t: "20 د" },
 ];
 
 function Recipes() {
+  const { dispatch, isMealLogged } = useSheilaV2();
+  const navigate = useNavigate();
   const [q, setQ] = useState("");
   const [stage, setStage] = useState<"idle" | "gen" | "done">("idle");
+  const generated = MEALS.find((m) => m.id === "m4") ?? MEALS[0];
+  const logged = isMealLogged(generated.id);
+
   function go(t: string) { setQ(t); setStage("gen"); setTimeout(() => setStage("done"), 1500); }
+  function addToPlan() {
+    dispatch({ type: "logMeal", mealId: generated.id });
+    setTimeout(() => navigate({ to: "/sheila-v2/home" }), 400);
+  }
 
   return (
     <ShellV2 title="الوصفات" back="/sheila-v2/nutrition" showFAB={false}>
@@ -28,7 +40,7 @@ function Recipes() {
             ابني الوصفة
           </button>
           <div className="relative z-10 flex flex-wrap gap-1.5 mt-3">
-            {PRESETS.map(p => <button key={p} onClick={() => go(p)} className="text-[10.5px] px-2.5 py-1 rounded-full bg-white/60 border border-border">{p}</button>)}
+            {PRESETS.map((p) => <button key={p} onClick={() => go(p)} className="text-[10.5px] px-2.5 py-1 rounded-full bg-white/60 border border-border">{p}</button>)}
           </div>
         </div>
 
@@ -36,8 +48,8 @@ function Recipes() {
         {stage === "done" && (
           <div className="mt-4 rounded-2xl bg-white/85 border border-border p-4">
             <div className="inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary font-semibold">✶ شيلا</div>
-            <div className="font-display text-[18px] mt-2">دجاج بالطماطم والأرز البسمتي</div>
-            <p className="text-[11.5px] text-foreground/65 mt-1.5"><AITyping text="وجبة متوازنة 480 سعرة، 35غ بروتين. وقت التحضير 25 دقيقة." speed={20} /></p>
+            <div className="font-display text-[18px] mt-2">{generated.name}</div>
+            <p className="text-[11.5px] text-foreground/65 mt-1.5"><AITyping text={`${generated.cal} سعرة، ${generated.protein}غ بروتين. وقت التحضير 25 دقيقة.`} speed={20} /></p>
             <div className="text-[11px] font-semibold text-primary mt-3">المقادير</div>
             <ul className="text-[12px] text-foreground/75 mt-1 space-y-0.5">
               <li>• 200غ صدر دجاج</li><li>• 3 حبّات طماطم</li><li>• 1 كوب أرز بسمتي</li><li>• ملح، فلفل، كمّون</li>
@@ -49,6 +61,15 @@ function Recipes() {
               <li>3. أضيفي الطماطم والتوابل.</li>
               <li>4. أضيفي الأرز والماء واتركيه على نار هادئة 18 دقيقة.</li>
             </ol>
+            {logged ? (
+              <div className="mt-4 flex items-center justify-center gap-2 py-3 rounded-2xl bg-primary/10 border border-primary/30 text-primary text-[13px] font-semibold">
+                <Check size={14} strokeWidth={2.5} /> مضافة لخطّة اليوم
+              </div>
+            ) : (
+              <button onClick={addToPlan} className="mt-4 w-full flex items-center justify-center gap-2 py-3 rounded-2xl text-primary-foreground text-[13px] font-semibold" style={{ background: "var(--gradient-primary)" }}>
+                <Plus size={14} strokeWidth={2.5} /> أضيفيها لخطّة اليوم
+              </button>
+            )}
           </div>
         )}
 

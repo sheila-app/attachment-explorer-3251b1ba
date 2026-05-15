@@ -7,8 +7,57 @@ import { CyclePhaseRing } from "@/components/sheila/CyclePhaseRing";
 import { allScreens, PHASE_META } from "@/data/mock";
 import { Bell, Sparkles, Flame, Droplet, Moon, ChevronLeft, Activity } from "lucide-react";
 import { MOOD_LIST } from "@/data/moods";
+import { AITyping, AIGenerating } from "@/components/sheila-v2/AITyping";
+import { TierBadge } from "@/components/sheila-v2/TierBadge";
+import { TIERS, PHASE_META as V2_PHASE_META } from "@/data/sheila-v2";
 
 export const Route = createFileRoute("/system")({ component: Page });
+
+const V2_SCREENS: { group: string; items: { name: string; path: string }[] }[] = [
+  { group: "v2 · رئيسي", items: [
+    { name: "معرض v2", path: "/sheila-v2" },
+    { name: "الرئيسية", path: "/sheila-v2/home" },
+    { name: "شيلا (شات)", path: "/sheila-v2/sheila" },
+    { name: "الإشعارات", path: "/sheila-v2/notifications" },
+    { name: "الطوارئ", path: "/sheila-v2/emergency" },
+    { name: "الصحّة", path: "/sheila-v2/health" },
+  ]},
+  { group: "v2 · تغذية", items: [
+    { name: "هاب التغذية", path: "/sheila-v2/nutrition" },
+    { name: "تسجيل وجبة", path: "/sheila-v2/nutrition/log" },
+    { name: "صورة وجبة", path: "/sheila-v2/nutrition/photo" },
+    { name: "وصفات", path: "/sheila-v2/nutrition/recipes" },
+    { name: "تسوّق", path: "/sheila-v2/nutrition/shopping" },
+  ]},
+  { group: "v2 · تمارين", items: [
+    { name: "هاب التمارين", path: "/sheila-v2/workouts" },
+    { name: "بناء التمرين", path: "/sheila-v2/workouts/builder" },
+    { name: "مشغّل التمرين", path: "/sheila-v2/workouts/player" },
+  ]},
+  { group: "v2 · دورة ومراحل", items: [
+    { name: "الدورة", path: "/sheila-v2/cycle" },
+    { name: "الحمل", path: "/sheila-v2/pregnancy" },
+    { name: "ما بعد الولادة", path: "/sheila-v2/postpartum" },
+  ]},
+  { group: "v2 · دائرة", items: [
+    { name: "الدائرة", path: "/sheila-v2/circle" },
+    { name: "أصحاب المسؤوليّة", path: "/sheila-v2/circle/accountability" },
+    { name: "نشر منشور", path: "/sheila-v2/circle/compose" },
+    { name: "الفعاليّات", path: "/sheila-v2/circle/events" },
+    { name: "المجموعات", path: "/sheila-v2/circle/groups" },
+  ]},
+  { group: "v2 · رحلتي", items: [
+    { name: "الرحلة", path: "/sheila-v2/journey" },
+    { name: "الإنجازات", path: "/sheila-v2/journey/achievements" },
+    { name: "رؤى", path: "/sheila-v2/journey/insights" },
+    { name: "تقرير", path: "/sheila-v2/journey/report" },
+  ]},
+  { group: "v2 · بروفايل", items: [
+    { name: "البروفايل", path: "/sheila-v2/profile" },
+    { name: "المظهر", path: "/sheila-v2/profile/appearance" },
+    { name: "الاشتراك", path: "/sheila-v2/profile/subscription" },
+  ]},
+];
 
 /**
  * صفحة نظام التصميم — مرجع شامل للألوان والمكوّنات والشاشات.

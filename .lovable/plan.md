@@ -1,109 +1,111 @@
+# خطّة التكامل — SHEILA v2
 
-# خطّة بناء SHEILA v2
+الهدف: تحويل شاشات `/sheila-v2/*` من شاشات منفصلة إلى تطبيق متكامل، حيث كل إجراء يُحدث تأثيراً مرئياً في الشاشات الأخرى (الرئيسيّة، رحلتك، الإشعارات، Body IQ).
 
-نسخة كاملة من التطبيق المُعاد تصميمه في مجلّد `sheila-v2` منفصل تماماً عن الشاشات الحاليّة (لا حذف، لا تعديل). نفس نظام التصميم (DeviceFrame، LiquidBackdrop، oklch tokens، Tajawal/Cairo، RTL).
+---
 
-## البنية
+## 1) طبقة الحالة المشتركة (SheilaV2Store)
 
-```text
-src/routes/sheila-v2/
-  index.tsx                    ← فهرس كل شاشات v2 (للتصفّح والاختبار)
-  home.tsx                     ← الرئيسية (5 بلوكات)
-  cycle.index.tsx              ← تاب الدورة (تقويم + توقّعات)
-  cycle.phase.$phase.tsx       ← 4 شاشات تعليم المراحل
-  pregnancy.tsx                ← رحلة الحمل (تاب 2 بديل)
-  postpartum.tsx               ← ما بعد الولادة (تاب 2 بديل)
-  health.tsx                   ← صحتي (سن اليأس / حالات هرمونيّة)
-  workouts.index.tsx           ← التمارين 3 zones
-  workouts.player.tsx          ← Active Session Player (شاشة جديدة)
-  workouts.builder.tsx         ← Custom Workout Builder (شيلا)
-  nutrition.index.tsx          ← التغذية 4 slots
-  nutrition.meal.$id.tsx       ← Meal Detail
-  nutrition.log.tsx            ← تسجيل وجبة
-  nutrition.photo.tsx          ← Photo Meal ID (محاكاة كاميرا)
-  nutrition.recipes.tsx        ← الوصفات + Recipe Builder
-  nutrition.shopping.tsx       ← قائمة التسوّق
-  circle.index.tsx             ← دائرة شيلا (Feed)
-  circle.compose.tsx           ← Post Composer
-  circle.groups.tsx            ← المجموعات
-  circle.events.tsx            ← الفعاليّات
-  circle.accountability.tsx    ← شريك المساءلة + AI matching
-  journey.index.tsx            ← رحلتك (3 zones)
-  journey.insights.tsx         ← Smart Insights (4 رؤى AI)
-  journey.report.$month.tsx    ← التقرير الشهري + رؤى شيلا
-  journey.achievements.tsx     ← الإنجازات (6 أعمدة + 5 tiers)
-  profile.index.tsx            ← حسابي
-  profile.appearance.tsx       ← المظهر (مع ملاحظة قفل ألوان المراحل)
-  profile.subscription.tsx
-  notifications.tsx            ← من جرس الهيدر
-  sheila.chat.tsx              ← شات شيلا العام + كشف الضائقة
-  emergency.tsx                ← شاشة الموارد الطارئة
+ملف جديد: `src/components/sheila-v2/SheilaV2Store.tsx`
 
-src/components/sheila-v2/
-  ShellV2.tsx                  ← هيكل موحّد (هيدر + content + bottom nav + FAB)
-  BottomNavV2.tsx              ← 5 تابات (الرئيسية / تاب متكيّف / تمارين / تغذية / رحلتك)
-  SheilaFAB.tsx                ← زر شيلا العائم (أسفل-يمين)
-  PhasePill.tsx                ← شارة المرحلة (تفتح شاشة تعليم)
-  TierBadge.tsx                ← Seedling/Blooming/Sharp/Fluent/Radiant
-  StreakArc.tsx                ← قوس Body IQ
-  AITypingBubble.tsx           ← محاكاة typing تدريجيّة
-  AIGeneratingCard.tsx         ← skeleton shimmer أثناء التوليد
-  DailyMessageCard.tsx         ← رسالة الصباح
-  MealSlot.tsx                 ← بطاقة وجبة (4 slots)
-  WorkoutCard.tsx
-  InsightCard.tsx              ← بطاقة رؤية (مع label)
-  CommunityShortcut.tsx        ← اختصار دائرة شيلا في الرئيسية
-  LifeStageContext.tsx         ← مزوّد سياق مرحلة الحياة (لتبديل تاب 2)
+`Context + useReducer` يحفظ الحالة في `localStorage` (مفتاح `sheila-v2-state`)، يلفّ جميع شاشات v2 من خلال `ShellV2`.
 
-src/data/sheila-v2/
-  dailyMessages.ts             ← أمثلة Daily Messages بحسب المرحلة + الطاقة
-  smartInsights.ts             ← 4 رؤى أسبوعيّة + 3 شهريّة
-  tiers.ts                     ← نظام المستويات الـ 5 + الأعمدة الـ 6
-  workoutsLibrary.ts           ← ~30 تمرين عيّنة مصنّفة بالمرحلة
-  mealsLibrary.ts              ← ~30 وجبة عيّنة مصنّفة
-  communityFeed.ts
-  achievementsList.ts
-  lifeStages.ts                ← 7 مراحل الحياة + إعدادات تاب 2
-```
+الحقول:
+- `waterCups`, `caloriesToday`, `proteinToday`
+- `loggedMeals: { mealId, type, at }[]`
+- `completedWorkouts: { workoutId, at, durationActual }[]`
+- `bodyIQ`, `streak`, `lastActiveDate`
+- `unlockedAchievements: string[]`
+- `feedPosts: Post[]` (يضمّ المنشورات المنشورة حديثاً فوق `FEED`)
+- `partnerMatched: string | null`
+- `notifications: Notification[]` (مع `unread`)
+- `lifeStage` (يُنقل من LifeStageContext)
 
-## محاكاة الذكاء الاصطناعي
+أحداث (actions):
+- `logMeal`, `removeMeal`, `addWater`, `completeWorkout`, `unlockAchievement`,
+  `publishPost`, `matchPartner`, `markNotificationRead`, `setLifeStage`.
 
-`AITypingBubble` يعرض النصّ حرفاً حرفاً (≈25ms/حرف) مع cursor وامض. كل وظائف شيلا (Daily Message، Recipe Builder، Workout Builder، Insights، Photo ID، Free Text Logging، Chat) تستخدم نفس النمط:
+كل حدث يُحدّث Body IQ ويُنشئ إشعاراً مناسباً (مثلاً «+15 Body IQ — أكملتِ تمرين القوّة»).
 
-1. عرض `AIGeneratingCard` shimmer لـ 800–1500ms
-2. ثم `AITypingBubble` يكتب الإجابة من `src/data/sheila-v2/`
-3. زر "اقتراح آخر" يُعيد الدورة برسالة مختلفة من نفس الملفّ
+> ملاحظة: لا backend — كله mock في الذاكرة + localStorage.
 
-## المبادئ المُطبّقة من الملفّين
+---
 
-- **حذف كل أزرار "عودة" السفليّة** — back في الهيدر فقط (←)
-- **زر شيلا عائم** أسفل-يمين كل شاشة، وفي تاب المجتمع ينتقل زر النشر لأسفل-يسار
-- **ألوان المراحل مقفلة** — ملاحظة صريحة في شاشة المظهر
-- **بدون BMI، بدون heart rate في Player، بدون wearables**
-- **تاب 2 يتكيّف**: يقرأ `LifeStageContext` ويعرض الشاشة المناسبة (الدورة / الحمل / النفاس / صحتي)
-- **عربيّة فقط، RTL، logical properties (ms-/me-/ps-/pe-)**
-- **Body IQ events** كـ toasts عبر `sonner`
-- **Tier visuals**: Seedling مسطّح → Radiant مع sparkles + gyroscope tilt (يُحاكى بـ mouse position)
+## 2) تدفّقات الربط بين الشاشات
 
-## شاشة /sheila-v2 (الفهرس)
+### أ — تدفّق التمرين
+1. `home` → بطاقة «خطّة اليوم» تعرض تمرين مقترح من `WORKOUTS` حسب المرحلة.  
+2. الضغط → `workouts` (يُبرز الموصى به) → `workouts/player` مع `?id=`.  
+3. عند إنهاء المؤقّت → `completeWorkout(id)` → +25 Body IQ، إشعار، فتح إنجاز إن استحقّ، ثم العودة إلى `home`.  
+4. `journey/insights` يقرأ `completedWorkouts` لاحتساب «أفضل أيّامك».
 
-شبكة بطاقات بكل الشاشات الـ 30 مجمّعة حسب القسم (الرئيسيّة، الدورة، التمارين، التغذية، المجتمع، الرحلة، الحساب، الذكاء الاصطناعي) — لتسهيل التصفّح والمراجعة.
+### ب — تدفّق التغذية
+1. `home` → بطاقة الوجبة → `nutrition/meal/$id` فيها زرّ «سجّلي هذه الوجبة» → `logMeal` → +10 Body IQ.  
+2. `nutrition` يعرض السعرات/البروتين الفعليّة من المتجر بدل القيم الثابتة في `userV2`.  
+3. `nutrition/photo`: بعد «التعرّف» (محاكاة AI) → اقتراح وجبة من `MEALS` → زرّ تسجيل.  
+4. `nutrition/recipes` (Builder): إنشاء وصفة → زرّ «أضيفيها لخطّة اليوم» → تظهر في `home`.  
+5. `nutrition/shopping`: مولّدة من الوجبات المسجّلة + المقترحة.  
+6. أزرار الماء (+1 كأس) في `home` و `nutrition` → `addWater`.
 
-## ما لن يُلمس
+### ج — تدفّق الدورة والمراحل
+1. `cycle` يبقى مصدر phase. تغيير المرحلة (للتجربة) عبر `cycle/phase/$phase` → زرّ «اعتمدي هذه المرحلة» → `setPhase` → كل بطاقات `home/workouts/nutrition` تتحدّث.  
+2. تبديل `lifeStage` من `profile` → يُغيّر التاب الثاني في `BottomNavV2` فعليّاً (نقل LifeStage إلى المتجر).
 
-- أي ملفّ في `src/routes/` خارج `sheila-v2/`
-- `src/components/sheila/` (يبقى كما هو)
-- `src/data/mock.ts` و البيانات الحاليّة
-- `BottomNav` الحاليّ، `OnboardingShell`، `FeatureShell`
+### د — تدفّق الدائرة (Circle)
+1. `circle/compose` → نص + فئة → `publishPost` → يظهر فوريّاً أعلى `circle` Feed.  
+2. `circle/groups` → الانضمام لمجموعة يُولّد إشعاراً ويزيد Body IQ.  
+3. `circle/accountability` → بعد «المطابقة» AI، اختيار شريك → `matchPartner` → يظهر الشريك في `home` (Shortcut «شريك» يعرض الاسم + Streak).
 
-## ترتيب التنفيذ
+### هـ — تدفّق رحلتك
+1. `journey` → بطاقات حيّة من المتجر: عدد التمارين، السلسلة، Body IQ، آخر إنجاز.  
+2. `journey/achievements` → يدمج `ACHIEVEMENTS` مع `unlockedAchievements` من المتجر.  
+3. `journey/insights` → الرؤى تُولَّد ديناميكيّاً (مثلاً: «أفضل تمارينك في مرحلة الإباضة» مبني على `completedWorkouts`).  
+4. `journey/report` → ملخّص الشهر الفعلي + زرّ «شاركيها في الدائرة» → `publishPost`.
 
-1. البنية التحتيّة: `ShellV2` + `BottomNavV2` + `SheilaFAB` + `LifeStageContext` + بيانات mock
-2. مكوّنات AI المشتركة: `AITypingBubble` + `AIGeneratingCard`
-3. الشاشات الأساسيّة: home → cycle → workouts (+ player + builder) → nutrition (+ recipes + builder + photo)
-4. المجتمع + Accountability + AI matching
-5. رحلتك + Smart Insights + التقارير + الإنجازات (5 tiers)
-6. حسابي + المظهر + الإشعارات + شات شيلا + Emergency
-7. شاشة الفهرس `/sheila-v2`
+### و — شات شيلا
+- اكتشاف نيّة الإجراء: «اقترحي وصفة» → ردّ + زرّ Action ينقل إلى `nutrition/meal/$id`.  
+- «ابدئي تمرين» → زرّ ينقل مباشرة إلى `workouts/player?id=…`.  
+- «أضيفي كأس ماء» → ينفّذ `addWater` ثم يؤكّد.  
+- موارد الطوارئ: زرّ في الردّ عند `distress=true` ينقل إلى `emergency`.
 
-النتيجة: نسخة v2 كاملة قابلة للتصفّح من `/sheila-v2`، التطبيق الحاليّ يعمل دون أي تغيير.
+### ز — الإشعارات
+- `notifications` تقرأ من المتجر (وليس ثابتة). كل إجراء يضيف إشعاراً.  
+- جرس الهيدر يعرض Badge بعدد `unread`.
+
+---
+
+## 3) تحسينات التنقل
+
+- في `__root` أو `routes/index.tsx` (الجذر القديم): إضافة Banner صغير «جرّبي SHEILA v2» يفتح `/sheila-v2/home` (بدون استبدال).  
+- داخل v2: زرّ صغير في `profile` للعودة إلى النسخة الكلاسيكيّة.  
+- `index.tsx` (gallery) يبقى كأداة تطوير لكن نضيف زرّ «ابدئي v2 الآن» يفتح `home` ويُهيئ بيانات تجريبيّة.
+
+---
+
+## 4) الملفّات المتأثّرة
+
+### جديدة
+- `src/components/sheila-v2/SheilaV2Store.tsx` — Context + reducer + persist.
+- `src/components/sheila-v2/ActionChip.tsx` — أزرار إجراء داخل ردود شيلا.
+
+### معدّلة
+- `src/components/sheila-v2/ShellV2.tsx` — يلفّ `SheilaV2Provider`، Badge الإشعارات.
+- `src/components/sheila-v2/BottomNavV2.tsx` — يقرأ `lifeStage` من المتجر.
+- `src/components/sheila-v2/LifeStageContext.tsx` — يصبح Wrapper رفيع فوق المتجر.
+- شاشات: `home.tsx`, `workouts.tsx`, `workouts_.player.tsx`, `workouts_.builder.tsx`, `nutrition.tsx`, `nutrition_.meal.$id.tsx`, `nutrition_.photo.tsx`, `nutrition_.recipes.tsx`, `nutrition_.shopping.tsx`, `nutrition_.log.tsx`, `cycle.tsx`, `cycle_.phase.$phase.tsx`, `circle.tsx`, `circle_.compose.tsx`, `circle_.groups.tsx`, `circle_.accountability.tsx`, `journey.tsx`, `journey_.insights.tsx`, `journey_.achievements.tsx`, `journey_.report.tsx`, `notifications.tsx`, `sheila.tsx`, `profile.tsx`.
+
+### غير ممسوسة
+- `src/data/sheila-v2/index.ts` (يبقى كمصدر حقائق ثابت).  
+- النسخة القديمة `/onboarding/*` و `src/routes/home.tsx` لا تتغيّر.
+
+---
+
+## 5) معايير القبول
+
+- إكمال تمرين من `player` → يظهر فوراً في `home` (سعرات + Body IQ)، في `journey`، وفي `notifications`.  
+- تسجيل وجبة → يحدّث «سعرات اليوم» في `home` وفي شريط `nutrition`.  
+- نشر منشور → يظهر فوراً في أعلى `circle` Feed.  
+- تغيير `lifeStage` من الإعدادات → يتغيّر التاب الثاني في الشريط السفلي عبر كل الشاشات.  
+- Body IQ يتدرّج عبر الـ Tiers مع تراكم الإجراءات.  
+- إعادة تحميل الصفحة لا تُفقد الحالة (localStorage).  
+- لا تغيير على الشاشات القديمة خارج `sheila-v2`.

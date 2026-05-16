@@ -7,7 +7,7 @@ import { BottomNavSheila } from "@/components/sheila/BottomNavSheila";
 import { TierBadge } from "@/components/sheila-v2/TierBadge";
 import { mockUser, mockWorkouts, mockMeals, PHASE_META, type CyclePhase } from "@/data/mock";
 import { MOOD_LIST } from "@/data/moods";
-import { DAILY_MESSAGES, tierFor } from "@/data/sheila-v2";
+import { DAILY_MESSAGES, tierFor, TIERS } from "@/data/sheila-v2";
 import { toAr } from "@/lib/format";
 
 export const Route = createFileRoute("/home")({ component: HomePage });

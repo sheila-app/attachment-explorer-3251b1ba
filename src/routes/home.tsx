@@ -1,15 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "motion/react";
-import {
-  Bell, Search, Sparkles, Moon, Droplets, Apple, Smile, Meh, Frown, Zap,
-  Dumbbell, TrendingUp, ChevronLeft, Scale, Trophy, Users, Clock, Flame,
-} from "lucide-react";
+import { Bell, Search, Sparkles, Droplets, Moon, Apple, Dumbbell, Users, Trophy, Plus, Check, ChevronLeft } from "lucide-react";
 import { DeviceFrame } from "@/components/sheila/DeviceFrame";
-import { BottomNav } from "@/components/sheila/BottomNav";
-import { mockUser, mockWorkouts, PHASE_META, type CyclePhase } from "@/data/mock";
-import { MOOD_LIST } from "@/data/moods";
-import { tierMeta, PHASE_WINDOWS } from "@/data/gamification";
+import { BottomNavSheila } from "@/components/sheila/BottomNavSheila";
+import { TierBadge } from "@/components/sheila-v2/TierBadge";
+import { mockUser, mockWorkouts, mockMeals, PHASE_META, type CyclePhase } from "@/data/mock";
+import { DAILY_MESSAGES, tierFor } from "@/data/sheila-v2";
 import { toAr } from "@/lib/format";
 
 export const Route = createFileRoute("/home")({ component: HomePage });
@@ -54,12 +51,6 @@ function HomePage() {
     [day, cycleLength]
   );
   const meta = PHASE_META[currentPhase];
-
-  const todayWorkout = mockWorkouts[0];
-  const todayWorkoutPhaseMeta = PHASE_META[todayWorkout.phase];
-  const { tier, next, toNext, pctInTier } = tierMeta(mockUser.bodyIQ);
-  const bodyIQDelta = mockUser.bodyIQ - mockUser.bodyIQYesterday;
-  const win = PHASE_WINDOWS[mockUser.currentPhase];
 
   const ovulationStart = PHASE_SEQ[0].days + PHASE_SEQ[1].days + 1;
   const daysToOvulation = day < ovulationStart
@@ -106,18 +97,37 @@ function HomePage() {
 
         <div className="relative z-10 h-full overflow-y-auto no-scrollbar pb-28">
           {/* الرأس: الاسم (يمين) | التاريخ (وسط) | بحث+إشعارات (يسار) */}
-          <div className="grid grid-cols-3 items-center px-5 pt-5 gap-3">
-            <div className="min-w-0 justify-self-start">
-              <div className="text-[11px] text-foreground/55 tracking-widest">مرحباً</div>
-              <div className="font-display text-lg text-foreground/90 mt-0.5 truncate">
-                {mockUser.name}
+          <div className="flex items-center justify-between px-5 pt-5 gap-3">
+            <Link to="/profile" className="flex items-center gap-2.5 min-w-0">
+              <div
+                className="w-11 h-11 rounded-full flex items-center justify-center shrink-0 border border-white/70 shadow-sm relative overflow-hidden"
+                style={{
+                  background: `linear-gradient(135deg, ${meta.color}, color-mix(in oklab, ${meta.color} 50%, white))`,
+                }}
+              >
+                <span className="font-display text-white text-[15px]">{mockUser.name.slice(0, 1)}</span>
+                <span className="absolute -bottom-0.5 -end-0.5 w-3 h-3 rounded-full bg-emerald-400 border-2 border-white" />
+              </div>
+              <div className="min-w-0">
+                <div className="text-[10.5px] text-foreground/55 tracking-widest">مرحباً</div>
+                <div className="font-display text-[15px] text-foreground/90 leading-tight truncate">
+                  {mockUser.name}
+                </div>
+              </div>
+            </Link>
+
+            <div className="text-center flex-1">
+              <div className="font-display text-[15px] text-foreground/85 nums">
+                {selectedDate
+                  ? `${toAr(selectedDate.getDate())} ${MONTHS_AR[selectedDate.getMonth()]}`
+                  : "—"}
+              </div>
+              <div className="text-[10.5px] mt-0.5 font-medium" style={{ color: meta.color }}>
+                يوم {toAr(day)} · {meta.name}
               </div>
             </div>
 
-            <div className="justify-self-center" />
-
-
-            <div className="flex items-center gap-2 justify-self-end">
+            <div className="flex items-center gap-2">
               <button className="w-10 h-10 rounded-full bg-white/70 backdrop-blur border border-white/60 flex items-center justify-center shadow-sm">
                 <Search size={17} strokeWidth={1.75} className="text-foreground/75" />
               </button>
@@ -172,174 +182,65 @@ function HomePage() {
             </div>
           </motion.div>
 
-          {/* ─── Body IQ + Phase Window row ─── */}
-          <div className="px-5 mt-4 grid grid-cols-2 gap-2.5">
-            <Link to="/bodyiq" className="bg-white/85 backdrop-blur-sm rounded-2xl border border-border p-4 active:scale-[0.98] transition-transform">
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] tracking-[0.2em] text-foreground/55 uppercase">Body IQ</span>
-                <span className="inline-flex items-center gap-0.5 text-[10px] nums" style={{ color: bodyIQDelta >= 0 ? "var(--phase-follicular)" : "var(--phase-menstrual)" }}>
-                  <TrendingUp size={10} strokeWidth={2.5} />
-                  {bodyIQDelta >= 0 ? "+" : ""}{bodyIQDelta}
-                </span>
-              </div>
-              <div className="font-display text-[26px] leading-none mt-1.5 nums" style={{ color: tier.color }}>{mockUser.bodyIQ}</div>
-              <div className="text-[10.5px] font-semibold mt-1" style={{ color: tier.color }}>{tier.name}</div>
-              <div className="mt-2 h-1 rounded-full bg-foreground/10 overflow-hidden">
-                <div className="h-full rounded-full" style={{ width: `${pctInTier * 100}%`, background: tier.color }} />
-              </div>
-              {next && <div className="text-[9.5px] text-foreground/55 mt-1 nums">{toNext} للوصول إلى {next.name}</div>}
-            </Link>
+          {/* رسالة شيلا الصباحيّة */}
+          <DailyMessageCard phase={currentPhase} tint={meta.color} />
 
-            <Link to="/challenges/phase" className="bg-white/85 backdrop-blur-sm rounded-2xl border border-border p-4 active:scale-[0.98] transition-transform">
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] tracking-[0.2em] text-foreground/55 uppercase">نافذة المرحلة</span>
-                <span className="inline-flex items-center gap-0.5 text-[10px] nums" style={{ color: win.color }}>
-                  <Clock size={10} strokeWidth={2.5} />
-                  {win.days} ي
-                </span>
-              </div>
-              <div className="font-display text-[16px] leading-tight mt-1.5" style={{ color: win.color }}>{win.name}</div>
-              <div className="text-[10.5px] text-foreground/55 mt-1 nums">{win.challenges} تحدّيات متاحة</div>
-              <div className="flex gap-1 mt-2.5">
-                {Array.from({ length: Math.min(win.challenges || 1, 5) }).map((_, i) => (
-                  <span key={i} className="flex-1 h-1 rounded-full" style={{ background: i < 2 ? win.color : "color-mix(in oklab, var(--foreground) 10%, transparent)" }} />
-                ))}
-              </div>
-              <div className="inline-flex items-center gap-0.5 text-[10px] mt-2 font-semibold" style={{ color: win.color }}>
-                ابدئي
-                <ChevronLeft size={11} strokeWidth={2.5} />
-              </div>
-            </Link>
-          </div>
+          {/* Body IQ + إحصاءات حيّة */}
+          <BodyIQStats tint={meta.color} />
 
-          {/* ─── Quick stats row ─── */}
-          <div className="px-5 mt-3 grid grid-cols-3 gap-2.5">
-            <Link to="/checkin/sleep" className="block">
-              <StatCard icon={Moon} label="نوم" value={toAr("7.2")} hint="ساعة" color="var(--phase-luteal)" />
-            </Link>
-            <Link to="/checkin/water" className="block">
-              <StatCard icon={Droplets} label="ماء" value={`${toAr(6)}/${toAr(8)}`} hint="كأس" color="var(--primary)" />
-            </Link>
-            <Link to="/checkin" className="block">
-              <StatCard icon={Apple} label="سعرات" value={toAr(320)} hint={`من ${toAr(1800)}`} color="var(--phase-menstrual)" />
-            </Link>
-          </div>
+          {/* خطّة اليوم — تمرين + وجبة مناسبيْن للمرحلة */}
+          <TodayPlan phase={currentPhase} tint={meta.color} />
 
-          {/* ─── Mood card ─── */}
-          <div className="px-5 mt-3">
-            <div className="bg-white/85 backdrop-blur-sm rounded-2xl border border-border p-5 relative overflow-hidden">
-              <div className="relative z-10 flex items-center justify-between">
-                <h3 className="font-medium text-sm">كيف تشعرين اليوم؟</h3>
-                <span className="text-[10px] text-foreground/60 nums">{toAr(10)} ثوانٍ</span>
-              </div>
-              <div
-                className="relative z-10 mt-4 -mx-1 px-1 flex gap-2 overflow-x-auto no-scrollbar snap-x snap-mandatory"
-                style={{ direction: "rtl" }}
-              >
-                {MOOD_LIST.map((m) => (
-                  <motion.button
-                    key={m.id}
-                    whileTap={{ scale: 0.92 }}
-                    className="snap-start shrink-0 w-[68px] flex flex-col items-center gap-1.5 py-2.5 px-1 rounded-2xl bg-card/60 border border-border/60"
-                    style={{ boxShadow: `inset 0 0 0 1px color-mix(in oklab, ${m.tone} 20%, transparent)` }}
-                  >
-                    <img src={m.img} alt={m.name} className="w-9 h-9 object-contain" />
-                    <span className="text-[10px] leading-tight text-center" style={{ color: m.tone }}>{m.name}</span>
-                  </motion.button>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* ─── AI Insight card ─── */}
-          <div className="px-5 mt-3">
-            <div className="bg-white/85 backdrop-blur-sm relative rounded-2xl border border-border p-5 overflow-hidden">
-              <div className="relative z-10 flex items-start gap-3">
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 relative overflow-hidden"
-                  style={{
-                    background: "var(--gradient-primary)",
-                    boxShadow: "0 8px 20px -6px oklch(0.46 0.135 328 / 0.5), inset 0 1px 0 0 oklch(1 0 0 / 0.4)",
-                  }}
-                >
-                  <Sparkles size={18} className="text-primary-foreground relative z-10" strokeWidth={2} />
+          {/* دائرة شيلا */}
+          <div className="px-5 mt-5">
+            <Link
+              to="/community"
+              className="block rounded-2xl p-4 relative overflow-hidden border"
+              style={{
+                background: `linear-gradient(135deg, color-mix(in oklab, ${meta.color} 18%, white), color-mix(in oklab, ${meta.color} 6%, white))`,
+                borderColor: `color-mix(in oklab, ${meta.color} 22%, transparent)`,
+              }}
+            >
+              <div className="flex items-start gap-3">
+                <div className="w-11 h-11 rounded-xl bg-white/75 flex items-center justify-center shrink-0">
+                  <Users size={18} style={{ color: meta.color }} strokeWidth={1.9} />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-medium text-sm">رؤية اليوم</h3>
-                  <p className="text-[12.5px] text-foreground/75 mt-1.5 leading-relaxed">
-                    أنتِ في ذروة الطاقة — مناسب جدّاً لتمرين عالي الكثافة مع وجبة غنيّة بالبروتين.
-                  </p>
-                  <button className="mt-3 inline-flex items-center gap-1 text-[11px] font-medium text-primary">
-                    اعرفي المزيد
-                    <ChevronLeft size={13} strokeWidth={2.5} />
-                  </button>
+                <div className="flex-1">
+                  <div className="text-[13.5px] font-semibold">دائرة شيلا</div>
+                  <div className="text-[11px] text-foreground/65 mt-0.5">٣ منشورات جديدة من مجموعاتك اليوم</div>
                 </div>
-              </div>
-            </div>
-          </div>
-
-          {/* ─── Today's workout ─── */}
-          <div className="px-5 mt-4">
-            <div className="flex items-center justify-between mb-3">
-              <h2 className="font-medium text-sm">تمرين اليوم</h2>
-              <Link to="/workouts" className="text-[11px] text-primary font-medium inline-flex items-center gap-0.5">
-                عرض الكل
-                <ChevronLeft size={12} strokeWidth={2.5} />
-              </Link>
-            </div>
-            <Link to="/workouts" className="block">
-              <div className="bg-white/85 backdrop-blur-sm w-full rounded-xl border border-border p-3.5 flex items-center gap-3 transition-transform active:scale-[0.99]">
-                <div
-                  className="relative z-10 w-14 h-14 rounded-xl flex items-center justify-center shrink-0 overflow-hidden"
-                  style={{
-                    background: `linear-gradient(135deg, ${todayWorkoutPhaseMeta.color}55, ${todayWorkoutPhaseMeta.color}22)`,
-                    boxShadow: "inset 0 1px 0 0 oklch(1 0 0 / 0.5), inset 0 -1px 0 0 oklch(0 0 0 / 0.05)",
-                  }}
-                >
-                  <Dumbbell size={20} style={{ color: todayWorkoutPhaseMeta.color }} strokeWidth={1.75} className="relative" />
-                </div>
-                <div className="relative z-10 flex-1 min-w-0">
-                  <h3 className="text-[13.5px] font-medium truncate">{todayWorkout.title}</h3>
-                  <div className="flex items-center gap-2 mt-1 text-[11px] text-foreground/60">
-                    <span className="nums">{toAr(todayWorkout.duration)} د</span>
-                    <span className="w-1 h-1 rounded-full bg-foreground/30" />
-                    <span>{todayWorkout.level}</span>
-                    <span className="w-1 h-1 rounded-full bg-foreground/30" />
-                    <span className="nums">{toAr(todayWorkout.calories)} سعرة</span>
-                  </div>
-                </div>
-                <ChevronLeft size={16} className="relative z-10 text-foreground/50" strokeWidth={2} />
+                <ChevronLeft size={16} className="text-foreground/40 mt-1.5" />
               </div>
             </Link>
           </div>
 
-          {/* ─── Shortcuts ─── */}
-          <div className="mt-5 mb-4">
-            <p className="text-sm font-semibold text-muted-foreground px-5 mb-2">اختصارات سريعة</p>
-            <div className="grid grid-cols-4 gap-3 px-5">
-              <Link to="/journey/measurements" className="flex flex-col items-center gap-2 bg-white/85 backdrop-blur-sm rounded-2xl border border-border p-3 active:scale-95 transition-all">
-                <Scale className="w-6 h-6 text-phase-ovulation" strokeWidth={1.75} />
-                <span className="text-xs text-muted-foreground">الوزن</span>
-              </Link>
-              <Link to="/checkin/water" className="flex flex-col items-center gap-2 bg-white/85 backdrop-blur-sm rounded-2xl border border-border p-3 active:scale-95 transition-all">
-                <Droplets className="w-6 h-6 text-blue-400" strokeWidth={1.75} />
-                <span className="text-xs text-muted-foreground">ماء</span>
-              </Link>
-              <Link to="/challenges" className="flex flex-col items-center gap-2 bg-white/85 backdrop-blur-sm rounded-2xl border border-border p-3 active:scale-95 transition-all">
-                <Trophy className="w-6 h-6 text-phase-luteal" strokeWidth={1.75} />
-                <span className="text-xs text-muted-foreground">التحدي</span>
-              </Link>
-              <Link to="/community" className="flex flex-col items-center gap-2 bg-white/85 backdrop-blur-sm rounded-2xl border border-border p-3 active:scale-95 transition-all">
-                <Users className="w-6 h-6 text-phase-follicular" strokeWidth={1.75} />
-                <span className="text-xs text-muted-foreground">المجتمع</span>
-              </Link>
-            </div>
+          {/* اختصارات */}
+          <div className="px-5 mt-4 grid grid-cols-4 gap-2.5">
+            <Shortcut to="/achievements" icon={Trophy} label="الإنجازات" color="oklch(0.78 0.14 75)" />
+            <Shortcut to="/cycle" icon={Sparkles} label="الدورة" color="var(--phase-luteal)" />
+            <Shortcut to="/journey/insights" icon={Sparkles} label="الرؤى" color="var(--primary)" />
+            <Shortcut to="/buddy" icon={Users} label="شريك" color="var(--phase-follicular)" />
           </div>
 
           <div className="h-6" />
         </div>
 
-        <BottomNav />
+        <Link to="/assistant" className="absolute z-40 bottom-[96px] end-5" aria-label="مساعدة شيلا">
+          <motion.div
+            whileTap={{ scale: 0.92 }}
+            animate={{ y: [0, -3, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            className="w-14 h-14 rounded-full flex items-center justify-center"
+            style={{
+              background: "var(--gradient-primary)",
+              boxShadow: "0 14px 36px -8px oklch(0.46 0.135 328 / 0.55), inset 0 1px 0 0 oklch(1 0 0 / 0.5)",
+            }}
+          >
+            <Sparkles size={22} className="text-primary-foreground" strokeWidth={2} />
+          </motion.div>
+        </Link>
+
+        <BottomNavSheila />
       </div>
     </DeviceFrame>
   );
@@ -370,13 +271,12 @@ function DateStrip({
   const scrollTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const items = useMemo(() => {
-    const arr: { offset: number; date: Date | null; phase: CyclePhase; cDay: number }[] = [];
+    const arr: { offset: number; date: Date | null; phase: CyclePhase }[] = [];
     for (let i = -RANGE; i <= RANGE; i++) {
       const d = baseDate ? new Date(baseDate.getTime()) : null;
       if (d) d.setDate(baseDate!.getDate() + i);
       const phase = phaseForDay(cycleDay + i, cycleLength);
-      const cDay = ((cycleDay - 1 + i) % cycleLength + cycleLength) % cycleLength + 1;
-      arr.push({ offset: i, date: d, phase, cDay });
+      arr.push({ offset: i, date: d, phase });
     }
     return arr;
   }, [baseDate, cycleDay, cycleLength]);
@@ -449,20 +349,8 @@ function DateStrip({
     } catch {}
   };
 
-  // لون اليوم المختار للحلقة الثابتة في المنتصف
-  const selectedItem = items.find((it) => it.offset === offset);
-  const selectedColor = selectedItem ? `var(--phase-${selectedItem.phase})` : "var(--primary)";
-
   return (
     <div className="mt-5 relative">
-      {/* حلقة ثابتة في المنتصف تشير لليوم المختار */}
-      <div
-        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-16 rounded-2xl z-10 transition-colors"
-        style={{
-          background: selectedColor,
-          boxShadow: `0 10px 22px -10px ${selectedColor}`,
-        }}
-      />
 
       <div
         ref={scrollerRef}
@@ -471,7 +359,7 @@ function DateStrip({
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
         onPointerCancel={onPointerUp}
-        className="overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing select-none touch-pan-x relative z-20"
+        className="overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing select-none touch-pan-x"
         style={{ WebkitOverflowScrolling: "touch", paddingInline: "calc(50% - 24px)" }}
       >
         <div className="flex gap-2 py-1">
@@ -493,25 +381,36 @@ function DateStrip({
                       if (dragRef.current.moved) return;
                       setOffset(it.offset);
                     }}
-                    className="flex-shrink-0 w-12 h-16 rounded-2xl flex flex-col items-center justify-center gap-1 py-2 transition-colors"
+                    className="flex-shrink-0 w-12 rounded-2xl flex flex-col items-center justify-center gap-1 py-2 transition-all"
                     style={{
                       scrollSnapAlign: "center",
-                      background: "transparent",
+                      background: isSelected
+                        ? color
+                        : `color-mix(in oklab, ${color} 14%, white)`,
                       color: isSelected ? "white" : "var(--foreground)",
-                      border: "none",
+                      border: isSelected
+                        ? "none"
+                        : `1px solid color-mix(in oklab, ${color} 25%, transparent)`,
+                      boxShadow: isSelected
+                        ? `0 10px 22px -10px ${color}`
+                        : undefined,
+                      transform: isSelected ? "scale(1.06)" : "scale(1)",
                     }}
                   >
                     <span
-                      className="font-display text-[15px] nums leading-none"
-                      style={{ color: isSelected ? "white" : "var(--foreground)" }}
+                      className="text-[10px]"
+                      style={{ opacity: isSelected ? 0.9 : 0.65 }}
                     >
-                      {toAr(it.cDay)}
+                      {it.date ? DAY_LETTERS[it.date.getDay()] : "—"}
+                    </span>
+                    <span className="font-display text-[15px] nums leading-none">
+                      {it.date ? toAr(it.date.getDate()) : "—"}
                     </span>
                     <span
                       className="w-1 h-1 rounded-full mt-0.5"
                       style={{
                         background: isSelected ? "white" : color,
-                        opacity: isSelected ? 0.9 : 0.85,
+                        opacity: isSelected ? 0.9 : 0.55,
                       }}
                     />
                   </button>
@@ -519,36 +418,6 @@ function DateStrip({
               })}
         </div>
       </div>
-    </div>
-  );
-}
-
-/* =========================================================
- * بطاقة إحصائيّة سريعة
- * ========================================================= */
-function QuickStat({
-  icon,
-  label,
-  value,
-  tint,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  value: string;
-  tint: string;
-}) {
-  return (
-    <div className="bg-white/75 backdrop-blur border border-white/60 rounded-2xl p-3.5">
-      <div className="flex items-center gap-2">
-        <span
-          className="w-7 h-7 rounded-xl flex items-center justify-center"
-          style={{ background: `color-mix(in oklab, ${tint} 18%, white)`, color: tint }}
-        >
-          {icon}
-        </span>
-        <span className="text-[11.5px] text-foreground/60">{label}</span>
-      </div>
-      <div className="font-display text-lg mt-2 nums text-foreground/85">{value}</div>
     </div>
   );
 }
@@ -562,30 +431,181 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
   );
 }
 
-function Suggestion({
-  icon,
-  title,
-  subtitle,
-  tint,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  subtitle: string;
-  tint: string;
-}) {
+/* =========================================================
+ * رسالة شيلا الصباحيّة
+ * ========================================================= */
+function DailyMessageCard({ phase, tint }: { phase: CyclePhase; tint: string }) {
+  const message = DAILY_MESSAGES[phase][0];
   return (
-    <div className="bg-white/75 backdrop-blur border border-white/60 rounded-2xl p-3.5 flex items-center gap-3">
-      <span
-        className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
-        style={{ background: `color-mix(in oklab, ${tint} 18%, white)`, color: tint }}
+    <div className="px-5 mt-4">
+      <Link
+        to="/sheila-v2/cycle/phase/$phase"
+        params={{ phase }}
+        className="block rounded-2xl p-4 relative overflow-hidden bg-white/80 backdrop-blur border border-white/60 active:scale-[0.99] transition-transform"
       >
-        {icon}
-      </span>
-      <div className="flex-1 min-w-0">
-        <div className="text-[13px] font-medium text-foreground/85 truncate">{title}</div>
-        <div className="text-[11.5px] text-foreground/55 mt-0.5 truncate">{subtitle}</div>
+        <div className="relative z-10 flex items-center gap-2 mb-2">
+          <div
+            className="w-7 h-7 rounded-full flex items-center justify-center"
+            style={{ background: `linear-gradient(135deg, ${tint}, color-mix(in oklab, ${tint} 60%, white))` }}
+          >
+            <Sparkles size={13} className="text-white" strokeWidth={2.2} />
+          </div>
+          <div className="text-[11px] font-semibold" style={{ color: tint }}>رسالة شيلا الصباحيّة</div>
+        </div>
+        <p className="relative z-10 text-[13px] leading-[1.85] text-foreground/85">{message}</p>
+      </Link>
+    </div>
+  );
+}
+
+/* =========================================================
+ * Body IQ + إحصاءات اليوم (ماء قابل للزيادة)
+ * ========================================================= */
+function BodyIQStats({ tint }: { tint: string }) {
+  const [waterCups] = useState(6);
+  const waterTarget = 8;
+  const tier = tierFor(mockUser.bodyIQ);
+  const caloriesToday = 1240;
+  const proteinToday = 68;
+
+  return (
+    <div className="px-5 mt-4 grid grid-cols-[auto_1fr] gap-3 items-center">
+      <Link to="/bodyiq" className="block">
+        <TierBadge score={mockUser.bodyIQ} size="md" />
+        <div className="text-center mt-1.5 text-[10.5px] font-semibold" style={{ color: tier.color }}>{tier.name}</div>
+      </Link>
+      <div className="grid grid-cols-2 gap-2">
+        <StatTile icon={Moon} label="نوم" value={`${toAr(7)}`} hint="ساعة" color="var(--phase-luteal)" to="/checkin/sleep" />
+        <StatTile icon={Droplets} label="ماء" value={`${toAr(waterCups)}/${toAr(waterTarget)}`} hint="كوب" color={tint} to="/checkin/water" />
+        <StatTile icon={Apple} label="سعرات" value={`${toAr(caloriesToday)}`} hint={`من ${toAr(mockUser.dailyKcal)}`} color="var(--phase-menstrual)" to="/nutrition" />
+        <StatTile
+          icon={Dumbbell}
+          label="بروتين"
+          value={`${toAr(proteinToday)}/${toAr(mockUser.dailyProtein)}`}
+          hint="غرام"
+          color="var(--phase-follicular)"
+          to="/nutrition"
+        />
       </div>
     </div>
+  );
+}
+
+function StatTile({
+  icon: Icon, label, value, hint, color, to,
+}: {
+  icon: typeof Moon; label: string; value: string; hint: string; color: string; to: string;
+}) {
+  return (
+    <Link to={to} className="rounded-2xl bg-white/85 border border-white/60 p-3 active:scale-[0.97] transition-transform">
+      <div className="flex items-center gap-1.5">
+        <Icon size={12} style={{ color }} strokeWidth={2} />
+        <span className="text-[10px] text-foreground/55">{label}</span>
+      </div>
+      <div className="font-display text-[18px] mt-1 leading-none nums" style={{ color }}>{value}</div>
+      <div className="text-[9.5px] text-foreground/50 mt-0.5">{hint}</div>
+    </Link>
+  );
+}
+
+/* =========================================================
+ * خطّة اليوم — تمرين + وجبة مناسبة للمرحلة
+ * ========================================================= */
+function TodayPlan({ phase, tint }: { phase: CyclePhase; tint: string }) {
+  const workout = useMemo(
+    () => mockWorkouts.find((w) => w.phase === phase) ?? mockWorkouts[0],
+    [phase],
+  );
+  const meal = useMemo(
+    () => mockMeals.find((m) => m.phase === phase) ?? mockMeals[1],
+    [phase],
+  );
+  const [workoutDone, setWorkoutDone] = useState(false);
+  const [mealDone, setMealDone] = useState(false);
+
+  return (
+    <div className="px-5 mt-5">
+      <div className="flex items-center justify-between mb-2.5">
+        <h2 className="text-[13px] font-semibold">خطّة اليوم</h2>
+        <span className="text-[10px] text-foreground/50">من شيلا</span>
+      </div>
+      <div className="grid gap-2.5">
+        <Link
+          to="/workouts/$id"
+          params={{ id: workout.id }}
+          className="rounded-2xl p-3.5 bg-white/85 border border-white/60 flex items-center gap-3 active:scale-[0.99] transition-transform"
+        >
+          <div
+            className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
+            style={{ background: `linear-gradient(135deg, color-mix(in oklab, ${tint} 35%, white), color-mix(in oklab, ${tint} 14%, white))` }}
+          >
+            {workoutDone
+              ? <Check size={18} className="text-primary" strokeWidth={2.2} />
+              : <Dumbbell size={18} style={{ color: tint }} strokeWidth={1.9} />}
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="text-[13px] font-medium truncate">{workout.title}</div>
+            <div className="text-[10.5px] text-foreground/60 mt-0.5 nums">
+              {toAr(workout.duration)} د · {workout.level} · {toAr(workout.calories)} سعرة
+            </div>
+          </div>
+          <button
+            onClick={(e) => { e.preventDefault(); setWorkoutDone((v) => !v); }}
+            className={`w-8 h-8 rounded-full flex items-center justify-center ${workoutDone ? "bg-primary/15" : "bg-foreground/5"}`}
+            aria-label="تمّ التمرين"
+          >
+            <Check size={14} className={workoutDone ? "text-primary" : "text-foreground/40"} strokeWidth={2.5} />
+          </button>
+        </Link>
+
+        <Link
+          to="/nutrition/$id"
+          params={{ id: meal.id }}
+          className="rounded-2xl p-3.5 bg-white/85 border border-white/60 flex items-center gap-3 active:scale-[0.99] transition-transform"
+        >
+          <div
+            className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
+            style={{ background: "linear-gradient(135deg, oklch(0.96 0.04 145), oklch(0.94 0.04 145))" }}
+          >
+            {mealDone
+              ? <Check size={18} className="text-primary" strokeWidth={2.2} />
+              : <Apple size={18} style={{ color: "oklch(0.55 0.13 145)" }} strokeWidth={1.9} />}
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="text-[13px] font-medium truncate">{meal.title}</div>
+            <div className="text-[10.5px] text-foreground/60 mt-0.5 nums">
+              {toAr(meal.kcal)} سعرة · {toAr(meal.protein)}غ بروتين
+            </div>
+          </div>
+          {mealDone ? (
+            <span className="text-[10.5px] text-primary font-semibold">مسجّلة</span>
+          ) : (
+            <button
+              onClick={(e) => { e.preventDefault(); setMealDone(true); }}
+              className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center"
+              aria-label="سجّلي"
+            >
+              <Plus size={14} className="text-primary" strokeWidth={2.5} />
+            </button>
+          )}
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+/* =========================================================
+ * اختصار صغير
+ * ========================================================= */
+function Shortcut({ to, icon: Icon, label, color }: { to: string; icon: typeof Trophy; label: string; color: string }) {
+  return (
+    <Link
+      to={to}
+      className="flex flex-col items-center gap-1.5 bg-white/80 rounded-2xl border border-white/60 p-2.5 active:scale-95 transition-transform"
+    >
+      <Icon size={20} style={{ color }} strokeWidth={1.75} />
+      <span className="text-[10.5px] text-foreground/70 truncate max-w-full">{label}</span>
+    </Link>
   );
 }
 
@@ -699,25 +719,6 @@ function MultiPhaseRing({
         >
           {chip}
         </div>
-      </div>
-    </div>
-  );
-}
-
-function StatCard({
-  icon: Icon, label, value, hint, color,
-}: {
-  icon: typeof Flame; label: string; value: string; hint: string; color: string;
-}) {
-  return (
-    <div className="bg-white/70 backdrop-blur-md rounded-xl border border-white/50 p-3">
-      <div className="relative z-10 flex items-center justify-between mb-1.5">
-        <Icon size={14} style={{ color }} strokeWidth={2} />
-        <span className="text-[9px] tracking-wider text-foreground/55 uppercase">{label}</span>
-      </div>
-      <div className="relative z-10 flex items-baseline gap-1">
-        <span className="text-lg font-semibold nums">{value}</span>
-        <span className="text-[10px] text-foreground/55">{hint}</span>
       </div>
     </div>
   );

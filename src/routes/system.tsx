@@ -76,6 +76,10 @@ function Page() {
   const [year, setYear] = useState<number>(yearNow);
   const [moods, setMoods] = useState<string[]>(["calm"]);
   const toggleMood = (id: string) => setMoods(s => s.includes(id) ? s.filter(x => x !== id) : [...s, id]);
+  const [draftOffset, setDraftOffset] = useState(0);
+  const draftDay = (((mockUser.cycleDay - 1 + draftOffset) % mockUser.cycleLength) + mockUser.cycleLength) % mockUser.cycleLength + 1;
+  const draftPhase = phaseForDay(draftDay, mockUser.cycleLength);
+  const draftDaysLeft = mockUser.cycleLength - draftDay;
 
   const moodList = MOOD_LIST;
 

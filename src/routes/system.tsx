@@ -229,11 +229,7 @@ function Page() {
               <p className="text-[10px] text-foreground/55 mt-2 px-1 font-mono">MoodPicker · {moods.length} محدّد</p>
             </Block>
 
-            <Block title="حلقة مرحلة الدورة">
-              <div className="flex justify-center"><CyclePhaseRing phase="ovulation" day={14} cycleLength={28} size={150} /></div>
-            </Block>
-
-            <Block title="حلقة الدورة متعدّدة المراحل (home-draft)">
+            <Block title="حلقة الدورة متعدّدة المراحل">
               <div className="glass rounded-3xl p-4 flex justify-center">
                 <MultiPhaseRing
                   size={260}

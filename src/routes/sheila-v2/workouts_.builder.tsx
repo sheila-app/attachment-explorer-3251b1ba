@@ -43,7 +43,7 @@ function Builder() {
  {stage ==="gen" && <div className="mt-5"><AIGenerating label="شيلا تبني تمرينك…" /></div>}
  {stage ==="done" && (
  <div className="mt-5 rounded-3xl bg-white/85 border border-border p-4">
- <div className="inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary font-semibold"> شيلا</div>
+ <div className="inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary font-semibold"><Sparkles size={10} strokeWidth={2.5} /> شيلا</div>
  <div className="font-display text-[18px] mt-2">{result.title}</div>
  <p className="text-[12px] text-foreground/65 mt-1.5"><AITyping text={result.rationale} speed={20} /></p>
  <div className="mt-3 space-y-2.5">

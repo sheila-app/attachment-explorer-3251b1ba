@@ -27,7 +27,7 @@ function Shopping() {
  return (
  <button key={it} onClick={() => toggle(it)} className="w-full flex items-center gap-3 px-4 py-3 text-right">
  <span className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${d?"border-primary bg-primary" :"border-foreground/25"}`}>
- {d && <span className="text-white text-[11px]"></span>}
+ {d && <Check size={12} strokeWidth={3} className="text-white" />}
  </span>
  <span className={`text-[13px] ${d?"line-through text-foreground/40" :""}`}>{it}</span>
  </button>

@@ -238,6 +238,55 @@ function Page() {
               <p className="text-[10px] text-foreground/55 mt-2 px-1 font-mono">MoodPicker · {moods.length} محدّد</p>
             </Block>
 
+            <Block title="شدّة التدفّق">
+              <div className="grid grid-cols-3 gap-2">
+                {flows.map(f => {
+                  const active = flow === f.id;
+                  return (
+                    <button key={f.id} onClick={() => setFlow(f.id)}
+                      className="glass rounded-2xl py-3 flex flex-col items-center justify-center gap-1.5"
+                      style={active ? { boxShadow: "0 0 0 2px var(--phase-menstrual), inset 0 1px 0 0 oklch(1 0 0 / 0.6)", color: "var(--phase-menstrual-deep)" } : undefined}
+                    >
+                      <span className="relative z-10 flex items-center gap-1">
+                        {Array.from({ length: f.dots }).map((_, i) => (
+                          <Droplet key={i} size={16} strokeWidth={2}
+                            style={{
+                              color: active ? "var(--phase-menstrual-deep)" : "color-mix(in oklab, var(--phase-menstrual) 70%, transparent)",
+                              fill: active ? "var(--phase-menstrual-deep)" : "transparent",
+                            }} />
+                        ))}
+                      </span>
+                      <span className="relative z-10 text-[12.5px] font-medium">{f.t}</span>
+                    </button>
+                  );
+                })}
+              </div>
+              <p className="text-[10px] text-foreground/55 mt-2 px-1 font-mono">FlowDroplets · شدّة النزيف بثلاث درجات</p>
+            </Block>
+
+            <Block title="بطاقة الأعراض">
+              <div className="glass rounded-2xl p-3">
+                <div className="relative z-10 grid grid-cols-4 gap-2">
+                  {SYMPTOM_LIST.map(s => {
+                    const on = symptoms.includes(s.id);
+                    const tone = "var(--phase-menstrual)";
+                    return (
+                      <button key={s.id} onClick={() => toggleSymptom(s.id)}
+                        className="rounded-2xl py-2.5 px-1 flex flex-col items-center gap-1 transition"
+                        style={on
+                          ? { background: `color-mix(in oklab, ${tone} 18%, transparent)`, boxShadow: `inset 0 0 0 1.5px ${tone}` }
+                          : { background: "color-mix(in oklab, var(--foreground) 4%, transparent)" }}
+                      >
+                        <img src={s.img} alt={s.name} className="w-9 h-9 object-contain" style={{ opacity: on ? 1 : 0.75 }} />
+                        <span className="text-[10.5px] font-medium leading-tight text-center" style={{ color: on ? tone : "var(--foreground)" }}>{s.name}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+              <p className="text-[10px] text-foreground/55 mt-2 px-1 font-mono">SymptomPicker · {symptoms.length} محدّد · {SYMPTOM_LIST.length} عرَض</p>
+            </Block>
+
             <Block title="حلقة الدورة متعدّدة المراحل">
               <div className="glass rounded-3xl p-4 flex justify-center">
                 <MultiPhaseRing

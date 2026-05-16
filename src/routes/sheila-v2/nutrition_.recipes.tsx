@@ -47,7 +47,7 @@ function Recipes() {
  {stage ==="gen" && <div className="mt-4"><AIGenerating label="شيلا تبني وصفتك…" /></div>}
  {stage ==="done" && (
  <div className="mt-4 rounded-2xl bg-white/85 border border-border p-4">
- <div className="inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary font-semibold"> شيلا</div>
+ <div className="inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary font-semibold"><Sparkles size={10} strokeWidth={2.5} /> شيلا</div>
  <div className="font-display text-[18px] mt-2">{generated.name}</div>
  <p className="text-[11.5px] text-foreground/65 mt-1.5"><AITyping text={`${generated.cal} سعرة، ${generated.protein}غ بروتين. وقت التحضير 25 دقيقة.`} speed={20} /></p>
  <div className="text-[11px] font-semibold text-primary mt-3">المقادير</div>

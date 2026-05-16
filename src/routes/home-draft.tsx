@@ -423,7 +423,11 @@ function DailyMessageCard({ phase, tint }: { phase: CyclePhase; tint: string }) 
   const message = DAILY_MESSAGES[phase][0];
   return (
     <div className="px-5 mt-4">
-      <div className="rounded-2xl p-4 relative overflow-hidden bg-white/80 backdrop-blur border border-white/60">
+      <Link
+        to="/sheila-v2/cycle/phase/$phase"
+        params={{ phase }}
+        className="block rounded-2xl p-4 relative overflow-hidden bg-white/80 backdrop-blur border border-white/60 active:scale-[0.99] transition-transform"
+      >
         <div className="relative z-10 flex items-center gap-2 mb-2">
           <div
             className="w-7 h-7 rounded-full flex items-center justify-center"
@@ -434,7 +438,7 @@ function DailyMessageCard({ phase, tint }: { phase: CyclePhase; tint: string }) 
           <div className="text-[11px] font-semibold" style={{ color: tint }}>رسالة شيلا الصباحيّة</div>
         </div>
         <p className="relative z-10 text-[13px] leading-[1.85] text-foreground/85">{message}</p>
-      </div>
+      </Link>
     </div>
   );
 }

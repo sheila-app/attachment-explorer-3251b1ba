@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from"@tanstack/react-router";
 import { useState } from"react";
-import { Wand2, Play } from"lucide-react";
+import { Wand2, Play, Sparkles } from"lucide-react";
 import { ShellV2 } from"@/components/sheila-v2/ShellV2";
 import { AITyping, AIGenerating } from"@/components/sheila-v2/AITyping";
 import { useSheilaV2 } from"@/components/sheila-v2/SheilaV2Store";

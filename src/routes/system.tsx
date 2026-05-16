@@ -257,6 +257,13 @@ function Page() {
               <p className="text-[10px] text-foreground/55 mt-2 px-1 font-mono">DateStrip · اسحبي يمين/يسار — اللون يتبع المرحلة</p>
             </Block>
 
+            <Block title="تقويم الدورة الشهري">
+              <div className="glass rounded-3xl p-4">
+                <CycleCalendar cycleDay={mockUser.cycleDay} cycleLength={mockUser.cycleLength} />
+              </div>
+              <p className="text-[10px] text-foreground/55 mt-2 px-1 font-mono">CycleCalendar · تنقّل بين الأشهر · توقّع المراحل القادمة بالألوان</p>
+            </Block>
+
             <Block title="رقاقات (Chips)">
               <div className="flex flex-wrap gap-2">
                 <span className="glass rounded-full px-3 py-1.5 text-[11px]"><span className="relative z-10">عادي</span></span>

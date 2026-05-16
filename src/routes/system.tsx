@@ -77,6 +77,14 @@ function Page() {
   const [year, setYear] = useState<number>(yearNow);
   const [moods, setMoods] = useState<string[]>(["calm"]);
   const toggleMood = (id: string) => setMoods(s => s.includes(id) ? s.filter(x => x !== id) : [...s, id]);
+  const [symptoms, setSymptoms] = useState<string[]>(["cramps"]);
+  const toggleSymptom = (id: string) => setSymptoms(s => s.includes(id) ? s.filter(x => x !== id) : [...s, id]);
+  const [flow, setFlow] = useState<"light" | "med" | "heavy">("med");
+  const flows: { id: "light" | "med" | "heavy"; t: string; dots: 1 | 2 | 3 }[] = [
+    { id: "light", t: "خفيف", dots: 1 },
+    { id: "med", t: "متوسّط", dots: 2 },
+    { id: "heavy", t: "غزير", dots: 3 },
+  ];
   const [draftOffset, setDraftOffset] = useState(0);
   const draftDay = (((mockUser.cycleDay - 1 + draftOffset) % mockUser.cycleLength) + mockUser.cycleLength) % mockUser.cycleLength + 1;
   const draftPhase = phaseForDay(draftDay, mockUser.cycleLength);

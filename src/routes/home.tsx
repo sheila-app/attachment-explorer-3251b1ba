@@ -186,6 +186,10 @@ function HomePage() {
           {/* رسالة شيلا الصباحيّة */}
           <DailyMessageCard phase={currentPhase} tint={meta.color} />
 
+          {/* كيف تشعرين اليوم — سلايد عرضي */}
+          <MoodSlider />
+
+
           {/* Body IQ + إحصاءات حيّة */}
           <BodyIQStats tint={meta.color} />
 

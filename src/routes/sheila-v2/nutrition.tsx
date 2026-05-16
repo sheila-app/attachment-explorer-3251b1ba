@@ -9,9 +9,9 @@ export const Route = createFileRoute("/sheila-v2/nutrition")({ component: Nutrit
 
 function NutritionIdx() {
   const { state, dispatch, caloriesToday, proteinToday, isMealLogged } = useSheilaV2();
+  const navigate = useNavigate();
   const phase = state.currentPhase;
   const meta = PHASE_META[phase];
-  const ready = useFakeGenerate(phase, 900);
 
   return (
     <ShellV2 title="التغذية" rightSlot={<PhasePill phase={phase} name={meta.name} color={meta.color} />}>
@@ -42,43 +42,29 @@ function NutritionIdx() {
         </Link>
 
         <h2 className="text-[12px] font-semibold mt-5 mb-2.5">وجبات اليوم</h2>
-        <div className="space-y-2.5">
-          {MEAL_TYPES.map((mt, i) => {
+        <div className="space-y-3">
+          {MEAL_TYPES.map((mt) => {
             const m = MEALS.find((x) => x.type === mt.id && x.phase?.includes(phase)) ?? MEALS.find((x) => x.type === mt.id)!;
             const logged = isMealLogged(m.id);
             return (
-              <div key={mt.id} className="rounded-2xl bg-white/85 border border-border p-3.5">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="text-[12.5px] font-semibold flex items-center gap-1.5">
-                    {mt.label}
-                    {logged && <Check size={12} className="text-primary" strokeWidth={2.5} />}
-                  </div>
-                  <div className="text-[10px] text-foreground/55">{mt.time}</div>
-                </div>
-                <Link to="/sheila-v2/nutrition/meal/$id" params={{ id: m.id }} className="block rounded-xl bg-secondary/40 p-3 mb-2">
-                  <div className="text-[13px] font-medium">{m.name}</div>
-                  <div className="text-[10.5px] text-foreground/65 mt-1">{m.cal} سعرة • {m.protein}غ بروتين</div>
-                  <div className="text-[10.5px] text-foreground/55 mt-1.5 leading-relaxed">
-                    {ready && i === 0 ? <AITyping text={m.rationale} speed={22} /> : m.rationale}
-                  </div>
-                </Link>
-                <div className="grid grid-cols-3 gap-1.5">
-                  <Action to="/sheila-v2/nutrition/photo" icon={Camera} label="صوّري" />
-                  <Action to="/sheila-v2/sheila" icon={Sparkles} label="شيلا" />
-                  {logged ? (
-                    <button disabled className="rounded-xl bg-primary/10 border border-primary/30 py-2 flex flex-col items-center gap-0.5 text-[10.5px] text-primary">
-                      <Check size={14} strokeWidth={2.2} /> مسجّلة
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => dispatch({ type: "logMeal", mealId: m.id })}
-                      className="rounded-xl bg-white/70 border border-border py-2 flex flex-col items-center gap-0.5 text-[10.5px] text-foreground/70 active:scale-95"
-                    >
-                      <Plus size={14} strokeWidth={1.9} /> سجّلي
-                    </button>
-                  )}
-                </div>
-              </div>
+              <MealCard
+                key={mt.id}
+                type={mt.label}
+                time={mt.time}
+                mealId={m.id}
+                mealName={m.name}
+                cal={m.cal}
+                protein={m.protein}
+                tint={meta.color}
+                logged={logged}
+                onLog={() => dispatch({ type: "logMeal", mealId: m.id })}
+                onSheila={() => navigate({ to: "/sheila-v2/sheila" })}
+                onLibrary={() => navigate({ to: "/sheila-v2/nutrition/recipes" })}
+                onPhoto={() => navigate({ to: "/sheila-v2/nutrition/photo" })}
+                onSearch={() => navigate({ to: "/sheila-v2/nutrition/recipes" })}
+                onBarcode={() => navigate({ to: "/sheila-v2/nutrition/photo" })}
+                onIngredients={() => navigate({ to: "/sheila-v2/nutrition/meal/$id", params: { id: m.id } })}
+              />
             );
           })}
         </div>
@@ -86,19 +72,12 @@ function NutritionIdx() {
     </ShellV2>
   );
 }
-function Sum({ label, v, of, c }: any) {
+function Sum({ label, v, of, c }: { label: string; v: string; of: string; c: string }) {
   return (
     <div className="text-center">
       <div className="text-[9.5px] text-foreground/55">{label}</div>
-      <div className="font-display text-[16px] mt-0.5 nums" style={{ color: c }}>{v}</div>
+      <div className="font-display text-[16px] mt-0.5 nums" suppressHydrationWarning style={{ color: c }}>{v}</div>
       <div className="text-[9px] text-foreground/50 mt-0.5">{of}</div>
     </div>
-  );
-}
-function Action({ to, icon: Icon, label }: any) {
-  return (
-    <Link to={to} className="rounded-xl bg-white/70 border border-border py-2 flex flex-col items-center gap-0.5 text-[10.5px] text-foreground/70 active:scale-95">
-      <Icon size={14} strokeWidth={1.9} />{label}
-    </Link>
   );
 }

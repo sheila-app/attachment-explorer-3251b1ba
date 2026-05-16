@@ -1,17 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
-import { mockMeals, mockUser, PHASE_META } from "@/data/mock";
+import { mockUser, PHASE_META } from "@/data/mock";
 import { aiRankForMeal } from "@/data/mealsLibrary";
+import type { Recipe } from "@/data/mealsLibrary";
 import {
   Apple,
   Droplet,
   Plus,
-  ChevronLeft,
   BookOpen,
-  ShoppingCart,
   Sparkles,
   Barcode,
   Search as SearchIcon,
+  Camera,
 } from "lucide-react";
 
 export const Route = createFileRoute("/nutrition/")({ component: NutritionPage });

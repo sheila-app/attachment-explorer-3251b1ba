@@ -1,17 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
-import { mockMeals, mockUser, PHASE_META } from "@/data/mock";
+import { mockUser, PHASE_META } from "@/data/mock";
 import { aiRankForMeal } from "@/data/mealsLibrary";
+import type { Recipe } from "@/data/mealsLibrary";
 import {
   Apple,
   Droplet,
   Plus,
-  ChevronLeft,
   BookOpen,
-  ShoppingCart,
   Sparkles,
   Barcode,
   Search as SearchIcon,
+  Camera,
 } from "lucide-react";
 
 export const Route = createFileRoute("/nutrition/")({ component: NutritionPage });
@@ -95,63 +95,27 @@ function NutritionPage() {
           </button>
         </div>
 
-        {/* AI suggestion */}
-        {topAi && (
-          <Link
-            to="/nutrition/$id"
-            params={{ id: topAi.id }}
-            className="glass-strong mt-3 rounded-2xl p-4 flex items-center gap-3 active:scale-[0.99] transition-transform block"
-          >
-            <div className="relative z-10 w-12 h-12 rounded-xl flex items-center justify-center text-xl"
-              style={{ background: `linear-gradient(135deg, ${phaseMeta.color}55, ${phaseMeta.color}22)` }}
-            >
-              {topAi.emoji}
-            </div>
-            <div className="relative z-10 flex-1 min-w-0">
-              <div className="flex items-center gap-1.5">
-                <Sparkles size={11} className="text-primary" strokeWidth={2.5} />
-                <span className="text-[10px] tracking-[0.2em] text-primary uppercase font-semibold">اقتراح ذكيّ — {topAi.type}</span>
-              </div>
-              <div className="text-[13px] font-medium truncate mt-0.5">{topAi.arName}</div>
-              <div className="text-[11px] text-foreground/65 nums mt-0.5">{topAi.kcal} سعرة · {topAi.protein}غ بروتين · {topAi.prep + topAi.cookTime} د</div>
-            </div>
-            <ChevronLeft size={14} className="relative z-10 text-primary shrink-0" strokeWidth={2.5} />
-          </Link>
-        )}
-
-        {/* Quick actions */}
-        <div className="grid grid-cols-4 gap-2 mt-3">
-          <QuickAction to="/nutrition/recipes" Icon={BookOpen} label="وصفات" />
-          <QuickAction to="/nutrition/shopping" Icon={ShoppingCart} label="مشتريات" />
-          <QuickAction to="/nutrition/log" Icon={SearchIcon} label="بحث" />
-          <QuickAction to="/nutrition/log" Icon={Barcode} label="باركود" />
+        {/* === وجبات اليوم — بطاقة لكلّ وقت === */}
+        <div className="mt-6 mb-2.5">
+          <h2 className="text-sm font-medium">وجبات اليوم</h2>
         </div>
-
-        {/* Meals */}
-        <div className="flex items-center justify-between mt-6 mb-2.5 gap-3">
-          <h2 className="text-sm font-medium shrink-0">وجبات اليوم</h2>
-          <Link to="/nutrition/log" className="shrink-0 inline-flex items-center gap-1 text-[11px] text-primary font-medium glass rounded-full px-3 py-1.5">
-            <Plus size={12} strokeWidth={2.5} /> تسجيل وجبة
-          </Link>
-        </div>
-        <div className="space-y-2.5 stagger">
-          {mockMeals.map(m => {
-            const p = PHASE_META[m.phase];
+        <div className="space-y-3 stagger">
+          {MEAL_SLOTS.map((slot) => {
+            const suggestion = aiRankForMeal({
+              type: slot.type,
+              phase: mockUser.currentPhase,
+              remainingProtein: protein.t - protein.v,
+              alreadyLoggedIds: [],
+              diet: ["halal"],
+            })[0];
             return (
-              <Link key={m.id} to="/nutrition/$id" params={{ id: m.id }}
-                className="glass rounded-2xl p-3 flex items-center gap-3"
-              >
-                <div className="relative z-10 w-14 h-14 rounded-xl flex items-center justify-center"
-                  style={{ background: `linear-gradient(135deg, ${p.color}55, ${p.color}22)` }}
-                >
-                  <Apple size={20} style={{ color: p.color }} strokeWidth={1.5} />
-                </div>
-                <div className="relative z-10 flex-1 min-w-0">
-                  <div className="text-[10px] tracking-[0.2em] text-foreground/55 uppercase">{m.type}</div>
-                  <div className="text-[13px] font-medium truncate">{m.title}</div>
-                  <div className="text-[11px] text-foreground/60 nums mt-0.5">{m.kcal} سعرة · {m.prep} د</div>
-                </div>
-              </Link>
+              <MealSlotCard
+                key={slot.type}
+                label={slot.label}
+                time={slot.time}
+                suggestion={suggestion}
+                phaseColor={phaseMeta.color}
+              />
             );
           })}
         </div>
@@ -160,14 +124,83 @@ function NutritionPage() {
   );
 }
 
-function QuickAction({ to, Icon, label }: { to: string; Icon: typeof Apple; label: string }) {
+/* ---------- Meal slot card (matches reference structure) ---------- */
+
+type MealType = "فطور" | "غداء" | "عشاء" | "وجبة خفيفة";
+
+const MEAL_SLOTS: { type: MealType; label: string; time: string }[] = [
+  { type: "فطور", label: "فطور", time: "07:00 – 10:00" },
+  { type: "غداء", label: "غداء", time: "12:00 – 15:00" },
+  { type: "عشاء", label: "عشاء", time: "18:00 – 21:00" },
+  { type: "وجبة خفيفة", label: "وجبة خفيفة", time: "بين الوجبات" },
+];
+
+function MealSlotCard({
+  label, time, suggestion, phaseColor,
+}: { label: string; time: string; suggestion: Recipe | undefined; phaseColor: string }) {
+  if (!suggestion) return null;
   return (
-    <Link to={to as "/"} className="glass rounded-2xl p-3 flex flex-col items-center gap-1.5 active:scale-95 transition-transform">
-      <Icon size={16} className="relative z-10 text-primary" strokeWidth={1.75} />
-      <span className="relative z-10 text-[10.5px] font-medium">{label}</span>
+    <div className="glass-strong rounded-2xl p-4">
+      {/* header: time + meal label */}
+      <div className="relative z-10 flex items-center justify-between mb-3">
+        <span className="text-[10.5px] text-foreground/55 nums">{time}</span>
+        <span className="text-[13px] font-semibold">{label}</span>
+      </div>
+
+      {/* AI suggestion banner */}
+      <Link
+        to="/nutrition/$id"
+        params={{ id: suggestion.id }}
+        className="relative z-10 block rounded-xl p-3.5 mb-3"
+        style={{ background: `color-mix(in oklab, ${phaseColor} 12%, transparent)` }}
+      >
+        <div className="flex items-center gap-1.5 mb-1.5 justify-end">
+          <span className="text-[11px] font-semibold" style={{ color: phaseColor }}>اقتراح شيلا</span>
+          <Sparkles size={12} strokeWidth={2.5} style={{ color: phaseColor }} />
+        </div>
+        <div className="text-[13.5px] font-medium leading-snug text-right">{suggestion.arName}</div>
+        <div className="text-[11px] text-foreground/60 nums mt-1 text-right">
+          {suggestion.kcal} سعرة · {suggestion.protein}غ بروتين
+        </div>
+      </Link>
+
+      {/* Primary CTA */}
+      <button
+        className="relative z-10 w-full rounded-2xl py-3.5 text-[13.5px] font-semibold text-primary-foreground mb-3"
+        style={{ background: "var(--gradient-primary)" }}
+      >
+        سجّلي هذا
+      </button>
+
+      {/* 6 quick actions row */}
+      <div className="relative z-10 grid grid-cols-6 gap-1.5">
+        <SlotAction to="/assistant" Icon={Sparkles} label="شيلا" />
+        <SlotAction to="/nutrition/$id" params={{ id: suggestion.id }} Icon={Plus} label="مكوّنات" />
+        <SlotAction to="/nutrition/log" Icon={Barcode} label="باركود" />
+        <SlotAction to="/nutrition/recipes" Icon={BookOpen} label="المكتبة" />
+        <SlotAction to="/nutrition/log" Icon={SearchIcon} label="ابحثي" />
+        <SlotAction to="/nutrition/log" Icon={Camera} label="صوّري" />
+      </div>
+    </div>
+  );
+}
+
+function SlotAction({
+  to, params, Icon, label,
+}: { to: string; params?: Record<string, string>; Icon: typeof Apple; label: string }) {
+  return (
+    <Link
+      to={to as "/"}
+      params={params as never}
+      className="glass rounded-xl py-2 flex flex-col items-center gap-1 active:scale-95 transition-transform"
+    >
+      <Icon size={14} className="relative z-10 text-foreground/70" strokeWidth={1.75} />
+      <span className="relative z-10 text-[9.5px] font-medium text-foreground/70">{label}</span>
     </Link>
   );
 }
+
+
 
 function Macro({ label, v, t, color }: { label: string; v: string; t: string; color: string }) {
   return (

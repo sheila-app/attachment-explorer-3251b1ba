@@ -53,7 +53,7 @@ function ProfilePage() {
           <Item icon={Users} label="الخبيرات والمدرّبات" to="/coaches" />
           <Item icon={Gift} label="ادعي صديقاتكِ" to="/profile/referral" />
           <Item icon={Sparkles} label="ترقية لشيلا برو" to="/paywall" />
-          <Item icon={Bell} label="تفضيلات الإشعارات" to="/profile/notifications-prefs" />
+          <Item icon={Bell} label="تفضيلات الإشعارات" to="/notifications/settings" />
           <Item icon={Shield} label="الخصوصية والأمان" to="/profile/privacy" />
           <Item icon={Download} label="تصدير بياناتي" to="/profile/export" />
           <Item icon={HelpCircle} label="المساعدة والدعم" to="/profile/help" />

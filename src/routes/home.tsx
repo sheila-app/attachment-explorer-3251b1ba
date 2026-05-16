@@ -8,6 +8,7 @@ import {
 import { DeviceFrame } from "@/components/sheila/DeviceFrame";
 import { BottomNav } from "@/components/sheila/BottomNav";
 import { mockUser, mockWorkouts, PHASE_META, type CyclePhase } from "@/data/mock";
+import { MOOD_LIST } from "@/data/moods";
 import { tierMeta, PHASE_WINDOWS } from "@/data/gamification";
 import { toAr } from "@/lib/format";
 
@@ -231,21 +232,19 @@ function HomePage() {
                 <h3 className="font-medium text-sm">كيف تشعرين اليوم؟</h3>
                 <span className="text-[10px] text-foreground/60 nums">{toAr(10)} ثوانٍ</span>
               </div>
-              <div className="relative z-10 flex justify-between mt-4 gap-1.5">
-                {[
-                  { label: "رائع", Icon: Smile, color: "var(--phase-follicular)" },
-                  { label: "جيّد", Icon: Meh, color: "var(--phase-ovulation)" },
-                  { label: "عادي", Icon: Frown, color: "var(--muted-foreground)" },
-                  { label: "نشيط", Icon: Zap, color: "var(--phase-luteal)" },
-                  { label: "تعب", Icon: Moon, color: "var(--phase-menstrual)" },
-                ].map(({ label, Icon, color }) => (
+              <div
+                className="relative z-10 mt-4 -mx-1 px-1 flex gap-2 overflow-x-auto no-scrollbar snap-x snap-mandatory"
+                style={{ direction: "rtl" }}
+              >
+                {MOOD_LIST.map((m) => (
                   <motion.button
-                    key={label}
-                    className="flex-1 flex flex-col items-center gap-1.5 py-2.5 rounded-lg bg-card/60 border border-border/60"
+                    key={m.id}
                     whileTap={{ scale: 0.92 }}
+                    className="snap-start shrink-0 w-[68px] flex flex-col items-center gap-1.5 py-2.5 px-1 rounded-2xl bg-card/60 border border-border/60"
+                    style={{ boxShadow: `inset 0 0 0 1px color-mix(in oklab, ${m.tone} 20%, transparent)` }}
                   >
-                    <Icon size={16} strokeWidth={1.75} style={{ color }} />
-                    <span className="text-[10px]">{label}</span>
+                    <img src={m.img} alt={m.name} className="w-9 h-9 object-contain" />
+                    <span className="text-[10px] leading-tight text-center" style={{ color: m.tone }}>{m.name}</span>
                   </motion.button>
                 ))}
               </div>

@@ -4,7 +4,7 @@ import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { OptionCard, PrimaryCTA, GhostCTA } from "@/components/sheila/OnboardingShell";
 import { IOSWheel, wheelRange } from "@/components/sheila/IOSWheel";
 
-import { MultiPhaseRing, DateStrip, phaseForDay } from "@/components/sheila/HomeDraftWidgets";
+import { MultiPhaseRing, DateStrip, CycleCalendar, phaseForDay } from "@/components/sheila/HomeDraftWidgets";
 import { allScreens, PHASE_META, mockUser } from "@/data/mock";
 import { toAr } from "@/lib/format";
 import { Bell, Sparkles, Flame, Droplet, Moon, ChevronLeft, Activity } from "lucide-react";

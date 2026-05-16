@@ -8,6 +8,7 @@ import {
 import { DeviceFrame } from "@/components/sheila/DeviceFrame";
 import { BottomNav } from "@/components/sheila/BottomNav";
 import { mockUser, mockWorkouts, PHASE_META, type CyclePhase } from "@/data/mock";
+import { MOOD_LIST } from "@/data/moods";
 import { tierMeta, PHASE_WINDOWS } from "@/data/gamification";
 import { toAr } from "@/lib/format";
 

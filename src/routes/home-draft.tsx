@@ -476,49 +476,38 @@ function BodyIQStats({ tint }: { tint: string }) {
   const proteinToday = 68;
 
   return (
-    <>
-      <div className="px-5 mt-4 grid grid-cols-[auto_1fr] gap-3 items-center">
-        <Link to="/bodyiq" className="block">
-          <TierBadge score={mockUser.bodyIQ} size="md" />
-          <div className="text-center mt-1.5 text-[10.5px] font-semibold" style={{ color: tier.color }}>{tier.name}</div>
-        </Link>
-        <div className="grid grid-cols-3 gap-2">
-          <StatTile icon={Moon} label="نوم" value={`${toAr(7)}`} hint="ساعة" color="var(--phase-luteal)" to="/journey/insights" />
-          <button
-            type="button"
-            onClick={() => setWaterCups((c) => Math.min(c + 1, waterTarget))}
-            className="rounded-2xl bg-white/85 border border-white/60 p-3 active:scale-[0.97] transition-transform text-right"
-          >
-            <div className="flex items-center gap-1.5">
-              <Droplets size={12} style={{ color: tint }} strokeWidth={2} />
-              <span className="text-[10px] text-foreground/55">ماء +</span>
-            </div>
-            <div className="font-display text-[18px] mt-1 leading-none nums" style={{ color: tint }}>
-              {toAr(waterCups)}/{toAr(waterTarget)}
-            </div>
-            <div className="text-[9.5px] text-foreground/50 mt-0.5">اضغطي +</div>
-          </button>
-          <StatTile icon={Apple} label="سعرات" value={`${toAr(caloriesToday)}`} hint={`من ${toAr(mockUser.dailyKcal)}`} color="var(--phase-menstrual)" to="/nutrition" />
-        </div>
+    <div className="px-5 mt-4 grid grid-cols-[auto_1fr] gap-3 items-center">
+      <Link to="/bodyiq" className="block">
+        <TierBadge score={mockUser.bodyIQ} size="md" />
+        <div className="text-center mt-1.5 text-[10.5px] font-semibold" style={{ color: tier.color }}>{tier.name}</div>
+      </Link>
+      <div className="grid grid-cols-2 gap-2">
+        <StatTile icon={Apple} label="سعرات" value={`${toAr(caloriesToday)}`} hint={`من ${toAr(mockUser.dailyKcal)}`} color="var(--phase-menstrual)" to="/nutrition" />
+        <button
+          type="button"
+          onClick={() => setWaterCups((c) => Math.min(c + 1, waterTarget))}
+          className="rounded-2xl bg-white/85 border border-white/60 p-3 active:scale-[0.97] transition-transform text-right"
+        >
+          <div className="flex items-center gap-1.5">
+            <Droplets size={12} style={{ color: tint }} strokeWidth={2} />
+            <span className="text-[10px] text-foreground/55">ماء +</span>
+          </div>
+          <div className="font-display text-[18px] mt-1 leading-none nums" style={{ color: tint }}>
+            {toAr(waterCups)}/{toAr(waterTarget)}
+          </div>
+          <div className="text-[9.5px] text-foreground/50 mt-0.5">اضغطي +</div>
+        </button>
+        <StatTile icon={Moon} label="نوم" value={`${toAr(7)}`} hint="ساعة" color="var(--phase-luteal)" to="/journey/insights" />
+        <StatTile
+          icon={Dumbbell}
+          label="بروتين"
+          value={`${toAr(proteinToday)}/${toAr(mockUser.dailyProtein)}`}
+          hint="غرام"
+          color="var(--phase-follicular)"
+          to="/nutrition"
+        />
       </div>
-
-      {/* بروتين mini bar */}
-      <div className="px-5 mt-2">
-        <div className="text-[10px] text-foreground/55 flex justify-between">
-          <span>البروتين</span>
-          <span className="nums">{toAr(proteinToday)}/{toAr(mockUser.dailyProtein)}غ</span>
-        </div>
-        <div className="h-1.5 rounded-full bg-foreground/10 mt-1 overflow-hidden">
-          <div
-            className="h-full rounded-full"
-            style={{
-              width: `${Math.min(100, (proteinToday / mockUser.dailyProtein) * 100)}%`,
-              background: `linear-gradient(90deg, ${tint}, color-mix(in oklab, ${tint} 55%, white))`,
-            }}
-          />
-        </div>
-      </div>
-    </>
+    </div>
   );
 }
 

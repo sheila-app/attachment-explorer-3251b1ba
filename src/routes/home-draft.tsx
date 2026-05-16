@@ -422,36 +422,6 @@ function DateStrip({
   );
 }
 
-/* =========================================================
- * بطاقة إحصائيّة سريعة
- * ========================================================= */
-function QuickStat({
-  icon,
-  label,
-  value,
-  tint,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  value: string;
-  tint: string;
-}) {
-  return (
-    <div className="bg-white/75 backdrop-blur border border-white/60 rounded-2xl p-3.5">
-      <div className="flex items-center gap-2">
-        <span
-          className="w-7 h-7 rounded-xl flex items-center justify-center"
-          style={{ background: `color-mix(in oklab, ${tint} 18%, white)`, color: tint }}
-        >
-          {icon}
-        </span>
-        <span className="text-[11.5px] text-foreground/60">{label}</span>
-      </div>
-      <div className="font-display text-lg mt-2 nums text-foreground/85">{value}</div>
-    </div>
-  );
-}
-
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
     <div className="px-5 mt-6 mb-2 flex items-center justify-between">
@@ -461,30 +431,201 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
   );
 }
 
-function Suggestion({
-  icon,
-  title,
-  subtitle,
-  tint,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  subtitle: string;
-  tint: string;
-}) {
+/* =========================================================
+ * رسالة شيلا الصباحيّة
+ * ========================================================= */
+function DailyMessageCard({ phase, tint }: { phase: CyclePhase; tint: string }) {
+  const message = DAILY_MESSAGES[phase][0];
   return (
-    <div className="bg-white/75 backdrop-blur border border-white/60 rounded-2xl p-3.5 flex items-center gap-3">
-      <span
-        className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
-        style={{ background: `color-mix(in oklab, ${tint} 18%, white)`, color: tint }}
-      >
-        {icon}
-      </span>
-      <div className="flex-1 min-w-0">
-        <div className="text-[13px] font-medium text-foreground/85 truncate">{title}</div>
-        <div className="text-[11.5px] text-foreground/55 mt-0.5 truncate">{subtitle}</div>
+    <div className="px-5 mt-4">
+      <div className="rounded-2xl p-4 relative overflow-hidden bg-white/80 backdrop-blur border border-white/60">
+        <div className="relative z-10 flex items-center gap-2 mb-2">
+          <div
+            className="w-7 h-7 rounded-full flex items-center justify-center"
+            style={{ background: `linear-gradient(135deg, ${tint}, color-mix(in oklab, ${tint} 60%, white))` }}
+          >
+            <Sparkles size={13} className="text-white" strokeWidth={2.2} />
+          </div>
+          <div className="text-[11px] font-semibold" style={{ color: tint }}>رسالة شيلا الصباحيّة</div>
+        </div>
+        <p className="relative z-10 text-[13px] leading-[1.85] text-foreground/85">{message}</p>
       </div>
     </div>
+  );
+}
+
+/* =========================================================
+ * Body IQ + إحصاءات اليوم (ماء قابل للزيادة)
+ * ========================================================= */
+function BodyIQStats({ tint }: { tint: string }) {
+  const [waterCups, setWaterCups] = useState(6);
+  const waterTarget = 8;
+  const tier = tierFor(mockUser.bodyIQ);
+  const caloriesToday = 1240;
+  const proteinToday = 68;
+
+  return (
+    <>
+      <div className="px-5 mt-4 grid grid-cols-[auto_1fr] gap-3 items-center">
+        <Link to="/bodyiq" className="block">
+          <TierBadge score={mockUser.bodyIQ} size="md" />
+          <div className="text-center mt-1.5 text-[10.5px] font-semibold" style={{ color: tier.color }}>{tier.name}</div>
+        </Link>
+        <div className="grid grid-cols-3 gap-2">
+          <StatTile icon={Moon} label="نوم" value={`${toAr(7)}`} hint="ساعة" color="var(--phase-luteal)" to="/journey/insights" />
+          <button
+            type="button"
+            onClick={() => setWaterCups((c) => Math.min(c + 1, waterTarget))}
+            className="rounded-2xl bg-white/85 border border-white/60 p-3 active:scale-[0.97] transition-transform text-right"
+          >
+            <div className="flex items-center gap-1.5">
+              <Droplets size={12} style={{ color: tint }} strokeWidth={2} />
+              <span className="text-[10px] text-foreground/55">ماء +</span>
+            </div>
+            <div className="font-display text-[18px] mt-1 leading-none nums" style={{ color: tint }}>
+              {toAr(waterCups)}/{toAr(waterTarget)}
+            </div>
+            <div className="text-[9.5px] text-foreground/50 mt-0.5">اضغطي +</div>
+          </button>
+          <StatTile icon={Apple} label="سعرات" value={`${toAr(caloriesToday)}`} hint={`من ${toAr(mockUser.dailyKcal)}`} color="var(--phase-menstrual)" to="/nutrition" />
+        </div>
+      </div>
+
+      {/* بروتين mini bar */}
+      <div className="px-5 mt-2">
+        <div className="text-[10px] text-foreground/55 flex justify-between">
+          <span>البروتين</span>
+          <span className="nums">{toAr(proteinToday)}/{toAr(mockUser.dailyProtein)}غ</span>
+        </div>
+        <div className="h-1.5 rounded-full bg-foreground/10 mt-1 overflow-hidden">
+          <div
+            className="h-full rounded-full"
+            style={{
+              width: `${Math.min(100, (proteinToday / mockUser.dailyProtein) * 100)}%`,
+              background: `linear-gradient(90deg, ${tint}, color-mix(in oklab, ${tint} 55%, white))`,
+            }}
+          />
+        </div>
+      </div>
+    </>
+  );
+}
+
+function StatTile({
+  icon: Icon, label, value, hint, color, to,
+}: {
+  icon: typeof Moon; label: string; value: string; hint: string; color: string; to: string;
+}) {
+  return (
+    <Link to={to} className="rounded-2xl bg-white/85 border border-white/60 p-3 active:scale-[0.97] transition-transform">
+      <div className="flex items-center gap-1.5">
+        <Icon size={12} style={{ color }} strokeWidth={2} />
+        <span className="text-[10px] text-foreground/55">{label}</span>
+      </div>
+      <div className="font-display text-[18px] mt-1 leading-none nums" style={{ color }}>{value}</div>
+      <div className="text-[9.5px] text-foreground/50 mt-0.5">{hint}</div>
+    </Link>
+  );
+}
+
+/* =========================================================
+ * خطّة اليوم — تمرين + وجبة مناسبة للمرحلة
+ * ========================================================= */
+function TodayPlan({ phase, tint }: { phase: CyclePhase; tint: string }) {
+  const workout = useMemo(
+    () => mockWorkouts.find((w) => w.phase === phase) ?? mockWorkouts[0],
+    [phase],
+  );
+  const meal = useMemo(
+    () => mockMeals.find((m) => m.phase === phase) ?? mockMeals[1],
+    [phase],
+  );
+  const [workoutDone, setWorkoutDone] = useState(false);
+  const [mealDone, setMealDone] = useState(false);
+
+  return (
+    <div className="px-5 mt-5">
+      <div className="flex items-center justify-between mb-2.5">
+        <h2 className="text-[13px] font-semibold">خطّة اليوم</h2>
+        <span className="text-[10px] text-foreground/50">من شيلا</span>
+      </div>
+      <div className="grid gap-2.5">
+        <Link
+          to="/workouts/$id"
+          params={{ id: workout.id }}
+          className="rounded-2xl p-3.5 bg-white/85 border border-white/60 flex items-center gap-3 active:scale-[0.99] transition-transform"
+        >
+          <div
+            className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
+            style={{ background: `linear-gradient(135deg, color-mix(in oklab, ${tint} 35%, white), color-mix(in oklab, ${tint} 14%, white))` }}
+          >
+            {workoutDone
+              ? <Check size={18} className="text-primary" strokeWidth={2.2} />
+              : <Dumbbell size={18} style={{ color: tint }} strokeWidth={1.9} />}
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="text-[13px] font-medium truncate">{workout.title}</div>
+            <div className="text-[10.5px] text-foreground/60 mt-0.5 nums">
+              {toAr(workout.duration)} د · {workout.level} · {toAr(workout.calories)} سعرة
+            </div>
+          </div>
+          <button
+            onClick={(e) => { e.preventDefault(); setWorkoutDone((v) => !v); }}
+            className={`w-8 h-8 rounded-full flex items-center justify-center ${workoutDone ? "bg-primary/15" : "bg-foreground/5"}`}
+            aria-label="تمّ التمرين"
+          >
+            <Check size={14} className={workoutDone ? "text-primary" : "text-foreground/40"} strokeWidth={2.5} />
+          </button>
+        </Link>
+
+        <Link
+          to="/nutrition/$id"
+          params={{ id: meal.id }}
+          className="rounded-2xl p-3.5 bg-white/85 border border-white/60 flex items-center gap-3 active:scale-[0.99] transition-transform"
+        >
+          <div
+            className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
+            style={{ background: "linear-gradient(135deg, oklch(0.96 0.04 145), oklch(0.94 0.04 145))" }}
+          >
+            {mealDone
+              ? <Check size={18} className="text-primary" strokeWidth={2.2} />
+              : <Apple size={18} style={{ color: "oklch(0.55 0.13 145)" }} strokeWidth={1.9} />}
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="text-[13px] font-medium truncate">{meal.title}</div>
+            <div className="text-[10.5px] text-foreground/60 mt-0.5 nums">
+              {toAr(meal.kcal)} سعرة · {toAr(meal.protein)}غ بروتين
+            </div>
+          </div>
+          {mealDone ? (
+            <span className="text-[10.5px] text-primary font-semibold">مسجّلة</span>
+          ) : (
+            <button
+              onClick={(e) => { e.preventDefault(); setMealDone(true); }}
+              className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center"
+              aria-label="سجّلي"
+            >
+              <Plus size={14} className="text-primary" strokeWidth={2.5} />
+            </button>
+          )}
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+/* =========================================================
+ * اختصار صغير
+ * ========================================================= */
+function Shortcut({ to, icon: Icon, label, color }: { to: string; icon: typeof Trophy; label: string; color: string }) {
+  return (
+    <Link
+      to={to}
+      className="flex flex-col items-center gap-1.5 bg-white/80 rounded-2xl border border-white/60 p-2.5 active:scale-95 transition-transform"
+    >
+      <Icon size={20} style={{ color }} strokeWidth={1.75} />
+      <span className="text-[10.5px] text-foreground/70 truncate max-w-full">{label}</span>
+    </Link>
   );
 }
 

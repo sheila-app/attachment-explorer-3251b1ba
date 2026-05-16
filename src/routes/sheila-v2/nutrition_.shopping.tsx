@@ -1,5 +1,6 @@
 import { createFileRoute } from"@tanstack/react-router";
 import { useState } from"react";
+import { Check } from "lucide-react";
 import { ShellV2 } from"@/components/sheila-v2/ShellV2";
 
 export const Route = createFileRoute("/sheila-v2/nutrition_/shopping")({ component: Shopping });

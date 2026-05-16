@@ -41,7 +41,7 @@ export function BottomNavSheila() {
                 className="w-[52px] h-[52px] object-contain drop-shadow-md"
               />
             </Link>
-            <span className={`text-[10px] mb-2 ${homeActive ? "text-primary font-medium" : "text-muted-foreground"}`}>
+            <span className={`text-[10px] mb-[14px] ${homeActive ? "text-primary font-medium" : "text-muted-foreground"}`}>
               الرئيسية
             </span>
           </div>

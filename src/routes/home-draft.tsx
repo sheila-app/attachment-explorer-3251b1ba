@@ -1,10 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "motion/react";
-import { Bell, Search, Sparkles, Droplet, Moon, Heart, Activity, BookOpen } from "lucide-react";
+import { Bell, Search, Sparkles, Droplets, Moon, Apple, Dumbbell, Users, Trophy, Plus, Check, ChevronLeft } from "lucide-react";
 import { DeviceFrame } from "@/components/sheila/DeviceFrame";
 import { BottomNav } from "@/components/sheila/BottomNav";
-import { mockUser, PHASE_META, type CyclePhase } from "@/data/mock";
+import { TierBadge } from "@/components/sheila-v2/TierBadge";
+import { mockUser, mockWorkouts, mockMeals, PHASE_META, type CyclePhase } from "@/data/mock";
+import { DAILY_MESSAGES, tierFor } from "@/data/sheila-v2";
 import { toAr } from "@/lib/format";
 
 export const Route = createFileRoute("/home-draft")({ component: HomeDraft });

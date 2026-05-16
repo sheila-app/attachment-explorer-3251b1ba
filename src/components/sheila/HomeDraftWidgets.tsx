@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { PHASE_META, type CyclePhase } from "@/data/mock";
 import { toAr } from "@/lib/format";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const PHASE_SEQ: { key: CyclePhase; days: number }[] = [
   { key: "menstrual", days: 5 },

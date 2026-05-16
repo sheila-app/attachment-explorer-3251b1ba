@@ -1,8 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { Camera, Sparkles, Plus, BookOpen, ChevronLeft, Check, Droplets, ListChecks } from "lucide-react";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { BookOpen, ChevronLeft, Droplets, ListChecks } from "lucide-react";
 import { ShellV2, PhasePill } from "@/components/sheila-v2/ShellV2";
-import { AITyping, useFakeGenerate } from "@/components/sheila-v2/AITyping";
 import { useSheilaV2 } from "@/components/sheila-v2/SheilaV2Store";
+import { MealCard } from "@/components/sheila-v2/MealCard";
 import { userV2, PHASE_META, MEALS, MEAL_TYPES } from "@/data/sheila-v2";
 
 export const Route = createFileRoute("/sheila-v2/nutrition")({ component: NutritionIdx });

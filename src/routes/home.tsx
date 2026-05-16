@@ -465,7 +465,63 @@ function DailyMessageCard({ phase }: { phase: CyclePhase; tint?: string }) {
 }
 
 /* =========================================================
- * Body IQ + إحصاءات اليوم (ماء قابل للزيادة)
+ * كيف تشعرين اليوم — سلايد عرضي بعناصر المزاج
+ * ========================================================= */
+function MoodSlider() {
+  const [selected, setSelected] = useState<string[]>([]);
+  const toggle = (id: string) =>
+    setSelected((s) => (s.includes(id) ? s.filter((x) => x !== id) : [...s, id]));
+
+  return (
+    <div className="px-5 mt-4">
+      <div className="glass-strong rounded-3xl p-4">
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="text-[13px] font-semibold">كيف تشعرين اليوم؟</h3>
+          <span className="text-[10.5px] text-foreground/55">
+            {selected.length > 0 ? `${toAr(selected.length)} محدّد` : "اختاري واحداً أو أكثر"}
+          </span>
+        </div>
+        <div
+          className="flex gap-2.5 overflow-x-auto no-scrollbar snap-x snap-mandatory -mx-1 px-1 pb-1"
+          style={{ direction: "rtl" }}
+        >
+          {MOOD_LIST.map((m) => {
+            const on = selected.includes(m.id);
+            return (
+              <button
+                key={m.id}
+                onClick={() => toggle(m.id)}
+                className="snap-start shrink-0 w-[72px] rounded-2xl py-2.5 px-1 flex flex-col items-center gap-1.5 transition"
+                style={
+                  on
+                    ? {
+                        background: `color-mix(in oklab, ${m.tone} 18%, transparent)`,
+                        boxShadow: `inset 0 0 0 1.5px ${m.tone}`,
+                      }
+                    : { background: "color-mix(in oklab, var(--foreground) 4%, transparent)" }
+                }
+              >
+                <img
+                  src={m.img}
+                  alt={m.name}
+                  className="w-10 h-10 object-contain"
+                  style={{ opacity: on ? 1 : 0.78 }}
+                />
+                <span
+                  className="text-[10.5px] font-medium leading-tight text-center truncate w-full"
+                  style={{ color: on ? m.tone : "var(--foreground)" }}
+                >
+                  {m.name}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
  * ========================================================= */
 function BodyIQStats({ tint }: { tint: string }) {
   const [waterCups] = useState(6);

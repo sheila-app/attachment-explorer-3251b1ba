@@ -29,7 +29,7 @@ export function BottomNavSheila() {
           <div className="relative h-full flex items-end justify-center">
             <Link
               to="/home-draft"
-              className="absolute -top-6 w-16 h-16 rounded-full flex flex-col items-center justify-center"
+              className="absolute -top-7 w-[72px] h-[72px] rounded-full flex items-center justify-center overflow-hidden"
               style={{
                 background: "var(--gradient-primary, linear-gradient(135deg, oklch(0.78 0.13 350), oklch(0.66 0.16 322)))",
                 boxShadow: "0 12px 28px -8px oklch(0.46 0.135 328 / 0.55), inset 0 1px 0 oklch(1 0 0 / 0.6)",
@@ -39,11 +39,11 @@ export function BottomNavSheila() {
               <motion.img
                 src={sheilaIcon}
                 alt="شيلا"
-                width={36}
-                height={36}
+                width={88}
+                height={88}
                 loading="lazy"
-                className="w-9 h-9 object-contain drop-shadow-sm"
-                animate={homeActive ? { scale: [1, 1.06, 1] } : {}}
+                className="w-[88px] h-[88px] object-contain drop-shadow-sm scale-110"
+                animate={homeActive ? { scale: [1.1, 1.16, 1.1] } : {}}
                 transition={{ duration: 2, repeat: Infinity }}
               />
             </Link>

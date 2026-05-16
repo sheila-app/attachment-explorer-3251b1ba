@@ -4,7 +4,9 @@ import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { OptionCard, PrimaryCTA, GhostCTA } from "@/components/sheila/OnboardingShell";
 import { IOSWheel, wheelRange } from "@/components/sheila/IOSWheel";
 import { CyclePhaseRing } from "@/components/sheila/CyclePhaseRing";
-import { allScreens, PHASE_META } from "@/data/mock";
+import { MultiPhaseRing, DateStrip, phaseForDay } from "@/components/sheila/HomeDraftWidgets";
+import { allScreens, PHASE_META, mockUser } from "@/data/mock";
+import { toAr } from "@/lib/format";
 import { Bell, Sparkles, Flame, Droplet, Moon, ChevronLeft, Activity } from "lucide-react";
 import { MOOD_LIST } from "@/data/moods";
 import { AITyping, AIGenerating } from "@/components/sheila-v2/AITyping";
@@ -74,6 +76,10 @@ function Page() {
   const [year, setYear] = useState<number>(yearNow);
   const [moods, setMoods] = useState<string[]>(["calm"]);
   const toggleMood = (id: string) => setMoods(s => s.includes(id) ? s.filter(x => x !== id) : [...s, id]);
+  const [draftOffset, setDraftOffset] = useState(0);
+  const draftDay = (((mockUser.cycleDay - 1 + draftOffset) % mockUser.cycleLength) + mockUser.cycleLength) % mockUser.cycleLength + 1;
+  const draftPhase = phaseForDay(draftDay, mockUser.cycleLength);
+  const draftDaysLeft = mockUser.cycleLength - draftDay;
 
   const moodList = MOOD_LIST;
 
@@ -225,6 +231,34 @@ function Page() {
 
             <Block title="حلقة مرحلة الدورة">
               <div className="flex justify-center"><CyclePhaseRing phase="ovulation" day={14} cycleLength={28} size={150} /></div>
+            </Block>
+
+            <Block title="حلقة الدورة متعدّدة المراحل (home-draft)">
+              <div className="glass rounded-3xl p-4 flex justify-center">
+                <MultiPhaseRing
+                  size={260}
+                  day={draftDay}
+                  cycleLength={mockUser.cycleLength}
+                  currentPhase={draftPhase}
+                  centerTop="اليوم"
+                  centerBig={toAr(draftDay)}
+                  centerSmall="من الدورة"
+                  chip={`متبقٍّ ${toAr(draftDaysLeft)} يوم`}
+                />
+              </div>
+              <p className="text-[10px] text-foreground/55 mt-2 px-1 font-mono">MultiPhaseRing · أقواس بدون تقاطع + مؤشّر اليوم</p>
+            </Block>
+
+            <Block title="سلايد التاريخ (home-draft)">
+              <div className="glass rounded-3xl p-3">
+                <DateStrip
+                  offset={draftOffset}
+                  setOffset={setDraftOffset}
+                  cycleLength={mockUser.cycleLength}
+                  cycleDay={mockUser.cycleDay}
+                />
+              </div>
+              <p className="text-[10px] text-foreground/55 mt-2 px-1 font-mono">DateStrip · اسحبي يمين/يسار — اللون يتبع المرحلة</p>
             </Block>
 
             <Block title="رقاقات (Chips)">

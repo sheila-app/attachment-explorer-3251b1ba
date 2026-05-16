@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "motion/react";
 import { Bell, Search, Sparkles, Droplets, Moon, Apple, Dumbbell, Users, Trophy, Plus, Check, ChevronLeft } from "lucide-react";
 import { DeviceFrame } from "@/components/sheila/DeviceFrame";
-import { BottomNav } from "@/components/sheila/BottomNav";
+import { BottomNavSheila } from "@/components/sheila/BottomNavSheila";
 import { TierBadge } from "@/components/sheila-v2/TierBadge";
 import { mockUser, mockWorkouts, mockMeals, PHASE_META, type CyclePhase } from "@/data/mock";
 import { DAILY_MESSAGES, tierFor } from "@/data/sheila-v2";
@@ -222,36 +222,10 @@ function HomeDraft() {
             <Shortcut to="/buddy" icon={Users} label="شريك" color="var(--phase-follicular)" />
           </div>
 
-          <SectionTitle>جدول الأسبوع</SectionTitle>
-          <div className="px-5 space-y-2">
-            {[
-              { t: "موعد طبيب", d: "الثلاثاء · ١٠ صباحاً" },
-              { t: "تمرين يوغا", d: "الأربعاء · ٦ مساءً" },
-              { t: "تذكير مكمّلات", d: "كلّ يوم · ٩ صباحاً" },
-              { t: "جلسة تأمّل", d: "الجمعة · ٧ مساءً" },
-            ].map((it, i) => (
-              <div
-                key={i}
-                className="flex items-center justify-between bg-white/70 backdrop-blur border border-white/60 rounded-2xl px-4 py-3"
-              >
-                <div>
-                  <div className="text-[13px] font-medium text-foreground/85">{it.t}</div>
-                  <div className="text-[11.5px] text-foreground/55 mt-0.5">{it.d}</div>
-                </div>
-                <span
-                  className="w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-medium"
-                  style={{ background: `color-mix(in oklab, ${meta.color} 18%, white)`, color: meta.color }}
-                >
-                  ↗
-                </span>
-              </div>
-            ))}
-          </div>
-
           <div className="h-6" />
         </div>
 
-        <BottomNav />
+        <BottomNavSheila />
       </div>
     </DeviceFrame>
   );
@@ -449,7 +423,11 @@ function DailyMessageCard({ phase, tint }: { phase: CyclePhase; tint: string }) 
   const message = DAILY_MESSAGES[phase][0];
   return (
     <div className="px-5 mt-4">
-      <div className="rounded-2xl p-4 relative overflow-hidden bg-white/80 backdrop-blur border border-white/60">
+      <Link
+        to="/sheila-v2/cycle/phase/$phase"
+        params={{ phase }}
+        className="block rounded-2xl p-4 relative overflow-hidden bg-white/80 backdrop-blur border border-white/60 active:scale-[0.99] transition-transform"
+      >
         <div className="relative z-10 flex items-center gap-2 mb-2">
           <div
             className="w-7 h-7 rounded-full flex items-center justify-center"
@@ -460,7 +438,7 @@ function DailyMessageCard({ phase, tint }: { phase: CyclePhase; tint: string }) 
           <div className="text-[11px] font-semibold" style={{ color: tint }}>رسالة شيلا الصباحيّة</div>
         </div>
         <p className="relative z-10 text-[13px] leading-[1.85] text-foreground/85">{message}</p>
-      </div>
+      </Link>
     </div>
   );
 }
@@ -469,7 +447,7 @@ function DailyMessageCard({ phase, tint }: { phase: CyclePhase; tint: string }) 
  * Body IQ + إحصاءات اليوم (ماء قابل للزيادة)
  * ========================================================= */
 function BodyIQStats({ tint }: { tint: string }) {
-  const [waterCups, setWaterCups] = useState(6);
+  const [waterCups] = useState(6);
   const waterTarget = 8;
   const tier = tierFor(mockUser.bodyIQ);
   const caloriesToday = 1240;
@@ -482,22 +460,9 @@ function BodyIQStats({ tint }: { tint: string }) {
         <div className="text-center mt-1.5 text-[10.5px] font-semibold" style={{ color: tier.color }}>{tier.name}</div>
       </Link>
       <div className="grid grid-cols-2 gap-2">
+        <StatTile icon={Moon} label="نوم" value={`${toAr(7)}`} hint="ساعة" color="var(--phase-luteal)" to="/checkin/sleep" />
+        <StatTile icon={Droplets} label="ماء" value={`${toAr(waterCups)}/${toAr(waterTarget)}`} hint="كوب" color={tint} to="/checkin/water" />
         <StatTile icon={Apple} label="سعرات" value={`${toAr(caloriesToday)}`} hint={`من ${toAr(mockUser.dailyKcal)}`} color="var(--phase-menstrual)" to="/nutrition" />
-        <button
-          type="button"
-          onClick={() => setWaterCups((c) => Math.min(c + 1, waterTarget))}
-          className="rounded-2xl bg-white/85 border border-white/60 p-3 active:scale-[0.97] transition-transform text-right"
-        >
-          <div className="flex items-center gap-1.5">
-            <Droplets size={12} style={{ color: tint }} strokeWidth={2} />
-            <span className="text-[10px] text-foreground/55">ماء +</span>
-          </div>
-          <div className="font-display text-[18px] mt-1 leading-none nums" style={{ color: tint }}>
-            {toAr(waterCups)}/{toAr(waterTarget)}
-          </div>
-          <div className="text-[9.5px] text-foreground/50 mt-0.5">اضغطي +</div>
-        </button>
-        <StatTile icon={Moon} label="نوم" value={`${toAr(7)}`} hint="ساعة" color="var(--phase-luteal)" to="/journey/insights" />
         <StatTile
           icon={Dumbbell}
           label="بروتين"

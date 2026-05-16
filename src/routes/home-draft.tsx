@@ -434,8 +434,9 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 /* =========================================================
  * رسالة شيلا الصباحيّة
  * ========================================================= */
-function DailyMessageCard({ phase, tint }: { phase: CyclePhase; tint: string }) {
+function DailyMessageCard({ phase }: { phase: CyclePhase; tint?: string }) {
   const message = DAILY_MESSAGES[phase][0];
+  const tint = "var(--primary)";
   return (
     <div className="px-5 mt-4">
       <Link

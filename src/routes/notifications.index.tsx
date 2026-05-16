@@ -49,7 +49,7 @@ function NotifPage() {
       showNav={false}
       trailing={
         <Link
-          to="/notifications/settings"
+          to="/profile/notifications-prefs"
           className="w-9 h-9 rounded-xl bg-secondary border border-border flex items-center justify-center"
           aria-label="إعدادات الإشعارات"
         >

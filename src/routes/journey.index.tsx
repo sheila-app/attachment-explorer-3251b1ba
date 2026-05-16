@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { mockUser, mockWeightLog } from "@/data/mock";
-import { TrendingDown, Flame, Activity, Trophy, Sparkles, Angry, Smile, Wind, Pill, BookOpen, Baby, CheckCircle, BarChart2, Timer } from "lucide-react";
+import { TrendingDown, Flame, Activity, Trophy, Sparkles, Angry, Smile, Wind, Pill, BookOpen, Baby, CheckCircle, Calendar, BarChart2, Timer } from "lucide-react";
 
 export const Route = createFileRoute("/journey/")({ component: JourneyPage });
 
@@ -95,14 +95,14 @@ function JourneyPage() {
         </div>
 
         <div className="grid grid-cols-2 gap-2.5 mt-3">
-          <Link to="/checkin" className="bg-white/90 backdrop-blur-sm rounded-2xl border border-border p-3.5 flex items-center gap-2.5">
+          <Link to="/journey/symptoms" className="bg-white/90 backdrop-blur-sm rounded-2xl border border-border p-3.5 flex items-center gap-2.5">
             <Angry size={22} strokeWidth={1.75} className="relative z-10 text-primary shrink-0" />
             <div className="relative z-10">
               <div className="text-[12px] font-medium">الأعراض</div>
               <div className="text-[10px] text-foreground/55">سجّلي اليوم</div>
             </div>
           </Link>
-          <Link to="/checkin" className="bg-white/90 backdrop-blur-sm rounded-2xl border border-border p-3.5 flex items-center gap-2.5">
+          <Link to="/journey/mood" className="bg-white/90 backdrop-blur-sm rounded-2xl border border-border p-3.5 flex items-center gap-2.5">
             <Smile size={22} strokeWidth={1.75} className="relative z-10 text-primary shrink-0" />
             <div className="relative z-10">
               <div className="text-[12px] font-medium">المزاج</div>
@@ -157,7 +157,14 @@ function JourneyPage() {
               <div className="text-[10px] text-foreground/55">3/5 اليوم</div>
             </div>
           </Link>
-          <Link to="/journey/insights" className="bg-white/90 backdrop-blur-sm rounded-2xl border border-border p-3.5 flex items-center gap-2.5">
+          <Link to="/calendar" className="bg-white/90 backdrop-blur-sm rounded-2xl border border-border p-3.5 flex items-center gap-2.5">
+            <Calendar size={22} strokeWidth={1.75} className="relative z-10 text-primary shrink-0" />
+            <div className="relative z-10">
+              <div className="text-[12px] font-medium">تقويمي</div>
+              <div className="text-[10px] text-foreground/55">إدارة الأحداث</div>
+            </div>
+          </Link>
+          <Link to="/reports" className="bg-white/90 backdrop-blur-sm rounded-2xl border border-border p-3.5 flex items-center gap-2.5">
             <BarChart2 size={22} strokeWidth={1.75} className="relative z-10 text-primary shrink-0" />
             <div className="relative z-10">
               <div className="text-[12px] font-medium">التقارير</div>

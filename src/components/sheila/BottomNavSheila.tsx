@@ -17,7 +17,7 @@ const sideItemsLeft = [
 /** شريط تنقّل سفلي — زر الرئيسية في المنتصف بارز يحمل أيقونة شيلا. */
 export function BottomNavSheila() {
   const { pathname } = useLocation();
-  const homeActive = pathname === "/home";
+  const homeActive = pathname === "/home-draft" || pathname === "/home";
 
   return (
     <nav className="absolute bottom-0 inset-x-0 z-30 px-4 pb-4 pt-2">
@@ -28,7 +28,7 @@ export function BottomNavSheila() {
           {/* خانة فاضية للحفاظ على الشبكة — زر الرئيسية يطفو فوقها */}
           <div className="relative h-full flex items-end justify-center">
             <Link
-              to="/home"
+              to="/home-draft"
               className="absolute -top-6 flex items-center justify-center"
               aria-label="الرئيسية"
             >

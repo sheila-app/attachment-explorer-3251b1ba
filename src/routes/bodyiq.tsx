@@ -115,7 +115,7 @@ function BodyIQPage() {
         </div>
 
         <div className="grid grid-cols-2 gap-2.5 mt-4">
-          <Link to="/journey/awards" className="glass rounded-2xl p-3.5 text-center text-[12.5px] font-medium">سلسلتي</Link>
+          <Link to="/streak" className="glass rounded-2xl p-3.5 text-center text-[12.5px] font-medium">سلسلتي</Link>
           <Link to="/circle" className="glass rounded-2xl p-3.5 text-center text-[12.5px] font-medium">دائرتي</Link>
         </div>
       </div>

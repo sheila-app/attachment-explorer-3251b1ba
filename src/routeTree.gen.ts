@@ -13,20 +13,25 @@ import { Route as WidgetsRouteImport } from './routes/widgets'
 import { Route as TimerRouteImport } from './routes/timer'
 import { Route as SystemRouteImport } from './routes/system'
 import { Route as SupplementsRouteImport } from './routes/supplements'
+import { Route as StreakRouteImport } from './routes/streak'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as ScreensRouteImport } from './routes/screens'
 import { Route as PregnancyRouteImport } from './routes/pregnancy'
 import { Route as PaywallRouteImport } from './routes/paywall'
+import { Route as HomeDraftRouteImport } from './routes/home-draft'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as EmergencyRouteImport } from './routes/emergency'
 import { Route as CircleRouteImport } from './routes/circle'
+import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as BuddyRouteImport } from './routes/buddy'
 import { Route as BodyiqRouteImport } from './routes/bodyiq'
 import { Route as AssistantRouteImport } from './routes/assistant'
+import { Route as AchievementsRouteImport } from './routes/achievements'
 import { Route as R404RouteImport } from './routes/404'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WorkoutsIndexRouteImport } from './routes/workouts.index'
 import { Route as SheilaV2IndexRouteImport } from './routes/sheila-v2/index'
+import { Route as ReportsIndexRouteImport } from './routes/reports.index'
 import { Route as ProfileIndexRouteImport } from './routes/profile.index'
 import { Route as NutritionIndexRouteImport } from './routes/nutrition.index'
 import { Route as NotificationsIndexRouteImport } from './routes/notifications.index'
@@ -42,6 +47,7 @@ import { Route as ArticlesIndexRouteImport } from './routes/articles.index'
 import { Route as WorkoutsSummaryRouteImport } from './routes/workouts.summary'
 import { Route as WorkoutsProgramsRouteImport } from './routes/workouts.programs'
 import { Route as WorkoutsLiveRouteImport } from './routes/workouts.live'
+import { Route as WorkoutsDraftRouteImport } from './routes/workouts.draft'
 import { Route as WorkoutsIdRouteImport } from './routes/workouts.$id'
 import { Route as SheilaV2WorkoutsRouteImport } from './routes/sheila-v2/workouts'
 import { Route as SheilaV2SheilaRouteImport } from './routes/sheila-v2/sheila'
@@ -56,6 +62,7 @@ import { Route as SheilaV2HealthRouteImport } from './routes/sheila-v2/health'
 import { Route as SheilaV2EmergencyRouteImport } from './routes/sheila-v2/emergency'
 import { Route as SheilaV2CycleRouteImport } from './routes/sheila-v2/cycle'
 import { Route as SheilaV2CircleRouteImport } from './routes/sheila-v2/circle'
+import { Route as ReportsIdRouteImport } from './routes/reports.$id'
 import { Route as ProfileThemeRouteImport } from './routes/profile.theme'
 import { Route as ProfileTermsRouteImport } from './routes/profile.terms'
 import { Route as ProfileSubscriptionRouteImport } from './routes/profile.subscription'
@@ -63,6 +70,7 @@ import { Route as ProfileSettingsRouteImport } from './routes/profile.settings'
 import { Route as ProfileReferralRouteImport } from './routes/profile.referral'
 import { Route as ProfilePrivacyRouteImport } from './routes/profile.privacy'
 import { Route as ProfilePaymentRouteImport } from './routes/profile.payment'
+import { Route as ProfileNotificationsPrefsRouteImport } from './routes/profile.notifications-prefs'
 import { Route as ProfileLanguageRouteImport } from './routes/profile.language'
 import { Route as ProfileHelpRouteImport } from './routes/profile.help'
 import { Route as ProfileFeedbackRouteImport } from './routes/profile.feedback'
@@ -95,17 +103,22 @@ import { Route as NutritionLogRouteImport } from './routes/nutrition.log'
 import { Route as NutritionIdRouteImport } from './routes/nutrition.$id'
 import { Route as NotificationsSettingsRouteImport } from './routes/notifications.settings'
 import { Route as MindfulnessIdRouteImport } from './routes/mindfulness.$id'
+import { Route as JourneySymptomsRouteImport } from './routes/journey.symptoms'
+import { Route as JourneyMoodRouteImport } from './routes/journey.mood'
 import { Route as JourneyMeasurementsRouteImport } from './routes/journey.measurements'
 import { Route as JourneyInsightsRouteImport } from './routes/journey.insights'
 import { Route as JourneyGoalsRouteImport } from './routes/journey.goals'
+import { Route as JourneyCalendarRouteImport } from './routes/journey.calendar'
 import { Route as JourneyAwardsRouteImport } from './routes/journey.awards'
 import { Route as HabitsNewRouteImport } from './routes/habits.new'
+import { Route as CycleLogDraftRouteImport } from './routes/cycle.log-draft'
 import { Route as CycleLogRouteImport } from './routes/cycle.log'
 import { Route as CommunityInviteRouteImport } from './routes/community.invite'
 import { Route as CommunityGroupsRouteImport } from './routes/community.groups'
 import { Route as CommunityEventsRouteImport } from './routes/community.events'
 import { Route as CommunityIdRouteImport } from './routes/community.$id'
 import { Route as CoachesIdRouteImport } from './routes/coaches.$id'
+import { Route as CheckinWaterDraftRouteImport } from './routes/checkin.water-draft'
 import { Route as CheckinWaterRouteImport } from './routes/checkin.water'
 import { Route as CheckinStepsRouteImport } from './routes/checkin.steps'
 import { Route as CheckinSleepRouteImport } from './routes/checkin.sleep'
@@ -159,6 +172,11 @@ const SupplementsRoute = SupplementsRouteImport.update({
   path: '/supplements',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StreakRoute = StreakRouteImport.update({
+  id: '/streak',
+  path: '/streak',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SearchRoute = SearchRouteImport.update({
   id: '/search',
   path: '/search',
@@ -179,6 +197,11 @@ const PaywallRoute = PaywallRouteImport.update({
   path: '/paywall',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HomeDraftRoute = HomeDraftRouteImport.update({
+  id: '/home-draft',
+  path: '/home-draft',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HomeRoute = HomeRouteImport.update({
   id: '/home',
   path: '/home',
@@ -194,6 +217,11 @@ const CircleRoute = CircleRouteImport.update({
   path: '/circle',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CalendarRoute = CalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BuddyRoute = BuddyRouteImport.update({
   id: '/buddy',
   path: '/buddy',
@@ -207,6 +235,11 @@ const BodyiqRoute = BodyiqRouteImport.update({
 const AssistantRoute = AssistantRouteImport.update({
   id: '/assistant',
   path: '/assistant',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AchievementsRoute = AchievementsRouteImport.update({
+  id: '/achievements',
+  path: '/achievements',
   getParentRoute: () => rootRouteImport,
 } as any)
 const R404Route = R404RouteImport.update({
@@ -227,6 +260,11 @@ const WorkoutsIndexRoute = WorkoutsIndexRouteImport.update({
 const SheilaV2IndexRoute = SheilaV2IndexRouteImport.update({
   id: '/sheila-v2/',
   path: '/sheila-v2/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsIndexRoute = ReportsIndexRouteImport.update({
+  id: '/reports/',
+  path: '/reports/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileIndexRoute = ProfileIndexRouteImport.update({
@@ -304,6 +342,11 @@ const WorkoutsLiveRoute = WorkoutsLiveRouteImport.update({
   path: '/workouts/live',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WorkoutsDraftRoute = WorkoutsDraftRouteImport.update({
+  id: '/workouts/draft',
+  path: '/workouts/draft',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WorkoutsIdRoute = WorkoutsIdRouteImport.update({
   id: '/workouts/$id',
   path: '/workouts/$id',
@@ -374,6 +417,11 @@ const SheilaV2CircleRoute = SheilaV2CircleRouteImport.update({
   path: '/sheila-v2/circle',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReportsIdRoute = ReportsIdRouteImport.update({
+  id: '/reports/$id',
+  path: '/reports/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProfileThemeRoute = ProfileThemeRouteImport.update({
   id: '/profile/theme',
   path: '/profile/theme',
@@ -409,6 +457,12 @@ const ProfilePaymentRoute = ProfilePaymentRouteImport.update({
   path: '/profile/payment',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProfileNotificationsPrefsRoute =
+  ProfileNotificationsPrefsRouteImport.update({
+    id: '/profile/notifications-prefs',
+    path: '/profile/notifications-prefs',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ProfileLanguageRoute = ProfileLanguageRouteImport.update({
   id: '/profile/language',
   path: '/profile/language',
@@ -569,6 +623,16 @@ const MindfulnessIdRoute = MindfulnessIdRouteImport.update({
   path: '/mindfulness/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JourneySymptomsRoute = JourneySymptomsRouteImport.update({
+  id: '/journey/symptoms',
+  path: '/journey/symptoms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JourneyMoodRoute = JourneyMoodRouteImport.update({
+  id: '/journey/mood',
+  path: '/journey/mood',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const JourneyMeasurementsRoute = JourneyMeasurementsRouteImport.update({
   id: '/journey/measurements',
   path: '/journey/measurements',
@@ -584,6 +648,11 @@ const JourneyGoalsRoute = JourneyGoalsRouteImport.update({
   path: '/journey/goals',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JourneyCalendarRoute = JourneyCalendarRouteImport.update({
+  id: '/journey/calendar',
+  path: '/journey/calendar',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const JourneyAwardsRoute = JourneyAwardsRouteImport.update({
   id: '/journey/awards',
   path: '/journey/awards',
@@ -592,6 +661,11 @@ const JourneyAwardsRoute = JourneyAwardsRouteImport.update({
 const HabitsNewRoute = HabitsNewRouteImport.update({
   id: '/habits/new',
   path: '/habits/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CycleLogDraftRoute = CycleLogDraftRouteImport.update({
+  id: '/cycle/log-draft',
+  path: '/cycle/log-draft',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CycleLogRoute = CycleLogRouteImport.update({
@@ -622,6 +696,11 @@ const CommunityIdRoute = CommunityIdRouteImport.update({
 const CoachesIdRoute = CoachesIdRouteImport.update({
   id: '/coaches/$id',
   path: '/coaches/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckinWaterDraftRoute = CheckinWaterDraftRouteImport.update({
+  id: '/checkin/water-draft',
+  path: '/checkin/water-draft',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CheckinWaterRoute = CheckinWaterRouteImport.update({
@@ -794,16 +873,20 @@ const SheilaV2CyclePhasePhaseRoute = SheilaV2CyclePhasePhaseRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/404': typeof R404Route
+  '/achievements': typeof AchievementsRoute
   '/assistant': typeof AssistantRoute
   '/bodyiq': typeof BodyiqRoute
   '/buddy': typeof BuddyRoute
+  '/calendar': typeof CalendarRoute
   '/circle': typeof CircleRoute
   '/emergency': typeof EmergencyRoute
   '/home': typeof HomeRoute
+  '/home-draft': typeof HomeDraftRoute
   '/paywall': typeof PaywallRoute
   '/pregnancy': typeof PregnancyRoute
   '/screens': typeof ScreensRoute
   '/search': typeof SearchRoute
+  '/streak': typeof StreakRoute
   '/supplements': typeof SupplementsRoute
   '/system': typeof SystemRoute
   '/timer': typeof TimerRoute
@@ -819,17 +902,22 @@ export interface FileRoutesByFullPath {
   '/checkin/sleep': typeof CheckinSleepRoute
   '/checkin/steps': typeof CheckinStepsRoute
   '/checkin/water': typeof CheckinWaterRoute
+  '/checkin/water-draft': typeof CheckinWaterDraftRoute
   '/coaches/$id': typeof CoachesIdRouteWithChildren
   '/community/$id': typeof CommunityIdRoute
   '/community/events': typeof CommunityEventsRoute
   '/community/groups': typeof CommunityGroupsRoute
   '/community/invite': typeof CommunityInviteRoute
   '/cycle/log': typeof CycleLogRoute
+  '/cycle/log-draft': typeof CycleLogDraftRoute
   '/habits/new': typeof HabitsNewRoute
   '/journey/awards': typeof JourneyAwardsRoute
+  '/journey/calendar': typeof JourneyCalendarRoute
   '/journey/goals': typeof JourneyGoalsRoute
   '/journey/insights': typeof JourneyInsightsRoute
   '/journey/measurements': typeof JourneyMeasurementsRoute
+  '/journey/mood': typeof JourneyMoodRoute
+  '/journey/symptoms': typeof JourneySymptomsRoute
   '/mindfulness/$id': typeof MindfulnessIdRoute
   '/notifications/settings': typeof NotificationsSettingsRoute
   '/nutrition/$id': typeof NutritionIdRoute
@@ -862,6 +950,7 @@ export interface FileRoutesByFullPath {
   '/profile/feedback': typeof ProfileFeedbackRoute
   '/profile/help': typeof ProfileHelpRoute
   '/profile/language': typeof ProfileLanguageRoute
+  '/profile/notifications-prefs': typeof ProfileNotificationsPrefsRoute
   '/profile/payment': typeof ProfilePaymentRoute
   '/profile/privacy': typeof ProfilePrivacyRoute
   '/profile/referral': typeof ProfileReferralRoute
@@ -869,6 +958,7 @@ export interface FileRoutesByFullPath {
   '/profile/subscription': typeof ProfileSubscriptionRoute
   '/profile/terms': typeof ProfileTermsRoute
   '/profile/theme': typeof ProfileThemeRoute
+  '/reports/$id': typeof ReportsIdRoute
   '/sheila-v2/circle': typeof SheilaV2CircleRoute
   '/sheila-v2/cycle': typeof SheilaV2CycleRoute
   '/sheila-v2/emergency': typeof SheilaV2EmergencyRoute
@@ -883,6 +973,7 @@ export interface FileRoutesByFullPath {
   '/sheila-v2/sheila': typeof SheilaV2SheilaRoute
   '/sheila-v2/workouts': typeof SheilaV2WorkoutsRoute
   '/workouts/$id': typeof WorkoutsIdRouteWithChildren
+  '/workouts/draft': typeof WorkoutsDraftRoute
   '/workouts/live': typeof WorkoutsLiveRoute
   '/workouts/programs': typeof WorkoutsProgramsRouteWithChildren
   '/workouts/summary': typeof WorkoutsSummaryRoute
@@ -898,6 +989,7 @@ export interface FileRoutesByFullPath {
   '/notifications/': typeof NotificationsIndexRoute
   '/nutrition/': typeof NutritionIndexRoute
   '/profile/': typeof ProfileIndexRoute
+  '/reports/': typeof ReportsIndexRoute
   '/sheila-v2/': typeof SheilaV2IndexRoute
   '/workouts/': typeof WorkoutsIndexRoute
   '/coaches/$id/book': typeof CoachesIdBookRoute
@@ -925,16 +1017,20 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/404': typeof R404Route
+  '/achievements': typeof AchievementsRoute
   '/assistant': typeof AssistantRoute
   '/bodyiq': typeof BodyiqRoute
   '/buddy': typeof BuddyRoute
+  '/calendar': typeof CalendarRoute
   '/circle': typeof CircleRoute
   '/emergency': typeof EmergencyRoute
   '/home': typeof HomeRoute
+  '/home-draft': typeof HomeDraftRoute
   '/paywall': typeof PaywallRoute
   '/pregnancy': typeof PregnancyRoute
   '/screens': typeof ScreensRoute
   '/search': typeof SearchRoute
+  '/streak': typeof StreakRoute
   '/supplements': typeof SupplementsRoute
   '/system': typeof SystemRoute
   '/timer': typeof TimerRoute
@@ -950,17 +1046,22 @@ export interface FileRoutesByTo {
   '/checkin/sleep': typeof CheckinSleepRoute
   '/checkin/steps': typeof CheckinStepsRoute
   '/checkin/water': typeof CheckinWaterRoute
+  '/checkin/water-draft': typeof CheckinWaterDraftRoute
   '/coaches/$id': typeof CoachesIdRouteWithChildren
   '/community/$id': typeof CommunityIdRoute
   '/community/events': typeof CommunityEventsRoute
   '/community/groups': typeof CommunityGroupsRoute
   '/community/invite': typeof CommunityInviteRoute
   '/cycle/log': typeof CycleLogRoute
+  '/cycle/log-draft': typeof CycleLogDraftRoute
   '/habits/new': typeof HabitsNewRoute
   '/journey/awards': typeof JourneyAwardsRoute
+  '/journey/calendar': typeof JourneyCalendarRoute
   '/journey/goals': typeof JourneyGoalsRoute
   '/journey/insights': typeof JourneyInsightsRoute
   '/journey/measurements': typeof JourneyMeasurementsRoute
+  '/journey/mood': typeof JourneyMoodRoute
+  '/journey/symptoms': typeof JourneySymptomsRoute
   '/mindfulness/$id': typeof MindfulnessIdRoute
   '/notifications/settings': typeof NotificationsSettingsRoute
   '/nutrition/$id': typeof NutritionIdRoute
@@ -993,6 +1094,7 @@ export interface FileRoutesByTo {
   '/profile/feedback': typeof ProfileFeedbackRoute
   '/profile/help': typeof ProfileHelpRoute
   '/profile/language': typeof ProfileLanguageRoute
+  '/profile/notifications-prefs': typeof ProfileNotificationsPrefsRoute
   '/profile/payment': typeof ProfilePaymentRoute
   '/profile/privacy': typeof ProfilePrivacyRoute
   '/profile/referral': typeof ProfileReferralRoute
@@ -1000,6 +1102,7 @@ export interface FileRoutesByTo {
   '/profile/subscription': typeof ProfileSubscriptionRoute
   '/profile/terms': typeof ProfileTermsRoute
   '/profile/theme': typeof ProfileThemeRoute
+  '/reports/$id': typeof ReportsIdRoute
   '/sheila-v2/circle': typeof SheilaV2CircleRoute
   '/sheila-v2/cycle': typeof SheilaV2CycleRoute
   '/sheila-v2/emergency': typeof SheilaV2EmergencyRoute
@@ -1014,6 +1117,7 @@ export interface FileRoutesByTo {
   '/sheila-v2/sheila': typeof SheilaV2SheilaRoute
   '/sheila-v2/workouts': typeof SheilaV2WorkoutsRoute
   '/workouts/$id': typeof WorkoutsIdRouteWithChildren
+  '/workouts/draft': typeof WorkoutsDraftRoute
   '/workouts/live': typeof WorkoutsLiveRoute
   '/workouts/programs': typeof WorkoutsProgramsRouteWithChildren
   '/workouts/summary': typeof WorkoutsSummaryRoute
@@ -1029,6 +1133,7 @@ export interface FileRoutesByTo {
   '/notifications': typeof NotificationsIndexRoute
   '/nutrition': typeof NutritionIndexRoute
   '/profile': typeof ProfileIndexRoute
+  '/reports': typeof ReportsIndexRoute
   '/sheila-v2': typeof SheilaV2IndexRoute
   '/workouts': typeof WorkoutsIndexRoute
   '/coaches/$id/book': typeof CoachesIdBookRoute
@@ -1057,16 +1162,20 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/404': typeof R404Route
+  '/achievements': typeof AchievementsRoute
   '/assistant': typeof AssistantRoute
   '/bodyiq': typeof BodyiqRoute
   '/buddy': typeof BuddyRoute
+  '/calendar': typeof CalendarRoute
   '/circle': typeof CircleRoute
   '/emergency': typeof EmergencyRoute
   '/home': typeof HomeRoute
+  '/home-draft': typeof HomeDraftRoute
   '/paywall': typeof PaywallRoute
   '/pregnancy': typeof PregnancyRoute
   '/screens': typeof ScreensRoute
   '/search': typeof SearchRoute
+  '/streak': typeof StreakRoute
   '/supplements': typeof SupplementsRoute
   '/system': typeof SystemRoute
   '/timer': typeof TimerRoute
@@ -1082,17 +1191,22 @@ export interface FileRoutesById {
   '/checkin/sleep': typeof CheckinSleepRoute
   '/checkin/steps': typeof CheckinStepsRoute
   '/checkin/water': typeof CheckinWaterRoute
+  '/checkin/water-draft': typeof CheckinWaterDraftRoute
   '/coaches/$id': typeof CoachesIdRouteWithChildren
   '/community/$id': typeof CommunityIdRoute
   '/community/events': typeof CommunityEventsRoute
   '/community/groups': typeof CommunityGroupsRoute
   '/community/invite': typeof CommunityInviteRoute
   '/cycle/log': typeof CycleLogRoute
+  '/cycle/log-draft': typeof CycleLogDraftRoute
   '/habits/new': typeof HabitsNewRoute
   '/journey/awards': typeof JourneyAwardsRoute
+  '/journey/calendar': typeof JourneyCalendarRoute
   '/journey/goals': typeof JourneyGoalsRoute
   '/journey/insights': typeof JourneyInsightsRoute
   '/journey/measurements': typeof JourneyMeasurementsRoute
+  '/journey/mood': typeof JourneyMoodRoute
+  '/journey/symptoms': typeof JourneySymptomsRoute
   '/mindfulness/$id': typeof MindfulnessIdRoute
   '/notifications/settings': typeof NotificationsSettingsRoute
   '/nutrition/$id': typeof NutritionIdRoute
@@ -1125,6 +1239,7 @@ export interface FileRoutesById {
   '/profile/feedback': typeof ProfileFeedbackRoute
   '/profile/help': typeof ProfileHelpRoute
   '/profile/language': typeof ProfileLanguageRoute
+  '/profile/notifications-prefs': typeof ProfileNotificationsPrefsRoute
   '/profile/payment': typeof ProfilePaymentRoute
   '/profile/privacy': typeof ProfilePrivacyRoute
   '/profile/referral': typeof ProfileReferralRoute
@@ -1132,6 +1247,7 @@ export interface FileRoutesById {
   '/profile/subscription': typeof ProfileSubscriptionRoute
   '/profile/terms': typeof ProfileTermsRoute
   '/profile/theme': typeof ProfileThemeRoute
+  '/reports/$id': typeof ReportsIdRoute
   '/sheila-v2/circle': typeof SheilaV2CircleRoute
   '/sheila-v2/cycle': typeof SheilaV2CycleRoute
   '/sheila-v2/emergency': typeof SheilaV2EmergencyRoute
@@ -1146,6 +1262,7 @@ export interface FileRoutesById {
   '/sheila-v2/sheila': typeof SheilaV2SheilaRoute
   '/sheila-v2/workouts': typeof SheilaV2WorkoutsRoute
   '/workouts/$id': typeof WorkoutsIdRouteWithChildren
+  '/workouts/draft': typeof WorkoutsDraftRoute
   '/workouts/live': typeof WorkoutsLiveRoute
   '/workouts/programs': typeof WorkoutsProgramsRouteWithChildren
   '/workouts/summary': typeof WorkoutsSummaryRoute
@@ -1161,6 +1278,7 @@ export interface FileRoutesById {
   '/notifications/': typeof NotificationsIndexRoute
   '/nutrition/': typeof NutritionIndexRoute
   '/profile/': typeof ProfileIndexRoute
+  '/reports/': typeof ReportsIndexRoute
   '/sheila-v2/': typeof SheilaV2IndexRoute
   '/workouts/': typeof WorkoutsIndexRoute
   '/coaches/$id/book': typeof CoachesIdBookRoute
@@ -1190,16 +1308,20 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/404'
+    | '/achievements'
     | '/assistant'
     | '/bodyiq'
     | '/buddy'
+    | '/calendar'
     | '/circle'
     | '/emergency'
     | '/home'
+    | '/home-draft'
     | '/paywall'
     | '/pregnancy'
     | '/screens'
     | '/search'
+    | '/streak'
     | '/supplements'
     | '/system'
     | '/timer'
@@ -1215,17 +1337,22 @@ export interface FileRouteTypes {
     | '/checkin/sleep'
     | '/checkin/steps'
     | '/checkin/water'
+    | '/checkin/water-draft'
     | '/coaches/$id'
     | '/community/$id'
     | '/community/events'
     | '/community/groups'
     | '/community/invite'
     | '/cycle/log'
+    | '/cycle/log-draft'
     | '/habits/new'
     | '/journey/awards'
+    | '/journey/calendar'
     | '/journey/goals'
     | '/journey/insights'
     | '/journey/measurements'
+    | '/journey/mood'
+    | '/journey/symptoms'
     | '/mindfulness/$id'
     | '/notifications/settings'
     | '/nutrition/$id'
@@ -1258,6 +1385,7 @@ export interface FileRouteTypes {
     | '/profile/feedback'
     | '/profile/help'
     | '/profile/language'
+    | '/profile/notifications-prefs'
     | '/profile/payment'
     | '/profile/privacy'
     | '/profile/referral'
@@ -1265,6 +1393,7 @@ export interface FileRouteTypes {
     | '/profile/subscription'
     | '/profile/terms'
     | '/profile/theme'
+    | '/reports/$id'
     | '/sheila-v2/circle'
     | '/sheila-v2/cycle'
     | '/sheila-v2/emergency'
@@ -1279,6 +1408,7 @@ export interface FileRouteTypes {
     | '/sheila-v2/sheila'
     | '/sheila-v2/workouts'
     | '/workouts/$id'
+    | '/workouts/draft'
     | '/workouts/live'
     | '/workouts/programs'
     | '/workouts/summary'
@@ -1294,6 +1424,7 @@ export interface FileRouteTypes {
     | '/notifications/'
     | '/nutrition/'
     | '/profile/'
+    | '/reports/'
     | '/sheila-v2/'
     | '/workouts/'
     | '/coaches/$id/book'
@@ -1321,16 +1452,20 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/404'
+    | '/achievements'
     | '/assistant'
     | '/bodyiq'
     | '/buddy'
+    | '/calendar'
     | '/circle'
     | '/emergency'
     | '/home'
+    | '/home-draft'
     | '/paywall'
     | '/pregnancy'
     | '/screens'
     | '/search'
+    | '/streak'
     | '/supplements'
     | '/system'
     | '/timer'
@@ -1346,17 +1481,22 @@ export interface FileRouteTypes {
     | '/checkin/sleep'
     | '/checkin/steps'
     | '/checkin/water'
+    | '/checkin/water-draft'
     | '/coaches/$id'
     | '/community/$id'
     | '/community/events'
     | '/community/groups'
     | '/community/invite'
     | '/cycle/log'
+    | '/cycle/log-draft'
     | '/habits/new'
     | '/journey/awards'
+    | '/journey/calendar'
     | '/journey/goals'
     | '/journey/insights'
     | '/journey/measurements'
+    | '/journey/mood'
+    | '/journey/symptoms'
     | '/mindfulness/$id'
     | '/notifications/settings'
     | '/nutrition/$id'
@@ -1389,6 +1529,7 @@ export interface FileRouteTypes {
     | '/profile/feedback'
     | '/profile/help'
     | '/profile/language'
+    | '/profile/notifications-prefs'
     | '/profile/payment'
     | '/profile/privacy'
     | '/profile/referral'
@@ -1396,6 +1537,7 @@ export interface FileRouteTypes {
     | '/profile/subscription'
     | '/profile/terms'
     | '/profile/theme'
+    | '/reports/$id'
     | '/sheila-v2/circle'
     | '/sheila-v2/cycle'
     | '/sheila-v2/emergency'
@@ -1410,6 +1552,7 @@ export interface FileRouteTypes {
     | '/sheila-v2/sheila'
     | '/sheila-v2/workouts'
     | '/workouts/$id'
+    | '/workouts/draft'
     | '/workouts/live'
     | '/workouts/programs'
     | '/workouts/summary'
@@ -1425,6 +1568,7 @@ export interface FileRouteTypes {
     | '/notifications'
     | '/nutrition'
     | '/profile'
+    | '/reports'
     | '/sheila-v2'
     | '/workouts'
     | '/coaches/$id/book'
@@ -1452,16 +1596,20 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/404'
+    | '/achievements'
     | '/assistant'
     | '/bodyiq'
     | '/buddy'
+    | '/calendar'
     | '/circle'
     | '/emergency'
     | '/home'
+    | '/home-draft'
     | '/paywall'
     | '/pregnancy'
     | '/screens'
     | '/search'
+    | '/streak'
     | '/supplements'
     | '/system'
     | '/timer'
@@ -1477,17 +1625,22 @@ export interface FileRouteTypes {
     | '/checkin/sleep'
     | '/checkin/steps'
     | '/checkin/water'
+    | '/checkin/water-draft'
     | '/coaches/$id'
     | '/community/$id'
     | '/community/events'
     | '/community/groups'
     | '/community/invite'
     | '/cycle/log'
+    | '/cycle/log-draft'
     | '/habits/new'
     | '/journey/awards'
+    | '/journey/calendar'
     | '/journey/goals'
     | '/journey/insights'
     | '/journey/measurements'
+    | '/journey/mood'
+    | '/journey/symptoms'
     | '/mindfulness/$id'
     | '/notifications/settings'
     | '/nutrition/$id'
@@ -1520,6 +1673,7 @@ export interface FileRouteTypes {
     | '/profile/feedback'
     | '/profile/help'
     | '/profile/language'
+    | '/profile/notifications-prefs'
     | '/profile/payment'
     | '/profile/privacy'
     | '/profile/referral'
@@ -1527,6 +1681,7 @@ export interface FileRouteTypes {
     | '/profile/subscription'
     | '/profile/terms'
     | '/profile/theme'
+    | '/reports/$id'
     | '/sheila-v2/circle'
     | '/sheila-v2/cycle'
     | '/sheila-v2/emergency'
@@ -1541,6 +1696,7 @@ export interface FileRouteTypes {
     | '/sheila-v2/sheila'
     | '/sheila-v2/workouts'
     | '/workouts/$id'
+    | '/workouts/draft'
     | '/workouts/live'
     | '/workouts/programs'
     | '/workouts/summary'
@@ -1556,6 +1712,7 @@ export interface FileRouteTypes {
     | '/notifications/'
     | '/nutrition/'
     | '/profile/'
+    | '/reports/'
     | '/sheila-v2/'
     | '/workouts/'
     | '/coaches/$id/book'
@@ -1584,16 +1741,20 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   R404Route: typeof R404Route
+  AchievementsRoute: typeof AchievementsRoute
   AssistantRoute: typeof AssistantRoute
   BodyiqRoute: typeof BodyiqRoute
   BuddyRoute: typeof BuddyRoute
+  CalendarRoute: typeof CalendarRoute
   CircleRoute: typeof CircleRoute
   EmergencyRoute: typeof EmergencyRoute
   HomeRoute: typeof HomeRoute
+  HomeDraftRoute: typeof HomeDraftRoute
   PaywallRoute: typeof PaywallRoute
   PregnancyRoute: typeof PregnancyRoute
   ScreensRoute: typeof ScreensRoute
   SearchRoute: typeof SearchRoute
+  StreakRoute: typeof StreakRoute
   SupplementsRoute: typeof SupplementsRoute
   SystemRoute: typeof SystemRoute
   TimerRoute: typeof TimerRoute
@@ -1609,17 +1770,22 @@ export interface RootRouteChildren {
   CheckinSleepRoute: typeof CheckinSleepRoute
   CheckinStepsRoute: typeof CheckinStepsRoute
   CheckinWaterRoute: typeof CheckinWaterRoute
+  CheckinWaterDraftRoute: typeof CheckinWaterDraftRoute
   CoachesIdRoute: typeof CoachesIdRouteWithChildren
   CommunityIdRoute: typeof CommunityIdRoute
   CommunityEventsRoute: typeof CommunityEventsRoute
   CommunityGroupsRoute: typeof CommunityGroupsRoute
   CommunityInviteRoute: typeof CommunityInviteRoute
   CycleLogRoute: typeof CycleLogRoute
+  CycleLogDraftRoute: typeof CycleLogDraftRoute
   HabitsNewRoute: typeof HabitsNewRoute
   JourneyAwardsRoute: typeof JourneyAwardsRoute
+  JourneyCalendarRoute: typeof JourneyCalendarRoute
   JourneyGoalsRoute: typeof JourneyGoalsRoute
   JourneyInsightsRoute: typeof JourneyInsightsRoute
   JourneyMeasurementsRoute: typeof JourneyMeasurementsRoute
+  JourneyMoodRoute: typeof JourneyMoodRoute
+  JourneySymptomsRoute: typeof JourneySymptomsRoute
   MindfulnessIdRoute: typeof MindfulnessIdRoute
   NotificationsSettingsRoute: typeof NotificationsSettingsRoute
   NutritionIdRoute: typeof NutritionIdRoute
@@ -1652,6 +1818,7 @@ export interface RootRouteChildren {
   ProfileFeedbackRoute: typeof ProfileFeedbackRoute
   ProfileHelpRoute: typeof ProfileHelpRoute
   ProfileLanguageRoute: typeof ProfileLanguageRoute
+  ProfileNotificationsPrefsRoute: typeof ProfileNotificationsPrefsRoute
   ProfilePaymentRoute: typeof ProfilePaymentRoute
   ProfilePrivacyRoute: typeof ProfilePrivacyRoute
   ProfileReferralRoute: typeof ProfileReferralRoute
@@ -1659,6 +1826,7 @@ export interface RootRouteChildren {
   ProfileSubscriptionRoute: typeof ProfileSubscriptionRoute
   ProfileTermsRoute: typeof ProfileTermsRoute
   ProfileThemeRoute: typeof ProfileThemeRoute
+  ReportsIdRoute: typeof ReportsIdRoute
   SheilaV2CircleRoute: typeof SheilaV2CircleRoute
   SheilaV2CycleRoute: typeof SheilaV2CycleRoute
   SheilaV2EmergencyRoute: typeof SheilaV2EmergencyRoute
@@ -1673,6 +1841,7 @@ export interface RootRouteChildren {
   SheilaV2SheilaRoute: typeof SheilaV2SheilaRoute
   SheilaV2WorkoutsRoute: typeof SheilaV2WorkoutsRoute
   WorkoutsIdRoute: typeof WorkoutsIdRouteWithChildren
+  WorkoutsDraftRoute: typeof WorkoutsDraftRoute
   WorkoutsLiveRoute: typeof WorkoutsLiveRoute
   WorkoutsProgramsRoute: typeof WorkoutsProgramsRouteWithChildren
   WorkoutsSummaryRoute: typeof WorkoutsSummaryRoute
@@ -1688,6 +1857,7 @@ export interface RootRouteChildren {
   NotificationsIndexRoute: typeof NotificationsIndexRoute
   NutritionIndexRoute: typeof NutritionIndexRoute
   ProfileIndexRoute: typeof ProfileIndexRoute
+  ReportsIndexRoute: typeof ReportsIndexRoute
   SheilaV2IndexRoute: typeof SheilaV2IndexRoute
   WorkoutsIndexRoute: typeof WorkoutsIndexRoute
   SheilaV2CircleAccountabilityRoute: typeof SheilaV2CircleAccountabilityRoute
@@ -1739,6 +1909,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SupplementsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/streak': {
+      id: '/streak'
+      path: '/streak'
+      fullPath: '/streak'
+      preLoaderRoute: typeof StreakRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/search': {
       id: '/search'
       path: '/search'
@@ -1767,6 +1944,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PaywallRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/home-draft': {
+      id: '/home-draft'
+      path: '/home-draft'
+      fullPath: '/home-draft'
+      preLoaderRoute: typeof HomeDraftRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/home': {
       id: '/home'
       path: '/home'
@@ -1788,6 +1972,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CircleRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/calendar': {
+      id: '/calendar'
+      path: '/calendar'
+      fullPath: '/calendar'
+      preLoaderRoute: typeof CalendarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/buddy': {
       id: '/buddy'
       path: '/buddy'
@@ -1807,6 +1998,13 @@ declare module '@tanstack/react-router' {
       path: '/assistant'
       fullPath: '/assistant'
       preLoaderRoute: typeof AssistantRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/achievements': {
+      id: '/achievements'
+      path: '/achievements'
+      fullPath: '/achievements'
+      preLoaderRoute: typeof AchievementsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/404': {
@@ -1835,6 +2033,13 @@ declare module '@tanstack/react-router' {
       path: '/sheila-v2'
       fullPath: '/sheila-v2/'
       preLoaderRoute: typeof SheilaV2IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports/': {
+      id: '/reports/'
+      path: '/reports'
+      fullPath: '/reports/'
+      preLoaderRoute: typeof ReportsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/profile/': {
@@ -1942,6 +2147,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkoutsLiveRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/workouts/draft': {
+      id: '/workouts/draft'
+      path: '/workouts/draft'
+      fullPath: '/workouts/draft'
+      preLoaderRoute: typeof WorkoutsDraftRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/workouts/$id': {
       id: '/workouts/$id'
       path: '/workouts/$id'
@@ -2040,6 +2252,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SheilaV2CircleRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reports/$id': {
+      id: '/reports/$id'
+      path: '/reports/$id'
+      fullPath: '/reports/$id'
+      preLoaderRoute: typeof ReportsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/profile/theme': {
       id: '/profile/theme'
       path: '/profile/theme'
@@ -2087,6 +2306,13 @@ declare module '@tanstack/react-router' {
       path: '/profile/payment'
       fullPath: '/profile/payment'
       preLoaderRoute: typeof ProfilePaymentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile/notifications-prefs': {
+      id: '/profile/notifications-prefs'
+      path: '/profile/notifications-prefs'
+      fullPath: '/profile/notifications-prefs'
+      preLoaderRoute: typeof ProfileNotificationsPrefsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/profile/language': {
@@ -2313,6 +2539,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MindfulnessIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/journey/symptoms': {
+      id: '/journey/symptoms'
+      path: '/journey/symptoms'
+      fullPath: '/journey/symptoms'
+      preLoaderRoute: typeof JourneySymptomsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/journey/mood': {
+      id: '/journey/mood'
+      path: '/journey/mood'
+      fullPath: '/journey/mood'
+      preLoaderRoute: typeof JourneyMoodRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/journey/measurements': {
       id: '/journey/measurements'
       path: '/journey/measurements'
@@ -2334,6 +2574,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JourneyGoalsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/journey/calendar': {
+      id: '/journey/calendar'
+      path: '/journey/calendar'
+      fullPath: '/journey/calendar'
+      preLoaderRoute: typeof JourneyCalendarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/journey/awards': {
       id: '/journey/awards'
       path: '/journey/awards'
@@ -2346,6 +2593,13 @@ declare module '@tanstack/react-router' {
       path: '/habits/new'
       fullPath: '/habits/new'
       preLoaderRoute: typeof HabitsNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cycle/log-draft': {
+      id: '/cycle/log-draft'
+      path: '/cycle/log-draft'
+      fullPath: '/cycle/log-draft'
+      preLoaderRoute: typeof CycleLogDraftRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cycle/log': {
@@ -2388,6 +2642,13 @@ declare module '@tanstack/react-router' {
       path: '/coaches/$id'
       fullPath: '/coaches/$id'
       preLoaderRoute: typeof CoachesIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkin/water-draft': {
+      id: '/checkin/water-draft'
+      path: '/checkin/water-draft'
+      fullPath: '/checkin/water-draft'
+      preLoaderRoute: typeof CheckinWaterDraftRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/checkin/water': {
@@ -2657,16 +2918,20 @@ const WorkoutsProgramsRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   R404Route: R404Route,
+  AchievementsRoute: AchievementsRoute,
   AssistantRoute: AssistantRoute,
   BodyiqRoute: BodyiqRoute,
   BuddyRoute: BuddyRoute,
+  CalendarRoute: CalendarRoute,
   CircleRoute: CircleRoute,
   EmergencyRoute: EmergencyRoute,
   HomeRoute: HomeRoute,
+  HomeDraftRoute: HomeDraftRoute,
   PaywallRoute: PaywallRoute,
   PregnancyRoute: PregnancyRoute,
   ScreensRoute: ScreensRoute,
   SearchRoute: SearchRoute,
+  StreakRoute: StreakRoute,
   SupplementsRoute: SupplementsRoute,
   SystemRoute: SystemRoute,
   TimerRoute: TimerRoute,
@@ -2682,17 +2947,22 @@ const rootRouteChildren: RootRouteChildren = {
   CheckinSleepRoute: CheckinSleepRoute,
   CheckinStepsRoute: CheckinStepsRoute,
   CheckinWaterRoute: CheckinWaterRoute,
+  CheckinWaterDraftRoute: CheckinWaterDraftRoute,
   CoachesIdRoute: CoachesIdRouteWithChildren,
   CommunityIdRoute: CommunityIdRoute,
   CommunityEventsRoute: CommunityEventsRoute,
   CommunityGroupsRoute: CommunityGroupsRoute,
   CommunityInviteRoute: CommunityInviteRoute,
   CycleLogRoute: CycleLogRoute,
+  CycleLogDraftRoute: CycleLogDraftRoute,
   HabitsNewRoute: HabitsNewRoute,
   JourneyAwardsRoute: JourneyAwardsRoute,
+  JourneyCalendarRoute: JourneyCalendarRoute,
   JourneyGoalsRoute: JourneyGoalsRoute,
   JourneyInsightsRoute: JourneyInsightsRoute,
   JourneyMeasurementsRoute: JourneyMeasurementsRoute,
+  JourneyMoodRoute: JourneyMoodRoute,
+  JourneySymptomsRoute: JourneySymptomsRoute,
   MindfulnessIdRoute: MindfulnessIdRoute,
   NotificationsSettingsRoute: NotificationsSettingsRoute,
   NutritionIdRoute: NutritionIdRoute,
@@ -2725,6 +2995,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileFeedbackRoute: ProfileFeedbackRoute,
   ProfileHelpRoute: ProfileHelpRoute,
   ProfileLanguageRoute: ProfileLanguageRoute,
+  ProfileNotificationsPrefsRoute: ProfileNotificationsPrefsRoute,
   ProfilePaymentRoute: ProfilePaymentRoute,
   ProfilePrivacyRoute: ProfilePrivacyRoute,
   ProfileReferralRoute: ProfileReferralRoute,
@@ -2732,6 +3003,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileSubscriptionRoute: ProfileSubscriptionRoute,
   ProfileTermsRoute: ProfileTermsRoute,
   ProfileThemeRoute: ProfileThemeRoute,
+  ReportsIdRoute: ReportsIdRoute,
   SheilaV2CircleRoute: SheilaV2CircleRoute,
   SheilaV2CycleRoute: SheilaV2CycleRoute,
   SheilaV2EmergencyRoute: SheilaV2EmergencyRoute,
@@ -2746,6 +3018,7 @@ const rootRouteChildren: RootRouteChildren = {
   SheilaV2SheilaRoute: SheilaV2SheilaRoute,
   SheilaV2WorkoutsRoute: SheilaV2WorkoutsRoute,
   WorkoutsIdRoute: WorkoutsIdRouteWithChildren,
+  WorkoutsDraftRoute: WorkoutsDraftRoute,
   WorkoutsLiveRoute: WorkoutsLiveRoute,
   WorkoutsProgramsRoute: WorkoutsProgramsRouteWithChildren,
   WorkoutsSummaryRoute: WorkoutsSummaryRoute,
@@ -2761,6 +3034,7 @@ const rootRouteChildren: RootRouteChildren = {
   NotificationsIndexRoute: NotificationsIndexRoute,
   NutritionIndexRoute: NutritionIndexRoute,
   ProfileIndexRoute: ProfileIndexRoute,
+  ReportsIndexRoute: ReportsIndexRoute,
   SheilaV2IndexRoute: SheilaV2IndexRoute,
   WorkoutsIndexRoute: WorkoutsIndexRoute,
   SheilaV2CircleAccountabilityRoute: SheilaV2CircleAccountabilityRoute,

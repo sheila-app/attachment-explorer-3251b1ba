@@ -9,7 +9,6 @@ import { DeviceFrame } from "@/components/sheila/DeviceFrame";
 import { BottomNav } from "@/components/sheila/BottomNav";
 import { mockUser, mockWorkouts, PHASE_META, type CyclePhase } from "@/data/mock";
 import { tierMeta, PHASE_WINDOWS } from "@/data/gamification";
-import { MOOD_LIST } from "@/data/moods";
 import { toAr } from "@/lib/format";
 
 export const Route = createFileRoute("/home")({ component: HomePage });
@@ -232,19 +231,21 @@ function HomePage() {
                 <h3 className="font-medium text-sm">كيف تشعرين اليوم؟</h3>
                 <span className="text-[10px] text-foreground/60 nums">{toAr(10)} ثوانٍ</span>
               </div>
-              <div
-                className="relative z-10 mt-4 -mx-2 px-2 flex gap-2 overflow-x-auto no-scrollbar snap-x snap-mandatory"
-                style={{ scrollbarWidth: "none" }}
-              >
-                {MOOD_LIST.map((m) => (
+              <div className="relative z-10 flex justify-between mt-4 gap-1.5">
+                {[
+                  { label: "رائع", Icon: Smile, color: "var(--phase-follicular)" },
+                  { label: "جيّد", Icon: Meh, color: "var(--phase-ovulation)" },
+                  { label: "عادي", Icon: Frown, color: "var(--muted-foreground)" },
+                  { label: "نشيط", Icon: Zap, color: "var(--phase-luteal)" },
+                  { label: "تعب", Icon: Moon, color: "var(--phase-menstrual)" },
+                ].map(({ label, Icon, color }) => (
                   <motion.button
-                    key={m.id}
-                    whileTap={{ scale: 0.9 }}
-                    className="snap-start shrink-0 w-[68px] flex flex-col items-center gap-1.5 py-2.5 px-1 rounded-xl bg-card/60 border border-border/60"
-                    style={{ borderColor: `color-mix(in oklab, ${m.tone} 25%, var(--border))` }}
+                    key={label}
+                    className="flex-1 flex flex-col items-center gap-1.5 py-2.5 rounded-lg bg-card/60 border border-border/60"
+                    whileTap={{ scale: 0.92 }}
                   >
-                    <img src={m.img} alt={m.name} className="w-9 h-9 object-contain" />
-                    <span className="text-[10px] leading-tight text-center">{m.name}</span>
+                    <Icon size={16} strokeWidth={1.75} style={{ color }} />
+                    <span className="text-[10px]">{label}</span>
                   </motion.button>
                 ))}
               </div>

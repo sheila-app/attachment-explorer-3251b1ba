@@ -303,7 +303,7 @@ function Page() {
               <p className="text-[10px] text-foreground/55 mt-2 px-1 font-mono">MultiPhaseRing · أقواس بدون تقاطع + مؤشّر اليوم</p>
             </Block>
 
-            <Block title="سلايد التاريخ (الرئيسية)">
+            <Block title="سلايد التاريخ (home-draft)">
               <div className="glass rounded-3xl p-3">
                 <DateStrip
                   offset={draftOffset}

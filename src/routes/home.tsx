@@ -4,10 +4,10 @@ import { motion } from "motion/react";
 import { Bell, Search, Sparkles, Droplets, Moon, Apple, Dumbbell, Users, Trophy, Plus, Check, ChevronLeft } from "lucide-react";
 import { DeviceFrame } from "@/components/sheila/DeviceFrame";
 import { BottomNavSheila } from "@/components/sheila/BottomNavSheila";
-import { TierBadge } from "@/components/sheila-v2/TierBadge";
+
 import { mockUser, mockWorkouts, mockMeals, PHASE_META, type CyclePhase } from "@/data/mock";
 import { MOOD_LIST } from "@/data/moods";
-import { DAILY_MESSAGES, tierFor } from "@/data/sheila-v2";
+import { DAILY_MESSAGES, tierFor, TIERS } from "@/data/sheila-v2";
 import { toAr } from "@/lib/format";
 
 export const Route = createFileRoute("/home")({ component: HomePage });
@@ -190,8 +190,11 @@ function HomePage() {
           <MoodSlider />
 
 
-          {/* Body IQ + إحصاءات حيّة */}
-          <BodyIQStats tint={meta.color} />
+          {/* Body IQ — بطاقة كاملة العرض */}
+          <BodyIQCard />
+
+          {/* بطاقات التتبّع — مستقلّة */}
+          <StatsGrid tint={meta.color} />
 
           {/* خطّة اليوم — تمرين + وجبة مناسبيْن للمرحلة */}
           <TodayPlan phase={currentPhase} tint={meta.color} />
@@ -525,32 +528,153 @@ function MoodSlider() {
 /* =========================================================
  * Body IQ + إحصاءات اليوم (ماء قابل للزيادة)
  * ========================================================= */
-function BodyIQStats({ tint }: { tint: string }) {
-  const [waterCups] = useState(6);
+function BodyIQCard() {
+  const score = mockUser.bodyIQ;
+  const tier = tierFor(score);
+  const tierIdx = TIERS.findIndex((t) => t.id === tier.id);
+  const next = TIERS[tierIdx + 1];
+  const ceiling = tier.max === 9999 ? tier.min : tier.max;
+  const range = Math.max(1, ceiling - tier.min);
+  const progress = Math.min(1, Math.max(0, (score - tier.min) / range));
+  const toNext = next ? Math.max(0, next.min - score) : 0;
+  const nearNext = next && toNext <= 30;
+  const delta = score - mockUser.bodyIQYesterday;
+
+  // قوس بحجم نصف دائرة
+  const W = 220, H = 120, R = 92, CX = W / 2, CY = H - 6;
+  const arc = (p: number) => {
+    const a = Math.PI * (1 - p); // من 180 إلى 0
+    return { x: CX + R * Math.cos(a), y: CY - R * Math.sin(a) };
+  };
+  const end = arc(progress);
+  const large = progress > 0.5 ? 1 : 0;
+  const trackD = `M ${CX - R} ${CY} A ${R} ${R} 0 1 1 ${CX + R} ${CY}`;
+  const fillD = `M ${CX - R} ${CY} A ${R} ${R} 0 ${large} 1 ${end.x} ${end.y}`;
+
+  const pills = [
+    { label: "سجّل وجبتك التالية", pts: 15 },
+    { label: "أكمل شرب الماء", pts: 10 },
+    { label: "ابدئي اقتراح اليوم", pts: 20 },
+  ];
+
+  return (
+    <Link
+      to="/bodyiq"
+      className="block px-5 mt-4"
+    >
+      <div
+        className="relative rounded-3xl p-5 overflow-hidden border"
+        style={{
+          background: `linear-gradient(135deg, color-mix(in oklab, ${tier.color} 14%, white), color-mix(in oklab, ${tier.color} 4%, white))`,
+          borderColor: `color-mix(in oklab, ${tier.color} 22%, transparent)`,
+          boxShadow: `0 8px 24px -12px color-mix(in oklab, ${tier.color} 40%, transparent)`,
+        }}
+      >
+        {/* رأس البطاقة */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-1.5">
+            <Sparkles size={13} style={{ color: tier.color }} strokeWidth={2.2} />
+            <span className="text-[10.5px] tracking-[0.18em] uppercase font-semibold" style={{ color: tier.color }}>
+              Body IQ
+            </span>
+          </div>
+          <span
+            className="text-[10.5px] font-semibold nums"
+            style={{ color: delta >= 0 ? "var(--phase-follicular)" : "var(--phase-menstrual)" }}
+          >
+            {delta >= 0 ? "+" : ""}{toAr(delta)} من أمس
+          </span>
+        </div>
+
+        {/* القوس + النقاط */}
+        <div className="mt-2 flex flex-col items-center">
+          <svg width={W} height={H} className="overflow-visible">
+            <path d={trackD} fill="none" stroke="oklch(0 0 0 / 0.07)" strokeWidth={10} strokeLinecap="round" />
+            <path
+              d={fillD}
+              fill="none"
+              stroke={tier.color}
+              strokeWidth={10}
+              strokeLinecap="round"
+              style={{ filter: `drop-shadow(0 2px 6px color-mix(in oklab, ${tier.color} 45%, transparent))` }}
+            />
+            <circle cx={end.x} cy={end.y} r={6} fill="white" stroke={tier.color} strokeWidth={2.5} />
+          </svg>
+          <div className="-mt-[68px] flex flex-col items-center">
+            <div className="font-display text-[44px] leading-none nums" style={{ color: tier.color }}>
+              {toAr(score)}
+            </div>
+            <div className="text-[11.5px] font-semibold mt-1" style={{ color: tier.color }}>
+              {tier.name}
+            </div>
+            {nearNext && next && (
+              <div className="text-[10px] text-foreground/60 mt-0.5">
+                وشك {next.name}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* شريط التدرّج بين المستويات */}
+        {next && (
+          <div className="mt-3">
+            <div className="relative h-1.5 rounded-full bg-foreground/8 overflow-hidden">
+              <div
+                className="absolute inset-y-0 start-0 rounded-full"
+                style={{ width: `${progress * 100}%`, background: tier.color }}
+              />
+            </div>
+            <div className="flex items-center justify-between mt-1.5 text-[10px] text-foreground/60">
+              <span style={{ color: tier.color }}>{tier.name}</span>
+              <span className="nums">{toAr(toNext)} نقطة للوصول إلى {next.name}</span>
+            </div>
+          </div>
+        )}
+
+        {/* 3 شارات كسب */}
+        <div className="mt-3.5 grid grid-cols-3 gap-1.5">
+          {pills.map((p) => (
+            <div
+              key={p.label}
+              className="rounded-xl bg-white/85 border border-white/70 px-2 py-2 flex flex-col items-center gap-0.5"
+            >
+              <span
+                className="text-[10.5px] font-semibold nums"
+                style={{ color: tier.color }}
+              >
+                +{toAr(p.pts)}
+              </span>
+              <span className="text-[9.5px] text-foreground/65 text-center leading-tight">{p.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+/* =========================================================
+ * بطاقات التتبّع — مستقلّة (ماء/نوم/سعرات/بروتين)
+ * ========================================================= */
+function StatsGrid({ tint }: { tint: string }) {
+  const waterCups = 6;
   const waterTarget = 8;
-  const tier = tierFor(mockUser.bodyIQ);
   const caloriesToday = 1240;
   const proteinToday = 68;
 
   return (
-    <div className="px-5 mt-4 grid grid-cols-[auto_1fr] gap-3 items-center">
-      <Link to="/bodyiq" className="block">
-        <TierBadge score={mockUser.bodyIQ} size="md" />
-        <div className="text-center mt-1.5 text-[10.5px] font-semibold" style={{ color: tier.color }}>{tier.name}</div>
-      </Link>
-      <div className="grid grid-cols-2 gap-2">
-        <StatTile icon={Moon} label="نوم" value={`${toAr(7)}`} hint="ساعة" color="var(--phase-luteal)" to="/checkin/sleep" />
-        <StatTile icon={Droplets} label="ماء" value={`${toAr(waterCups)}/${toAr(waterTarget)}`} hint="كوب" color={tint} to="/checkin/water" />
-        <StatTile icon={Apple} label="سعرات" value={`${toAr(caloriesToday)}`} hint={`من ${toAr(mockUser.dailyKcal)}`} color="var(--phase-menstrual)" to="/nutrition" />
-        <StatTile
-          icon={Dumbbell}
-          label="بروتين"
-          value={`${toAr(proteinToday)}/${toAr(mockUser.dailyProtein)}`}
-          hint="غرام"
-          color="var(--phase-follicular)"
-          to="/nutrition"
-        />
-      </div>
+    <div className="px-5 mt-3 grid grid-cols-2 gap-2.5">
+      <StatTile icon={Moon} label="نوم" value={`${toAr(7)}`} hint="ساعة" color="var(--phase-luteal)" to="/checkin/sleep" />
+      <StatTile icon={Droplets} label="ماء" value={`${toAr(waterCups)}/${toAr(waterTarget)}`} hint="كوب" color={tint} to="/checkin/water" />
+      <StatTile icon={Apple} label="سعرات" value={`${toAr(caloriesToday)}`} hint={`من ${toAr(mockUser.dailyKcal)}`} color="var(--phase-menstrual)" to="/nutrition" />
+      <StatTile
+        icon={Dumbbell}
+        label="بروتين"
+        value={`${toAr(proteinToday)}/${toAr(mockUser.dailyProtein)}`}
+        hint="غرام"
+        color="var(--phase-follicular)"
+        to="/nutrition"
+      />
     </div>
   );
 }

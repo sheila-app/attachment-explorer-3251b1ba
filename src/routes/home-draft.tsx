@@ -171,34 +171,44 @@ function HomeDraft() {
             </div>
           </motion.div>
 
-          {/* عناصر إضافيّة لاختبار السكرول */}
-          <div className="mt-4 px-5 grid grid-cols-2 gap-3">
-            <QuickStat icon={<Droplet size={16} />} label="الترطيب" value={`${toAr(6)} كؤوس`} tint={meta.color} />
-            <QuickStat icon={<Moon size={16} />} label="النوم" value={`${toAr(7)}س ${toAr(20)}د`} tint={meta.color} />
-            <QuickStat icon={<Heart size={16} />} label="المزاج" value="هادئ" tint={meta.color} />
-            <QuickStat icon={<Activity size={16} />} label="الطاقة" value={`${toAr(72)}٪`} tint={meta.color} />
+          {/* رسالة شيلا الصباحيّة */}
+          <DailyMessageCard phase={currentPhase} tint={meta.color} />
+
+          {/* Body IQ + إحصاءات حيّة */}
+          <BodyIQStats tint={meta.color} />
+
+          {/* خطّة اليوم — تمرين + وجبة مناسبيْن للمرحلة */}
+          <TodayPlan phase={currentPhase} tint={meta.color} />
+
+          {/* دائرة شيلا */}
+          <div className="px-5 mt-5">
+            <Link
+              to="/community"
+              className="block rounded-2xl p-4 relative overflow-hidden border"
+              style={{
+                background: `linear-gradient(135deg, color-mix(in oklab, ${meta.color} 18%, white), color-mix(in oklab, ${meta.color} 6%, white))`,
+                borderColor: `color-mix(in oklab, ${meta.color} 22%, transparent)`,
+              }}
+            >
+              <div className="flex items-start gap-3">
+                <div className="w-11 h-11 rounded-xl bg-white/75 flex items-center justify-center shrink-0">
+                  <Users size={18} style={{ color: meta.color }} strokeWidth={1.9} />
+                </div>
+                <div className="flex-1">
+                  <div className="text-[13.5px] font-semibold">دائرة شيلا</div>
+                  <div className="text-[11px] text-foreground/65 mt-0.5">٣ منشورات جديدة من مجموعاتك اليوم</div>
+                </div>
+                <ChevronLeft size={16} className="text-foreground/40 mt-1.5" />
+              </div>
+            </Link>
           </div>
 
-          <SectionTitle>توصيّات اليوم</SectionTitle>
-          <div className="px-5 space-y-3">
-            <Suggestion
-              icon={<Sparkles size={16} />}
-              title="جرّبي تمرين تنفّس ٤-٧-٨"
-              subtitle="٥ دقائق · يقلّل التوتّر"
-              tint={meta.color}
-            />
-            <Suggestion
-              icon={<BookOpen size={16} />}
-              title="قراءة قصيرة عن مرحلتك"
-              subtitle={`${meta.name} · ٣ دقائق قراءة`}
-              tint={meta.color}
-            />
-            <Suggestion
-              icon={<Heart size={16} />}
-              title="وجبة مقترحة: سلطة العدس الدافئة"
-              subtitle="غنيّة بالحديد · مناسبة للمرحلة"
-              tint={meta.color}
-            />
+          {/* اختصارات */}
+          <div className="px-5 mt-4 grid grid-cols-4 gap-2.5">
+            <Shortcut to="/achievements" icon={Trophy} label="الإنجازات" color="oklch(0.78 0.14 75)" />
+            <Shortcut to="/cycle" icon={Sparkles} label="الدورة" color="var(--phase-luteal)" />
+            <Shortcut to="/journey/insights" icon={Sparkles} label="الرؤى" color="var(--primary)" />
+            <Shortcut to="/buddy" icon={Users} label="شريك" color="var(--phase-follicular)" />
           </div>
 
           <SectionTitle>جدول الأسبوع</SectionTitle>

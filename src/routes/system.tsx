@@ -4,7 +4,7 @@ import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { OptionCard, PrimaryCTA, GhostCTA } from "@/components/sheila/OnboardingShell";
 import { IOSWheel, wheelRange } from "@/components/sheila/IOSWheel";
 
-import { MultiPhaseRing, DateStrip, phaseForDay } from "@/components/sheila/HomeDraftWidgets";
+import { MultiPhaseRing, DateStrip, CycleCalendar, phaseForDay } from "@/components/sheila/HomeDraftWidgets";
 import { allScreens, PHASE_META, mockUser } from "@/data/mock";
 import { toAr } from "@/lib/format";
 import { Bell, Sparkles, Flame, Droplet, Moon, ChevronLeft, Activity } from "lucide-react";
@@ -255,6 +255,13 @@ function Page() {
                 />
               </div>
               <p className="text-[10px] text-foreground/55 mt-2 px-1 font-mono">DateStrip · اسحبي يمين/يسار — اللون يتبع المرحلة</p>
+            </Block>
+
+            <Block title="تقويم الدورة الشهري">
+              <div className="glass rounded-3xl p-4">
+                <CycleCalendar cycleDay={mockUser.cycleDay} cycleLength={mockUser.cycleLength} />
+              </div>
+              <p className="text-[10px] text-foreground/55 mt-2 px-1 font-mono">CycleCalendar · تنقّل بين الأشهر · توقّع المراحل القادمة بالألوان</p>
             </Block>
 
             <Block title="رقاقات (Chips)">

@@ -98,12 +98,23 @@ function HomeDraft() {
         <div className="relative z-10 h-full overflow-y-auto no-scrollbar pb-28">
           {/* الرأس: الاسم (يمين) | التاريخ (وسط) | بحث+إشعارات (يسار) */}
           <div className="flex items-center justify-between px-5 pt-5 gap-3">
-            <div className="min-w-0">
-              <div className="text-[11px] text-foreground/55 tracking-widest">مرحباً</div>
-              <div className="font-display text-lg text-foreground/90 mt-0.5 truncate">
-                {mockUser.name}
+            <Link to="/profile" className="flex items-center gap-2.5 min-w-0">
+              <div
+                className="w-11 h-11 rounded-full flex items-center justify-center shrink-0 border border-white/70 shadow-sm relative overflow-hidden"
+                style={{
+                  background: `linear-gradient(135deg, ${meta.color}, color-mix(in oklab, ${meta.color} 50%, white))`,
+                }}
+              >
+                <span className="font-display text-white text-[15px]">{mockUser.name.slice(0, 1)}</span>
+                <span className="absolute -bottom-0.5 -end-0.5 w-3 h-3 rounded-full bg-emerald-400 border-2 border-white" />
               </div>
-            </div>
+              <div className="min-w-0">
+                <div className="text-[10.5px] text-foreground/55 tracking-widest">مرحباً</div>
+                <div className="font-display text-[15px] text-foreground/90 leading-tight truncate">
+                  {mockUser.name}
+                </div>
+              </div>
+            </Link>
 
             <div className="text-center flex-1">
               <div className="font-display text-[15px] text-foreground/85 nums">

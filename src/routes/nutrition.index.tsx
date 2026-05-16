@@ -199,19 +199,8 @@ function SlotAction({
     </Link>
   );
 }
-      </div>
-    </FeatureShell>
-  );
-}
 
-function QuickAction({ to, Icon, label }: { to: string; Icon: typeof Apple; label: string }) {
-  return (
-    <Link to={to as "/"} className="glass rounded-2xl p-3 flex flex-col items-center gap-1.5 active:scale-95 transition-transform">
-      <Icon size={16} className="relative z-10 text-primary" strokeWidth={1.75} />
-      <span className="relative z-10 text-[10.5px] font-medium">{label}</span>
-    </Link>
-  );
-}
+
 
 function Macro({ label, v, t, color }: { label: string; v: string; t: string; color: string }) {
   return (

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { OptionCard, PrimaryCTA, GhostCTA } from "@/components/sheila/OnboardingShell";
 import { IOSWheel, wheelRange } from "@/components/sheila/IOSWheel";
-import { CyclePhaseRing } from "@/components/sheila/CyclePhaseRing";
+
 import { MultiPhaseRing, DateStrip, phaseForDay } from "@/components/sheila/HomeDraftWidgets";
 import { allScreens, PHASE_META, mockUser } from "@/data/mock";
 import { toAr } from "@/lib/format";

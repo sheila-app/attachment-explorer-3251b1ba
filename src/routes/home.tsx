@@ -9,6 +9,7 @@ import { DeviceFrame } from "@/components/sheila/DeviceFrame";
 import { BottomNav } from "@/components/sheila/BottomNav";
 import { mockUser, mockWorkouts, PHASE_META, type CyclePhase } from "@/data/mock";
 import { tierMeta, PHASE_WINDOWS } from "@/data/gamification";
+import { MOOD_LIST } from "@/data/moods";
 import { toAr } from "@/lib/format";
 
 export const Route = createFileRoute("/home")({ component: HomePage });

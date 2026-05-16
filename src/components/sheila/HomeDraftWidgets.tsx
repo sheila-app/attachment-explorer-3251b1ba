@@ -256,3 +256,147 @@ export function DateStrip({
     </div>
   );
 }
+
+/* ===== Cycle Calendar — تقويم متعدّد الأشهر بتلوين المراحل ===== */
+const AR_MONTHS = [
+  "يناير","فبراير","مارس","أبريل","مايو","يونيو",
+  "يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",
+];
+const AR_WEEK = ["أحد","اثن","ثل","أرب","خم","جم","سب"];
+
+export function CycleCalendar({
+  cycleDay,
+  cycleLength,
+}: {
+  cycleDay: number;
+  cycleLength: number;
+}) {
+  const [mounted, setMounted] = useState(false);
+  const [today, setToday] = useState<Date | null>(null);
+  const [view, setView] = useState<{ y: number; m: number } | null>(null);
+  const [selected, setSelected] = useState<string | null>(null);
+
+  useEffect(() => {
+    const t = new Date();
+    t.setHours(0, 0, 0, 0);
+    setToday(t);
+    setView({ y: t.getFullYear(), m: t.getMonth() });
+    setMounted(true);
+  }, []);
+
+  if (!mounted || !today || !view) {
+    return <div className="h-[320px] rounded-2xl bg-white/40" />;
+  }
+
+  const firstDow = new Date(view.y, view.m, 1).getDay();
+  const daysInMonth = new Date(view.y, view.m + 1, 0).getDate();
+  const cells: (number | null)[] = [
+    ...Array(firstDow).fill(null),
+    ...Array.from({ length: daysInMonth }, (_, i) => i + 1),
+  ];
+  while (cells.length % 7) cells.push(null);
+
+  const prevMonth = () => setView(v => v!.m === 0 ? { y: v!.y - 1, m: 11 } : { y: v!.y, m: v!.m - 1 });
+  const nextMonth = () => setView(v => v!.m === 11 ? { y: v!.y + 1, m: 0 } : { y: v!.y, m: v!.m + 1 });
+
+  const phaseForDate = (d: Date): CyclePhase => {
+    const diff = Math.round((d.getTime() - today.getTime()) / 86400000);
+    return phaseForDay(cycleDay + diff, cycleLength);
+  };
+  const cycleDayForDate = (d: Date): number => {
+    const diff = Math.round((d.getTime() - today.getTime()) / 86400000);
+    const v = ((cycleDay - 1 + diff) % cycleLength + cycleLength) % cycleLength;
+    return v + 1;
+  };
+
+  const selDate = selected ? new Date(selected) : null;
+  const selPhase = selDate ? phaseForDate(selDate) : null;
+  const selMeta = selPhase ? PHASE_META[selPhase] : null;
+
+  return (
+    <div className="space-y-3">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <button onClick={prevMonth} className="glass w-9 h-9 rounded-xl flex items-center justify-center" aria-label="السابق">
+          <ChevronRight size={16} className="relative z-10" strokeWidth={2} />
+        </button>
+        <div className="font-display text-[15px] nums">
+          {AR_MONTHS[view.m]} {toAr(view.y)}
+        </div>
+        <button onClick={nextMonth} className="glass w-9 h-9 rounded-xl flex items-center justify-center" aria-label="التالي">
+          <ChevronLeft size={16} className="relative z-10" strokeWidth={2} />
+        </button>
+      </div>
+
+      {/* Grid */}
+      <div className="glass-strong rounded-2xl p-3">
+        <div className="relative z-10 grid grid-cols-7 gap-1.5 text-center">
+          {AR_WEEK.map(d => (
+            <span key={d} className="text-[10px] text-foreground/55 py-1">{d}</span>
+          ))}
+          {cells.map((d, i) => {
+            if (!d) return <div key={`e-${i}`} />;
+            const date = new Date(view.y, view.m, d);
+            const phase = phaseForDate(date);
+            const phaseColor = `var(--phase-${phase})`;
+            const key = `${view.y}-${view.m}-${d}`;
+            const isToday =
+              date.getFullYear() === today.getFullYear() &&
+              date.getMonth() === today.getMonth() &&
+              date.getDate() === today.getDate();
+            const isSel = selected === key;
+            return (
+              <button
+                key={key}
+                onClick={() => setSelected(isSel ? null : key)}
+                className="aspect-square rounded-full flex items-center justify-center relative leading-none transition"
+                style={
+                  isToday
+                    ? { background: "var(--gradient-primary)", color: "white" }
+                    : {
+                        border: `1.5px solid ${phaseColor}`,
+                        color: phaseColor,
+                        background: isSel ? `color-mix(in oklab, ${phaseColor} 22%, transparent)` : "transparent",
+                        boxShadow: isSel ? `0 0 0 2px color-mix(in oklab, ${phaseColor} 35%, transparent)` : undefined,
+                      }
+                }
+              >
+                <span className="text-[12px] font-medium nums leading-none translate-y-[1px]">{d}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Legend */}
+      <div className="grid grid-cols-2 gap-2">
+        {(Object.keys(PHASE_META) as CyclePhase[]).map(p => (
+          <div key={p} className="glass rounded-xl px-3 py-1.5 flex items-center gap-2">
+            <span className="relative z-10 w-2.5 h-2.5 rounded-full" style={{ background: PHASE_META[p].color }} />
+            <span className="relative z-10 text-[11px]">{PHASE_META[p].name}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Selected detail */}
+      {selDate && selMeta && (
+        <div className="glass rounded-2xl p-3.5">
+          <div className="relative z-10 flex items-center justify-between mb-1.5">
+            <div className="text-[12.5px] font-medium nums">
+              {toAr(selDate.getDate())} {AR_MONTHS[selDate.getMonth()]} {toAr(selDate.getFullYear())}
+            </div>
+            <span
+              className="text-[10.5px] px-2.5 py-1 rounded-full font-medium"
+              style={{ background: `color-mix(in oklab, ${selMeta.color} 18%, transparent)`, color: selMeta.color }}
+            >
+              {selMeta.name}
+            </span>
+          </div>
+          <div className="relative z-10 text-[11px] text-foreground/65 nums">
+            اليوم {toAr(cycleDayForDate(selDate))} من الدورة
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

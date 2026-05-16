@@ -9,6 +9,7 @@ import { allScreens, PHASE_META, mockUser } from "@/data/mock";
 import { toAr } from "@/lib/format";
 import { Bell, Sparkles, Flame, Droplet, Moon, ChevronLeft, Activity } from "lucide-react";
 import { MOOD_LIST } from "@/data/moods";
+import { SYMPTOM_LIST } from "@/data/symptoms";
 import { AITyping, AIGenerating } from "@/components/sheila-v2/AITyping";
 import { TierBadge } from "@/components/sheila-v2/TierBadge";
 import { TIERS, PHASE_META as V2_PHASE_META } from "@/data/sheila-v2";

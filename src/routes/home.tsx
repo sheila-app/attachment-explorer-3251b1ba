@@ -190,8 +190,11 @@ function HomePage() {
           <MoodSlider />
 
 
-          {/* Body IQ + إحصاءات حيّة */}
-          <BodyIQStats tint={meta.color} />
+          {/* Body IQ — بطاقة كاملة العرض */}
+          <BodyIQCard />
+
+          {/* بطاقات التتبّع — مستقلّة */}
+          <StatsGrid tint={meta.color} />
 
           {/* خطّة اليوم — تمرين + وجبة مناسبيْن للمرحلة */}
           <TodayPlan phase={currentPhase} tint={meta.color} />

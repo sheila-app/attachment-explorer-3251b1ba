@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FeatureShell } from "@/components/sheila/FeatureShell";
 import { OptionCard, PrimaryCTA, GhostCTA } from "@/components/sheila/OnboardingShell";
 import { IOSWheel, wheelRange } from "@/components/sheila/IOSWheel";
-import { CyclePhaseRing } from "@/components/sheila/CyclePhaseRing";
+
 import { MultiPhaseRing, DateStrip, phaseForDay } from "@/components/sheila/HomeDraftWidgets";
 import { allScreens, PHASE_META, mockUser } from "@/data/mock";
 import { toAr } from "@/lib/format";
@@ -229,11 +229,7 @@ function Page() {
               <p className="text-[10px] text-foreground/55 mt-2 px-1 font-mono">MoodPicker · {moods.length} محدّد</p>
             </Block>
 
-            <Block title="حلقة مرحلة الدورة">
-              <div className="flex justify-center"><CyclePhaseRing phase="ovulation" day={14} cycleLength={28} size={150} /></div>
-            </Block>
-
-            <Block title="حلقة الدورة متعدّدة المراحل (home-draft)">
+            <Block title="حلقة الدورة متعدّدة المراحل">
               <div className="glass rounded-3xl p-4 flex justify-center">
                 <MultiPhaseRing
                   size={260}

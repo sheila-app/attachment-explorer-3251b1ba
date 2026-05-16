@@ -28,7 +28,7 @@ export function BottomNavSheila() {
           {/* خانة فاضية للحفاظ على الشبكة — زر الرئيسية يطفو فوقها */}
           <div className="relative h-full flex items-end justify-center">
             <Link
-              to="/home-draft"
+              to="/home"
               className="absolute -top-6 flex items-center justify-center"
               aria-label="الرئيسية"
             >

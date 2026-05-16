@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "motion/react";
 import { Bell, Search, Sparkles, Droplets, Moon, Apple, Dumbbell, Users, Trophy, Plus, Check, ChevronLeft } from "lucide-react";
 import { DeviceFrame } from "@/components/sheila/DeviceFrame";
-import { BottomNav } from "@/components/sheila/BottomNav";
+import { BottomNavSheila } from "@/components/sheila/BottomNavSheila";
 import { TierBadge } from "@/components/sheila-v2/TierBadge";
 import { mockUser, mockWorkouts, mockMeals, PHASE_META, type CyclePhase } from "@/data/mock";
 import { DAILY_MESSAGES, tierFor } from "@/data/sheila-v2";
@@ -222,36 +222,10 @@ function HomeDraft() {
             <Shortcut to="/buddy" icon={Users} label="شريك" color="var(--phase-follicular)" />
           </div>
 
-          <SectionTitle>جدول الأسبوع</SectionTitle>
-          <div className="px-5 space-y-2">
-            {[
-              { t: "موعد طبيب", d: "الثلاثاء · ١٠ صباحاً" },
-              { t: "تمرين يوغا", d: "الأربعاء · ٦ مساءً" },
-              { t: "تذكير مكمّلات", d: "كلّ يوم · ٩ صباحاً" },
-              { t: "جلسة تأمّل", d: "الجمعة · ٧ مساءً" },
-            ].map((it, i) => (
-              <div
-                key={i}
-                className="flex items-center justify-between bg-white/70 backdrop-blur border border-white/60 rounded-2xl px-4 py-3"
-              >
-                <div>
-                  <div className="text-[13px] font-medium text-foreground/85">{it.t}</div>
-                  <div className="text-[11.5px] text-foreground/55 mt-0.5">{it.d}</div>
-                </div>
-                <span
-                  className="w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-medium"
-                  style={{ background: `color-mix(in oklab, ${meta.color} 18%, white)`, color: meta.color }}
-                >
-                  ↗
-                </span>
-              </div>
-            ))}
-          </div>
-
           <div className="h-6" />
         </div>
 
-        <BottomNav />
+        <BottomNavSheila />
       </div>
     </DeviceFrame>
   );

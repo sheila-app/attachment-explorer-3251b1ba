@@ -443,7 +443,7 @@ function DailyMessageCard({ phase, tint }: { phase: CyclePhase; tint: string }) 
  * Body IQ + إحصاءات اليوم (ماء قابل للزيادة)
  * ========================================================= */
 function BodyIQStats({ tint }: { tint: string }) {
-  const [waterCups, setWaterCups] = useState(6);
+  const [waterCups] = useState(6);
   const waterTarget = 8;
   const tier = tierFor(mockUser.bodyIQ);
   const caloriesToday = 1240;

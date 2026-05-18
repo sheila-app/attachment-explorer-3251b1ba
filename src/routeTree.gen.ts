@@ -62,6 +62,7 @@ import { Route as SheilaV2HealthRouteImport } from './routes/sheila-v2/health'
 import { Route as SheilaV2EmergencyRouteImport } from './routes/sheila-v2/emergency'
 import { Route as SheilaV2CycleRouteImport } from './routes/sheila-v2/cycle'
 import { Route as SheilaV2CircleRouteImport } from './routes/sheila-v2/circle'
+import { Route as SheilaV2ChallengesRouteImport } from './routes/sheila-v2/challenges'
 import { Route as ReportsIdRouteImport } from './routes/reports.$id'
 import { Route as ProfileThemeRouteImport } from './routes/profile.theme'
 import { Route as ProfileTermsRouteImport } from './routes/profile.terms'
@@ -415,6 +416,11 @@ const SheilaV2CycleRoute = SheilaV2CycleRouteImport.update({
 const SheilaV2CircleRoute = SheilaV2CircleRouteImport.update({
   id: '/sheila-v2/circle',
   path: '/sheila-v2/circle',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SheilaV2ChallengesRoute = SheilaV2ChallengesRouteImport.update({
+  id: '/sheila-v2/challenges',
+  path: '/sheila-v2/challenges',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ReportsIdRoute = ReportsIdRouteImport.update({
@@ -959,6 +965,7 @@ export interface FileRoutesByFullPath {
   '/profile/terms': typeof ProfileTermsRoute
   '/profile/theme': typeof ProfileThemeRoute
   '/reports/$id': typeof ReportsIdRoute
+  '/sheila-v2/challenges': typeof SheilaV2ChallengesRoute
   '/sheila-v2/circle': typeof SheilaV2CircleRoute
   '/sheila-v2/cycle': typeof SheilaV2CycleRoute
   '/sheila-v2/emergency': typeof SheilaV2EmergencyRoute
@@ -1103,6 +1110,7 @@ export interface FileRoutesByTo {
   '/profile/terms': typeof ProfileTermsRoute
   '/profile/theme': typeof ProfileThemeRoute
   '/reports/$id': typeof ReportsIdRoute
+  '/sheila-v2/challenges': typeof SheilaV2ChallengesRoute
   '/sheila-v2/circle': typeof SheilaV2CircleRoute
   '/sheila-v2/cycle': typeof SheilaV2CycleRoute
   '/sheila-v2/emergency': typeof SheilaV2EmergencyRoute
@@ -1248,6 +1256,7 @@ export interface FileRoutesById {
   '/profile/terms': typeof ProfileTermsRoute
   '/profile/theme': typeof ProfileThemeRoute
   '/reports/$id': typeof ReportsIdRoute
+  '/sheila-v2/challenges': typeof SheilaV2ChallengesRoute
   '/sheila-v2/circle': typeof SheilaV2CircleRoute
   '/sheila-v2/cycle': typeof SheilaV2CycleRoute
   '/sheila-v2/emergency': typeof SheilaV2EmergencyRoute
@@ -1394,6 +1403,7 @@ export interface FileRouteTypes {
     | '/profile/terms'
     | '/profile/theme'
     | '/reports/$id'
+    | '/sheila-v2/challenges'
     | '/sheila-v2/circle'
     | '/sheila-v2/cycle'
     | '/sheila-v2/emergency'
@@ -1538,6 +1548,7 @@ export interface FileRouteTypes {
     | '/profile/terms'
     | '/profile/theme'
     | '/reports/$id'
+    | '/sheila-v2/challenges'
     | '/sheila-v2/circle'
     | '/sheila-v2/cycle'
     | '/sheila-v2/emergency'
@@ -1682,6 +1693,7 @@ export interface FileRouteTypes {
     | '/profile/terms'
     | '/profile/theme'
     | '/reports/$id'
+    | '/sheila-v2/challenges'
     | '/sheila-v2/circle'
     | '/sheila-v2/cycle'
     | '/sheila-v2/emergency'
@@ -1827,6 +1839,7 @@ export interface RootRouteChildren {
   ProfileTermsRoute: typeof ProfileTermsRoute
   ProfileThemeRoute: typeof ProfileThemeRoute
   ReportsIdRoute: typeof ReportsIdRoute
+  SheilaV2ChallengesRoute: typeof SheilaV2ChallengesRoute
   SheilaV2CircleRoute: typeof SheilaV2CircleRoute
   SheilaV2CycleRoute: typeof SheilaV2CycleRoute
   SheilaV2EmergencyRoute: typeof SheilaV2EmergencyRoute
@@ -2250,6 +2263,13 @@ declare module '@tanstack/react-router' {
       path: '/sheila-v2/circle'
       fullPath: '/sheila-v2/circle'
       preLoaderRoute: typeof SheilaV2CircleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sheila-v2/challenges': {
+      id: '/sheila-v2/challenges'
+      path: '/sheila-v2/challenges'
+      fullPath: '/sheila-v2/challenges'
+      preLoaderRoute: typeof SheilaV2ChallengesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reports/$id': {
@@ -3004,6 +3024,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileTermsRoute: ProfileTermsRoute,
   ProfileThemeRoute: ProfileThemeRoute,
   ReportsIdRoute: ReportsIdRoute,
+  SheilaV2ChallengesRoute: SheilaV2ChallengesRoute,
   SheilaV2CircleRoute: SheilaV2CircleRoute,
   SheilaV2CycleRoute: SheilaV2CycleRoute,
   SheilaV2EmergencyRoute: SheilaV2EmergencyRoute,
@@ -3058,12 +3079,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-  }
-}

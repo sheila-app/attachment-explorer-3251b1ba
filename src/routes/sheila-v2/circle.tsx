@@ -19,12 +19,13 @@ function Circle() {
       </Link>
 
       <div className="px-5">
-        <div className="grid grid-cols-3 gap-2">
-          <Link to="/sheila-v2/circle/groups" className="rounded-2xl bg-white/85 border border-border p-3 flex flex-col items-center gap-1.5"><Users size={18} className="text-primary" /><span className="text-[10.5px]">المجموعات</span></Link>
-          <Link to="/sheila-v2/circle/events" className="rounded-2xl bg-white/85 border border-border p-3 flex flex-col items-center gap-1.5"><CalendarDays size={18} className="text-phase-follicular" /><span className="text-[10.5px]">الفعاليّات</span></Link>
+        <div className="grid grid-cols-4 gap-2">
+          <Link to="/sheila-v2/circle/groups" className="rounded-2xl bg-white/85 border border-border p-3 flex flex-col items-center gap-1.5"><Users size={18} className="text-primary" /><span className="text-[10px]">المجموعات</span></Link>
+          <Link to="/sheila-v2/challenges" className="rounded-2xl bg-white/85 border border-border p-3 flex flex-col items-center gap-1.5"><Trophy size={18} className="text-phase-luteal" /><span className="text-[10px]">التحدّيات</span></Link>
+          <Link to="/sheila-v2/circle/events" className="rounded-2xl bg-white/85 border border-border p-3 flex flex-col items-center gap-1.5"><CalendarDays size={18} className="text-phase-follicular" /><span className="text-[10px]">فعاليّات</span></Link>
           <Link to="/sheila-v2/circle/accountability" className="rounded-2xl bg-white/85 border border-border p-3 flex flex-col items-center gap-1.5">
             <UserPlus size={18} className="text-phase-ovulation" />
-            <span className="text-[10.5px]">{state.partner ? state.partner.name : "شريك"}</span>
+            <span className="text-[10px]">{state.partner ? state.partner.name : "شريك"}</span>
           </Link>
         </div>
 

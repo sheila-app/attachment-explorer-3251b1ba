@@ -148,6 +148,7 @@ import { Route as SheilaV2CircleGroupsRouteImport } from './routes/sheila-v2/cir
 import { Route as SheilaV2CircleEventsRouteImport } from './routes/sheila-v2/circle_.events'
 import { Route as SheilaV2CircleComposeRouteImport } from './routes/sheila-v2/circle_.compose'
 import { Route as SheilaV2CircleAccountabilityRouteImport } from './routes/sheila-v2/circle_.accountability'
+import { Route as SheilaV2ChallengesIdRouteImport } from './routes/sheila-v2/challenges_.$id'
 import { Route as CoachesIdChatRouteImport } from './routes/coaches.$id.chat'
 import { Route as CoachesIdBookRouteImport } from './routes/coaches.$id.book'
 import { Route as SheilaV2NutritionMealIdRouteImport } from './routes/sheila-v2/nutrition_.meal.$id'
@@ -855,6 +856,11 @@ const SheilaV2CircleAccountabilityRoute =
     path: '/sheila-v2/circle/accountability',
     getParentRoute: () => rootRouteImport,
   } as any)
+const SheilaV2ChallengesIdRoute = SheilaV2ChallengesIdRouteImport.update({
+  id: '/sheila-v2/challenges_/$id',
+  path: '/sheila-v2/challenges/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CoachesIdChatRoute = CoachesIdChatRouteImport.update({
   id: '/chat',
   path: '/chat',
@@ -1001,6 +1007,7 @@ export interface FileRoutesByFullPath {
   '/workouts/': typeof WorkoutsIndexRoute
   '/coaches/$id/book': typeof CoachesIdBookRoute
   '/coaches/$id/chat': typeof CoachesIdChatRoute
+  '/sheila-v2/challenges/$id': typeof SheilaV2ChallengesIdRoute
   '/sheila-v2/circle/accountability': typeof SheilaV2CircleAccountabilityRoute
   '/sheila-v2/circle/compose': typeof SheilaV2CircleComposeRoute
   '/sheila-v2/circle/events': typeof SheilaV2CircleEventsRoute
@@ -1146,6 +1153,7 @@ export interface FileRoutesByTo {
   '/workouts': typeof WorkoutsIndexRoute
   '/coaches/$id/book': typeof CoachesIdBookRoute
   '/coaches/$id/chat': typeof CoachesIdChatRoute
+  '/sheila-v2/challenges/$id': typeof SheilaV2ChallengesIdRoute
   '/sheila-v2/circle/accountability': typeof SheilaV2CircleAccountabilityRoute
   '/sheila-v2/circle/compose': typeof SheilaV2CircleComposeRoute
   '/sheila-v2/circle/events': typeof SheilaV2CircleEventsRoute
@@ -1292,6 +1300,7 @@ export interface FileRoutesById {
   '/workouts/': typeof WorkoutsIndexRoute
   '/coaches/$id/book': typeof CoachesIdBookRoute
   '/coaches/$id/chat': typeof CoachesIdChatRoute
+  '/sheila-v2/challenges_/$id': typeof SheilaV2ChallengesIdRoute
   '/sheila-v2/circle_/accountability': typeof SheilaV2CircleAccountabilityRoute
   '/sheila-v2/circle_/compose': typeof SheilaV2CircleComposeRoute
   '/sheila-v2/circle_/events': typeof SheilaV2CircleEventsRoute
@@ -1439,6 +1448,7 @@ export interface FileRouteTypes {
     | '/workouts/'
     | '/coaches/$id/book'
     | '/coaches/$id/chat'
+    | '/sheila-v2/challenges/$id'
     | '/sheila-v2/circle/accountability'
     | '/sheila-v2/circle/compose'
     | '/sheila-v2/circle/events'
@@ -1584,6 +1594,7 @@ export interface FileRouteTypes {
     | '/workouts'
     | '/coaches/$id/book'
     | '/coaches/$id/chat'
+    | '/sheila-v2/challenges/$id'
     | '/sheila-v2/circle/accountability'
     | '/sheila-v2/circle/compose'
     | '/sheila-v2/circle/events'
@@ -1729,6 +1740,7 @@ export interface FileRouteTypes {
     | '/workouts/'
     | '/coaches/$id/book'
     | '/coaches/$id/chat'
+    | '/sheila-v2/challenges_/$id'
     | '/sheila-v2/circle_/accountability'
     | '/sheila-v2/circle_/compose'
     | '/sheila-v2/circle_/events'
@@ -1873,6 +1885,7 @@ export interface RootRouteChildren {
   ReportsIndexRoute: typeof ReportsIndexRoute
   SheilaV2IndexRoute: typeof SheilaV2IndexRoute
   WorkoutsIndexRoute: typeof WorkoutsIndexRoute
+  SheilaV2ChallengesIdRoute: typeof SheilaV2ChallengesIdRoute
   SheilaV2CircleAccountabilityRoute: typeof SheilaV2CircleAccountabilityRoute
   SheilaV2CircleComposeRoute: typeof SheilaV2CircleComposeRoute
   SheilaV2CircleEventsRoute: typeof SheilaV2CircleEventsRoute
@@ -2867,6 +2880,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SheilaV2CircleAccountabilityRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sheila-v2/challenges_/$id': {
+      id: '/sheila-v2/challenges_/$id'
+      path: '/sheila-v2/challenges/$id'
+      fullPath: '/sheila-v2/challenges/$id'
+      preLoaderRoute: typeof SheilaV2ChallengesIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/coaches/$id/chat': {
       id: '/coaches/$id/chat'
       path: '/chat'
@@ -3058,6 +3078,7 @@ const rootRouteChildren: RootRouteChildren = {
   ReportsIndexRoute: ReportsIndexRoute,
   SheilaV2IndexRoute: SheilaV2IndexRoute,
   WorkoutsIndexRoute: WorkoutsIndexRoute,
+  SheilaV2ChallengesIdRoute: SheilaV2ChallengesIdRoute,
   SheilaV2CircleAccountabilityRoute: SheilaV2CircleAccountabilityRoute,
   SheilaV2CircleComposeRoute: SheilaV2CircleComposeRoute,
   SheilaV2CircleEventsRoute: SheilaV2CircleEventsRoute,

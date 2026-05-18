@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Heart, MessageCircle, Plus, Users, CalendarDays, UserPlus } from "lucide-react";
+import { Heart, MessageCircle, Plus, Users, CalendarDays, UserPlus, Trophy } from "lucide-react";
 import { ShellV2 } from "@/components/sheila-v2/ShellV2";
 import { useSheilaV2 } from "@/components/sheila-v2/SheilaV2Store";
 import { FEED, tierFor } from "@/data/sheila-v2";

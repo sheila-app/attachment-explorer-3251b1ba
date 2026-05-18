@@ -229,3 +229,131 @@ export const NOTIFICATIONS = [
  { id:"n3", title:"ريم علّقت على منشورك", body:"في دائرة شيلا", time:"قبل 3 س", unread: false, icon:"" },
  { id:"n4", title:"تذكير شرب الماء", body:"كأسان فقط لإكمال هدف اليوم.", time:"قبل 5 س", unread: false, icon:"" },
 ];
+
+// ── التحدّيات ──
+export type Challenge = {
+  id: string;
+  title: string;
+  short: string;
+  desc: string;
+  days: number;
+  joined: number;
+  minutesPerDay: number;
+  type: "حركة" | "تغذية" | "تأمّل" | "هرمونات" | "ثبات";
+  adaptive: boolean;
+  reward: { badge: string; bodyIQ: number };
+  phaseSafe: CyclePhase[];
+  schedule: { day: number; title: string; note: string; min: number }[];
+};
+
+export const CHALLENGES: Challenge[] = [
+  {
+    id: "ch_yoga7",
+    title: "٧ أيام يوغا",
+    short: "جلسة يوميّة ١٥ دقيقة",
+    desc: "تتأقلم مع مرحلتك من الدورة: تمدّد لطيف في الطمث، تدفّق نشط في الإباضة.",
+    days: 7,
+    joined: 1240,
+    minutesPerDay: 15,
+    type: "حركة",
+    adaptive: true,
+    reward: { badge: "شارة الهدوء", bodyIQ: 60 },
+    phaseSafe: ["menstrual", "follicular", "ovulation", "luteal"],
+    schedule: [
+      { day: 1, title: "تنفّس وافتتاح", note: "وعي بالجسم وتمدّد لطيف", min: 12 },
+      { day: 2, title: "تحيّة الشمس البطيئة", note: "حركة كاملة بإيقاع هادئ", min: 15 },
+      { day: 3, title: "توازن وقوّة جذع", note: "وضعيّات الواقفة الأساسيّة", min: 18 },
+      { day: 4, title: "انفتاح الورك", note: "إطالة عميقة للورك والظهر", min: 18 },
+      { day: 5, title: "تدفّق فينياسا", note: "ربط النَفَس بالحركة", min: 20 },
+      { day: 6, title: "تحدّي التوازن", note: "وضعيّات على قدم واحدة", min: 22 },
+      { day: 7, title: "تدفّق احتفالي", note: "كلّ ما تعلّمتِه في تسلسل واحد", min: 25 },
+    ],
+  },
+  {
+    id: "ch_walk30",
+    title: "٣٠ يوماً من المشي",
+    short: "خطوة بخطوة — ٧٠٠٠ خطوة يوميّاً",
+    desc: "بناء عادة حركة يوميّة مستدامة، تتدرّج بلطف حسب طاقتك.",
+    days: 30,
+    joined: 3580,
+    minutesPerDay: 30,
+    type: "حركة",
+    adaptive: true,
+    reward: { badge: "شارة المثابرة", bodyIQ: 150 },
+    phaseSafe: ["menstrual", "follicular", "ovulation", "luteal"],
+    schedule: [
+      { day: 1, title: "البداية — ٤٠٠٠ خطوة", note: "إيقاع مريح، بلا ضغط", min: 25 },
+      { day: 7, title: "أوّل علامة — ٥٠٠٠", note: "أسبوع مكتمل، استمرّي", min: 30 },
+      { day: 14, title: "منتصف الطريق", note: "٧٠٠٠ خطوة — الجسم تكيّف", min: 35 },
+      { day: 21, title: "تسريع تدريجي", note: "أضيفي ١٠ دقائق بإيقاع أسرع", min: 40 },
+      { day: 30, title: "احتفال الإنجاز", note: "مشية احتفاليّة طويلة", min: 50 },
+    ],
+  },
+  {
+    id: "ch_hydra7",
+    title: "أسبوع الترطيب",
+    short: "٨ كؤوس ماء يوميّاً × ٧",
+    desc: "بناء عادة ترطيب ثابتة — تنعكس على بشرتك وطاقتك خلال أيام.",
+    days: 7,
+    joined: 890,
+    minutesPerDay: 5,
+    type: "تغذية",
+    adaptive: false,
+    reward: { badge: "شارة النقاء", bodyIQ: 50 },
+    phaseSafe: ["menstrual", "follicular", "ovulation", "luteal"],
+    schedule: [
+      { day: 1, title: "كأس مع كلّ وجبة", note: "ابدئي بالأساس", min: 5 },
+      { day: 2, title: "كأس قبل الإفطار", note: "أوّل عادة صباحيّة", min: 5 },
+      { day: 3, title: "تذكير كلّ ساعتين", note: "فعّلي التنبيهات", min: 5 },
+      { day: 4, title: "ماء + ليمون", note: "نكهة طبيعيّة تشجّع", min: 5 },
+      { day: 5, title: "زجاجة معك دائماً", note: "ابقي قريبة من اليد", min: 5 },
+      { day: 6, title: "تتبّع كامل", note: "ثمانية كؤوس مكتملة", min: 5 },
+      { day: 7, title: "احتفال الإنجاز", note: "أسبوع كامل — أحسنت!", min: 5 },
+    ],
+  },
+  {
+    id: "ch_strength14",
+    title: "تحدّي القوّة",
+    short: "١٤ يوماً لتقوية الجسم",
+    desc: "تدريب قوّة متدرّج، ينحرف للتعافي في الأسبوع الأصفري.",
+    days: 14,
+    joined: 620,
+    minutesPerDay: 30,
+    type: "حركة",
+    adaptive: true,
+    reward: { badge: "شارة البطلة", bodyIQ: 120 },
+    phaseSafe: ["follicular", "ovulation", "luteal"],
+    schedule: [
+      { day: 1, title: "تقييم وإحماء", note: "تعرّفي على حدودك", min: 20 },
+      { day: 4, title: "قوّة الجزء العلوي", note: "صدر، كتف، ذراعين", min: 30 },
+      { day: 7, title: "قوّة الجزء السفلي", note: "أرجل وألوية", min: 30 },
+      { day: 10, title: "جذع كامل", note: "بطن وظهر سفلي", min: 25 },
+      { day: 14, title: "اختبار التقدّم", note: "قارني مع اليوم الأوّل", min: 35 },
+    ],
+  },
+  {
+    id: "ch_mind21",
+    title: "٢١ يوماً تأمّل",
+    short: "١٠ دقائق هدوء يوميّاً",
+    desc: "بناء عادة تأمّل تخفّف القلق وتحسّن النوم.",
+    days: 21,
+    joined: 1450,
+    minutesPerDay: 10,
+    type: "تأمّل",
+    adaptive: false,
+    reward: { badge: "شارة الصفاء", bodyIQ: 100 },
+    phaseSafe: ["menstrual", "follicular", "ovulation", "luteal"],
+    schedule: [
+      { day: 1, title: "تنفّس واعٍ", note: "خمس دقائق فقط لتبدئي", min: 5 },
+      { day: 7, title: "تأمّل موجّه", note: "صوت يقودك خطوة بخطوة", min: 10 },
+      { day: 14, title: "صمت كامل", note: "بدون صوت — ركّزي على النَفَس", min: 12 },
+      { day: 21, title: "ممارسة طويلة", note: "خمس عشرة دقيقة هدوء", min: 15 },
+    ],
+  },
+];
+
+export const ACTIVE_CHALLENGE = {
+  id: "ch_yoga7",
+  currentDay: 3,
+  loggedToday: false,
+};

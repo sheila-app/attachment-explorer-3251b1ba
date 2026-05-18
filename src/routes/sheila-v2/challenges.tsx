@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Flame, Clock, Users, Sparkles, Trophy, ChevronLeft, Check } from "lucide-react";
 import { ShellV2 } from "@/components/sheila-v2/ShellV2";
 import { CHALLENGES, ACTIVE_CHALLENGE } from "@/data/sheila-v2";
-import { fmtNum } from "@/lib/format";
+import { fmt } from "@/lib/format";
 
 export const Route = createFileRoute("/sheila-v2/challenges")({ component: ChallengesIdx });
 
@@ -49,7 +49,7 @@ function ChallengesIdx() {
 
               <div className="relative z-10 mt-4">
                 <div className="flex items-center justify-between text-[11px] text-white/85 mb-1.5">
-                  <span className="nums">اليوم {fmtNum(ACTIVE_CHALLENGE.currentDay)} / {fmtNum(active.days)}</span>
+                  <span className="nums">اليوم {fmt(ACTIVE_CHALLENGE.currentDay)} / {fmt(active.days)}</span>
                   <span className="nums">{Math.round((ACTIVE_CHALLENGE.currentDay / active.days) * 100)}٪</span>
                 </div>
                 <div className="h-1.5 rounded-full bg-white/20 overflow-hidden">
@@ -79,7 +79,7 @@ function ChallengesIdx() {
         <section>
           <div className="flex items-center justify-between mb-2.5">
             <h2 className="font-display text-[14px]">اكتشفي التحدّيات</h2>
-            <span className="text-[10.5px] text-foreground/55 nums">{fmtNum(discover.length)} تحدّي</span>
+            <span className="text-[10.5px] text-foreground/55 nums">{fmt(discover.length)} تحدّي</span>
           </div>
 
           <div className="space-y-2.5">
@@ -113,10 +113,10 @@ function ChallengesIdx() {
                       </div>
                       <div className="text-[11px] text-foreground/60 mt-0.5 truncate">{c.short}</div>
                       <div className="flex items-center gap-3 mt-1.5 text-[10.5px] text-foreground/55 nums">
-                        <span className="inline-flex items-center gap-1"><Clock size={10} /> {fmtNum(c.days)} يوم</span>
-                        <span className="inline-flex items-center gap-1"><Users size={10} /> {fmtNum(c.joined)}</span>
+                        <span className="inline-flex items-center gap-1"><Clock size={10} /> {fmt(c.days)} يوم</span>
+                        <span className="inline-flex items-center gap-1"><Users size={10} /> {fmt(c.joined)}</span>
                         <span className="inline-flex items-center gap-1" style={{ color: "var(--primary)" }}>
-                          <Sparkles size={10} /> +{fmtNum(c.reward.bodyIQ)}
+                          <Sparkles size={10} /> +{fmt(c.reward.bodyIQ)}
                         </span>
                       </div>
                     </div>

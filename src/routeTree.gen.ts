@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WidgetsRouteImport } from './routes/widgets'
+import { Route as WebRouteImport } from './routes/web'
 import { Route as TimerRouteImport } from './routes/timer'
 import { Route as SystemRouteImport } from './routes/system'
 import { Route as SupplementsRouteImport } from './routes/supplements'
@@ -157,6 +158,11 @@ import { Route as SheilaV2CyclePhasePhaseRouteImport } from './routes/sheila-v2/
 const WidgetsRoute = WidgetsRouteImport.update({
   id: '/widgets',
   path: '/widgets',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WebRoute = WebRouteImport.update({
+  id: '/web',
+  path: '/web',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TimerRoute = TimerRouteImport.update({
@@ -902,6 +908,7 @@ export interface FileRoutesByFullPath {
   '/supplements': typeof SupplementsRoute
   '/system': typeof SystemRoute
   '/timer': typeof TimerRoute
+  '/web': typeof WebRoute
   '/widgets': typeof WidgetsRoute
   '/articles/$id': typeof ArticlesIdRoute
   '/auth/forgot': typeof AuthForgotRoute
@@ -1048,6 +1055,7 @@ export interface FileRoutesByTo {
   '/supplements': typeof SupplementsRoute
   '/system': typeof SystemRoute
   '/timer': typeof TimerRoute
+  '/web': typeof WebRoute
   '/widgets': typeof WidgetsRoute
   '/articles/$id': typeof ArticlesIdRoute
   '/auth/forgot': typeof AuthForgotRoute
@@ -1195,6 +1203,7 @@ export interface FileRoutesById {
   '/supplements': typeof SupplementsRoute
   '/system': typeof SystemRoute
   '/timer': typeof TimerRoute
+  '/web': typeof WebRoute
   '/widgets': typeof WidgetsRoute
   '/articles/$id': typeof ArticlesIdRoute
   '/auth/forgot': typeof AuthForgotRoute
@@ -1343,6 +1352,7 @@ export interface FileRouteTypes {
     | '/supplements'
     | '/system'
     | '/timer'
+    | '/web'
     | '/widgets'
     | '/articles/$id'
     | '/auth/forgot'
@@ -1489,6 +1499,7 @@ export interface FileRouteTypes {
     | '/supplements'
     | '/system'
     | '/timer'
+    | '/web'
     | '/widgets'
     | '/articles/$id'
     | '/auth/forgot'
@@ -1635,6 +1646,7 @@ export interface FileRouteTypes {
     | '/supplements'
     | '/system'
     | '/timer'
+    | '/web'
     | '/widgets'
     | '/articles/$id'
     | '/auth/forgot'
@@ -1782,6 +1794,7 @@ export interface RootRouteChildren {
   SupplementsRoute: typeof SupplementsRoute
   SystemRoute: typeof SystemRoute
   TimerRoute: typeof TimerRoute
+  WebRoute: typeof WebRoute
   WidgetsRoute: typeof WidgetsRoute
   ArticlesIdRoute: typeof ArticlesIdRoute
   AuthForgotRoute: typeof AuthForgotRoute
@@ -1912,6 +1925,13 @@ declare module '@tanstack/react-router' {
       path: '/widgets'
       fullPath: '/widgets'
       preLoaderRoute: typeof WidgetsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/web': {
+      id: '/web'
+      path: '/web'
+      fullPath: '/web'
+      preLoaderRoute: typeof WebRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/timer': {
@@ -2975,6 +2995,7 @@ const rootRouteChildren: RootRouteChildren = {
   SupplementsRoute: SupplementsRoute,
   SystemRoute: SystemRoute,
   TimerRoute: TimerRoute,
+  WebRoute: WebRoute,
   WidgetsRoute: WidgetsRoute,
   ArticlesIdRoute: ArticlesIdRoute,
   AuthForgotRoute: AuthForgotRoute,
